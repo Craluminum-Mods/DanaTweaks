@@ -1,0 +1,16 @@
+[
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": { "name": "RightClickPickup" },
+    "file": "blocktypes/bone/carcass.json",
+    "condition": { "when": "PickUpBonesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": { "name": "RightClickPickup" },
+    "file": "blocktypes/bone/drycarcass.json",
+    "condition": { "when": "PickUpBonesEnabled", "isValue": "true" }
+  }
+]

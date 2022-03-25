@@ -1,0 +1,59 @@
+[
+  {
+    "op": "add",
+    "path": "/attributes/onDisplayTransform",
+    "value": { "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.8 },
+    "file": "blocktypes/food/pie.json",
+    "condition": { "when": "PlacePieOnShelfEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/attributes/shelvable",
+    "value": true,
+    "file": "blocktypes/food/pie.json",
+    "condition": { "when": "PlacePieOnShelfEnabled", "isValue": "true" }
+  },
+
+  {
+    "op": "add",
+    "path": "/attributesByType/claypot-burned/onDisplayTransform",
+    "value": { "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.9 },
+    "file": "blocktypes/clay/pot.json",
+    "condition": { "when": "PlacePotOnShelfEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/attributesByType/claypot-burned/shelvable",
+    "value": true,
+    "file": "blocktypes/clay/pot.json",
+    "condition": { "when": "PlacePotOnShelfEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/attributesByType/claypot-cooked/onDisplayTransform",
+    "value": { "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.9 },
+    "file": "blocktypes/clay/pot.json",
+    "condition": { "when": "PlacePotOnShelfEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/attributesByType/claypot-cooked/shelvable",
+    "value": true,
+    "file": "blocktypes/clay/pot.json",
+    "condition": { "when": "PlacePotOnShelfEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/attributesByType/claypot-raw/onDisplayTransform",
+    "value": { "origin": { "x": 0.5, "y": 0, "z": 0.5 }, "scale": 0.9 },
+    "file": "blocktypes/clay/pot.json",
+    "condition": { "when": "PlacePotOnShelfEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/attributesByType/claypot-raw/shelvable",
+    "value": true,
+    "file": "blocktypes/clay/pot.json",
+    "condition": { "when": "PlacePotOnShelfEnabled", "isValue": "true" }
+  }
+]

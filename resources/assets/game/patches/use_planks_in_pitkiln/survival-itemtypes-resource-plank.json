@@ -1,0 +1,9 @@
+[
+  {
+    "op": "add",
+    "path": "/attributes/placeSound",
+    "value": "block/planks",
+    "file": "itemtypes/resource/plank.json",
+    "condition": { "when": "UsePlanksInPitKilnEnabled", "isValue": "true" }
+  }
+]

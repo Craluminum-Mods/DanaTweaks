@@ -1,0 +1,19 @@
+[
+  {
+    "op": "replace",
+    "path": "/pattern",
+    "value": [
+      [
+        "################",
+        "################",
+        "################",
+        "################",
+        "################",
+        "################",
+        "###_____________"
+      ]
+    ],
+    "file": "recipes/clayforming/crock.json",
+    "condition": { "when": "LazyKnappingClayformingEnabled", "isValue": "true" }
+  }
+]
