@@ -1,0 +1,19 @@
+[
+  {
+    "op": "replace",
+    "path": "/pattern",
+    "value": [
+      [
+        "######",
+        "######",
+        "######",
+        "######",
+        "######",
+        "######",
+        "#####_"
+      ]
+    ],
+    "file": "game:recipes/clayforming/bowl.json",
+    "condition": { "when": "LazyKnappingClayformingEnabled", "isValue": "true" }
+  }
+]

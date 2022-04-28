@@ -1,0 +1,61 @@
+[
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "ExchangeOnInteract",
+      "properties": {
+        "exchangeStates": ["*-ns", "*-we", "*-ground"],
+        "sound": "effect/latch",
+        "actionLangCode": "blockhelp-chute-changeorientation"
+      }
+    },
+    "file": "game:blocktypes/metal/chute-cross.json",
+    "condition": { "when": "AdjustWithRightClickEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "ExchangeOnInteract",
+      "properties": {
+        "exchangeStates": ["*-ud", "*-ns", "*-we"],
+        "sound": "effect/latch",
+        "actionLangCode": "blockhelp-chute-changeorientation"
+      }
+    },
+    "file": "game:blocktypes/metal/chute-straight.json",
+    "condition": { "when": "AdjustWithRightClickEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "ExchangeOnInteract",
+      "properties": {
+        "exchangeStates": ["*-t-ns", "*-t-we", "*-t-ud-n", "*-t-ud-e", "*-t-ud-s", "*-t-ud-w"],
+        "sound": "effect/latch",
+        "actionLangCode": "blockhelp-chute-changeorientation"
+      }
+    },
+    "file": "game:blocktypes/metal/chute-t.json",
+    "condition": { "when": "AdjustWithRightClickEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "ExchangeOnInteract",
+      "properties": {
+        "exchangeStatesByType": {
+          "*-elbow-*": ["*-up-north", "*-up-east", "*-up-south", "*-up-west", "*-down-north", "*-down-east", "*-down-south", "*-down-west"],
+          "*-3way-*": ["*-up-north", "*-up-east", "*-up-south", "*-up-west", "*-down-north", "*-down-east", "*-down-south", "*-down-west"]
+        },
+        "sound": "effect/latch",
+        "actionLangCode": "blockhelp-chute-changeorientation"
+      }
+    },
+    "file": "game:blocktypes/metal/chute.json",
+    "condition": { "when": "AdjustWithRightClickEnabled", "isValue": "true" }
+  }
+]

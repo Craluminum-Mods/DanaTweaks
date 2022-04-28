@@ -1,0 +1,16 @@
+[
+  {
+    "op": "replace",
+    "path": "/attributes/tradeProps/money/avg",
+    "value": 999999,
+    "file": "game:entities/humanoid/trader-foods.json",
+    "condition": { "when": "InfiniteTraderMoneyEnabled", "isValue": "true" }
+  },
+  {
+    "op": "replace",
+    "path": "/attributes/tradeProps/money/var",
+    "value": 0,
+    "file": "game:entities/humanoid/trader-foods.json",
+    "condition": { "when": "InfiniteTraderMoneyEnabled", "isValue": "true" }
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "op": "add",
+    "path": "/client/glowlevel",
+    "value": 255,
+    "file": "game:entities/arrow.json",
+    "condition": { "when": "VisuallyGlowingArrowsAndSpearsEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/client/glowlevel",
+    "value": 255,
+    "file": "game:entities/spear.json",
+    "condition": { "when": "VisuallyGlowingArrowsAndSpearsEnabled", "isValue": "true" }
+  }
+]

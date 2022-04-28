@@ -1,0 +1,18 @@
+[
+  {
+    "op": "replace",
+    "path": "/pattern",
+    "value": [
+      [
+        "################",
+        "################",
+        "################",
+        "################",
+        "################",
+        "#############___"
+      ]
+    ],
+    "file": "game:recipes/clayforming/ingotmold.json",
+    "condition": { "when": "LazyKnappingClayformingEnabled", "isValue": "true" }
+  }
+]

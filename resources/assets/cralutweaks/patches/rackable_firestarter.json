@@ -1,0 +1,17 @@
+[
+  {
+    "op": "add",
+    "path": "/attributes",
+    "value": {
+      "rackable": true,
+      "toolrackTransform": {
+        "translation": { "x": 0.25, "y": 0.55, "z": 0.0275 },
+        "rotation": { "x": 180, "y": -135, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 0.7
+      }
+    },
+    "file": "game:itemtypes/tool/firestarter.json",
+    "condition": { "when": "RackableFirestarterEnabled", "isValue": "true" }
+  }
+]
