@@ -23,9 +23,6 @@
 		</None>
 	</ItemGroup>
 	
-	<Target Name="Package" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Release'">
-		<ZipDirectory DestinationFile="bin/$(TargetName).zip" SourceDirectory="$(TargetDir)" Overwrite="true" />
-	</Target>
   <Target Name="Package" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'ReleaseToMods'">
 		<ZipDirectory DestinationFile="$(VINTAGE_STORY_DATA)/Mods/$(TargetName)-v1.0.1.zip" SourceDirectory="$(TargetDir)" Overwrite="true" />
 	</Target>
