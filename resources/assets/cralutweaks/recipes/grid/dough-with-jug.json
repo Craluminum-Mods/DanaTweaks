@@ -1,17 +1,15 @@
-[
-  {
-    "ingredientPattern": "WF",
-    "ingredients": {
-      "W": { "type": "block", "code": "game:jug-*-fired" },
-      "F": { "type": "item", "code": "game:flour-*", "name": "type" }
-    },
-    "attributes": {
-      "liquidContainerProps": { "requiresContent": { "type": "item", "code": "game:waterportion" }, "requiresLitres": 1 }
-    },
-    "width": 2,
-    "height": 1,
-    "name": "dough",
-    "shapeless": true,
-    "output": { "type": "item", "code": "game:dough-{type}" }
-  }
-]
+{
+  "ingredientPattern": "WF",
+  "ingredients": {
+    "W": { "type": "block", "code": "game:jug-*-fired" },
+    "F": { "type": "item", "code": "game:flour-*", "name": "type" }
+  },
+  "attributes": {
+    "liquidContainerProps": { "requiresContent": { "type": "item", "code": "game:waterportion" }, "requiresLitres": 1 }
+  },
+  "width": 2,
+  "height": 1,
+  "name": "dough",
+  "shapeless": true,
+  "output": { "type": "item", "code": "game:dough-{type}" }
+}
