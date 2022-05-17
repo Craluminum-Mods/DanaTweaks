@@ -2,14 +2,14 @@
   {
     "op": "add",
     "path": "/enabled",
-    "file": "game:recipes/grid/metalblock-to-metalplate.json",
+    "file": "recipes/grid/metalblock-to-metalplate.json",
     "value": false,
     "condition": { "when": "ScrapRecipesEnabled", "isValue": "false" }
   },
   {
     "op": "add",
     "path": "/enabled",
-    "file": "game:recipes/grid/torchholder-to-metalbit.json",
+    "file": "recipes/grid/torchholder-to-metalbit.json",
     "value": false,
     "condition": { "when": "ScrapRecipesEnabled", "isValue": "false" }
   }
