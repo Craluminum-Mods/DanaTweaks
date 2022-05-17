@@ -1,0 +1,9 @@
+[
+  {
+    "op": "add",
+    "path": "/enabled",
+    "file": "recipes/barrel/compost2x.json",
+    "value": false,
+    "condition": { "when": "Compost2xEnabled", "isValue": "false" }
+  }
+]
