@@ -14,6 +14,7 @@ namespace CraluTweaks.Config
     public bool CarryableShelfEnabled = true;
     public bool CarryableToolrackEnabled = true;
     public bool CarryableTorchholderEnabled = true;
+    public bool Compost2xEnabled = true;
     public bool DropWallpapersEnabled = true;
     public bool InfiniteTraderMoneyEnabled = true;
     public bool LazyKnappingClayformingEnabled = false;
@@ -43,6 +44,7 @@ namespace CraluTweaks.Config
       CarryableShelfEnabled = previousConfig.CarryableShelfEnabled;
       CarryableToolrackEnabled = previousConfig.CarryableToolrackEnabled;
       CarryableTorchholderEnabled = previousConfig.CarryableTorchholderEnabled;
+      Compost2xEnabled = previousConfig.Compost2xEnabled;
       DropWallpapersEnabled = previousConfig.DropWallpapersEnabled;
       InfiniteTraderMoneyEnabled = previousConfig.InfiniteTraderMoneyEnabled;
       LazyKnappingClayformingEnabled = previousConfig.LazyKnappingClayformingEnabled;
