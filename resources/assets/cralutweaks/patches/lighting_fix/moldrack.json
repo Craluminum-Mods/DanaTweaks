@@ -1,8 +1,0 @@
-[
-  {
-    "op": "replace",
-    "path": "/lightAbsorption",
-    "value": 0,
-    "file": "game:blocktypes/wood/moldrack.json"
-  }
-]
