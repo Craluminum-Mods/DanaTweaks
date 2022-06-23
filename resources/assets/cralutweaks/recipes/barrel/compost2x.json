@@ -1,9 +1,0 @@
-{
-  "code": "compost2x",
-  "sealHours": 480,
-  "ingredients": [
-    { "type": "item", "code": "game:rot", "litres": 64 },
-    { "type": "item", "code": "game:rot", "quantity": 64 }
-  ],
-  "output": { "type": "item", "code": "game:compost", "stackSize": 32 }
-}

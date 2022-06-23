@@ -41,7 +41,6 @@ namespace CraluTweaks.Utility
       api.World.Config.SetBool("CarryableShelfEnabled", config.CarryableShelfEnabled);
       api.World.Config.SetBool("CarryableToolrackEnabled", config.CarryableToolrackEnabled);
       api.World.Config.SetBool("CarryableTorchholderEnabled", config.CarryableTorchholderEnabled);
-      api.World.Config.SetBool("Compost2xEnabled", config.Compost2xEnabled);
       api.World.Config.SetBool("DropWallpapersEnabled", config.DropWallpapersEnabled);
       api.World.Config.SetBool("InfiniteTraderMoneyEnabled", config.InfiniteTraderMoneyEnabled);
       api.World.Config.SetBool("LazyKnappingClayformingEnabled", config.LazyKnappingClayformingEnabled);
