@@ -29,7 +29,6 @@ namespace CraluTweaks.Utility
         config = LoadConfig(api);
       }
 
-      api.World.Config.SetBool("AdjustWithRightClickEnabled", config.AdjustWithRightClickEnabled);
       api.World.Config.SetBool("CarryableBunchOCandlesEnabled", config.CarryableBunchOCandlesEnabled);
       api.World.Config.SetBool("CarryableChandelierEnabled", config.CarryableChandelierEnabled);
       api.World.Config.SetBool("CarryableFlowerpotEnabled", config.CarryableFlowerpotEnabled);
@@ -43,7 +42,6 @@ namespace CraluTweaks.Utility
       api.World.Config.SetBool("CarryableTorchholderEnabled", config.CarryableTorchholderEnabled);
       api.World.Config.SetBool("DropWallpapersEnabled", config.DropWallpapersEnabled);
       api.World.Config.SetBool("InfiniteTraderMoneyEnabled", config.InfiniteTraderMoneyEnabled);
-      api.World.Config.SetBool("LazyKnappingClayformingEnabled", config.LazyKnappingClayformingEnabled);
       api.World.Config.SetBool("PickUpBonesEnabled", config.PickUpBonesEnabled);
       api.World.Config.SetBool("PlacePieOnShelfEnabled", config.PlacePieOnShelfEnabled);
       api.World.Config.SetBool("PlacePotOnShelfEnabled", config.PlacePotOnShelfEnabled);

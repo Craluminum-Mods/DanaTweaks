@@ -2,7 +2,6 @@ namespace CraluTweaks.Config
 {
   class CraluTweaksConfig
   {
-    public bool AdjustWithRightClickEnabled = false;
     public bool CarryableBunchOCandlesEnabled = true;
     public bool CarryableChandelierEnabled = true;
     public bool CarryableFlowerpotEnabled = true;
@@ -16,7 +15,6 @@ namespace CraluTweaks.Config
     public bool CarryableTorchholderEnabled = true;
     public bool DropWallpapersEnabled = true;
     public bool InfiniteTraderMoneyEnabled = true;
-    public bool LazyKnappingClayformingEnabled = false;
     public bool PickUpBonesEnabled = true;
     public bool PlacePieOnShelfEnabled = true;
     public bool PlacePotOnShelfEnabled = true;
@@ -31,7 +29,6 @@ namespace CraluTweaks.Config
     }
     public CraluTweaksConfig(CraluTweaksConfig previousConfig)
     {
-      AdjustWithRightClickEnabled = previousConfig.AdjustWithRightClickEnabled;
       CarryableBunchOCandlesEnabled = previousConfig.CarryableBunchOCandlesEnabled;
       CarryableChandelierEnabled = previousConfig.CarryableChandelierEnabled;
       CarryableFlowerpotEnabled = previousConfig.CarryableFlowerpotEnabled;
@@ -45,7 +42,6 @@ namespace CraluTweaks.Config
       CarryableTorchholderEnabled = previousConfig.CarryableTorchholderEnabled;
       DropWallpapersEnabled = previousConfig.DropWallpapersEnabled;
       InfiniteTraderMoneyEnabled = previousConfig.InfiniteTraderMoneyEnabled;
-      LazyKnappingClayformingEnabled = previousConfig.LazyKnappingClayformingEnabled;
       PickUpBonesEnabled = previousConfig.PickUpBonesEnabled;
       PlacePieOnShelfEnabled = previousConfig.PlacePieOnShelfEnabled;
       PlacePotOnShelfEnabled = previousConfig.PlacePotOnShelfEnabled;
