@@ -7,7 +7,7 @@
       "properties": { "translation": [0.0625, 0, 0], "rotation": [0, 180, 0], "slots": { "Hands": {}, "Back": {} } }
     },
     "file": "game:blocktypes/wood/moldrack.json",
-    "dependsOn": [{ "modid": "carrycapacity" }],
+    "dependsOn": [{ "modid": "carryon" }],
     "condition": { "when": "CarryableMoldrackEnabled", "isValue": "true" }
   }
 ]

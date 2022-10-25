@@ -7,7 +7,7 @@
       "properties": { "translation": [0.0625, 0, 0], "rotation": [0, 180, 0], "slots": { "Hands": {} } }
     },
     "file": "game:blocktypes/clay/oven.json",
-    "dependsOn": [{ "modid": "carrycapacity" }],
+    "dependsOn": [{ "modid": "carryon" }],
     "condition": { "when": "CarryableOvenEnabled", "isValue": "true" }
   }
 ]

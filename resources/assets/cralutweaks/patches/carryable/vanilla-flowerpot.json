@@ -4,10 +4,10 @@
     "path": "/behaviorsByType/*/-",
     "value": {
       "name": "Carryable",
-      "properties": { "translation": [0.3175, 0.1, 0], "rotation": [0, 180, 0], "scale": 1, "slots": { "Hands": { "animation": "carrycapacity:holdlight" }, "Back": {} } }
+      "properties": { "translation": [0.3175, 0.1, 0], "rotation": [0, 180, 0], "scale": 1, "slots": { "Hands": { "animation": "carryon:holdlight" }, "Back": {} } }
     },
     "file": "game:blocktypes/clay/flowerpot.json",
-    "dependsOn": [{ "modid": "carrycapacity" }],
+    "dependsOn": [{ "modid": "carryon" }],
     "condition": { "when": "CarryableFlowerpotEnabled", "isValue": "true" }
   }
 ]

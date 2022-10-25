@@ -7,7 +7,7 @@
       "properties": { "translation": [0.0625, 0, 0], "rotation": [0, 90, 90], "slots": { "Hands": {} } }
     },
     "file": "game:blocktypes/wood/toolrack.json",
-    "dependsOn": [{ "modid": "carrycapacity" }],
+    "dependsOn": [{ "modid": "carryon" }],
     "condition": { "when": "CarryableToolrackEnabled", "isValue": "true" }
   }
 ]
