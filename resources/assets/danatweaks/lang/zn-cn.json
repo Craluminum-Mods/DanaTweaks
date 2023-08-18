@@ -1,0 +1,7 @@
+{
+    "Command.OpenCloseLid.Name": "打开或关闭箱子盖",
+    "Command.RemoveOrAddLabel.Name": "移除或添加板条箱上的羊皮纸",
+    "Command.Error.NoCrate": "看不到箱子",
+    "Command.Error.HasDiffLabel": "箱子有不同的羊皮纸",
+    "Command.Error.NoLabel": "手中或板条箱上没有羊皮纸"
+}

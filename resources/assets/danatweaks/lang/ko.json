@@ -1,0 +1,7 @@
+{
+    "Command.OpenCloseLid.Name": "상자 뚜껑을 열거나 닫습니다",
+    "Command.RemoveOrAddLabel.Name": "상자에 양피지 제거 또는 추가",
+    "Command.Error.NoCrate": "상자가 보이지 않습니다",
+    "Command.Error.HasDiffLabel": "상자에 다른 양피지가 있습니다",
+    "Command.Error.NoLabel": "손이나 상자에 양피지가 없습니다"
+}

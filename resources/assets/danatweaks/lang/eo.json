@@ -1,0 +1,7 @@
+{
+    "Command.OpenCloseLid.Name": "Malfermu aŭ fermu la kovrilon de la kesto",
+    "Command.RemoveOrAddLabel.Name": "Forigi aŭ aldoni pergamenon sur keston",
+    "Command.Error.NoCrate": "Neniu kesto en vido",
+    "Command.Error.HasDiffLabel": "Kesto havas malsaman pergamenon",
+    "Command.Error.NoLabel": "Neniu pergameno en la mano aŭ sur kesto"
+}

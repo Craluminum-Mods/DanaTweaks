@@ -1,0 +1,7 @@
+{
+    "Command.OpenCloseLid.Name": "Otevřít nebo zavřít víko bedny",
+    "Command.RemoveOrAddLabel.Name": "Odstranit nebo přidat pergamen na bednu",
+    "Command.Error.NoCrate": "Žádná bedna v dohledu",
+    "Command.Error.HasDiffLabel": "Bedna má jiný pergamen",
+    "Command.Error.NoLabel": "V ruce ani na bedně není pergamen"
+}

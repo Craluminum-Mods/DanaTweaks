@@ -1,0 +1,7 @@
+{
+    "Command.OpenCloseLid.Name": "Open or close the crate lid",
+    "Command.RemoveOrAddLabel.Name": "Remove or add parchment on crate",
+    "Command.Error.NoCrate": "No crate in sight",
+    "Command.Error.HasDiffLabel": "Crate has different parchment",
+    "Command.Error.NoLabel": "No parchment in hand or on crate"
+}

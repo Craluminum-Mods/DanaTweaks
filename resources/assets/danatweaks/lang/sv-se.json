@@ -1,0 +1,7 @@
+{
+    "Command.OpenCloseLid.Name": "Öppna eller stäng lådans lock",
+    "Command.RemoveOrAddLabel.Name": "Ta bort eller lägg till pergament på lådan",
+    "Command.Error.NoCrate": "Ingen låda i sikte",
+    "Command.Error.HasDiffLabel": "Lådan har olika pergament",
+    "Command.Error.NoLabel": "Inget pergament i handen eller på lådan"
+}

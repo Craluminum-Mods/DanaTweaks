@@ -1,0 +1,7 @@
+{
+    "Command.OpenCloseLid.Name": "Otvoriť alebo zatvoriť veko prepravky",
+    "Command.RemoveOrAddLabel.Name": "Odstrániť alebo pridať pergamen na debnu",
+    "Command.Error.NoCrate": "Žiadna debna v dohľade",
+    "Command.Error.HasDiffLabel": "Debna má iný pergamen",
+    "Command.Error.NoLabel": "Žiadny pergamen v ruke ani na debne"
+}

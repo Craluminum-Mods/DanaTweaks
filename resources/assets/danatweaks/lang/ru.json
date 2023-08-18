@@ -1,0 +1,7 @@
+{
+    "Command.OpenCloseLid.Name": "Открыть или закрыть крышку ящика",
+    "Command.RemoveOrAddLabel.Name": "Снять или повесить пергамент на ящик",
+    "Command.Error.NoCrate": "Нет ящика в поле зрения",
+    "Command.Error.HasDiffLabel": "На ящике другой пергамент",
+    "Command.Error.NoLabel": "В руке или на ящике нет пергамента"
+}

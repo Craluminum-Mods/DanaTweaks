@@ -1,0 +1,7 @@
+{
+    "Command.OpenCloseLid.Name": "Abrir o cerrar la tapa de la caja",
+    "Command.RemoveOrAddLabel.Name": "Quitar o añadir pergamino en la caja",
+    "Command.Error.NoCrate": "Ninguna caja a la vista",
+    "Command.Error.HasDiffLabel": "Cajón tiene pergamino diferente",
+    "Command.Error.NoLabel": "No hay pergamino en la mano ni en la caja"
+}

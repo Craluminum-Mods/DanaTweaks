@@ -1,0 +1,7 @@
+{
+    "Command.OpenCloseLid.Name": "Öffnen oder Schließen des Kistendeckels",
+    "Command.RemoveOrAddLabel.Name": "Pergament auf Kiste entfernen oder hinzufügen",
+    "Command.Error.NoCrate": "Keine Kiste in Sicht",
+    "Command.Error.HasDiffLabel": "Kiste hat anderes Pergament",
+    "Command.Error.NoLabel": "Kein Pergament in der Hand oder auf der Kiste"
+}
