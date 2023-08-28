@@ -29,6 +29,23 @@
             <HintPath>$(VINTAGE_STORY)\Mods\VSEssentials.dll</HintPath>
             <Private>false</Private>
         </Reference>
+        <!-- Vintage Story Included Libraries -->
+        <Reference Include="0Harmony">
+            <HintPath>$(VINTAGE_STORY)\Lib\0Harmony.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="cairo-sharp">
+            <HintPath>$(VINTAGE_STORY)\Lib\cairo-sharp.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Newtonsoft.Json">
+            <HintPath>$(VINTAGE_STORY)\Lib\Newtonsoft.Json.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="protobuf-net">
+            <HintPath>$(VINTAGE_STORY)\Lib\protobuf-net.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(Configuration)' == 'ReleaseToMods'">

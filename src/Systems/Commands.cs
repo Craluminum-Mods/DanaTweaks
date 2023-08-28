@@ -17,20 +17,24 @@ public class Commands : ModSystem
     {
         LabelStack = new(api.World.GetItem(new AssetLocation("paper-parchment")));
 
-        api.ChatCommands.GetOrCreate("danatweaks")
-            .WithAlias("crtw")
-            .RequiresPlayer()
-            .RequiresPrivilege("useblock")
-            .BeginSub("removeoraddlabel")
+        IChatCommand command = api.ChatCommands.GetOrCreate("danatweaks").RequiresPlayer().RequiresPrivilege("useblock");
+
+        if (Core.Config.CrateRemoveLabel)
+        {
+            command.BeginSub("removeoraddlabel")
                 .WithAlias("ral")
                 .WithDesc(RemoveOrAddLabelName)
                 .HandleWith(RemoveOrAddLabel)
-            .EndSub()
-            .BeginSub("openclose")
+            .EndSub();
+        }
+        if (Core.Config.CrateOpenRemoveLid)
+        {
+            command.BeginSub("openclose")
                 .WithAlias("oc")
                 .WithDesc(OpenCloseLidName)
                 .HandleWith(OpenCloseLid)
             .EndSub();
+        }
     }
 
     private TextCommandResult OpenCloseLid(TextCommandCallingArgs args)
@@ -41,6 +45,11 @@ public class Commands : ModSystem
         if (pos == null || player.Entity.World.BlockAccessor.GetBlockEntityExt<BlockEntityCrate>(pos) is not BlockEntityCrate becrate)
         {
             return TextCommandResult.Error(NoCrate);
+        }
+
+        if (!player.Entity.Api.World.Claims.TryAccess(player, pos, EnumBlockAccessFlags.Use))
+        {
+            return TextCommandResult.Deferred;
         }
 
         becrate.preferredLidState = becrate.preferredLidState switch
@@ -71,6 +80,11 @@ public class Commands : ModSystem
         if (becrate == null)
         {
             return TextCommandResult.Error(NoCrate);
+        }
+
+        if (!player.Entity.Api.World.Claims.TryAccess(player, pos, EnumBlockAccessFlags.Use))
+        {
+            return TextCommandResult.Deferred;
         }
 
         return becrate.label switch
