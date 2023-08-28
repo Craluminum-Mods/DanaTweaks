@@ -49,6 +49,48 @@ public class Core : ModSystem
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorRightClickPickup(block));
             }
+            if (Config.ShelvablePieEnabled && block is BlockPie)
+            {
+                ModelTransform transform = new()
+                {
+                    Origin = new() { X = 0.5f, Y = 0f, Z = 0.5f },
+                    Scale = 0.65f
+                };
+
+                block.Attributes ??= new JsonObject(new JObject());
+                block.Attributes.Token["shelvable"] = JToken.FromObject(true);
+                block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(transform);
+            }
+            if (Config.ShelvablePotEnabled && block.Code.ToString().Contains("claypot"))
+            {
+                ModelTransform transform = new()
+                {
+                    Origin = new() { X = 0.5f, Y = 0f, Z = 0.5f },
+                    Scale = 0.8f
+                };
+
+                block.Attributes ??= new JsonObject(new JObject());
+                block.Attributes.Token["shelvable"] = JToken.FromObject(true);
+                block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(transform);
+            }
+        }
+
+        foreach (Item item in api.World.Items)
+        {
+            if (Config.RackableFirestarterEnabled && item is ItemFirestarter)
+            {
+                ModelTransform transform = new()
+                {
+                    Translation = new() { X = 0.25f, Y = 0.55f, Z = 0.0275f },
+                    Rotation = new() { X = 180, Y = -135, Z = 0 },
+                    Origin = new() { X = 0.5f, Y = 0f, Z = 0.5f },
+                    Scale = 0.7f
+                };
+
+                item.Attributes ??= new JsonObject(new JObject());
+                item.Attributes.Token["rackable"] = JToken.FromObject(true);
+                item.Attributes.Token["toolrackTransform"] = JToken.FromObject(transform);
+            }
         }
 
         foreach (EntityProperties entityType in api.World.EntityTypes)

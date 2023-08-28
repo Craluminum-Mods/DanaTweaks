@@ -19,7 +19,7 @@ public class Commands : ModSystem
 
         IChatCommand command = api.ChatCommands.GetOrCreate("danatweaks").RequiresPlayer().RequiresPrivilege("useblock");
 
-        if (Core.Config.CrateRemoveLabel)
+        if (Core.Config.CrateRemoveOrAddLabel)
         {
             command.BeginSub("removeoraddlabel")
                 .WithAlias("ral")
@@ -27,7 +27,7 @@ public class Commands : ModSystem
                 .HandleWith(RemoveOrAddLabel)
             .EndSub();
         }
-        if (Core.Config.CrateOpenRemoveLid)
+        if (Core.Config.CrateOpenCloseLid)
         {
             command.BeginSub("openclose")
                 .WithAlias("oc")
