@@ -10,6 +10,7 @@ public class Config
     public bool PickUpBonesEnabled;
     public bool RackableFirestarterEnabled = true;
     public bool RichTradersEnabled;
+    public bool ScrapRecipesEnabled = true;
     public bool ShelvablePieEnabled = true;
     public bool ShelvablePotEnabled = true;
 
@@ -26,6 +27,7 @@ public class Config
         PickUpBonesEnabled = previousConfig.PickUpBonesEnabled;
         RackableFirestarterEnabled = previousConfig.RackableFirestarterEnabled;
         RichTradersEnabled = previousConfig.RichTradersEnabled;
+        ScrapRecipesEnabled = previousConfig.ScrapRecipesEnabled;
         ShelvablePieEnabled = previousConfig.ShelvablePieEnabled;
         ShelvablePotEnabled = previousConfig.ShelvablePotEnabled;
     }
