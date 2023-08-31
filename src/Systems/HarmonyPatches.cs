@@ -13,7 +13,7 @@ public class HarmonyPatches : ModSystem
     public override void StartServerSide(ICoreServerAPI api)
     {
         base.StartServerSide(api);
-        if (Core.Config.DropClutterAnywayEnabled)
+        if (Core.Config.DropClutterAnyway)
         {
             new Harmony(HarmonyID).Patch(original: typeof(BlockClutter).GetMethod("GetDrops"), prefix: typeof(BlockClutterDropPatch).GetMethod("Prefix"));
         }
@@ -21,7 +21,7 @@ public class HarmonyPatches : ModSystem
 
     public override void Dispose()
     {
-        if (Core.Config.DropClutterAnywayEnabled)
+        if (Core.Config.DropClutterAnyway)
         {
             new Harmony(HarmonyID).Unpatch(original: typeof(BlockClutter).GetMethod("GetDrops"), HarmonyPatchType.All, HarmonyID);
         }

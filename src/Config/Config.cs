@@ -5,20 +5,21 @@ public class Config
     public bool CrateOpenCloseLid = true;
     public bool CrateRemoveOrAddLabel = true;
 
-    public bool BranchCutterEnabled = true;
-    public bool DropClutterAnywayEnabled = true;
-    public bool DropResinAnywayEnabled = true;
-    public bool DropVinesAnywayEnabled = true;
-    public bool DropWallpapersEnabled = true;
-    public bool GlowingProjectilesEnabled;
-    public bool PickUpBonesEnabled;
-    public bool PlanksInPitKilnEnabled = true;
-    public bool RackableFirestarterEnabled = true;
-    public bool RemoveBookSignatureEnabled = true;
-    public bool RichTradersEnabled;
-    public bool ScrapRecipesEnabled = true;
-    public bool ShelvablePieEnabled = true;
-    public bool ShelvablePotEnabled = true;
+    public bool BranchCutter = true;
+    public bool DropClutterAnyway = true;
+    public bool DropResinAnyway = true;
+    public bool DropVinesAnyway = true;
+    public bool DropWallpapers = true;
+    public bool FourPlanksFromLog;
+    public bool GlowingProjectiles;
+    public bool PickUpBones;
+    public bool PlanksInPitKiln = true;
+    public bool RackableFirestarter = true;
+    public bool RemoveBookSignature = true;
+    public bool RichTraders;
+    public bool ScrapRecipes = true;
+    public bool ShelvablePie = true;
+    public bool ShelvablePot = true;
 
     public Config()
     {
@@ -28,19 +29,20 @@ public class Config
         CrateOpenCloseLid = previousConfig.CrateOpenCloseLid;
         CrateRemoveOrAddLabel = previousConfig.CrateRemoveOrAddLabel;
 
-        BranchCutterEnabled = previousConfig.BranchCutterEnabled;
-        DropClutterAnywayEnabled = previousConfig.DropClutterAnywayEnabled;
-        DropResinAnywayEnabled = previousConfig.DropResinAnywayEnabled;
-        DropVinesAnywayEnabled = previousConfig.DropVinesAnywayEnabled;
-        DropWallpapersEnabled = previousConfig.DropWallpapersEnabled;
-        GlowingProjectilesEnabled = previousConfig.GlowingProjectilesEnabled;
-        PickUpBonesEnabled = previousConfig.PickUpBonesEnabled;
-        PlanksInPitKilnEnabled = previousConfig.PlanksInPitKilnEnabled;
-        RackableFirestarterEnabled = previousConfig.RackableFirestarterEnabled;
-        RemoveBookSignatureEnabled = previousConfig.RemoveBookSignatureEnabled;
-        RichTradersEnabled = previousConfig.RichTradersEnabled;
-        ScrapRecipesEnabled = previousConfig.ScrapRecipesEnabled;
-        ShelvablePieEnabled = previousConfig.ShelvablePieEnabled;
-        ShelvablePotEnabled = previousConfig.ShelvablePotEnabled;
+        BranchCutter = previousConfig.BranchCutter;
+        DropClutterAnyway = previousConfig.DropClutterAnyway;
+        DropResinAnyway = previousConfig.DropResinAnyway;
+        DropVinesAnyway = previousConfig.DropVinesAnyway;
+        DropWallpapers = previousConfig.DropWallpapers;
+        FourPlanksFromLog = previousConfig.FourPlanksFromLog;
+        GlowingProjectiles = previousConfig.GlowingProjectiles;
+        PickUpBones = previousConfig.PickUpBones;
+        PlanksInPitKiln = previousConfig.PlanksInPitKiln;
+        RackableFirestarter = previousConfig.RackableFirestarter;
+        RemoveBookSignature = previousConfig.RemoveBookSignature;
+        RichTraders = previousConfig.RichTraders;
+        ScrapRecipes = previousConfig.ScrapRecipes;
+        ShelvablePie = previousConfig.ShelvablePie;
+        ShelvablePot = previousConfig.ShelvablePot;
     }
 }

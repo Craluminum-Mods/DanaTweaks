@@ -47,15 +47,15 @@ public class Core : ModSystem
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorCrateInteractionHelp(block));
             }
-            if (Config.DropWallpapersEnabled && block.HasBehavior<BlockBehaviorDecor>() && block.Code.ToString().Contains("wallpaper"))
+            if (Config.DropWallpapers && block.HasBehavior<BlockBehaviorDecor>() && block.Code.ToString().Contains("wallpaper"))
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorWallpaperDrops(block));
             }
-            if (Config.PickUpBonesEnabled && block.Code.ToString().Contains("carcass"))
+            if (Config.PickUpBones && block.Code.ToString().Contains("carcass"))
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorRightClickPickup(block));
             }
-            if (Config.ShelvablePieEnabled && block is BlockPie)
+            if (Config.ShelvablePie && block is BlockPie)
             {
                 ModelTransform transform = new()
                 {
@@ -67,7 +67,7 @@ public class Core : ModSystem
                 block.Attributes.Token["shelvable"] = JToken.FromObject(true);
                 block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(transform);
             }
-            if (Config.ShelvablePotEnabled && block.Code.ToString().Contains("claypot"))
+            if (Config.ShelvablePot && block.Code.ToString().Contains("claypot"))
             {
                 ModelTransform transform = new()
                 {
@@ -79,19 +79,19 @@ public class Core : ModSystem
                 block.Attributes.Token["shelvable"] = JToken.FromObject(true);
                 block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(transform);
             }
-            if (Config.BranchCutterEnabled && block.BlockMaterial == EnumBlockMaterial.Leaves)
+            if (Config.BranchCutter && block.BlockMaterial == EnumBlockMaterial.Leaves)
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorBranchCutter(block));
             }
-            if (Config.DropResinAnywayEnabled && block.GetBehavior<BlockBehaviorHarvestable>()?.harvestedStack.Code == new AssetLocation("resin"))
+            if (Config.DropResinAnyway && block.GetBehavior<BlockBehaviorHarvestable>()?.harvestedStack.Code == new AssetLocation("resin"))
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorDropResinAnyway(block));
             }
-            if (Config.DropVinesAnywayEnabled && block is BlockVines)
+            if (Config.DropVinesAnyway && block is BlockVines)
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorDropVinesAnyway(block));
             }
-            if (Config.DropClutterAnywayEnabled && block is BlockClutterBookshelf)
+            if (Config.DropClutterAnyway && block is BlockClutterBookshelf)
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGuaranteedDrop(block));
             }
@@ -99,7 +99,7 @@ public class Core : ModSystem
 
         foreach (Item item in api.World.Items)
         {
-            if (Config.RackableFirestarterEnabled && item is ItemFirestarter)
+            if (Config.RackableFirestarter && item is ItemFirestarter)
             {
                 ModelTransform transform = new()
                 {
@@ -113,11 +113,11 @@ public class Core : ModSystem
                 item.Attributes.Token["rackable"] = JToken.FromObject(true);
                 item.Attributes.Token["toolrackTransform"] = JToken.FromObject(transform);
             }
-            if (Config.BranchCutterEnabled && item is ItemShears)
+            if (Config.BranchCutter && item is ItemShears)
             {
                 item.CollectibleBehaviors = item.CollectibleBehaviors.Append(new CollectibleBehaviorBranchCutter(item));
             }
-            if (Config.RemoveBookSignatureEnabled && item is ItemBook)
+            if (Config.RemoveBookSignature && item is ItemBook)
             {
                 item.CollectibleBehaviors = item.CollectibleBehaviors.Append(new CollectibleBehaviorRemoveBookSignature(item));
             }
@@ -125,7 +125,7 @@ public class Core : ModSystem
 
         foreach (EntityProperties entityType in api.World.EntityTypes)
         {
-            if (Config.GlowingProjectilesEnabled && api is ICoreClientAPI capi)
+            if (Config.GlowingProjectiles && api is ICoreClientAPI capi)
             {
                 List<string> projectileCodes = new() { "arrow", "spear" };
                 if (projectileCodes.Any(entityType.Code.ToString().Contains))
@@ -133,7 +133,7 @@ public class Core : ModSystem
                     entityType.Client.GlowLevel = 255;
                 }
             }
-            if (Config.RichTradersEnabled && entityType.Code.ToString().Contains("trader"))
+            if (Config.RichTraders && entityType.Code.ToString().Contains("trader"))
             {
                 entityType.Attributes ??= new JsonObject(new JObject());
                 entityType.Attributes.Token["tradeProps"]["money"]["avg"] = JToken.FromObject(999999);
@@ -141,7 +141,7 @@ public class Core : ModSystem
             }
         }
 
-        if (Config.PlanksInPitKilnEnabled)
+        if (Config.PlanksInPitKiln)
         {
             Block blockPitKiln = api.World.GetBlock(new AssetLocation("pitkiln"));
             blockPitKiln.PatchBuildMats(api);
