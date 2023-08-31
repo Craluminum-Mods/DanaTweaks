@@ -7,6 +7,7 @@ public class Config
 
     public bool BranchCutterEnabled = true;
     public bool DropResinAnywayEnabled = true;
+    public bool DropVinesAnywayEnabled = true;
     public bool DropWallpapersEnabled = true;
     public bool GlowingProjectilesEnabled;
     public bool PickUpBonesEnabled;
@@ -28,6 +29,7 @@ public class Config
 
         BranchCutterEnabled = previousConfig.BranchCutterEnabled;
         DropResinAnywayEnabled = previousConfig.DropResinAnywayEnabled;
+        DropVinesAnywayEnabled = previousConfig.DropVinesAnywayEnabled;
         DropWallpapersEnabled = previousConfig.DropWallpapersEnabled;
         GlowingProjectilesEnabled = previousConfig.GlowingProjectilesEnabled;
         PickUpBonesEnabled = previousConfig.PickUpBonesEnabled;
