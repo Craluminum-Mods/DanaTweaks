@@ -11,6 +11,7 @@ public class Config
     public bool PickUpBonesEnabled;
     public bool PlanksInPitKilnEnabled = true;
     public bool RackableFirestarterEnabled = true;
+    public bool RemoveBookSignatureEnabled = true;
     public bool RichTradersEnabled;
     public bool ScrapRecipesEnabled = true;
     public bool ShelvablePieEnabled = true;
@@ -30,6 +31,7 @@ public class Config
         PickUpBonesEnabled = previousConfig.PickUpBonesEnabled;
         PlanksInPitKilnEnabled = previousConfig.PlanksInPitKilnEnabled;
         RackableFirestarterEnabled = previousConfig.RackableFirestarterEnabled;
+        RemoveBookSignatureEnabled = previousConfig.RemoveBookSignatureEnabled;
         RichTradersEnabled = previousConfig.RichTradersEnabled;
         ScrapRecipesEnabled = previousConfig.ScrapRecipesEnabled;
         ShelvablePieEnabled = previousConfig.ShelvablePieEnabled;

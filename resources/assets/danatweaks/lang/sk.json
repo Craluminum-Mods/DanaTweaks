@@ -3,5 +3,6 @@
     "Command.RemoveOrAddLabel.Name": "Odstrániť alebo pridať pergamen na debnu",
     "Command.Error.NoCrate": "Žiadna debna v dohľade",
     "Command.Error.HasDiffLabel": "Debna má iný pergamen",
-    "Command.Error.NoLabel": "Žiadny pergamen v ruke ani na debne"
+    "Command.Error.NoLabel": "Žiadny pergamen v ruke ani na debne",
+    "RemoveBookSignature": "Odstrániť podpis knihy (musíte byť autorom tejto knihy)"
 }

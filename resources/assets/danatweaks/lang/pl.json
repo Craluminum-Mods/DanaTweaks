@@ -3,5 +3,6 @@
     "Command.RemoveOrAddLabel.Name": "Usuń lub dodaj pergamin na skrzyni",
     "Command.Error.NoCrate": "Brak skrzyni w zasięgu wzroku",
     "Command.Error.HasDiffLabel": "Skrzynia ma inny pergamin",
-    "Command.Error.NoLabel": "Brak pergaminu w ręku lub na skrzyni"
+    "Command.Error.NoLabel": "Brak pergaminu w ręku lub na skrzyni",
+    "RemoveBookSignature": "Usuń podpis książki (musisz być autorem tej książki)"
 }

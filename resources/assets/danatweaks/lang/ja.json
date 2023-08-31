@@ -3,5 +3,6 @@
     "Command.RemoveOrAddLabel.Name": "木箱のパーチメントを取り除くか追加する",
     "Command.Error.NoCrate": "クレートは見当たらない",
     "Command.Error.HasDiffLabel": "木箱の羊皮紙が違う",
-    "Command.Error.NoLabel": "羊皮紙は手にも木箱にもない"
+    "Command.Error.NoLabel": "羊皮紙は手にも木箱にもない",
+    "RemoveBookSignature": "本の署名を削除する（あなたはこの本の著者でなければなりません）"
 }

@@ -3,5 +3,6 @@
     "Command.RemoveOrAddLabel.Name": "Remove or add parchment on crate",
     "Command.Error.NoCrate": "No crate in sight",
     "Command.Error.HasDiffLabel": "Crate has different parchment",
-    "Command.Error.NoLabel": "No parchment in hand or on crate"
+    "Command.Error.NoLabel": "No parchment in hand or on crate",
+    "RemoveBookSignature": "Remove book signature (you must be the author of this book)"
 }

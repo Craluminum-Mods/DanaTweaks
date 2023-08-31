@@ -22,6 +22,10 @@
             <Private>false</Private>
         </Reference>
         <!-- Vintage Story Included Libraries -->
+        <Reference Include="cairo-sharp">
+            <HintPath>$(VINTAGE_STORY)\Lib\cairo-sharp.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
         <Reference Include="Newtonsoft.Json">
             <HintPath>$(VINTAGE_STORY)\Lib\Newtonsoft.Json.dll</HintPath>
             <Private>false</Private>

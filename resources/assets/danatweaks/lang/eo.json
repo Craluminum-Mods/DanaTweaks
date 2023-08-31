@@ -3,5 +3,6 @@
     "Command.RemoveOrAddLabel.Name": "Forigi aŭ aldoni pergamenon sur keston",
     "Command.Error.NoCrate": "Neniu kesto en vido",
     "Command.Error.HasDiffLabel": "Kesto havas malsaman pergamenon",
-    "Command.Error.NoLabel": "Neniu pergameno en la mano aŭ sur kesto"
+    "Command.Error.NoLabel": "Neniu pergameno en la mano aŭ sur kesto",
+    "RemoveBookSignature": "Forigi librosignaturon (vi devas esti la aŭtoro de ĉi tiu libro)"
 }

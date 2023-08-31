@@ -3,5 +3,6 @@
     "Command.RemoveOrAddLabel.Name": "Odstranit nebo přidat pergamen na bednu",
     "Command.Error.NoCrate": "Žádná bedna v dohledu",
     "Command.Error.HasDiffLabel": "Bedna má jiný pergamen",
-    "Command.Error.NoLabel": "V ruce ani na bedně není pergamen"
+    "Command.Error.NoLabel": "V ruce ani na bedně není pergamen",
+    "RemoveBookSignature": "Odebrat podpis knihy (musíte být autorem této knihy)"
 }

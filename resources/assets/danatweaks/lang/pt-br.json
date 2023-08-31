@@ -3,5 +3,6 @@
     "Command.RemoveOrAddLabel.Name": "Remover ou adicionar pergaminho no caixote",
     "Command.Error.NoCrate": "Não há caixote à vista",
     "Command.Error.HasDiffLabel": "O caixote tem pergaminho diferente",
-    "Command.Error.NoLabel": "Nenhum pergaminho na mão ou no caixote"
+    "Command.Error.NoLabel": "Nenhum pergaminho na mão ou no caixote",
+    "RemoveBookSignature": "Remover assinatura do livro (você deve ser o autor deste livro)"
 }

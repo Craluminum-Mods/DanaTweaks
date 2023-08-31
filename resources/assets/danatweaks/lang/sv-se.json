@@ -3,5 +3,6 @@
     "Command.RemoveOrAddLabel.Name": "Ta bort eller lägg till pergament på lådan",
     "Command.Error.NoCrate": "Ingen låda i sikte",
     "Command.Error.HasDiffLabel": "Lådan har olika pergament",
-    "Command.Error.NoLabel": "Inget pergament i handen eller på lådan"
+    "Command.Error.NoLabel": "Inget pergament i handen eller på lådan",
+    "RemoveBookSignature": "Ta bort boksignaturen (du måste vara författaren till den här boken)"
 }

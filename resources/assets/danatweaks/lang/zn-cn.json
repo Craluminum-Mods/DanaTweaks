@@ -3,5 +3,6 @@
     "Command.RemoveOrAddLabel.Name": "移除或添加板条箱上的羊皮纸",
     "Command.Error.NoCrate": "看不到箱子",
     "Command.Error.HasDiffLabel": "箱子有不同的羊皮纸",
-    "Command.Error.NoLabel": "手中或板条箱上没有羊皮纸"
+    "Command.Error.NoLabel": "手中或板条箱上没有羊皮纸",
+    "RemoveBookSignature": "移除图书签名（您必须是本书的作者）"
 }

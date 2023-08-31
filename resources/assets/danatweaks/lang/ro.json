@@ -3,5 +3,6 @@
     "Command.RemoveOrAddLabel.Name": "Îndepărtați sau adăugați pergament pe ladă",
     "Command.Error.NoCrate": "Nici o ladă la vedere",
     "Command.Error.HasDiffLabel": "Lada are un pergament diferit",
-    "Command.Error.NoLabel": "Nici un pergament în mână sau pe ladă"
+    "Command.Error.NoLabel": "Nici un pergament în mână sau pe ladă",
+    "RemoveBookSignature": "Eliminați semnătura cărții (trebuie să fiți autorul acestei cărți)"
 }

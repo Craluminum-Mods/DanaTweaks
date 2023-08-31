@@ -29,6 +29,7 @@ public class Core : ModSystem
         api.RegisterBlockBehaviorClass("DanaTweaks:WallpaperDrops", typeof(BlockBehaviorWallpaperDrops));
         api.RegisterBlockBehaviorClass("DanaTweaks:BranchCutter", typeof(BlockBehaviorBranchCutter));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:BranchCutter", typeof(CollectibleBehaviorBranchCutter));
+        api.RegisterCollectibleBehaviorClass("DanaTweaks:RemoveBookSignature", typeof(CollectibleBehaviorRemoveBookSignature));
     }
 
     public override void AssetsFinalize(ICoreAPI api)
@@ -100,6 +101,10 @@ public class Core : ModSystem
             if (Config.BranchCutterEnabled && item is ItemShears)
             {
                 item.CollectibleBehaviors = item.CollectibleBehaviors.Append(new CollectibleBehaviorBranchCutter(item));
+            }
+            if (Config.RemoveBookSignatureEnabled && item is ItemBook)
+            {
+                item.CollectibleBehaviors = item.CollectibleBehaviors.Append(new CollectibleBehaviorRemoveBookSignature(item));
             }
         }
 

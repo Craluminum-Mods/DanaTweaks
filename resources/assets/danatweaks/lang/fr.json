@@ -3,5 +3,6 @@
     "Command.RemoveOrAddLabel.Name": "Retirer ou ajouter du parchemin sur la caisse",
     "Command.Error.NoCrate": "Pas de caisse en vue",
     "Command.Error.HasDiffLabel": "La caisse a un parchemin différent",
-    "Command.Error.NoLabel": "Pas de parchemin dans la main ou sur la caisse"
+    "Command.Error.NoLabel": "Pas de parchemin dans la main ou sur la caisse",
+    "RemoveBookSignature" : "Retirer la signature du livre (vous devez être l'auteur de ce livre)"
 }

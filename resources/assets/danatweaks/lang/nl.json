@@ -3,5 +3,6 @@
     "Command.RemoveOrAddLabel.Name": "Verwijder of voeg perkament toe aan krat",
     "Command.Error.NoCrate": "Geen krat in zicht",
     "Command.Error.HasDiffLabel": "Krat heeft ander perkament",
-    "Command.Error.NoLabel": "Geen perkament in hand of op krat"
+    "Command.Error.NoLabel": "Geen perkament in hand of op krat",
+    "RemoveBookSignature": "Verwijder boekhandtekening (u moet de auteur van dit boek zijn)"
 }

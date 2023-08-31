@@ -2,6 +2,7 @@
     "Command.OpenCloseLid.Name": "فتح غطاء الصندوق أو إغلاقه",
     "Command.RemoveOrAddLabel.Name": "إزالة أو إضافة شهادة جامعية على الصندوق",
     "Command.Error.NoCrate": "لا يوجد صندوق في الأفق",
-    "Command.Error.HasDiffLabel": "Crate به رق مختلف",
-    "Command.Error.NoLabel": "ليس هناك ورق برشمان في اليد أو على الصندوق"
+    "Command.Error.HasDiffLabel": "يحتوي الصندوق على رق مختلف",
+    "Command.Error.NoLabel": "ليس هناك ورق برشمان في اليد أو على الصندوق",
+    "RemoveBookSignature": "أزل توقيع الكتاب (يجب أن تكون مؤلف هذا الكتاب)"
 }
