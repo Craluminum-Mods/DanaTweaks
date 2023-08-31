@@ -3,9 +3,9 @@ using Vintagestory.API.MathTools;
 
 namespace DanaTweaks;
 
-public class BlockBehaviorWallpaperDrops : BlockBehavior
+public class BlockBehaviorGuaranteedDecorDrop : BlockBehavior
 {
-    public BlockBehaviorWallpaperDrops(Block block) : base(block)
+    public BlockBehaviorGuaranteedDecorDrop(Block block) : base(block)
     {
     }
 

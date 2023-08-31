@@ -26,7 +26,7 @@ public class Core : ModSystem
     {
         base.Start(api);
         api.RegisterBlockBehaviorClass("DanaTweaks:CrateInteractionHelp", typeof(BlockBehaviorCrateInteractionHelp));
-        api.RegisterBlockBehaviorClass("DanaTweaks:WallpaperDrops", typeof(BlockBehaviorWallpaperDrops));
+        api.RegisterBlockBehaviorClass("DanaTweaks:GuaranteedDecorDrop", typeof(BlockBehaviorGuaranteedDecorDrop));
         api.RegisterBlockBehaviorClass("DanaTweaks:GuaranteedDrop", typeof(BlockBehaviorGuaranteedDrop));
         api.RegisterBlockBehaviorClass("DanaTweaks:BranchCutter", typeof(BlockBehaviorBranchCutter));
         api.RegisterBlockBehaviorClass("DanaTweaks:DropResinAnyway", typeof(BlockBehaviorDropResinAnyway));
@@ -49,7 +49,7 @@ public class Core : ModSystem
             }
             if (Config.DropWallpapers && block.HasBehavior<BlockBehaviorDecor>() && block.Code.ToString().Contains("wallpaper"))
             {
-                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorWallpaperDrops(block));
+                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGuaranteedDecorDrop(block));
             }
             if (Config.PickUpBones && block.Code.ToString().Contains("carcass"))
             {
