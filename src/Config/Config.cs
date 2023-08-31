@@ -6,6 +6,7 @@ public class Config
     public bool CrateRemoveOrAddLabel = true;
 
     public bool BranchCutterEnabled = true;
+    public bool DropResinAnywayEnabled = true;
     public bool DropWallpapersEnabled = true;
     public bool GlowingProjectilesEnabled;
     public bool PickUpBonesEnabled;
@@ -26,6 +27,7 @@ public class Config
         CrateRemoveOrAddLabel = previousConfig.CrateRemoveOrAddLabel;
 
         BranchCutterEnabled = previousConfig.BranchCutterEnabled;
+        DropResinAnywayEnabled = previousConfig.DropResinAnywayEnabled;
         DropWallpapersEnabled = previousConfig.DropWallpapersEnabled;
         GlowingProjectilesEnabled = previousConfig.GlowingProjectilesEnabled;
         PickUpBonesEnabled = previousConfig.PickUpBonesEnabled;

@@ -28,6 +28,7 @@ public class Core : ModSystem
         api.RegisterBlockBehaviorClass("DanaTweaks:CrateInteractionHelp", typeof(BlockBehaviorCrateInteractionHelp));
         api.RegisterBlockBehaviorClass("DanaTweaks:WallpaperDrops", typeof(BlockBehaviorWallpaperDrops));
         api.RegisterBlockBehaviorClass("DanaTweaks:BranchCutter", typeof(BlockBehaviorBranchCutter));
+        api.RegisterBlockBehaviorClass("DanaTweaks:DropResinAnyway", typeof(BlockBehaviorDropResinAnyway));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:BranchCutter", typeof(CollectibleBehaviorBranchCutter));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:RemoveBookSignature", typeof(CollectibleBehaviorRemoveBookSignature));
     }
@@ -79,6 +80,10 @@ public class Core : ModSystem
             if (Config.BranchCutterEnabled && block.BlockMaterial == EnumBlockMaterial.Leaves)
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorBranchCutter(block));
+            }
+            if (Config.DropResinAnywayEnabled && block.GetBehavior<BlockBehaviorHarvestable>()?.harvestedStack.Code == new AssetLocation("resin"))
+            {
+                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorDropResinAnyway(block));
             }
         }
 
