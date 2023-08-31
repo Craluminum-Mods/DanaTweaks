@@ -1,6 +1,5 @@
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 
@@ -18,16 +17,8 @@ public class CollectibleBehaviorBranchCutter : CollectibleBehavior
 
         modes = new[]
         {
-            new SkillItem()
-            {
-                Code = new AssetLocation("normal"),
-                Name = Lang.Get("worldconfig-globalForestation-Normal")
-            },
-            new SkillItem()
-            {
-                Code = new AssetLocation("leaves"),
-                Name = Lang.Get("blockmaterial-Leaves")
-            },
+            Constants.BranchCutterNormalMode,
+            Constants.BranchCutterLeavesMode,
         };
 
         if (api is ICoreClientAPI capi)

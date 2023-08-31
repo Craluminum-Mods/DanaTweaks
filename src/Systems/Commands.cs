@@ -54,9 +54,9 @@ public class Commands : ModSystem
 
         becrate.preferredLidState = becrate.preferredLidState switch
         {
-            "opened" => "closed",
-            "closed" => "opened",
-            _ => "opened"
+            Opened => Closed,
+            Closed => Opened,
+            _ => Opened
         };
 
         becrate.MarkDirty(redrawOnClient: true);
@@ -114,7 +114,7 @@ public class Commands : ModSystem
         player.Entity.ActiveHandItemSlot.TakeOut(1);
         player.Entity.ActiveHandItemSlot.MarkDirty();
 
-        bect.label = "paper-empty";
+        bect.label = DefaultLabel;
         bect.MarkDirty(redrawOnClient: true);
         return TextCommandResult.Deferred;
     }

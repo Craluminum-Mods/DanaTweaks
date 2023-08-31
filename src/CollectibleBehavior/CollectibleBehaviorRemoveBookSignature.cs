@@ -20,7 +20,7 @@ public class CollectibleBehaviorRemoveBookSignature : CollectibleBehavior
         {
             new SkillItem()
             {
-                Name = Lang.Get("danatweaks:RemoveBookSignature"),
+                Name = Constants.RemoveBookSignature,
             }
         };
 
@@ -49,12 +49,12 @@ public class CollectibleBehaviorRemoveBookSignature : CollectibleBehavior
 
     public static bool IsSigned(ItemSlot slot)
     {
-        return slot.Itemstack.Attributes.GetString("signedby") != null;
+        return slot.Itemstack.Attributes.GetString(Constants.SignedBy) != null;
     }
 
     public static bool IsSignedByUid(ItemSlot slot, IPlayer byPlayer)
     {
-        return slot.Itemstack.Attributes.GetString("signedbyuid") == byPlayer.PlayerUID;
+        return slot.Itemstack.Attributes.GetString(Constants.SignedByUid) == byPlayer.PlayerUID;
     }
 
     public static bool IsSignedBySamePlayer(ItemSlot slot, IPlayer byPlayer)
@@ -64,8 +64,8 @@ public class CollectibleBehaviorRemoveBookSignature : CollectibleBehavior
 
     public static void Unsign(ItemSlot slot)
     {
-        slot.Itemstack.Attributes.RemoveAttribute("signedby");
-        slot.Itemstack.Attributes.RemoveAttribute("signedbyuid");
+        slot.Itemstack.Attributes.RemoveAttribute(Constants.SignedBy);
+        slot.Itemstack.Attributes.RemoveAttribute(Constants.SignedByUid);
     }
 
     public override void OnUnloaded(ICoreAPI api)
