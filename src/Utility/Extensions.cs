@@ -1,3 +1,4 @@
+using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
@@ -39,5 +40,15 @@ public static class Extensions
     public static string GetHotkeyCodes(this ICoreClientAPI capi, string hotkeyCode)
     {
         return "(" + capi.Input.HotKeys.Get(hotkeyCode).CurrentMapping + ")";
+    }
+
+    public static bool IsPlank(this CraftingRecipeIngredient ingredient)
+    {
+        return ingredient.Code.ToString().StartsWith("game:plank-");
+    }
+
+    public static bool HasLogAsIngredient(this GridRecipe recipe)
+    {
+        return recipe.Ingredients.Values.Any(ingredient => ingredient.Code.ToString().StartsWith("game:log"));
     }
 }

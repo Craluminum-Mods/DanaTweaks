@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Vintagestory.API.Common;
 using Vintagestory.ServerMods;
 
@@ -28,26 +27,16 @@ public class Recipes : ModSystem
             GridRecipeLoader.LoadRecipe(null, CreateMetalBlockScrapRecipe(api));
         }
 
-        if (Core.Config.FourPlanksFromLog)
+        foreach (GridRecipe recipe in api.World.GridRecipes)
         {
-            foreach (GridRecipe recipe in api.World.GridRecipes)
+            if (Core.Config.FourPlanksFromLog)
             {
-                if (recipe.Output.ResolvedItemstack != null && recipe.Ingredients.Values.Any(IsLog) && IsPlank(recipe))
+                if (recipe.Output.ResolvedItemstack != null && recipe.HasLogAsIngredient() && recipe.Output.IsPlank())
                 {
                     recipe.Output.ResolvedItemstack.StackSize = 4;
                 }
             }
         }
-    }
-
-    private static bool IsLog(CraftingRecipeIngredient ingredient)
-    {
-        return ingredient.Code.ToString().StartsWith("game:log");
-    }
-
-    private static bool IsPlank(GridRecipe recipe)
-    {
-        return recipe.Output.Code.ToString().StartsWith("game:plank-");
     }
 
     private static GridRecipe CreateTorchholderScrapRecipe(ICoreAPI api)
