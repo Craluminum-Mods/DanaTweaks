@@ -27,6 +27,7 @@ public class Core : ModSystem
         base.Start(api);
         api.RegisterBlockBehaviorClass("DanaTweaks:CrateInteractionHelp", typeof(BlockBehaviorCrateInteractionHelp));
         api.RegisterBlockBehaviorClass("DanaTweaks:WallpaperDrops", typeof(BlockBehaviorWallpaperDrops));
+        api.RegisterBlockBehaviorClass("DanaTweaks:GuaranteedDrop", typeof(BlockBehaviorGuaranteedDrop));
         api.RegisterBlockBehaviorClass("DanaTweaks:BranchCutter", typeof(BlockBehaviorBranchCutter));
         api.RegisterBlockBehaviorClass("DanaTweaks:DropResinAnyway", typeof(BlockBehaviorDropResinAnyway));
         api.RegisterBlockBehaviorClass("DanaTweaks:DropVinesAnyway", typeof(BlockBehaviorDropVinesAnyway));
@@ -89,6 +90,10 @@ public class Core : ModSystem
             if (Config.DropVinesAnywayEnabled && block is BlockVines)
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorDropVinesAnyway(block));
+            }
+            if (Config.DropClutterAnywayEnabled && block is BlockClutterBookshelf)
+            {
+                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGuaranteedDrop(block));
             }
         }
 

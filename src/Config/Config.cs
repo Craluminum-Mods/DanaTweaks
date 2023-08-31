@@ -6,6 +6,7 @@ public class Config
     public bool CrateRemoveOrAddLabel = true;
 
     public bool BranchCutterEnabled = true;
+    public bool DropClutterAnywayEnabled = true;
     public bool DropResinAnywayEnabled = true;
     public bool DropVinesAnywayEnabled = true;
     public bool DropWallpapersEnabled = true;
@@ -28,6 +29,7 @@ public class Config
         CrateRemoveOrAddLabel = previousConfig.CrateRemoveOrAddLabel;
 
         BranchCutterEnabled = previousConfig.BranchCutterEnabled;
+        DropClutterAnywayEnabled = previousConfig.DropClutterAnywayEnabled;
         DropResinAnywayEnabled = previousConfig.DropResinAnywayEnabled;
         DropVinesAnywayEnabled = previousConfig.DropVinesAnywayEnabled;
         DropWallpapersEnabled = previousConfig.DropWallpapersEnabled;
