@@ -71,7 +71,7 @@ public class Recipes : ModSystem
         {
             Name = new AssetLocation("metalblock recycle"),
             IngredientPattern = "CI",
-            RecipeGroup = 9,
+            RecipeGroup = 10,
             Width = 1,
             Height = 2,
             Ingredients = new Dictionary<string, CraftingRecipeIngredient>
@@ -102,5 +102,4 @@ public class Recipes : ModSystem
         recipe.ResolveIngredients(api.World);
         return recipe;
     }
-
 }

@@ -111,6 +111,13 @@ public class Core : ModSystem
             }
         }
 
+        if (Config.PlanksInPitKilnEnabled)
+        {
+            Block blockPitKiln = api.World.GetBlock(new AssetLocation("pitkiln"));
+            blockPitKiln.PatchBuildMats(api);
+            blockPitKiln.PatchModelConfigs();
+        }
+
         api.World.Logger.Event("started '{0}' mod", Mod.Info.Name);
     }
 }

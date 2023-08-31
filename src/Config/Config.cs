@@ -13,6 +13,7 @@ public class Config
     public bool ScrapRecipesEnabled = true;
     public bool ShelvablePieEnabled = true;
     public bool ShelvablePotEnabled = true;
+    public bool PlanksInPitKilnEnabled = true;
 
     public Config()
     {
@@ -30,5 +31,6 @@ public class Config
         ScrapRecipesEnabled = previousConfig.ScrapRecipesEnabled;
         ShelvablePieEnabled = previousConfig.ShelvablePieEnabled;
         ShelvablePotEnabled = previousConfig.ShelvablePotEnabled;
+        PlanksInPitKilnEnabled = previousConfig.PlanksInPitKilnEnabled;
     }
 }
