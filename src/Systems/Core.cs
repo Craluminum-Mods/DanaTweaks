@@ -27,6 +27,8 @@ public class Core : ModSystem
         base.Start(api);
         api.RegisterBlockBehaviorClass("DanaTweaks:CrateInteractionHelp", typeof(BlockBehaviorCrateInteractionHelp));
         api.RegisterBlockBehaviorClass("DanaTweaks:WallpaperDrops", typeof(BlockBehaviorWallpaperDrops));
+        api.RegisterBlockBehaviorClass("DanaTweaks:BranchCutter", typeof(BlockBehaviorBranchCutter));
+        api.RegisterCollectibleBehaviorClass("DanaTweaks:BranchCutter", typeof(CollectibleBehaviorBranchCutter));
     }
 
     public override void AssetsFinalize(ICoreAPI api)
@@ -73,6 +75,10 @@ public class Core : ModSystem
                 block.Attributes.Token["shelvable"] = JToken.FromObject(true);
                 block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(transform);
             }
+            if (Config.BranchCutterEnabled && block.BlockMaterial == EnumBlockMaterial.Leaves)
+            {
+                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorBranchCutter(block));
+            }
         }
 
         foreach (Item item in api.World.Items)
@@ -90,6 +96,10 @@ public class Core : ModSystem
                 item.Attributes ??= new JsonObject(new JObject());
                 item.Attributes.Token["rackable"] = JToken.FromObject(true);
                 item.Attributes.Token["toolrackTransform"] = JToken.FromObject(transform);
+            }
+            if (Config.BranchCutterEnabled && item is ItemShears)
+            {
+                item.CollectibleBehaviors = item.CollectibleBehaviors.Append(new CollectibleBehaviorBranchCutter(item));
             }
         }
 

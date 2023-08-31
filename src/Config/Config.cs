@@ -5,15 +5,16 @@ public class Config
     public bool CrateOpenCloseLid = true;
     public bool CrateRemoveOrAddLabel = true;
 
+    public bool BranchCutterEnabled = true;
     public bool DropWallpapersEnabled = true;
     public bool GlowingProjectilesEnabled;
     public bool PickUpBonesEnabled;
+    public bool PlanksInPitKilnEnabled = true;
     public bool RackableFirestarterEnabled = true;
     public bool RichTradersEnabled;
     public bool ScrapRecipesEnabled = true;
     public bool ShelvablePieEnabled = true;
     public bool ShelvablePotEnabled = true;
-    public bool PlanksInPitKilnEnabled = true;
 
     public Config()
     {
@@ -23,14 +24,15 @@ public class Config
         CrateOpenCloseLid = previousConfig.CrateOpenCloseLid;
         CrateRemoveOrAddLabel = previousConfig.CrateRemoveOrAddLabel;
 
+        BranchCutterEnabled = previousConfig.BranchCutterEnabled;
         DropWallpapersEnabled = previousConfig.DropWallpapersEnabled;
         GlowingProjectilesEnabled = previousConfig.GlowingProjectilesEnabled;
         PickUpBonesEnabled = previousConfig.PickUpBonesEnabled;
+        PlanksInPitKilnEnabled = previousConfig.PlanksInPitKilnEnabled;
         RackableFirestarterEnabled = previousConfig.RackableFirestarterEnabled;
         RichTradersEnabled = previousConfig.RichTradersEnabled;
         ScrapRecipesEnabled = previousConfig.ScrapRecipesEnabled;
         ShelvablePieEnabled = previousConfig.ShelvablePieEnabled;
         ShelvablePotEnabled = previousConfig.ShelvablePotEnabled;
-        PlanksInPitKilnEnabled = previousConfig.PlanksInPitKilnEnabled;
     }
 }
