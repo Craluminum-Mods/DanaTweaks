@@ -36,6 +36,24 @@ public class Core : ModSystem
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:RainCollector", typeof(BEBehaviorRainCollector));
     }
 
+    public override void StartClientSide(ICoreClientAPI api)
+    {
+        base.StartClientSide(api);
+
+        if (Config.GlowingProjectiles)
+        {
+            api.Event.OnEntitySpawn += SetGlowLevel;
+        }
+    }
+
+    private void SetGlowLevel(Entity entity)
+    {
+        if (entity is EntityProjectile)
+        {
+            entity.Properties.Client.GlowLevel = 255;
+        }
+    }
+
     public override void AssetsFinalize(ICoreAPI api)
     {
         foreach (Block block in api.World.Blocks)
@@ -130,14 +148,6 @@ public class Core : ModSystem
 
         foreach (EntityProperties entityType in api.World.EntityTypes)
         {
-            if (Config.GlowingProjectiles && api is ICoreClientAPI capi)
-            {
-                List<string> projectileCodes = new() { "arrow", "spear" };
-                if (projectileCodes.Any(entityType.Code.ToString().Contains))
-                {
-                    entityType.Client.GlowLevel = 255;
-                }
-            }
             if (Config.RichTraders && entityType.Code.ToString().Contains("trader"))
             {
                 entityType.Attributes ??= new JsonObject(new JObject());
