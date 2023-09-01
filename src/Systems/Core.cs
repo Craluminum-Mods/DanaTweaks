@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Util;
@@ -118,6 +117,11 @@ public class Core : ModSystem
             {
                 block.BlockEntityBehaviors = block.BlockEntityBehaviors.Append(Constants.RainCollectorBehavior);
             }
+            if (Config.OvenFuel.Blocks.Any(keyVal => block.WildCardMatch(keyVal.Key) && keyVal.Value))
+            {
+                block.Attributes ??= new JsonObject(new JObject());
+                block.Attributes.Token["isClayOvenFuel"] = JToken.FromObject(true);
+            }
         }
 
         foreach (Item item in api.World.Items)
@@ -143,6 +147,11 @@ public class Core : ModSystem
             if (Config.RemoveBookSignature && item is ItemBook)
             {
                 item.CollectibleBehaviors = item.CollectibleBehaviors.Append(new CollectibleBehaviorRemoveBookSignature(item));
+            }
+            if (Config.OvenFuel.Items.Any(keyVal => item.WildCardMatch(keyVal.Key) && keyVal.Value))
+            {
+                item.Attributes ??= new JsonObject(new JObject());
+                item.Attributes.Token["isClayOvenFuel"] = JToken.FromObject(true);
             }
         }
 

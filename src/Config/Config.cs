@@ -1,8 +1,12 @@
+using System.Linq;
+using System.Collections.Generic;
+
 namespace DanaTweaks;
 
 public class Config
 {
     public Command Command { get; set; } = new();
+    public OvenFuel OvenFuel { get; set; } = new();
     public RainCollector RainCollector { get; set; } = new();
 
     public bool BranchCutter { get; set; } = true;
@@ -28,6 +32,16 @@ public class Config
     {
         Command = previousConfig.Command;
         RainCollector = previousConfig.RainCollector;
+
+        foreach (KeyValuePair<string, bool> keyVal in previousConfig.OvenFuel.Items.Where(keyVal => !OvenFuel.Items.ContainsKey(keyVal.Key)))
+        {
+            OvenFuel.Items.Add(keyVal.Key, keyVal.Value);
+        }
+
+        foreach (KeyValuePair<string, bool> keyVal in previousConfig.OvenFuel.Blocks.Where(keyVal => !OvenFuel.Blocks.ContainsKey(keyVal.Key)))
+        {
+            OvenFuel.Blocks.Add(keyVal.Key, keyVal.Value);
+        }
 
         BranchCutter = previousConfig.BranchCutter;
         DropClutterAnyway = previousConfig.DropClutterAnyway;
