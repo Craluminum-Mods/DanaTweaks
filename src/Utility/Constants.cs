@@ -40,4 +40,10 @@ public static class Constants
         Code = new AssetLocation("leaves"),
         Name = Lang.Get("blockmaterial-Leaves")
     };
+
+    public static readonly BlockEntityBehaviorType RainCollectorBehavior = new()
+    {
+        Name = "DanaTweaks:RainCollector",
+        properties = null
+    };
 }

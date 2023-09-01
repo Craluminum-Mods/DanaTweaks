@@ -33,6 +33,7 @@ public class Core : ModSystem
         api.RegisterBlockBehaviorClass("DanaTweaks:DropVinesAnyway", typeof(BlockBehaviorDropVinesAnyway));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:BranchCutter", typeof(CollectibleBehaviorBranchCutter));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:RemoveBookSignature", typeof(CollectibleBehaviorRemoveBookSignature));
+        api.RegisterBlockEntityBehaviorClass("DanaTweaks:RainCollector", typeof(BEBehaviorRainCollector));
     }
 
     public override void AssetsFinalize(ICoreAPI api)
@@ -94,6 +95,10 @@ public class Core : ModSystem
             if (Config.DropClutterAnyway && block is BlockClutterBookshelf)
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGuaranteedDrop(block));
+            }
+            if (Config.RainCollector.Enabled && block is BlockLiquidContainerBase or BlockGroundStorage)
+            {
+                block.BlockEntityBehaviors = block.BlockEntityBehaviors.Append(Constants.RainCollectorBehavior);
             }
         }
 

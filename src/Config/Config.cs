@@ -21,6 +21,8 @@ public class Config
     public bool ShelvablePie = true;
     public bool ShelvablePot = true;
 
+    public RainCollector RainCollector = new();
+
     public Config()
     {
     }
@@ -44,5 +46,7 @@ public class Config
         ScrapRecipes = previousConfig.ScrapRecipes;
         ShelvablePie = previousConfig.ShelvablePie;
         ShelvablePot = previousConfig.ShelvablePot;
+
+        RainCollector = previousConfig.RainCollector;
     }
 }
