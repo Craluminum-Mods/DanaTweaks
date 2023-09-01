@@ -2,34 +2,32 @@ namespace DanaTweaks;
 
 public class Config
 {
-    public bool CrateOpenCloseLid = true;
-    public bool CrateRemoveOrAddLabel = true;
+    public Command Command { get; set; } = new();
+    public RainCollector RainCollector { get; set; } = new();
 
-    public bool BranchCutter = true;
-    public bool DropClutterAnyway = true;
-    public bool DropResinAnyway = true;
-    public bool DropVinesAnyway = true;
-    public bool DropWallpapers = true;
-    public bool FourPlanksFromLog;
-    public bool GlowingProjectiles;
-    public bool PickUpBones;
-    public bool PlanksInPitKiln = true;
-    public bool RackableFirestarter = true;
-    public bool RemoveBookSignature = true;
-    public bool RichTraders;
-    public bool ScrapRecipes = true;
-    public bool ShelvablePie = true;
-    public bool ShelvablePot = true;
-
-    public RainCollector RainCollector = new();
+    public bool BranchCutter { get; set; } = true;
+    public bool DropClutterAnyway { get; set; } = true;
+    public bool DropResinAnyway { get; set; } = true;
+    public bool DropVinesAnyway { get; set; } = true;
+    public bool DropWallpapers { get; set; } = true;
+    public bool FourPlanksFromLog { get; set; }
+    public bool GlowingProjectiles { get; set; }
+    public bool PickUpBones { get; set; }
+    public bool PlanksInPitKiln { get; set; } = true;
+    public bool RackableFirestarter { get; set; } = true;
+    public bool RemoveBookSignature { get; set; } = true;
+    public bool RichTraders { get; set; }
+    public bool ScrapRecipes { get; set; } = true;
+    public bool ShelvablePie { get; set; } = true;
+    public bool ShelvablePot { get; set; } = true;
 
     public Config()
     {
     }
     public Config(Config previousConfig)
     {
-        CrateOpenCloseLid = previousConfig.CrateOpenCloseLid;
-        CrateRemoveOrAddLabel = previousConfig.CrateRemoveOrAddLabel;
+        Command = previousConfig.Command;
+        RainCollector = previousConfig.RainCollector;
 
         BranchCutter = previousConfig.BranchCutter;
         DropClutterAnyway = previousConfig.DropClutterAnyway;
@@ -46,7 +44,5 @@ public class Config
         ScrapRecipes = previousConfig.ScrapRecipes;
         ShelvablePie = previousConfig.ShelvablePie;
         ShelvablePot = previousConfig.ShelvablePot;
-
-        RainCollector = previousConfig.RainCollector;
     }
 }
