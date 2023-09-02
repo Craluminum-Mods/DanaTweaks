@@ -5,6 +5,7 @@ using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 using Vintagestory.API.Common.Entities;
 using Newtonsoft.Json.Linq;
+using System;
 
 [assembly: ModInfo(name: "Dana Tweaks", modID: "danatweaks", Side = "Universal")]
 
@@ -46,7 +47,7 @@ public class Core : ModSystem
 
     public static void SetGlowLevel(Entity entity)
     {
-        if (entity is EntityProjectile || entity.Class.Contains("projectile"))
+        if (entity is EntityProjectile || entity.Class.Contains("projectile", StringComparison.OrdinalIgnoreCase))
         {
             entity.Properties.Client.GlowLevel = 255;
         }
