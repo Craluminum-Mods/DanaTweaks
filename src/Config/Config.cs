@@ -15,6 +15,7 @@ public class Config
     public bool DropVinesAnyway { get; set; } = true;
     public bool DropWallpapers { get; set; } = true;
     public bool FourPlanksFromLog { get; set; }
+    public bool FragileBones { get; set; }
     public bool GlowingProjectiles { get; set; }
     public bool PickUpBones { get; set; }
     public bool PlanksInPitKiln { get; set; } = true;
@@ -49,6 +50,7 @@ public class Config
         DropVinesAnyway = previousConfig.DropVinesAnyway;
         DropWallpapers = previousConfig.DropWallpapers;
         FourPlanksFromLog = previousConfig.FourPlanksFromLog;
+        FragileBones = previousConfig.FragileBones;
         GlowingProjectiles = previousConfig.GlowingProjectiles;
         PickUpBones = previousConfig.PickUpBones;
         PlanksInPitKiln = previousConfig.PlanksInPitKiln;

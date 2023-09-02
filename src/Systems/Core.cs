@@ -69,9 +69,16 @@ public class Core : ModSystem
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGuaranteedDecorDrop(block));
             }
-            if (Config.PickUpBones && block.Code.ToString().Contains("carcass"))
+            if (block.Code.ToString().Contains("carcass"))
             {
-                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorRightClickPickup(block));
+                if (Config.PickUpBones)
+                {
+                    block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorRightClickPickup(block));
+                }
+                if (Config.FragileBones)
+                {
+                    block.Resistance = 0.15f;
+                }
             }
             if (Config.ShelvablePie && block is BlockPie)
             {
