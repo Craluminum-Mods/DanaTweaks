@@ -15,7 +15,7 @@ public class Commands : ModSystem
 
     public override void StartServerSide(ICoreServerAPI api)
     {
-        LabelStack = new(api.World.GetItem(new AssetLocation("paper-parchment")));
+        LabelStack = new(api.World.GetItem(new AssetLocation(ParchmentCode)));
 
         IChatCommand command = api.ChatCommands.GetOrCreate("danatweaks").RequiresPlayer().RequiresPrivilege("useblock");
 

@@ -29,6 +29,18 @@ public static class Constants
     public const string SignedBy = "signedby";
     public const string SignedByUid = "signedbyuid";
 
+    #region Codes
+    public const string ParchmentCode = "paper-parchment";
+    public const string ResinCode = "resin";
+    public const string PitkilnCode = "pitkiln";
+    public const string ChiselCodes = "chisel-*";
+    public const string MetalblockCodes = "metalblock-new-riveted-*";
+    public const string MetalbitPlaceholderCode = "metalbit-{metal}";
+    public const string BrassTorchholderCodes = "torchholder-brass-*";
+    public const string BrassMetalbitCode = "metalbit-brass";
+
+    #endregion Codes
+
     public static readonly SkillItem BranchCutterNormalMode = new()
     {
         Code = new AssetLocation("normal"),
@@ -45,5 +57,25 @@ public static class Constants
     {
         Name = "DanaTweaks:RainCollector",
         properties = null
+    };
+
+    public static readonly ModelTransform PotShelfTransform = new()
+    {
+        Origin = new() { X = 0.5f, Y = 0f, Z = 0.5f },
+        Scale = 0.8f
+    };
+
+    public static readonly ModelTransform PieShelfTransform = new()
+    {
+        Origin = new() { X = 0.5f, Y = 0f, Z = 0.5f },
+        Scale = 0.65f
+    };
+
+    public static readonly ModelTransform FirestarterToolrackTransform = new()
+    {
+        Translation = new() { X = 0.25f, Y = 0.55f, Z = 0.0275f },
+        Rotation = new() { X = 180, Y = -135, Z = 0 },
+        Origin = new() { X = 0.5f, Y = 0f, Z = 0.5f },
+        Scale = 0.7f
     };
 }

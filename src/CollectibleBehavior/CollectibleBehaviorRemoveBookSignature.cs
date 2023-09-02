@@ -38,33 +38,12 @@ public class CollectibleBehaviorRemoveBookSignature : CollectibleBehavior
 
     public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
     {
-        if (toolMode == 0 && IsSignedBySamePlayer(slot, byPlayer))
+        if (toolMode == 0 && slot.IsSignedBySamePlayer(byPlayer))
         {
-            Unsign(slot);
+            slot.Unsign();
         }
 
         slot.MarkDirty();
-    }
-
-    public static bool IsSigned(ItemSlot slot)
-    {
-        return slot.Itemstack.Attributes.GetString(Constants.SignedBy) != null;
-    }
-
-    public static bool IsSignedByUid(ItemSlot slot, IPlayer byPlayer)
-    {
-        return slot.Itemstack.Attributes.GetString(Constants.SignedByUid) == byPlayer.PlayerUID;
-    }
-
-    public static bool IsSignedBySamePlayer(ItemSlot slot, IPlayer byPlayer)
-    {
-        return IsSigned(slot) && IsSignedByUid(slot, byPlayer);
-    }
-
-    public static void Unsign(ItemSlot slot)
-    {
-        slot.Itemstack.Attributes.RemoveAttribute(Constants.SignedBy);
-        slot.Itemstack.Attributes.RemoveAttribute(Constants.SignedByUid);
     }
 
     public override void OnUnloaded(ICoreAPI api)
@@ -77,7 +56,7 @@ public class CollectibleBehaviorRemoveBookSignature : CollectibleBehavior
 
     public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
     {
-        return IsSigned(slot) ? SkillItems : base.GetToolModes(slot, forPlayer, blockSel);
+        return slot.IsSigned() ? SkillItems : base.GetToolModes(slot, forPlayer, blockSel);
     }
 
     public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)

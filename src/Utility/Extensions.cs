@@ -1,6 +1,9 @@
 using System.Linq;
+using Newtonsoft.Json.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Common.Entities;
+using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
@@ -9,6 +12,12 @@ namespace DanaTweaks;
 
 public static class Extensions
 {
+    public static void EnsureAttributesNotNull(this CollectibleObject obj) => obj.Attributes ??= new JsonObject(new JObject());
+    public static void EnsureAttributesNotNull(this EntityProperties obj) => obj.Attributes ??= new JsonObject(new JObject());
+
+    public static void MakeRackable(this CollectibleObject obj) => obj.Attributes.Token["rackable"] = JToken.FromObject(true);
+    public static void MakeShelvable(this CollectibleObject obj) => obj.Attributes.Token["shelvable"] = JToken.FromObject(true);
+
     public static T GetBlockEntityExt<T>(this IBlockAccessor blockAccessor, BlockPos pos) where T : BlockEntity
     {
         if (blockAccessor.GetBlockEntity<T>(pos) is T blockEntity)
@@ -50,5 +59,10 @@ public static class Extensions
     public static bool HasLogAsIngredient(this GridRecipe recipe)
     {
         return recipe.Ingredients.Values.Any(ingredient => ingredient.Code.ToString().StartsWith("game:log"));
+    }
+
+    public static bool IsShears(this ItemSlot slot)
+    {
+        return slot?.Itemstack?.Collectible is ItemShears;
     }
 }

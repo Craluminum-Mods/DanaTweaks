@@ -53,21 +53,21 @@ public class Recipes : ModSystem
                 ["C"] = new CraftingRecipeIngredient()
                 {
                     Type = EnumItemClass.Item,
-                    Code = new AssetLocation("chisel-*"),
+                    Code = new AssetLocation(Constants.ChiselCodes),
                     IsTool = true,
                     Quantity = 1
                 },
                 ["I"] = new CraftingRecipeIngredient()
                 {
                     Type = EnumItemClass.Block,
-                    Code = new AssetLocation("torchholder-brass-*"),
+                    Code = new AssetLocation(Constants.BrassTorchholderCodes),
                     Quantity = 1
                 }
             },
             Output = new CraftingRecipeIngredient()
             {
                 Type = EnumItemClass.Item,
-                Code = new AssetLocation("metalbit-brass"),
+                Code = new AssetLocation(Constants.BrassMetalbitCode),
                 Quantity = 40
             }
         };
@@ -90,14 +90,14 @@ public class Recipes : ModSystem
                 ["C"] = new CraftingRecipeIngredient()
                 {
                     Type = EnumItemClass.Item,
-                    Code = new AssetLocation("chisel-*"),
+                    Code = new AssetLocation(Constants.ChiselCodes),
                     IsTool = true,
                     Quantity = 1
                 },
                 ["I"] = new CraftingRecipeIngredient()
                 {
                     Type = EnumItemClass.Block,
-                    Code = new AssetLocation("metalblock-new-riveted-*"),
+                    Code = new AssetLocation(Constants.MetalblockCodes),
                     Name = "metal",
                     Quantity = 1
                 }
@@ -105,7 +105,7 @@ public class Recipes : ModSystem
             Output = new CraftingRecipeIngredient()
             {
                 Type = EnumItemClass.Item,
-                Code = new AssetLocation("metalbit-{metal}"),
+                Code = new AssetLocation(Constants.MetalbitPlaceholderCode),
                 Quantity = 240
             }
         };

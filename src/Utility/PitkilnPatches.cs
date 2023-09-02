@@ -15,7 +15,7 @@ public static class PitkilnPatches
 
         foreach (Item item in api.World.Items.Where(x => x.WildCardMatch("plank-*") && !x.IsMissing))
         {
-            item.Attributes ??= new JsonObject(new JObject());
+            item.EnsureAttributesNotNull();
             item.Attributes.Token["placeSound"] = JToken.FromObject("block/planks");
 
             planks.Add(new JsonItemStackBuildStage()
@@ -31,7 +31,7 @@ public static class PitkilnPatches
         sticks[0].EleCode = "Stick";
         sticks = sticks.Concat(planks).ToArray();
 
-        blockPitKiln.Attributes ??= new JsonObject(new JObject());
+        blockPitKiln.EnsureAttributesNotNull();
         blockPitKiln.Attributes.Token["buildMats"]["sticks"] = JToken.FromObject(sticks);
     }
 
@@ -45,7 +45,7 @@ public static class PitkilnPatches
             val.BuildStages[6] = "{eleCode}layer2/*";
         }
 
-        blockPitKiln.Attributes ??= new JsonObject(new JObject());
+        blockPitKiln.EnsureAttributesNotNull();
         blockPitKiln.Attributes.Token["modelConfigs"] = JToken.FromObject(modelConfigs);
     }
 }

@@ -14,7 +14,7 @@ public class BlockBehaviorCrateInteractionHelp : BlockBehavior
 
     public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer, ref EnumHandling handling)
     {
-        ItemStack LabelStack = new(world.GetItem(new AssetLocation("paper-parchment")));
+        ItemStack LabelStack = new(world.GetItem(new AssetLocation(ParchmentCode)));
 
         ICoreClientAPI capi = world.Api as ICoreClientAPI;
 

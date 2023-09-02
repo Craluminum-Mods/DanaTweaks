@@ -45,7 +45,7 @@ public class Core : ModSystem
         }
     }
 
-    private void SetGlowLevel(Entity entity)
+    public static void SetGlowLevel(Entity entity)
     {
         if (entity is EntityProjectile)
         {
@@ -75,33 +75,21 @@ public class Core : ModSystem
             }
             if (Config.ShelvablePie && block is BlockPie)
             {
-                ModelTransform transform = new()
-                {
-                    Origin = new() { X = 0.5f, Y = 0f, Z = 0.5f },
-                    Scale = 0.65f
-                };
-
-                block.Attributes ??= new JsonObject(new JObject());
-                block.Attributes.Token["shelvable"] = JToken.FromObject(true);
-                block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(transform);
+                block.EnsureAttributesNotNull();
+                block.MakeShelvable();
+                block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(Constants.PieShelfTransform);
             }
             if (Config.ShelvablePot && block.Code.ToString().Contains("claypot"))
             {
-                ModelTransform transform = new()
-                {
-                    Origin = new() { X = 0.5f, Y = 0f, Z = 0.5f },
-                    Scale = 0.8f
-                };
-
-                block.Attributes ??= new JsonObject(new JObject());
-                block.Attributes.Token["shelvable"] = JToken.FromObject(true);
-                block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(transform);
+                block.EnsureAttributesNotNull();
+                block.MakeShelvable();
+                block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(Constants.PotShelfTransform);
             }
             if (Config.BranchCutter && block.BlockMaterial == EnumBlockMaterial.Leaves)
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorBranchCutter(block));
             }
-            if (Config.DropResinAnyway && block.GetBehavior<BlockBehaviorHarvestable>()?.harvestedStack.Code == new AssetLocation("resin"))
+            if (Config.DropResinAnyway && block.GetBehavior<BlockBehaviorHarvestable>()?.harvestedStack.Code == new AssetLocation(Constants.ResinCode))
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorDropResinAnyway(block));
             }
@@ -119,7 +107,7 @@ public class Core : ModSystem
             }
             if (Config.OvenFuel.Blocks.Any(keyVal => block.WildCardMatch(keyVal.Key) && keyVal.Value))
             {
-                block.Attributes ??= new JsonObject(new JObject());
+                block.EnsureAttributesNotNull();
                 block.Attributes.Token["isClayOvenFuel"] = JToken.FromObject(true);
             }
         }
@@ -128,17 +116,9 @@ public class Core : ModSystem
         {
             if (Config.RackableFirestarter && item is ItemFirestarter)
             {
-                ModelTransform transform = new()
-                {
-                    Translation = new() { X = 0.25f, Y = 0.55f, Z = 0.0275f },
-                    Rotation = new() { X = 180, Y = -135, Z = 0 },
-                    Origin = new() { X = 0.5f, Y = 0f, Z = 0.5f },
-                    Scale = 0.7f
-                };
-
-                item.Attributes ??= new JsonObject(new JObject());
-                item.Attributes.Token["rackable"] = JToken.FromObject(true);
-                item.Attributes.Token["toolrackTransform"] = JToken.FromObject(transform);
+                item.EnsureAttributesNotNull();
+                item.MakeRackable();
+                item.Attributes.Token["toolrackTransform"] = JToken.FromObject(Constants.FirestarterToolrackTransform);
             }
             if (Config.BranchCutter && item is ItemShears)
             {
@@ -150,7 +130,7 @@ public class Core : ModSystem
             }
             if (Config.OvenFuel.Items.Any(keyVal => item.WildCardMatch(keyVal.Key) && keyVal.Value))
             {
-                item.Attributes ??= new JsonObject(new JObject());
+                item.EnsureAttributesNotNull();
                 item.Attributes.Token["isClayOvenFuel"] = JToken.FromObject(true);
             }
         }
@@ -159,7 +139,7 @@ public class Core : ModSystem
         {
             if (Config.RichTraders && entityType.Code.ToString().Contains("trader"))
             {
-                entityType.Attributes ??= new JsonObject(new JObject());
+                entityType.EnsureAttributesNotNull();
                 entityType.Attributes.Token["tradeProps"]["money"]["avg"] = JToken.FromObject(999999);
                 entityType.Attributes.Token["tradeProps"]["money"]["var"] = JToken.FromObject(0);
             }
@@ -167,7 +147,7 @@ public class Core : ModSystem
 
         if (Config.PlanksInPitKiln)
         {
-            Block blockPitKiln = api.World.GetBlock(new AssetLocation("pitkiln"));
+            Block blockPitKiln = api.World.GetBlock(new AssetLocation(Constants.PitkilnCode));
             blockPitKiln.PatchBuildMats(api);
             blockPitKiln.PatchModelConfigs();
         }
