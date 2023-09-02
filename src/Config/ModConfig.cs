@@ -28,15 +28,7 @@ public static class ModConfig
             config = LoadConfig(api);
         }
 
-        if (api.ModLoader.IsModEnabled("useplanksinpitkiln"))
-        {
-            api.World.Config.SetBool("DanaTweaks_PlanksInPitKiln_Enabled", false);
-            config.PlanksInPitKiln = false;
-        }
-        else
-        {
-            api.World.Config.SetBool("DanaTweaks_PlanksInPitKiln_Enabled", config.PlanksInPitKiln);
-        }
+        api.World.Config.SetBool("DanaTweaks_PlanksInPitKiln_Enabled", config.PlanksInPitKiln);
 
         return config;
     }
