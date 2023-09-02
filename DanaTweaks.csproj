@@ -13,6 +13,10 @@
             <HintPath>$(VINTAGE_STORY)\VintagestoryAPI.dll</HintPath>
             <Private>false</Private>
         </Reference>
+        <Reference Include="VintagestoryLib">
+            <HintPath>$(VINTAGE_STORY)\VintagestoryLib.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
         <Reference Include="VSSurvivalMod">
             <HintPath>$(VINTAGE_STORY)\Mods\VSSurvivalMod.dll</HintPath>
             <Private>false</Private>
