@@ -12,8 +12,6 @@ namespace DanaTweaks;
 
 public class Core : ModSystem
 {
-    private ICoreClientAPI capi;
-
     public static Config Config { get; set; }
 
     public override void StartPre(ICoreAPI api)
@@ -38,7 +36,6 @@ public class Core : ModSystem
 
     public override void StartClientSide(ICoreClientAPI api)
     {
-        capi = api;
         base.StartClientSide(api);
 
         if (Config.GlowingProjectiles)
@@ -53,12 +50,6 @@ public class Core : ModSystem
         {
             entity.Properties.Client.GlowLevel = 255;
         }
-    }
-
-    public override void Dispose()
-    {
-        base.Dispose();
-        capi.Event.OnEntitySpawn -= SetGlowLevel;
     }
 
     public override void AssetsFinalize(ICoreAPI api)
