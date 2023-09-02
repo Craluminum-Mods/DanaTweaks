@@ -1,5 +1,4 @@
 using Vintagestory.API.Common;
-using static DanaTweaks.Constants;
 
 namespace DanaTweaks;
 
@@ -43,14 +42,14 @@ public static class ModConfig
     }
     private static Config LoadConfig(ICoreAPI api)
     {
-        return api.LoadModConfig<Config>(ConfigName);
+        return api.LoadModConfig<Config>(Constants.ConfigName);
     }
     private static void GenerateConfig(ICoreAPI api)
     {
-        api.StoreModConfig(new Config(), ConfigName);
+        api.StoreModConfig(new Config(), Constants.ConfigName);
     }
     private static void GenerateConfig(ICoreAPI api, Config previousConfig)
     {
-        api.StoreModConfig(new Config(previousConfig), ConfigName);
+        api.StoreModConfig(new Config(previousConfig), Constants.ConfigName);
     }
 }

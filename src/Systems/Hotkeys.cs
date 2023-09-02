@@ -1,6 +1,5 @@
 using Vintagestory.API.Common;
 using Vintagestory.API.Client;
-using static DanaTweaks.Constants;
 
 namespace DanaTweaks;
 
@@ -12,11 +11,11 @@ public class Hotkeys : ModSystem
     {
         base.StartClientSide(api);
 
-        api.Input.RegisterHotKey(OpenCloseLidHotkey, OpenCloseLidName, GlKeys.X, HotkeyType.GUIOrOtherControls, ctrlPressed: true);
-        api.Input.SetHotKeyHandler(OpenCloseLidHotkey, _ => OpenCloseLid(api));
+        api.Input.RegisterHotKey(Constants.OpenCloseLidHotkey, Constants.OpenCloseLidName, GlKeys.X, HotkeyType.GUIOrOtherControls, ctrlPressed: true);
+        api.Input.SetHotKeyHandler(Constants.OpenCloseLidHotkey, _ => OpenCloseLid(api));
 
-        api.Input.RegisterHotKey(RemoveOrAddLabelHotkey, RemoveOrAddLabelName, GlKeys.X, HotkeyType.GUIOrOtherControls, shiftPressed: true);
-        api.Input.SetHotKeyHandler(RemoveOrAddLabelHotkey, _ => RemoveOrAddLabel(api));
+        api.Input.RegisterHotKey(Constants.RemoveOrAddLabelHotkey, Constants.RemoveOrAddLabelName, GlKeys.X, HotkeyType.GUIOrOtherControls, shiftPressed: true);
+        api.Input.SetHotKeyHandler(Constants.RemoveOrAddLabelHotkey, _ => RemoveOrAddLabel(api));
     }
 
     public static bool OpenCloseLid(ICoreClientAPI api)

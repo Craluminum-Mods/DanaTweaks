@@ -3,7 +3,6 @@ using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Common.CommandAbbr;
-using static DanaTweaks.Constants;
 
 namespace DanaTweaks;
 
@@ -15,7 +14,7 @@ public class Commands : ModSystem
 
     public override void StartServerSide(ICoreServerAPI api)
     {
-        LabelStack = new(api.World.GetItem(new AssetLocation(ParchmentCode)));
+        LabelStack = new(api.World.GetItem(new AssetLocation(Constants.ParchmentCode)));
 
         IChatCommand command = api.ChatCommands.GetOrCreate("danatweaks").RequiresPlayer().RequiresPrivilege("useblock");
 
@@ -23,7 +22,7 @@ public class Commands : ModSystem
         {
             command.BeginSub("removeoraddlabel")
                 .WithAlias("ral")
-                .WithDesc(RemoveOrAddLabelName)
+                .WithDesc(Constants.RemoveOrAddLabelName)
                 .HandleWith(RemoveOrAddLabel)
             .EndSub();
         }
@@ -31,7 +30,7 @@ public class Commands : ModSystem
         {
             command.BeginSub("openclose")
                 .WithAlias("oc")
-                .WithDesc(OpenCloseLidName)
+                .WithDesc(Constants.OpenCloseLidName)
                 .HandleWith(OpenCloseLid)
             .EndSub();
         }
@@ -44,7 +43,7 @@ public class Commands : ModSystem
 
         if (pos == null || player.Entity.World.BlockAccessor.GetBlockEntityExt<BlockEntityCrate>(pos) is not BlockEntityCrate becrate)
         {
-            return TextCommandResult.Error(NoCrate);
+            return TextCommandResult.Error(Constants.NoCrate);
         }
 
         if (!player.Entity.Api.World.Claims.TryAccess(player, pos, EnumBlockAccessFlags.Use))
@@ -54,9 +53,9 @@ public class Commands : ModSystem
 
         becrate.preferredLidState = becrate.preferredLidState switch
         {
-            Opened => Closed,
-            Closed => Opened,
-            _ => Opened
+            Constants.Opened => Constants.Closed,
+            Constants.Closed => Constants.Opened,
+            _ => Constants.Opened
         };
 
         becrate.MarkDirty(redrawOnClient: true);
@@ -70,7 +69,7 @@ public class Commands : ModSystem
 
         if (pos == null)
         {
-            return TextCommandResult.Error(NoCrate);
+            return TextCommandResult.Error(Constants.NoCrate);
         }
 
         ItemSlot activeSlot = player.InventoryManager.ActiveHotbarSlot;
@@ -79,7 +78,7 @@ public class Commands : ModSystem
 
         if (becrate == null)
         {
-            return TextCommandResult.Error(NoCrate);
+            return TextCommandResult.Error(Constants.NoCrate);
         }
 
         if (!player.Entity.Api.World.Claims.TryAccess(player, pos, EnumBlockAccessFlags.Use))
@@ -89,11 +88,11 @@ public class Commands : ModSystem
 
         return becrate.label switch
         {
-            DefaultLabel => RemoveLabel(player, becrate),
-            not null and not "" => TextCommandResult.Error(HasDiffLabel),
+            Constants.DefaultLabel => RemoveLabel(player, becrate),
+            not null and not "" => TextCommandResult.Error(Constants.HasDiffLabel),
             _ => activeSlot.IsCorrectLabel(LabelStack)
                                 ? AddLabel(player, becrate)
-                                : TextCommandResult.Error(NoLabel),
+                                : TextCommandResult.Error(Constants.NoLabel),
         };
     }
 
@@ -114,7 +113,7 @@ public class Commands : ModSystem
         player.Entity.ActiveHandItemSlot.TakeOut(1);
         player.Entity.ActiveHandItemSlot.MarkDirty();
 
-        bect.label = DefaultLabel;
+        bect.label = Constants.DefaultLabel;
         bect.MarkDirty(redrawOnClient: true);
         return TextCommandResult.Deferred;
     }

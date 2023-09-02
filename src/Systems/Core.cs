@@ -4,7 +4,6 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 using Vintagestory.API.Common.Entities;
-using Vintagestory.API.Datastructures;
 using Newtonsoft.Json.Linq;
 
 [assembly: ModInfo(name: "Dana Tweaks", modID: "danatweaks", Side = "Universal")]
