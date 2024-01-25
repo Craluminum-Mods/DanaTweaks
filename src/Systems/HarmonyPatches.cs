@@ -1,21 +1,26 @@
+using System.Reflection;
 using HarmonyLib;
 using Vintagestory.API.Common;
+using Vintagestory.API.MathTools;
+using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
 public partial class HarmonyPatches : ModSystem
 {
-    public const string HarmonyID = "danatweaks";
+    private Harmony harmony;
 
-    public override void Start(ICoreAPI api)
+    public override void StartServerSide(ICoreServerAPI api)
     {
-        base.Start(api);
+        harmony = new Harmony(Mod.Info.ModID);
+
         if (Core.Config.DropClutterAnyway)
         {
-            new Harmony(HarmonyID).Patch(
-                original: typeof(BlockClutter).GetMethod(nameof(BlockClutter.GetDrops)),
-                prefix: typeof(BlockClutter_GetDrops_Patch).GetMethod(nameof(BlockClutter_GetDrops_Patch.Prefix)));
+            MethodInfo prefix = typeof(BlockClutterDropPatch).GetMethod("Prefix");
+
+            harmony.Patch(original: typeof(BlockClutter).GetMethod("GetDrops"), prefix: prefix);
+            harmony.Patch(original: typeof(BlockShapeFromAttributes).GetMethod("GetDrops"), prefix: prefix);
         }
     }
 
@@ -23,8 +28,22 @@ public partial class HarmonyPatches : ModSystem
     {
         if (Core.Config.DropClutterAnyway)
         {
-            new Harmony(HarmonyID).Unpatch(original: typeof(BlockClutter).GetMethod(nameof(BlockClutter.GetDrops)), HarmonyPatchType.All, HarmonyID);
+            harmony.Unpatch(original: typeof(BlockClutter).GetMethod(nameof(BlockClutter.GetDrops)), HarmonyPatchType.All, harmony.Id);
+            harmony.Unpatch(original: typeof(BlockShapeFromAttributes).GetMethod(nameof(BlockShapeFromAttributes.GetDrops)), HarmonyPatchType.All, harmony.Id);
         }
-        base.Dispose();
+    }
+
+    [HarmonyPatch(typeof(BlockClutter), nameof(BlockClutter.GetDrops))]
+    public static class BlockClutterDropPatch
+    {
+        public static bool Prefix(BlockClutter __instance, ref ItemStack[] __result, IWorldAccessor world, BlockPos pos)
+        {
+            BEBehaviorShapeFromAttributes bec = __instance.GetBEBehavior<BEBehaviorShapeFromAttributes>(pos);
+            bec.Collected = true;
+            ItemStack itemStack = __instance.OnPickBlock(world, pos);
+            itemStack.Attributes.SetBool("collected", true);
+            __result = new[] { itemStack };
+            return true;
+        }
     }
 }
