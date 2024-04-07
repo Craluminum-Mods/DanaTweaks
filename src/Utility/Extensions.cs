@@ -15,9 +15,6 @@ public static class Extensions
     public static void EnsureAttributesNotNull(this CollectibleObject obj) => obj.Attributes ??= new JsonObject(new JObject());
     public static void EnsureAttributesNotNull(this EntityProperties obj) => obj.Attributes ??= new JsonObject(new JObject());
 
-    public static void MakeRackable(this CollectibleObject obj) => obj.Attributes.Token["rackable"] = JToken.FromObject(true);
-    public static void MakeShelvable(this CollectibleObject obj) => obj.Attributes.Token["shelvable"] = JToken.FromObject(true);
-
     public static T GetBlockEntityExt<T>(this IBlockAccessor blockAccessor, BlockPos pos) where T : BlockEntity
     {
         if (blockAccessor.GetBlockEntity<T>(pos) is T blockEntity)
@@ -27,7 +24,7 @@ public static class Extensions
 
         if (blockAccessor.GetBlock(pos) is BlockMultiblock multiblock)
         {
-            BlockPos multiblockPos = new(pos.X + multiblock.OffsetInv.X, pos.Y + multiblock.OffsetInv.Y, pos.Z + multiblock.OffsetInv.Z);
+            BlockPos multiblockPos = new BlockPos(pos.X + multiblock.OffsetInv.X, pos.Y + multiblock.OffsetInv.Y, pos.Z + multiblock.OffsetInv.Z, pos.dimension);
 
             return blockAccessor.GetBlockEntity<T>(multiblockPos);
         }

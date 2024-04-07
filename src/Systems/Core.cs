@@ -17,19 +17,18 @@ public class Core : ModSystem
 
     public override void StartPre(ICoreAPI api)
     {
-        base.StartPre(api);
         Config = ModConfig.ReadConfig(api);
     }
 
     public override void Start(ICoreAPI api)
     {
-        base.Start(api);
         api.RegisterBlockBehaviorClass("DanaTweaks:BranchCutter", typeof(BlockBehaviorBranchCutter));
         api.RegisterBlockBehaviorClass("DanaTweaks:CrateInteractionHelp", typeof(BlockBehaviorCrateInteractionHelp));
         api.RegisterBlockBehaviorClass("DanaTweaks:DropResinAnyway", typeof(BlockBehaviorDropResinAnyway));
         api.RegisterBlockBehaviorClass("DanaTweaks:DropVinesAnyway", typeof(BlockBehaviorDropVinesAnyway));
         api.RegisterBlockBehaviorClass("DanaTweaks:GuaranteedDecorDrop", typeof(BlockBehaviorGuaranteedDecorDrop));
         api.RegisterBlockBehaviorClass("DanaTweaks:GuaranteedDrop", typeof(BlockBehaviorGuaranteedDrop));
+        api.RegisterBlockBehaviorClass("DanaTweaks:GroundStorageParticles", typeof(BlockBehaviorGroundStorageParticles));
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:RainCollector", typeof(BEBehaviorRainCollector));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:BranchCutter", typeof(CollectibleBehaviorBranchCutter));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:RemoveBookSignature", typeof(CollectibleBehaviorRemoveBookSignature));
@@ -83,7 +82,7 @@ public class Core : ModSystem
             if (Config.ShelvablePie && block is BlockPie)
             {
                 block.EnsureAttributesNotNull();
-                block.MakeShelvable();
+                block.Attributes.Token["shelvable"] = JToken.FromObject(true);
                 block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(Constants.PieShelfTransform);
             }
             if (Config.BranchCutter && block.BlockMaterial == EnumBlockMaterial.Leaves)
@@ -118,7 +117,7 @@ public class Core : ModSystem
             if (Config.RackableFirestarter && item is ItemFirestarter)
             {
                 item.EnsureAttributesNotNull();
-                item.MakeRackable();
+                item.Attributes.Token["rackable"] = JToken.FromObject(true);
                 item.Attributes.Token["toolrackTransform"] = JToken.FromObject(Constants.FirestarterToolrackTransform);
             }
             if (Config.BranchCutter && item is ItemShears)
