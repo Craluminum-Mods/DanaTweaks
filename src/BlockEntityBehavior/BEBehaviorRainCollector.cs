@@ -48,7 +48,17 @@ public class BEBehaviorRainCollector : BlockEntityBehavior
         }
         else if (Blockentity.Block is BlockLiquidContainerBase blockCnt1)
         {
-            blockCnt1.TryPutLiquid(Blockentity.Pos, itemStack, desiredLitres);
+            if (Blockentity is BlockEntityBarrel blockBarrel)
+            {
+                if (!blockBarrel.Sealed)
+                {
+                    blockCnt1.TryPutLiquid(Blockentity.Pos, itemStack, desiredLitres);
+                }
+            }
+            else
+            {
+                blockCnt1.TryPutLiquid(Blockentity.Pos, itemStack, desiredLitres);
+            }
         }
     }
 
