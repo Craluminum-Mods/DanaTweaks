@@ -114,10 +114,16 @@ public class Core : ModSystem
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGroundStorageParticles(block));
             }
-            if (Config.OvenFuel.Blocks.Any(keyVal => block.WildCardMatch(keyVal.Key) && keyVal.Value))
+            if (Config.OvenFuel.Blocks.Any(keyVal => block.WildCardMatch(keyVal.Key) && keyVal.Value.Enabled))
             {
                 block.EnsureAttributesNotNull();
                 block.Attributes.Token["isClayOvenFuel"] = JToken.FromObject(true);
+
+                string model = Config.OvenFuel.Blocks.FirstOrDefault(keyVal => block.WildCardMatch(keyVal.Key)).Value.Model;
+                if (!string.IsNullOrEmpty(model))
+                {
+                    block.Attributes.Token["ovenFuelShape"] = JToken.FromObject(model);
+                }
             }
         }
 
@@ -142,10 +148,16 @@ public class Core : ModSystem
             {
                 item.CollectibleBehaviors = item.CollectibleBehaviors.Append(new CollectibleBehaviorRemoveBookSignature(item));
             }
-            if (Config.OvenFuel.Items.Any(keyVal => item.WildCardMatch(keyVal.Key) && keyVal.Value))
+            if (Config.OvenFuel.Items.Any(keyVal => item.WildCardMatch(keyVal.Key) && keyVal.Value.Enabled))
             {
                 item.EnsureAttributesNotNull();
                 item.Attributes.Token["isClayOvenFuel"] = JToken.FromObject(true);
+
+                string model = Config.OvenFuel.Items.FirstOrDefault(keyVal => item.WildCardMatch(keyVal.Key)).Value.Model;
+                if (!string.IsNullOrEmpty(model))
+                {
+                    item.Attributes.Token["ovenFuelShape"] = JToken.FromObject(model);
+                }
             }
         }
 

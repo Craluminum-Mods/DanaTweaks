@@ -1,0 +1,9 @@
+[
+    {
+        "op": "add",
+        "path": "/textures/peat",
+        "value": { "base": "block/soil/peat" },
+        "file": "game:blocktypes/soil/peatbrick.json",
+        "side": "Server"
+    }
+]

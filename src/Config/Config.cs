@@ -6,7 +6,7 @@ namespace DanaTweaks;
 public class Config
 {
     public Command Command { get; set; } = new();
-    public OvenFuel OvenFuel { get; set; } = new();
+    public OvenFuels OvenFuel { get; set; } = new();
     public RainCollector RainCollector { get; set; } = new();
 
     public bool BranchCutter { get; set; } = true;
@@ -35,14 +35,14 @@ public class Config
         Command = previousConfig.Command;
         RainCollector = previousConfig.RainCollector;
 
-        foreach (KeyValuePair<string, bool> keyVal in previousConfig.OvenFuel.Items.Where(keyVal => !OvenFuel.Items.ContainsKey(keyVal.Key)))
+        foreach ((string key, OvenFuel val) in previousConfig.OvenFuel.Items.Where(keyVal => !OvenFuel.Items.ContainsKey(keyVal.Key)))
         {
-            OvenFuel.Items.Add(keyVal.Key, keyVal.Value);
+            OvenFuel.Items.Add(key, val);
         }
 
-        foreach (KeyValuePair<string, bool> keyVal in previousConfig.OvenFuel.Blocks.Where(keyVal => !OvenFuel.Blocks.ContainsKey(keyVal.Key)))
+        foreach ((var key, var val) in previousConfig.OvenFuel.Blocks.Where(keyVal => !OvenFuel.Blocks.ContainsKey(keyVal.Key)))
         {
-            OvenFuel.Blocks.Add(keyVal.Key, keyVal.Value);
+            OvenFuel.Blocks.Add(key, val);
         }
 
         BranchCutter = previousConfig.BranchCutter;
