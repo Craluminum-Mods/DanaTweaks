@@ -10,7 +10,6 @@ public class Config
     public RainCollector RainCollector { get; set; } = new();
 
     public bool BranchCutter { get; set; } = true;
-    public bool DropClutterAnyway { get; set; } = true;
     public bool DropResinAnyway { get; set; } = true;
     public bool DropVinesAnyway { get; set; } = true;
     public bool DropWallpapers { get; set; } = true;
@@ -25,7 +24,6 @@ public class Config
     public bool RichTraders { get; set; }
     public bool ScrapRecipes { get; set; } = true;
     public bool ShelvablePie { get; set; } = true;
-    public bool ShelvablePot { get; set; } = true;
 
     public Config()
     {
@@ -46,7 +44,6 @@ public class Config
         }
 
         BranchCutter = previousConfig.BranchCutter;
-        DropClutterAnyway = previousConfig.DropClutterAnyway;
         DropResinAnyway = previousConfig.DropResinAnyway;
         DropVinesAnyway = previousConfig.DropVinesAnyway;
         DropWallpapers = previousConfig.DropWallpapers;
@@ -61,6 +58,5 @@ public class Config
         RichTraders = previousConfig.RichTraders;
         ScrapRecipes = previousConfig.ScrapRecipes;
         ShelvablePie = previousConfig.ShelvablePie;
-        ShelvablePot = previousConfig.ShelvablePot;
     }
 }

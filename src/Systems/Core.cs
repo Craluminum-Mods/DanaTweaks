@@ -86,12 +86,6 @@ public class Core : ModSystem
                 block.MakeShelvable();
                 block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(Constants.PieShelfTransform);
             }
-            if (Config.ShelvablePot && block.Code.ToString().Contains("claypot"))
-            {
-                block.EnsureAttributesNotNull();
-                block.MakeShelvable();
-                block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(Constants.PotShelfTransform);
-            }
             if (Config.BranchCutter && block.BlockMaterial == EnumBlockMaterial.Leaves)
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorBranchCutter(block));
@@ -103,10 +97,6 @@ public class Core : ModSystem
             if (Config.DropVinesAnyway && block is BlockVines)
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorDropVinesAnyway(block));
-            }
-            if (Config.DropClutterAnyway && block is BlockClutterBookshelf)
-            {
-                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGuaranteedDrop(block));
             }
             if (Config.RainCollector.Enabled && block is BlockLiquidContainerBase or BlockGroundStorage)
             {
