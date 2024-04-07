@@ -33,6 +33,7 @@ public class Core : ModSystem
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:RainCollector", typeof(BEBehaviorRainCollector));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:BranchCutter", typeof(CollectibleBehaviorBranchCutter));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:RemoveBookSignature", typeof(CollectibleBehaviorRemoveBookSignature));
+        api.RegisterCollectibleBehaviorClass("DanaTweaks:SealCrockWithToolMode", typeof(CollectibleBehaviorSealCrockWithToolMode));
     }
 
     public override void StartClientSide(ICoreClientAPI api)
@@ -63,6 +64,10 @@ public class Core : ModSystem
             {
                 block.CollectibleBehaviors = block.CollectibleBehaviors.Append(new BlockBehaviorSelectSlabToolMode(block));
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorSelectSlabToolMode(block));
+            }
+            if (Config.SealCrockExtraInteractions && block is BlockCrock)
+            {
+                block.CollectibleBehaviors = block.CollectibleBehaviors.Append(new CollectibleBehaviorSealCrockWithToolMode(block));
             }
             if (block is BlockCrate)
             {
@@ -118,6 +123,11 @@ public class Core : ModSystem
 
         foreach (Item item in api.World.Items)
         {
+            if (Config.SealCrockExtraInteractions && item.WildCardMatch("@(beeswax|fat)"))
+            {
+                item.EnsureAttributesNotNull();
+                item.Attributes.Token["canSealCrock"] = JToken.FromObject(true);
+            }
             if (Config.RackableFirestarter && item is ItemFirestarter)
             {
                 item.EnsureAttributesNotNull();

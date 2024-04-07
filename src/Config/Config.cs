@@ -23,6 +23,7 @@ public class Config
     public bool RemoveBookSignature { get; set; } = true;
     public bool RichTraders { get; set; }
     public bool ScrapRecipes { get; set; } = true;
+    public bool SealCrockExtraInteractions { get; set; } = true;
     public bool ShelvablePie { get; set; } = true;
     public bool SlabToolModes { get; set; } = true;
 
@@ -58,6 +59,7 @@ public class Config
         RemoveBookSignature = previousConfig.RemoveBookSignature;
         RichTraders = previousConfig.RichTraders;
         ScrapRecipes = previousConfig.ScrapRecipes;
+        SealCrockExtraInteractions = previousConfig.SealCrockExtraInteractions;
         ShelvablePie = previousConfig.ShelvablePie;
         SlabToolModes = previousConfig.SlabToolModes;
     }

@@ -62,4 +62,11 @@ public static class Extensions
     {
         return slot?.Itemstack?.Collectible is ItemShears;
     }
+
+    public static bool IsCrockEmpty(this ItemStack stack)
+    {
+        ICoreAPI api = stack.Collectible.GetField<ICoreAPI>("api");
+        ItemStack[] nonEmptyContents = (stack.Collectible as BlockCrock)?.GetNonEmptyContents(api.World, stack);
+        return nonEmptyContents == null || nonEmptyContents.Length == 0;
+    }
 }

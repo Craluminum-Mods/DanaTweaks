@@ -4,5 +4,6 @@
     "Command.Error.NoCrate": "No crate in sight",
     "Command.Error.HasDiffLabel": "Crate has different parchment",
     "Command.Error.NoLabel": "No parchment in hand or on crate",
-    "RemoveBookSignature": "Remove book signature (you must be the author of this book)"
+    "RemoveBookSignature": "Remove book signature (you must be the author of this book)",
+    "crock-seal": "Drop fat or beeswax here to seal it"
 }
