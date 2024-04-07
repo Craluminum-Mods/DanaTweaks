@@ -6,6 +6,7 @@ using Vintagestory.GameContent;
 using Vintagestory.API.Common.Entities;
 using Newtonsoft.Json.Linq;
 using System;
+using Vintagestory.ServerMods;
 
 [assembly: ModInfo(name: "Dana Tweaks", modID: "danatweaks", Side = "Universal")]
 
@@ -22,6 +23,7 @@ public class Core : ModSystem
 
     public override void Start(ICoreAPI api)
     {
+        api.RegisterBlockBehaviorClass("DanaTweaks:SelectSlabToolMode", typeof(BlockBehaviorSelectSlabToolMode));
         api.RegisterBlockBehaviorClass("DanaTweaks:BranchCutter", typeof(BlockBehaviorBranchCutter));
         api.RegisterBlockBehaviorClass("DanaTweaks:CrateInteractionHelp", typeof(BlockBehaviorCrateInteractionHelp));
         api.RegisterBlockBehaviorClass("DanaTweaks:DropResinAnyway", typeof(BlockBehaviorDropResinAnyway));
@@ -56,6 +58,11 @@ public class Core : ModSystem
             if (block?.Code == null)
             {
                 continue;
+            }
+            if (Config.SlabToolModes && block.HasBehavior<BlockBehaviorOmniRotatable>())
+            {
+                block.CollectibleBehaviors = block.CollectibleBehaviors.Append(new BlockBehaviorSelectSlabToolMode(block));
+                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorSelectSlabToolMode(block));
             }
             if (block is BlockCrate)
             {
