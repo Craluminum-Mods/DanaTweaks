@@ -7,15 +7,13 @@ namespace DanaTweaks;
 
 public class CollectibleBehaviorRemoveBookSignature : CollectibleBehavior
 {
-    public SkillItem[] SkillItems { get; private set; }
+    public SkillItem[] modes;
 
     public CollectibleBehaviorRemoveBookSignature(CollectibleObject collObj) : base(collObj) { }
 
     public override void OnLoaded(ICoreAPI api)
     {
-        base.OnLoaded(api);
-
-        SkillItems = new SkillItem[]
+        modes = new[]
         {
             new SkillItem()
             {
@@ -23,17 +21,10 @@ public class CollectibleBehaviorRemoveBookSignature : CollectibleBehavior
             }
         };
 
-        if (api is not ICoreClientAPI)
+        if (api is ICoreClientAPI capi)
         {
-            return;
+            modes[0].WithIcon(capi, capi.Gui.Icons.GenTexture(48, 48, (ctx, _) => capi.Gui.Icons.Draweraser_svg(ctx, 5, 5, 38, 38, ColorUtil.WhiteArgbDouble)));
         }
-
-        ICoreClientAPI capi = api as ICoreClientAPI;
-
-        SkillItems[0].WithIcon(capi, capi.Gui.Icons.GenTexture(
-            48,
-            48,
-            (ctx, _) => capi.Gui.Icons.Draweraser_svg(ctx, 5, 5, 38, 38, ColorUtil.WhiteArgbDouble)));
     }
 
     public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
@@ -48,20 +39,20 @@ public class CollectibleBehaviorRemoveBookSignature : CollectibleBehavior
 
     public override void OnUnloaded(ICoreAPI api)
     {
-        for (int i = 0; SkillItems != null && i < SkillItems.Length; i++)
+        for (int i = 0; modes != null && i < modes.Length; i++)
         {
-            SkillItems[i]?.Dispose();
+            modes[i]?.Dispose();
         }
     }
 
     public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
     {
-        return slot.IsSigned() ? SkillItems : base.GetToolModes(slot, forPlayer, blockSel);
+        return slot.IsSigned() ? modes : base.GetToolModes(slot, forPlayer, blockSel);
     }
 
     public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
     {
-        return SkillItems == null
+        return modes == null
             ? base.GetHeldInteractionHelp(inSlot, ref handling)
             : base.GetHeldInteractionHelp(inSlot, ref handling).Append(new WorldInteraction
             {

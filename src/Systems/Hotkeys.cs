@@ -9,8 +9,6 @@ public class Hotkeys : ModSystem
 
     public override void StartClientSide(ICoreClientAPI api)
     {
-        base.StartClientSide(api);
-
         api.Input.RegisterHotKey(Constants.OpenCloseLidHotkey, Constants.OpenCloseLidName, GlKeys.X, HotkeyType.GUIOrOtherControls, ctrlPressed: true);
         api.Input.SetHotKeyHandler(Constants.OpenCloseLidHotkey, _ => OpenCloseLid(api));
 

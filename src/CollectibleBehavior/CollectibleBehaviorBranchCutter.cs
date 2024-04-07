@@ -13,8 +13,6 @@ public class CollectibleBehaviorBranchCutter : CollectibleBehavior
 
     public override void OnLoaded(ICoreAPI api)
     {
-        base.OnLoaded(api);
-
         modes = new[]
         {
             Constants.BranchCutterNormalMode,
