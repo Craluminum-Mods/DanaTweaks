@@ -17,6 +17,7 @@ public class Config
     public bool FourPlanksFromLog { get; set; }
     public bool FragileBones { get; set; }
     public bool GlowingProjectiles { get; set; }
+    public bool GroundStorageParticles { get; set; } = true;
     public bool PickUpBones { get; set; }
     public bool PlanksInPitKiln { get; set; } = true;
     public bool RackableFirestarter { get; set; } = true;
@@ -52,6 +53,7 @@ public class Config
         FourPlanksFromLog = previousConfig.FourPlanksFromLog;
         FragileBones = previousConfig.FragileBones;
         GlowingProjectiles = previousConfig.GlowingProjectiles;
+        GroundStorageParticles = previousConfig.GroundStorageParticles;
         PickUpBones = previousConfig.PickUpBones;
         PlanksInPitKiln = previousConfig.PlanksInPitKiln;
         RackableFirestarter = previousConfig.RackableFirestarter;

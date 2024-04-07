@@ -112,6 +112,10 @@ public class Core : ModSystem
             {
                 block.BlockEntityBehaviors = block.BlockEntityBehaviors.Append(Constants.RainCollectorBehavior);
             }
+            if (Config.GroundStorageParticles &&block is BlockGroundStorage)
+            {
+                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGroundStorageParticles(block));
+            }
             if (Config.OvenFuel.Blocks.Any(keyVal => block.WildCardMatch(keyVal.Key) && keyVal.Value))
             {
                 block.EnsureAttributesNotNull();
