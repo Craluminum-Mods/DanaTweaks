@@ -92,7 +92,11 @@ public class Core : ModSystem
             {
                 block.EnsureAttributesNotNull();
                 block.Attributes.Token["shelvable"] = JToken.FromObject(true);
-                block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(Constants.PieShelfTransform);
+                block.Attributes.Token["onDisplayTransform"] = JToken.FromObject(new ModelTransform()
+                {
+                    Origin = new() { X = 0.5f, Y = 0f, Z = 0.5f },
+                    Scale = 0.65f
+                });
             }
             if (Config.BranchCutter && block.BlockMaterial == EnumBlockMaterial.Leaves)
             {
@@ -108,7 +112,11 @@ public class Core : ModSystem
             }
             if (Config.RainCollector.Enabled && block is BlockLiquidContainerBase or BlockGroundStorage)
             {
-                block.BlockEntityBehaviors = block.BlockEntityBehaviors.Append(Constants.RainCollectorBehavior);
+                block.BlockEntityBehaviors = block.BlockEntityBehaviors.Append(new BlockEntityBehaviorType()
+                {
+                    Name = "DanaTweaks:RainCollector",
+                    properties = null
+                });
             }
             if (Config.GroundStorageParticles && block is BlockGroundStorage)
             {
@@ -138,7 +146,13 @@ public class Core : ModSystem
             {
                 item.EnsureAttributesNotNull();
                 item.Attributes.Token["rackable"] = JToken.FromObject(true);
-                item.Attributes.Token["toolrackTransform"] = JToken.FromObject(Constants.FirestarterToolrackTransform);
+                item.Attributes.Token["toolrackTransform"] = JToken.FromObject(new ModelTransform()
+                {
+                    Translation = new() { X = 0.25f, Y = 0.55f, Z = 0.0275f },
+                    Rotation = new() { X = 180, Y = -135, Z = 0 },
+                    Origin = new() { X = 0.5f, Y = 0f, Z = 0.5f },
+                    Scale = 0.7f
+                });
             }
             if (Config.BranchCutter && item is ItemShears)
             {

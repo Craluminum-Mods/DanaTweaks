@@ -53,9 +53,9 @@ public class Commands : ModSystem
 
         becrate.preferredLidState = becrate.preferredLidState switch
         {
-            Constants.Opened => Constants.Closed,
-            Constants.Closed => Constants.Opened,
-            _ => Constants.Opened
+            "opened" => "closed",
+            "closed" => "opened",
+            _ => "opened"
         };
 
         becrate.MarkDirty(redrawOnClient: true);

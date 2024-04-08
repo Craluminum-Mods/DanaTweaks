@@ -1,5 +1,6 @@
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 
@@ -17,7 +18,7 @@ public class CollectibleBehaviorRemoveBookSignature : CollectibleBehavior
         {
             new SkillItem()
             {
-                Name = Constants.RemoveBookSignature,
+                Name = Lang.Get("danatweaks:RemoveBookSignature"),
             }
         };
 
