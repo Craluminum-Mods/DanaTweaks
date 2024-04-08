@@ -5,7 +5,7 @@ namespace DanaTweaks;
 
 public static class BlockCookedContainerBase_OnContainedInteractStart_Patch
 {
-    public static void Postfix(ref bool __result, BlockEntityContainer be, ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
+    public static void Postfix(ref bool __result, ItemSlot slot, IPlayer byPlayer)
     {
         ItemSlot targetSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
 

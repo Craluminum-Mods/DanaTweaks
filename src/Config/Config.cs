@@ -15,6 +15,7 @@ public class Config
     public bool DropResinAnyway { get; set; } = true;
     public bool DropVinesAnyway { get; set; } = true;
     public bool DropWallpapers { get; set; } = true;
+    public bool FirepitHeatsOven { get; set; } = true;
     public bool FourPlanksFromLog { get; set; }
     public bool FragileBones { get; set; }
     public bool GlowingProjectiles { get; set; }
@@ -56,6 +57,7 @@ public class Config
         DropResinAnyway = previousConfig.DropResinAnyway;
         DropVinesAnyway = previousConfig.DropVinesAnyway;
         DropWallpapers = previousConfig.DropWallpapers;
+        FirepitHeatsOven = previousConfig.FirepitHeatsOven;
         FourPlanksFromLog = previousConfig.FourPlanksFromLog;
         FragileBones = previousConfig.FragileBones;
         GlowingProjectiles = previousConfig.GlowingProjectiles;
