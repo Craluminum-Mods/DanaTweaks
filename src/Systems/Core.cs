@@ -7,6 +7,7 @@ using Vintagestory.API.Common.Entities;
 using Newtonsoft.Json.Linq;
 using System;
 using Vintagestory.ServerMods;
+using Vintagestory.API.Server;
 
 [assembly: ModInfo(name: "Dana Tweaks", modID: "danatweaks", Side = "Universal")]
 
@@ -30,10 +31,43 @@ public class Core : ModSystem
         api.RegisterBlockBehaviorClass("DanaTweaks:DropVinesAnyway", typeof(BlockBehaviorDropVinesAnyway));
         api.RegisterBlockBehaviorClass("DanaTweaks:GuaranteedDecorDrop", typeof(BlockBehaviorGuaranteedDecorDrop));
         api.RegisterBlockBehaviorClass("DanaTweaks:GroundStorageParticles", typeof(BlockBehaviorGroundStorageParticles));
+
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:RainCollector", typeof(BEBehaviorRainCollector));
+        api.RegisterBlockEntityBehaviorClass("DanaTweaks:ExtinctSubmergedTorchInEverySlot", typeof(BEBehaviorExtinctSubmergedTorchInEverySlot));
+
         api.RegisterCollectibleBehaviorClass("DanaTweaks:BranchCutter", typeof(CollectibleBehaviorBranchCutter));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:RemoveBookSignature", typeof(CollectibleBehaviorRemoveBookSignature));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:SealCrockWithToolMode", typeof(CollectibleBehaviorSealCrockWithToolMode));
+
+        api.RegisterEntityBehaviorClass("danatweaks:dropallhotslots", typeof(EntityBehaviorDropHotSlots));
+        api.RegisterEntityBehaviorClass("danatweaks:extinctSubmergedTorchInEverySlot", typeof(EntityBehaviorExtinctSubmergedTorchInEverySlot));
+        api.RegisterEntityBehaviorClass("danatweaks:hungrywakeup", typeof(EntityBehaviorHungryWakeUp));
+    }
+
+    public override void StartServerSide(ICoreServerAPI api)
+    {
+        api.Event.OnEntitySpawn += AddEntityBehaviors;
+    }
+
+    private void AddEntityBehaviors(Entity entity)
+    {
+        if (entity is EntityPlayer)
+        {
+            if (Config.PlayerWakesUpWhenHungry)
+            {
+                entity.AddBehavior(new EntityBehaviorHungryWakeUp(entity));
+            }
+
+            if (Config.PlayerDropsHotSlots)
+            {
+                entity.AddBehavior(new EntityBehaviorDropHotSlots(entity));
+            }
+
+            if (Config.ExtinctSubmergedTorchInEverySlot)
+            {
+                entity.AddBehavior(new EntityBehaviorExtinctSubmergedTorchInEverySlot(entity));
+            }
+        }
     }
 
     public override void StartClientSide(ICoreClientAPI api)
@@ -110,11 +144,19 @@ public class Core : ModSystem
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorDropVinesAnyway(block));
             }
-            if (Config.RainCollector.Enabled && block is BlockLiquidContainerBase or BlockGroundStorage)
+            if (Config.RainCollector.Enabled && block is BlockLiquidContainerBase or BlockGroundStorage && api.Side.IsServer())
             {
                 block.BlockEntityBehaviors = block.BlockEntityBehaviors.Append(new BlockEntityBehaviorType()
                 {
                     Name = "DanaTweaks:RainCollector",
+                    properties = null
+                });
+            }
+            if (Config.ExtinctSubmergedTorchInEverySlot && (block is IBlockEntityContainer || block.HasBehavior<BlockBehaviorContainer>() || block is BlockContainer) && api.Side.IsServer())
+            {
+                block.BlockEntityBehaviors = block.BlockEntityBehaviors.Append(new BlockEntityBehaviorType()
+                {
+                    Name = "DanaTweaks:ExtinctSubmergedTorchInEverySlot",
                     properties = null
                 });
             }

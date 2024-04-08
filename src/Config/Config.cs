@@ -8,6 +8,9 @@ public class Config
     public OvenFuels OvenFuel { get; set; } = new();
     public RainCollector RainCollector { get; set; } = new();
 
+    public bool ExtinctSubmergedTorchInEverySlot { get; set; }
+    public int ExtinctSubmergedTorchInEverySlotEveryMs { get; set; } = 5000;
+
     public bool BranchCutter { get; set; } = true;
     public bool DropResinAnyway { get; set; } = true;
     public bool DropVinesAnyway { get; set; } = true;
@@ -18,6 +21,8 @@ public class Config
     public bool GroundStorageParticles { get; set; } = true;
     public bool PickUpBones { get; set; }
     public bool PlanksInPitKiln { get; set; } = true;
+    public bool PlayerDropsHotSlots { get; set; }
+    public bool PlayerWakesUpWhenHungry { get; set; }
     public bool RackableFirestarter { get; set; } = true;
     public bool RemoveBookSignature { get; set; } = true;
     public bool RichTraders { get; set; }
@@ -44,6 +49,9 @@ public class Config
             OvenFuel.Blocks.Add(key, val);
         }
 
+        ExtinctSubmergedTorchInEverySlot = previousConfig.ExtinctSubmergedTorchInEverySlot;
+        ExtinctSubmergedTorchInEverySlotEveryMs = previousConfig.ExtinctSubmergedTorchInEverySlotEveryMs;
+
         BranchCutter = previousConfig.BranchCutter;
         DropResinAnyway = previousConfig.DropResinAnyway;
         DropVinesAnyway = previousConfig.DropVinesAnyway;
@@ -54,6 +62,8 @@ public class Config
         GroundStorageParticles = previousConfig.GroundStorageParticles;
         PickUpBones = previousConfig.PickUpBones;
         PlanksInPitKiln = previousConfig.PlanksInPitKiln;
+        PlayerDropsHotSlots = previousConfig.PlayerDropsHotSlots;
+        PlayerWakesUpWhenHungry = previousConfig.PlayerWakesUpWhenHungry;
         RackableFirestarter = previousConfig.RackableFirestarter;
         RemoveBookSignature = previousConfig.RemoveBookSignature;
         RichTraders = previousConfig.RichTraders;
