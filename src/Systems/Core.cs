@@ -192,6 +192,16 @@ public class Core : ModSystem
                     block.Attributes.Token["ovenFuelShape"] = JToken.FromObject(model);
                 }
             }
+            if (Config.EverySoilUnstable && block.BlockMaterial is EnumBlockMaterial.Soil or EnumBlockMaterial.Gravel or EnumBlockMaterial.Sand && !block.HasBehavior<BlockBehaviorUnstableFalling>())
+            {
+                var properties = new { fallSound = "effect/rockslide", fallSideways = true, dustIntensity = 0.25 };
+                BlockBehaviorUnstableFalling behavior = new BlockBehaviorUnstableFalling(block);
+                behavior.Initialize(new JsonObject(JToken.FromObject(properties)));
+                behavior.block.BlockBehaviors = behavior.block.BlockBehaviors.Append(behavior);
+
+                block.EnsureAttributesNotNull();
+                block.Attributes.Token["allowUnstablePlacement"] = JToken.FromObject(true);
+            }
         }
 
         foreach (Item item in api.World.Items)
