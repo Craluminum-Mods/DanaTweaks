@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DanaTweaks;
@@ -5,6 +6,12 @@ namespace DanaTweaks;
 public class Config
 {
     public Command Command { get; set; } = new();
+
+    public Dictionary<string, CreatureOpenDoors> CreaturesOpenDoors { get; set; } = new()
+    {
+        ["drifter-*"] = new CreatureOpenDoors() { Enabled = true, Cooldown = 5, Range = 1 }
+    };
+
     public OvenFuels OvenFuel { get; set; } = new();
     public RainCollector RainCollector { get; set; } = new();
 
@@ -40,6 +47,11 @@ public class Config
     {
         Command = previousConfig.Command;
         RainCollector = previousConfig.RainCollector;
+
+        foreach ((string key, CreatureOpenDoors val) in previousConfig.CreaturesOpenDoors.Where(keyVal => !CreaturesOpenDoors.ContainsKey(keyVal.Key)))
+        {
+            CreaturesOpenDoors.Add(key, val);
+        }
 
         foreach ((string key, OvenFuel val) in previousConfig.OvenFuel.Items.Where(keyVal => !OvenFuel.Items.ContainsKey(keyVal.Key)))
         {

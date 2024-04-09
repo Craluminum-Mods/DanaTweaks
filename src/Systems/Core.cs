@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using Vintagestory.ServerMods;
 using Vintagestory.API.Server;
+using Vintagestory.API.Datastructures;
 
 [assembly: ModInfo(name: "Dana Tweaks", modID: "danatweaks", Side = "Universal")]
 
@@ -42,11 +43,13 @@ public class Core : ModSystem
         api.RegisterEntityBehaviorClass("danatweaks:dropallhotslots", typeof(EntityBehaviorDropHotSlots));
         api.RegisterEntityBehaviorClass("danatweaks:extinctSubmergedTorchInEverySlot", typeof(EntityBehaviorExtinctSubmergedTorchInEverySlot));
         api.RegisterEntityBehaviorClass("danatweaks:hungrywakeup", typeof(EntityBehaviorHungryWakeUp));
+        api.RegisterEntityBehaviorClass("danatweaks:opendoors", typeof(EntityBehaviorOpenDoors));
     }
 
     public override void StartServerSide(ICoreServerAPI api)
     {
         api.Event.OnEntitySpawn += AddEntityBehaviors;
+        api.Event.OnEntityLoaded += AddEntityBehaviors;
     }
 
     private void AddEntityBehaviors(Entity entity)
@@ -68,6 +71,14 @@ public class Core : ModSystem
                 entity.AddBehavior(new EntityBehaviorExtinctSubmergedTorchInEverySlot(entity));
             }
         }
+
+        if (Config.CreaturesOpenDoors.Any(keyVal => entity.WildCardMatch(keyVal.Key) && keyVal.Value.Enabled))
+        {
+            JsonObject jsonAttributes = Config.CreaturesOpenDoors.FirstOrDefault(keyVal => entity.WildCardMatch(keyVal.Key)).Value.GetAsAttributes();
+            EntityBehaviorOpenDoors behavior = new EntityBehaviorOpenDoors(entity);
+            behavior.Initialize(entity.Properties, jsonAttributes);
+            entity.AddBehavior(behavior);
+        }
     }
 
     public override void StartClientSide(ICoreClientAPI api)
@@ -75,6 +86,7 @@ public class Core : ModSystem
         if (Config.GlowingProjectiles)
         {
             api.Event.OnEntitySpawn += SetGlowLevel;
+            api.Event.OnEntityLoaded += SetGlowLevel;
         }
     }
 
