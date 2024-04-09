@@ -27,7 +27,7 @@ public class Config : IModConfig
     public ScytheMore ScytheMore { get; set; } = new();
 
     public bool ExtinctSubmergedTorchInEverySlot { get; set; }
-    public int ExtinctSubmergedTorchInEverySlotEveryMs { get; set; } = 5000;
+    public int ExtinctSubmergedTorchInEverySlotUpdateMilliseconds { get; set; } = 5000;
 
     public bool CoolMoldsWithWateringCan { get; set; } = true;
     public int CoolMoldsWithWateringCanSpeed { get; set; } = 3;
@@ -90,7 +90,7 @@ public class Config : IModConfig
         }
 
         ExtinctSubmergedTorchInEverySlot = previousConfig.ExtinctSubmergedTorchInEverySlot;
-        ExtinctSubmergedTorchInEverySlotEveryMs = previousConfig.ExtinctSubmergedTorchInEverySlotEveryMs;
+        ExtinctSubmergedTorchInEverySlotUpdateMilliseconds = previousConfig.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds;
 
         CoolMoldsWithWateringCan = previousConfig.CoolMoldsWithWateringCan;
         CoolMoldsWithWateringCanSpeed = previousConfig.CoolMoldsWithWateringCanSpeed;

@@ -12,14 +12,14 @@ public class BEBehaviorRainCollector : BlockEntityBehavior
 
     public override void Initialize(ICoreAPI api, JsonObject properties)
     {
-        Blockentity.RegisterGameTickListener(UpdateEvery1000ms, Core.Config.RainCollector.UpdateEveryMs);
+        Blockentity.RegisterGameTickListener(TryCollectRain, Core.Config.RainCollector.UpdateMilliseconds);
         wsys = api.ModLoader.GetModSystem<WeatherSystemBase>();
         base.Initialize(api, properties);
     }
 
-    public void UpdateEvery1000ms(float dt)
+    public void TryCollectRain(float dt)
     {
-        float desiredLitres = Core.Config.RainCollector.LitresPerSecond;
+        float desiredLitres = Core.Config.RainCollector.LitresPerUpdate;
         ItemStack itemStack = new(Api.World.GetItem(new AssetLocation(Core.Config.RainCollector.LiquidCode)));
 
         if (!IsRaining())
