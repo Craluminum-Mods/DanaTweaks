@@ -12,7 +12,16 @@ public class Config
         ["drifter-*"] = new CreatureOpenDoors() { Enabled = true, Cooldown = 5, Range = 1 }
     };
 
-    public OvenFuels OvenFuel { get; set; } = new();
+    public Dictionary<string, OvenFuel> OvenFuelItems { get; set; } = new()
+    {
+        ["plank-*"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/plankpile" }
+    };
+
+    public Dictionary<string, OvenFuel> OvenFuelBlocks { get; set; } = new()
+    {
+        ["peatbrick"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/peatpile" }
+    };
+
     public RainCollector RainCollector { get; set; } = new();
 
     public bool ExtinctSubmergedTorchInEverySlot { get; set; }
@@ -53,14 +62,14 @@ public class Config
             CreaturesOpenDoors.Add(key, val);
         }
 
-        foreach ((string key, OvenFuel val) in previousConfig.OvenFuel.Items.Where(keyVal => !OvenFuel.Items.ContainsKey(keyVal.Key)))
+        foreach ((string key, OvenFuel val) in previousConfig.OvenFuelItems.Where(keyVal => !OvenFuelItems.ContainsKey(keyVal.Key)))
         {
-            OvenFuel.Items.Add(key, val);
+            OvenFuelItems.Add(key, val);
         }
 
-        foreach ((var key, var val) in previousConfig.OvenFuel.Blocks.Where(keyVal => !OvenFuel.Blocks.ContainsKey(keyVal.Key)))
+        foreach ((string key, OvenFuel val) in previousConfig.OvenFuelBlocks.Where(keyVal => !OvenFuelBlocks.ContainsKey(keyVal.Key)))
         {
-            OvenFuel.Blocks.Add(key, val);
+            OvenFuelBlocks.Add(key, val);
         }
 
         ExtinctSubmergedTorchInEverySlot = previousConfig.ExtinctSubmergedTorchInEverySlot;
