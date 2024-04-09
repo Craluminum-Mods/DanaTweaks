@@ -9,6 +9,7 @@ using System;
 using Vintagestory.ServerMods;
 using Vintagestory.API.Server;
 using Vintagestory.API.Datastructures;
+using System.Collections.Generic;
 
 [assembly: ModInfo(name: "Dana Tweaks", modID: "danatweaks", Side = "Universal")]
 
@@ -20,7 +21,8 @@ public class Core : ModSystem
 
     public override void StartPre(ICoreAPI api)
     {
-        Config = ModConfig.ReadConfig(api);
+        Config = ModConfig.ReadConfig<Config>(api, Constants.ConfigName);
+
         if (Config.HalloweenEveryDay)
         {
             ItemChisel.carvingTime = true;
@@ -104,11 +106,20 @@ public class Core : ModSystem
 
     public override void AssetsFinalize(ICoreAPI api)
     {
+        List<string> scytheMorePrefixes = new List<string>();
+
         foreach (Block block in api.World.Blocks)
         {
             if (block?.Code == null)
             {
                 continue;
+            }
+            if (Config.ScytheMore.Enabled && block.BlockMaterial == EnumBlockMaterial.Plant && !Config.ScytheMore.DisallowedParts.Any(x => block.Code.ToString().Contains(x)))
+            {
+                if (!scytheMorePrefixes.Contains(block.Code.FirstCodePart()))
+                {
+                    scytheMorePrefixes.Add(block.Code.FirstCodePart());
+                }
             }
             if (Config.SlabToolModes && block.HasBehavior<BlockBehaviorOmniRotatable>())
             {
@@ -206,6 +217,10 @@ public class Core : ModSystem
 
         foreach (Item item in api.World.Items)
         {
+            if (Config.ScytheMore.Enabled && item is ItemScythe)
+            {
+                PatchScytheAttributes(item, scytheMorePrefixes, Config.ScytheMore.DisallowedSuffixes);
+            }
             if (Config.SealCrockExtraInteractions && item.WildCardMatch("@(beeswax|fat)"))
             {
                 item.EnsureAttributesNotNull();
@@ -263,5 +278,24 @@ public class Core : ModSystem
         }
 
         api.World.Logger.Event("started '{0}' mod", Mod.Info.Name);
+    }
+
+    private static void PatchScytheAttributes(Item item, List<string> newPrefixes, List<string> newSuffixes)
+    {
+        item.EnsureAttributesNotNull();
+
+        List<string> codePrefixes = item?.Attributes?["codePrefixes"]?.AsObject<List<string>>();
+        List<string> disallowedSuffixes = item?.Attributes?["disallowedSuffixes"]?.AsObject<List<string>>();
+
+        if (codePrefixes?.Any() == true)
+        {
+            codePrefixes.AddRange(newPrefixes.Except(codePrefixes));
+            item.Attributes.Token["codePrefixes"] = JToken.FromObject(codePrefixes);
+        }
+        if (disallowedSuffixes?.Any() == true)
+        {
+            disallowedSuffixes.AddRange(newSuffixes.Except(disallowedSuffixes));
+            item.Attributes.Token["disallowedSuffixes"] = JToken.FromObject(disallowedSuffixes);
+        }
     }
 }

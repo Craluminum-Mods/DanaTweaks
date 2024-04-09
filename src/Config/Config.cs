@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using Vintagestory.API.Common;
 
 namespace DanaTweaks;
 
-public class Config
+public class Config : IModConfig
 {
     public Command Command { get; set; } = new();
 
@@ -23,6 +24,7 @@ public class Config
     };
 
     public RainCollector RainCollector { get; set; } = new();
+    public ScytheMore ScytheMore { get; set; } = new();
 
     public bool ExtinctSubmergedTorchInEverySlot { get; set; }
     public int ExtinctSubmergedTorchInEverySlotEveryMs { get; set; } = 5000;
@@ -51,11 +53,20 @@ public class Config
     public bool ShelvablePie { get; set; } = true;
     public bool SlabToolModes { get; set; } = true;
 
-    public Config()
+    public Config(ICoreAPI api, Config previousConfig = null)
     {
-    }
-    public Config(Config previousConfig)
-    {
+        if (previousConfig == null)
+        {
+            ScytheMore ??= new ScytheMore();
+            ScytheMore.DisallowedParts ??= ScytheMore.DefaultDisallowedParts();
+            ScytheMore.DisallowedSuffixes ??= ScytheMore.DefaultDisallowedSuffixes();
+            return;
+        }
+
+        ScytheMore ??= new ScytheMore();
+        ScytheMore.DisallowedParts ??= previousConfig?.ScytheMore?.DisallowedParts ?? ScytheMore.DefaultDisallowedParts();
+        ScytheMore.DisallowedSuffixes ??= previousConfig?.ScytheMore?.DisallowedSuffixes ?? ScytheMore.DefaultDisallowedSuffixes();
+
         Command = previousConfig.Command;
         RainCollector = previousConfig.RainCollector;
 

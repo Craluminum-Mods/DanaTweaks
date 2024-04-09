@@ -1,47 +1,49 @@
+using System;
 using Vintagestory.API.Common;
 
 namespace DanaTweaks;
 
 public static class ModConfig
 {
-    public static Config ReadConfig(ICoreAPI api)
+    public static T ReadConfig<T>(ICoreAPI api, string jsonConfig) where T : class, IModConfig
     {
-        Config config;
+        T config;
 
         try
         {
-            config = LoadConfig(api);
+            config = LoadConfig<T>(api, jsonConfig);
 
             if (config == null)
             {
-                GenerateConfig(api);
-                config = LoadConfig(api);
+                GenerateConfig<T>(api, jsonConfig);
+                config = LoadConfig<T>(api, jsonConfig);
             }
             else
             {
-                GenerateConfig(api, config);
+                GenerateConfig(api, jsonConfig, config);
             }
         }
         catch
         {
-            GenerateConfig(api);
-            config = LoadConfig(api);
+            GenerateConfig<T>(api, jsonConfig);
+            config = LoadConfig<T>(api, jsonConfig);
         }
-
-        api.World.Config.SetBool("DanaTweaks_PlanksInPitKiln_Enabled", config.PlanksInPitKiln);
 
         return config;
     }
-    private static Config LoadConfig(ICoreAPI api)
+
+    private static T LoadConfig<T>(ICoreAPI api, string jsonConfig) where T : IModConfig
     {
-        return api.LoadModConfig<Config>(Constants.ConfigName);
+        return api.LoadModConfig<T>(jsonConfig);
     }
-    private static void GenerateConfig(ICoreAPI api)
+
+    private static void GenerateConfig<T>(ICoreAPI api, string jsonConfig, T previousConfig = null) where T : class, IModConfig
     {
-        api.StoreModConfig(new Config(), Constants.ConfigName);
+        api.StoreModConfig(CloneConfig<T>(api, previousConfig), jsonConfig);
     }
-    private static void GenerateConfig(ICoreAPI api, Config previousConfig)
+
+    private static T CloneConfig<T>(ICoreAPI api, T config = null) where T : class, IModConfig
     {
-        api.StoreModConfig(new Config(previousConfig), Constants.ConfigName);
+        return (T)Activator.CreateInstance(typeof(T), new object[] { api, config });
     }
 }
