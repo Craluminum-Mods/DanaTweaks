@@ -31,6 +31,7 @@ public class Config : IModConfig
 
     public bool AlwaysSwitchToBestTool { get; set; } = true;
     public bool BranchCutter { get; set; } = true;
+    public bool CreativeMiddleClickEntity { get; set; } = true;
     public bool DropResinAnyway { get; set; } = true;
     public bool DropVinesAnyway { get; set; } = true;
     public bool DropWallpapers { get; set; } = true;
@@ -90,6 +91,7 @@ public class Config : IModConfig
 
         AlwaysSwitchToBestTool = previousConfig.AlwaysSwitchToBestTool;
         BranchCutter = previousConfig.BranchCutter;
+        CreativeMiddleClickEntity = previousConfig.CreativeMiddleClickEntity;
         DropResinAnyway = previousConfig.DropResinAnyway;
         DropVinesAnyway = previousConfig.DropVinesAnyway;
         DropWallpapers = previousConfig.DropWallpapers;

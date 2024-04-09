@@ -1,5 +1,6 @@
 using HarmonyLib;
 using Vintagestory.API.Common;
+using Vintagestory.Client.NoObf;
 using Vintagestory.GameContent;
 
 namespace DanaTweaks;
@@ -24,6 +25,10 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.OnHeldUseStart)), prefix: typeof(CollectibleObject_OnHeldUseStart_Patch).GetMethod(nameof(CollectibleObject_OnHeldUseStart_Patch.Prefix)));
         }
+        if (Core.Config.CreativeMiddleClickEntity)
+        {
+            HarmonyInstance.Patch(original: typeof(SystemMouseInWorldInteractions).GetMethod("HandleMouseInteractionsNoBlockSelected", AccessTools.all), postfix: typeof(MiddleClickEntityPatch).GetMethod(nameof(MiddleClickEntityPatch.Postfix)));
+        }
 
         HarmonyInstance.Patch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), prefix: typeof(BlockEntityOven_getOrCreateMesh_Patch).GetMethod(nameof(BlockEntityOven_getOrCreateMesh_Patch.Prefix)));
     }
@@ -43,6 +48,10 @@ public class HarmonyPatches : ModSystem
         if (Core.Config.AlwaysSwitchToBestTool)
         {
             HarmonyInstance.Unpatch(original: typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.OnHeldUseStart)), HarmonyPatchType.All, HarmonyInstance.Id);
+        }
+        if (Core.Config.CreativeMiddleClickEntity)
+        {
+            HarmonyInstance.Unpatch(original: typeof(SystemMouseInWorldInteractions).GetMethod("HandleMouseInteractionsNoBlockSelected", AccessTools.all), HarmonyPatchType.All, HarmonyInstance.Id);
         }
 
         HarmonyInstance.Unpatch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), HarmonyPatchType.All, HarmonyInstance.Id);
