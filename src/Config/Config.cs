@@ -37,6 +37,7 @@ public class Config
     public bool FragileBones { get; set; }
     public bool GlowingProjectiles { get; set; }
     public bool GroundStorageParticles { get; set; } = true;
+    public bool HalloweenEveryDay { get; set; } = true;
     public bool PickUpBones { get; set; }
     public bool PlanksInPitKiln { get; set; } = true;
     public bool PlayerDropsHotSlots { get; set; }
@@ -85,6 +86,7 @@ public class Config
         FragileBones = previousConfig.FragileBones;
         GlowingProjectiles = previousConfig.GlowingProjectiles;
         GroundStorageParticles = previousConfig.GroundStorageParticles;
+        HalloweenEveryDay = previousConfig.HalloweenEveryDay;
         PickUpBones = previousConfig.PickUpBones;
         PlanksInPitKiln = previousConfig.PlanksInPitKiln;
         PlayerDropsHotSlots = previousConfig.PlayerDropsHotSlots;

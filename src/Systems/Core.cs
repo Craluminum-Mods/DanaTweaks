@@ -21,6 +21,10 @@ public class Core : ModSystem
     public override void StartPre(ICoreAPI api)
     {
         Config = ModConfig.ReadConfig(api);
+        if (Config.HalloweenEveryDay)
+        {
+            ItemChisel.carvingTime = true;
+        }
     }
 
     public override void Start(ICoreAPI api)
