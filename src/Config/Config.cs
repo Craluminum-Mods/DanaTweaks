@@ -49,6 +49,7 @@ public class Config : IModConfig
     public bool PlanksInPitKiln { get; set; } = true;
     public bool PlayerDropsHotSlots { get; set; }
     public bool PlayerWakesUpWhenHungry { get; set; }
+    public bool PreventTorchTimerReset { get; set; } = true;
     public bool RackableFirestarter { get; set; } = true;
     public bool RemoveBookSignature { get; set; } = true;
     public bool RichTraders { get; set; }
@@ -112,6 +113,7 @@ public class Config : IModConfig
         PlanksInPitKiln = previousConfig.PlanksInPitKiln;
         PlayerDropsHotSlots = previousConfig.PlayerDropsHotSlots;
         PlayerWakesUpWhenHungry = previousConfig.PlayerWakesUpWhenHungry;
+        PreventTorchTimerReset = previousConfig.PreventTorchTimerReset;
         RackableFirestarter = previousConfig.RackableFirestarter;
         RemoveBookSignature = previousConfig.RemoveBookSignature;
         RichTraders = previousConfig.RichTraders;
