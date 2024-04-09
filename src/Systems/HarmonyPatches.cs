@@ -20,6 +20,10 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: typeof(BlockEntityFirepit).GetMethod("OnBurnTick", AccessTools.all), postfix: typeof(BlockEntityFirepit_OnBurnTick_Patch).GetMethod(nameof(BlockEntityFirepit_OnBurnTick_Patch.Postfix)));
         }
+        if (Core.Config.AlwaysSwitchToBestTool)
+        {
+            HarmonyInstance.Patch(original: typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.OnHeldUseStart)), prefix: typeof(CollectibleObject_OnHeldUseStart_Patch).GetMethod(nameof(CollectibleObject_OnHeldUseStart_Patch.Prefix)));
+        }
 
         HarmonyInstance.Patch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), prefix: typeof(BlockEntityOven_getOrCreateMesh_Patch).GetMethod(nameof(BlockEntityOven_getOrCreateMesh_Patch.Prefix)));
     }
@@ -35,6 +39,10 @@ public class HarmonyPatches : ModSystem
         if (Core.Config.FirepitHeatsOven)
         {
             HarmonyInstance.Unpatch(original: typeof(BlockEntityFirepit).GetMethod("OnBurnTick", AccessTools.all), HarmonyPatchType.All, HarmonyInstance.Id);
+        }
+        if (Core.Config.AlwaysSwitchToBestTool)
+        {
+            HarmonyInstance.Unpatch(original: typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.OnHeldUseStart)), HarmonyPatchType.All, HarmonyInstance.Id);
         }
 
         HarmonyInstance.Unpatch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), HarmonyPatchType.All, HarmonyInstance.Id);

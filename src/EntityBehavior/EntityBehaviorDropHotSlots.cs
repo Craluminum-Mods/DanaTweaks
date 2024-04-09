@@ -25,18 +25,13 @@ public class EntityBehaviorDropHotSlots : EntityBehavior
             return true;
         }
 
-        if (!IsPlayerInventory(slot))
+        if (!slot.Inventory.IsPlayerInventory())
         {
             return true;
         }
 
         slot?.Inventory?.DropSlotIfHot(slot, entityPlayer.Player);
         return true;
-    }
-
-    private static bool IsPlayerInventory(ItemSlot slot)
-    {
-        return slot.Inventory.ClassName is GlobalConstants.hotBarInvClassName or GlobalConstants.backpackInvClassName;
     }
 
     public override string PropertyName() => "danatweaks:dropallhotslots";

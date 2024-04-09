@@ -11,6 +11,7 @@ public class Config
     public bool ExtinctSubmergedTorchInEverySlot { get; set; }
     public int ExtinctSubmergedTorchInEverySlotEveryMs { get; set; } = 5000;
 
+    public bool AlwaysSwitchToBestTool { get; set; } = true;
     public bool BranchCutter { get; set; } = true;
     public bool DropResinAnyway { get; set; } = true;
     public bool DropVinesAnyway { get; set; } = true;
@@ -53,6 +54,7 @@ public class Config
         ExtinctSubmergedTorchInEverySlot = previousConfig.ExtinctSubmergedTorchInEverySlot;
         ExtinctSubmergedTorchInEverySlotEveryMs = previousConfig.ExtinctSubmergedTorchInEverySlotEveryMs;
 
+        AlwaysSwitchToBestTool = previousConfig.AlwaysSwitchToBestTool;
         BranchCutter = previousConfig.BranchCutter;
         DropResinAnyway = previousConfig.DropResinAnyway;
         DropVinesAnyway = previousConfig.DropVinesAnyway;

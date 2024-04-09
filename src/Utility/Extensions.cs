@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
+using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
@@ -68,5 +69,10 @@ public static class Extensions
         ICoreAPI api = stack.Collectible.GetField<ICoreAPI>("api");
         ItemStack[] nonEmptyContents = (stack.Collectible as BlockCrock)?.GetNonEmptyContents(api.World, stack);
         return nonEmptyContents == null || nonEmptyContents.Length == 0;
+    }
+
+    public static bool IsPlayerInventory(this IInventory inventory)
+    {
+        return inventory.ClassName is GlobalConstants.hotBarInvClassName or GlobalConstants.backpackInvClassName;
     }
 }
