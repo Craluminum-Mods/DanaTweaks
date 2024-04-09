@@ -29,6 +29,9 @@ public class Config : IModConfig
     public bool ExtinctSubmergedTorchInEverySlot { get; set; }
     public int ExtinctSubmergedTorchInEverySlotEveryMs { get; set; } = 5000;
 
+    public bool CoolMoldsWithWateringCan { get; set; } = true;
+    public int CoolMoldsWithWateringCanSpeed { get; set; } = 3;
+
     public bool AlwaysSwitchToBestTool { get; set; } = true;
     public bool BranchCutter { get; set; } = true;
     public bool CreativeMiddleClickEntity { get; set; } = true;
@@ -88,6 +91,9 @@ public class Config : IModConfig
 
         ExtinctSubmergedTorchInEverySlot = previousConfig.ExtinctSubmergedTorchInEverySlot;
         ExtinctSubmergedTorchInEverySlotEveryMs = previousConfig.ExtinctSubmergedTorchInEverySlotEveryMs;
+
+        CoolMoldsWithWateringCan = previousConfig.CoolMoldsWithWateringCan;
+        CoolMoldsWithWateringCanSpeed = previousConfig.CoolMoldsWithWateringCanSpeed;
 
         AlwaysSwitchToBestTool = previousConfig.AlwaysSwitchToBestTool;
         BranchCutter = previousConfig.BranchCutter;

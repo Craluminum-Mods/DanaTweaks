@@ -75,4 +75,30 @@ public static class Extensions
     {
         return inventory.ClassName is GlobalConstants.hotBarInvClassName or GlobalConstants.backpackInvClassName;
     }
+
+    public static void CoolWithWater(this BlockEntityToolMold mold)
+    {
+        ItemStack stack = mold?.metalContent;
+        if (stack != null)
+        {
+            float temperature = stack.Collectible.GetTemperature(mold.Api.World, stack);
+            stack.Collectible.SetTemperature(mold.Api.World, stack, temperature - Core.Config.CoolMoldsWithWateringCanSpeed);
+        }
+    }
+
+    public static void CoolWithWater(this BlockEntityIngotMold mold)
+    {
+        ItemStack rightStack = mold.contentsRight;
+        ItemStack leftStack = mold.contentsLeft;
+        if (rightStack != null)
+        {
+            float temperature = rightStack.Collectible.GetTemperature(mold.Api.World, rightStack);
+            rightStack.Collectible.SetTemperature(mold.Api.World, rightStack, temperature - Core.Config.CoolMoldsWithWateringCanSpeed);
+        }
+        if (leftStack != null)
+        {
+            float temperature = leftStack.Collectible.GetTemperature(mold.Api.World, leftStack);
+            leftStack.Collectible.SetTemperature(mold.Api.World, leftStack, temperature - Core.Config.CoolMoldsWithWateringCanSpeed);
+        }
+    }
 }

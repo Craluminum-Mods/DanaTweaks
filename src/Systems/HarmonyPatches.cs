@@ -29,6 +29,10 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: typeof(SystemMouseInWorldInteractions).GetMethod("HandleMouseInteractionsNoBlockSelected", AccessTools.all), postfix: typeof(MiddleClickEntityPatch).GetMethod(nameof(MiddleClickEntityPatch.Postfix)));
         }
+        if (Core.Config.CoolMoldsWithWateringCan)
+        {
+            HarmonyInstance.Patch(original: typeof(BlockWateringCan).GetMethod(nameof(BlockWateringCan.OnHeldInteractStep)), postfix: typeof(BlockWateringCan_OnHeldInteractStep_Patch).GetMethod(nameof(BlockWateringCan_OnHeldInteractStep_Patch.Postfix)));
+        }
 
         HarmonyInstance.Patch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), prefix: typeof(BlockEntityOven_getOrCreateMesh_Patch).GetMethod(nameof(BlockEntityOven_getOrCreateMesh_Patch.Prefix)));
     }
@@ -52,6 +56,10 @@ public class HarmonyPatches : ModSystem
         if (Core.Config.CreativeMiddleClickEntity)
         {
             HarmonyInstance.Unpatch(original: typeof(SystemMouseInWorldInteractions).GetMethod("HandleMouseInteractionsNoBlockSelected", AccessTools.all), HarmonyPatchType.All, HarmonyInstance.Id);
+        }
+        if (Core.Config.CoolMoldsWithWateringCan)
+        {
+            HarmonyInstance.Unpatch(original: typeof(BlockWateringCan).GetMethod(nameof(BlockWateringCan.OnHeldInteractStep)), HarmonyPatchType.All, HarmonyInstance.Id);
         }
 
         HarmonyInstance.Unpatch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), HarmonyPatchType.All, HarmonyInstance.Id);
