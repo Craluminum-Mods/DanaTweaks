@@ -2,7 +2,6 @@ using System.Linq;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.Client.NoObf;
-using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
@@ -10,6 +9,8 @@ public static class CollectibleObject_OnHeldUseStart_Patch
 {
     public static bool Prefix(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EnumHandInteract useType)
     {
+        CollectibleObject heldCollectible = slot?.Itemstack?.Collectible;
+
         if (useType != EnumHandInteract.HeldItemAttack)
         {
             return true;
@@ -20,8 +21,7 @@ public static class CollectibleObject_OnHeldUseStart_Patch
             return true;
         }
 
-        CollectibleObject heldCollectible = slot?.Itemstack?.Collectible;
-        if (heldCollectible is ItemHammer && blockSel.Block is BlockAnvil)
+        if (Core.Config.AlwaysSwitchToBestToolIgnoredTools?.Any(x => x == heldCollectible?.Tool) == true)
         {
             return true;
         }
@@ -35,7 +35,7 @@ public static class CollectibleObject_OnHeldUseStart_Patch
             .OrderByDescending(x => GetSuperiority(x?.Itemstack?.Collectible?.Tool, targetMaterial))
             .FirstOrDefault(x => IsFaster(thisObject: x?.Itemstack?.Collectible, otherObject: heldCollectible, targetMaterial), defaultValue: slot);
 
-        if (bestSlot != null && heldCollectible.Equals(slot?.Itemstack, bestSlot.Itemstack, GlobalConstants.IgnoredStackAttributes) == false)
+        if (bestSlot != null && heldCollectible?.Equals(slot?.Itemstack, bestSlot.Itemstack, GlobalConstants.IgnoredStackAttributes) == false)
         {
             object packetClient = bestSlot.Inventory.TryFlipItems(bestSlot.Inventory.GetSlotId(bestSlot), slot);
             (byEntity.Api as ClientCoreAPI)?.Network.SendPacketClient(packetClient);

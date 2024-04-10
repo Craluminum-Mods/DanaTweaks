@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using Vintagestory.API.Common;
@@ -33,6 +34,10 @@ public class Config : IModConfig
     public int CoolMoldsWithWateringCanSpeed { get; set; } = 3;
 
     public bool AlwaysSwitchToBestTool { get; set; } = true;
+
+    [JsonConverter(typeof(StringArrayEnumConverter<EnumTool>))]
+    public EnumTool[] AlwaysSwitchToBestToolIgnoredTools { get; set; }
+
     public bool BranchCutter { get; set; } = true;
     public bool CreativeMiddleClickEntity { get; set; } = true;
     public bool DropResinAnyway { get; set; } = true;
@@ -63,11 +68,15 @@ public class Config : IModConfig
     {
         if (previousConfig == null)
         {
+            AlwaysSwitchToBestToolIgnoredTools ??= DefaultIgnoredTools();
+
             ScytheMore ??= new ScytheMore();
             ScytheMore.DisallowedParts ??= ScytheMore.DefaultDisallowedParts();
             ScytheMore.DisallowedSuffixes ??= ScytheMore.DefaultDisallowedSuffixes();
             return;
         }
+
+        AlwaysSwitchToBestToolIgnoredTools = previousConfig?.AlwaysSwitchToBestToolIgnoredTools ?? DefaultIgnoredTools();
 
         ScytheMore ??= new ScytheMore();
         ScytheMore.DisallowedParts ??= previousConfig?.ScytheMore?.DisallowedParts ?? ScytheMore.DefaultDisallowedParts();
@@ -124,4 +133,20 @@ public class Config : IModConfig
         ShelvablePie = previousConfig.ShelvablePie;
         SlabToolModes = previousConfig.SlabToolModes;
     }
+
+    private static EnumTool[] DefaultIgnoredTools() => new[]
+    {
+        EnumTool.Bow,
+        EnumTool.Chisel,
+        EnumTool.Hammer,
+        EnumTool.Hoe,
+        EnumTool.Meter,
+        EnumTool.Probe,
+        EnumTool.Saw,
+        EnumTool.Sickle,
+        EnumTool.Sling,
+        EnumTool.Spear,
+        EnumTool.Sword,
+        EnumTool.Wrench
+    };
 }
