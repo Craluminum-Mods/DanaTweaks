@@ -16,8 +16,7 @@ public static class BlockEntityOven_getOrCreateMesh_Patch
             MeshData mesh = __instance.CallMethod<MeshData>("getMesh", stack);
             if (mesh != null)
             {
-                __result = mesh;
-                return false;
+                return true;
             }
             string shapeLoc = __instance.Block.Attributes["ovenFuelShape"].AsString();
             if (__instance.FuelSlot?.Itemstack?.Collectible.Attributes.KeyExists("ovenFuelShape") == true)
@@ -29,9 +28,8 @@ public static class BlockEntityOven_getOrCreateMesh_Patch
             __instance.SetField("nowTesselatingObj", stack.Collectible);
             if (__instance.GetField<Shape>("nowTesselatingShape") == null)
             {
-                capi.Logger.Error("Stacking model shape for collectible " + stack.Collectible.Code?.ToString() + " not found. Block will be invisible!");
                 __result = null;
-                return false;
+                return true;
             }
             capi.Tesselator.TesselateShape("ovenFuelShape", __instance.GetField<Shape>("nowTesselatingShape"), out mesh, __instance, null, 0, 0, 0, stack.StackSize);
             string key = __instance.CallMethod<string>("getMeshCacheKey", stack);
@@ -40,7 +38,6 @@ public static class BlockEntityOven_getOrCreateMesh_Patch
             __result = mesh;
             return false;
         }
-        __result = __instance.CallMethod<MeshData>("getOrCreateMesh", stack, index);
-        return false;
+        return true;
     }
 }

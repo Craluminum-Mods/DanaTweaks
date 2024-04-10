@@ -40,6 +40,7 @@ public class Config : IModConfig
     public bool DropWallpapers { get; set; } = true;
     public bool EverySoilUnstable { get; set; }
     public bool FirepitHeatsOven { get; set; } = true;
+    public bool FixOvenFuelRendering { get; set; } = true;
     public bool FourPlanksFromLog { get; set; }
     public bool FragileBones { get; set; }
     public bool GlowingProjectiles { get; set; }
@@ -104,6 +105,7 @@ public class Config : IModConfig
         DropWallpapers = previousConfig.DropWallpapers;
         EverySoilUnstable = previousConfig.EverySoilUnstable;
         FirepitHeatsOven = previousConfig.FirepitHeatsOven;
+        FixOvenFuelRendering = previousConfig.FixOvenFuelRendering;
         FourPlanksFromLog = previousConfig.FourPlanksFromLog;
         FragileBones = previousConfig.FragileBones;
         GlowingProjectiles = previousConfig.GlowingProjectiles;

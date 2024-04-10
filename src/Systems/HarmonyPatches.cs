@@ -38,7 +38,10 @@ public class HarmonyPatches : ModSystem
             HarmonyInstance.Patch(original: typeof(BlockTorch).GetMethod(nameof(BlockTorch.GetDrops)), postfix: typeof(BlockTorch_GetDrops_Patch).GetMethod(nameof(BlockTorch_GetDrops_Patch.Postfix)));
             HarmonyInstance.Patch(original: typeof(BlockTorch).GetMethod(nameof(BlockTorch.OnBlockPlaced)), postfix: typeof(BlockTorch_OnBlockPlaced_Patch).GetMethod(nameof(BlockTorch_OnBlockPlaced_Patch.Postfix)));
         }
-        HarmonyInstance.Patch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), prefix: typeof(BlockEntityOven_getOrCreateMesh_Patch).GetMethod(nameof(BlockEntityOven_getOrCreateMesh_Patch.Prefix)));
+        if (Core.Config.FixOvenFuelRendering)
+        {
+            HarmonyInstance.Patch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), prefix: typeof(BlockEntityOven_getOrCreateMesh_Patch).GetMethod(nameof(BlockEntityOven_getOrCreateMesh_Patch.Prefix)));
+        }
     }
 
     public override void Dispose()
@@ -70,6 +73,9 @@ public class HarmonyPatches : ModSystem
             HarmonyInstance.Unpatch(original: typeof(BlockTorch).GetMethod(nameof(BlockTorch.GetDrops)), HarmonyPatchType.All, HarmonyInstance.Id);
             HarmonyInstance.Unpatch(original: typeof(BlockTorch).GetMethod(nameof(BlockTorch.OnBlockPlaced)), HarmonyPatchType.All, HarmonyInstance.Id);
         }
-        HarmonyInstance.Unpatch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), HarmonyPatchType.All, HarmonyInstance.Id);
+        if (Core.Config.FixOvenFuelRendering)
+        {
+            HarmonyInstance.Unpatch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), HarmonyPatchType.All, HarmonyInstance.Id);
+        }
     }
 }
