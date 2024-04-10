@@ -1,5 +1,6 @@
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
+using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
@@ -14,18 +15,11 @@ public class BlockBehaviorBranchCutter : BlockBehavior
         ItemSlot slot = byPlayer?.InventoryManager?.ActiveHotbarSlot;
         int? toolMode = slot?.Itemstack?.Collectible?.GetToolMode(slot, byPlayer, byPlayer?.CurrentBlockSelection);
 
-        if (!slot.IsShears() || toolMode != 1 || block.BlockMaterial != EnumBlockMaterial.Leaves)
+        if (slot.IsShears() && toolMode == 1 && block.BlockMaterial == EnumBlockMaterial.Leaves && block is not BlockFruitTreePart)
         {
-            return base.GetDrops(world, pos, byPlayer, ref dropChanceMultiplier, ref handling);
+            return new[] { block.OnPickBlock(world, pos) };
         }
 
-        Block dropBlock = block;
-
-        if (block.Code.ToString().Contains("grown"))
-        {
-            dropBlock = world.GetBlock(block.CodeWithVariant("type", "placed"));
-        }
-
-        return new[] { new ItemStack(dropBlock) };
+        return base.GetDrops(world, pos, byPlayer, ref dropChanceMultiplier, ref handling);
     }
 }
