@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
 using Vintagestory.API.Common;
+using Vintagestory.API.Util;
 
 namespace DanaTweaks;
 
@@ -78,27 +78,17 @@ public class Config : IModConfig
 
         AlwaysSwitchToBestToolIgnoredTools = previousConfig?.AlwaysSwitchToBestToolIgnoredTools ?? DefaultIgnoredTools();
 
-        ScytheMore ??= new ScytheMore();
-        ScytheMore.DisallowedParts ??= previousConfig?.ScytheMore?.DisallowedParts ?? ScytheMore.DefaultDisallowedParts();
-        ScytheMore.DisallowedSuffixes ??= previousConfig?.ScytheMore?.DisallowedSuffixes ?? ScytheMore.DefaultDisallowedSuffixes();
+        ScytheMore ??= previousConfig.ScytheMore ?? new ScytheMore();
+        ScytheMore.Enabled = previousConfig.ScytheMore.Enabled;
+        ScytheMore.DisallowedParts ??= previousConfig.ScytheMore.DisallowedParts ?? ScytheMore.DefaultDisallowedParts();
+        ScytheMore.DisallowedSuffixes ??= previousConfig.ScytheMore.DisallowedSuffixes ?? ScytheMore.DefaultDisallowedSuffixes();
 
         Command = previousConfig.Command;
         RainCollector = previousConfig.RainCollector;
 
-        foreach ((string key, CreatureOpenDoors val) in previousConfig.CreaturesOpenDoors.Where(keyVal => !CreaturesOpenDoors.ContainsKey(keyVal.Key)))
-        {
-            CreaturesOpenDoors.Add(key, val);
-        }
-
-        foreach ((string key, OvenFuel val) in previousConfig.OvenFuelItems.Where(keyVal => !OvenFuelItems.ContainsKey(keyVal.Key)))
-        {
-            OvenFuelItems.Add(key, val);
-        }
-
-        foreach ((string key, OvenFuel val) in previousConfig.OvenFuelBlocks.Where(keyVal => !OvenFuelBlocks.ContainsKey(keyVal.Key)))
-        {
-            OvenFuelBlocks.Add(key, val);
-        }
+        CreaturesOpenDoors.AddRange(previousConfig.CreaturesOpenDoors);
+        OvenFuelItems.AddRange(previousConfig.OvenFuelItems);
+        OvenFuelBlocks.AddRange(previousConfig.OvenFuelBlocks);
 
         ExtinctSubmergedTorchInEverySlot = previousConfig.ExtinctSubmergedTorchInEverySlot;
         ExtinctSubmergedTorchInEverySlotUpdateMilliseconds = previousConfig.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds;
