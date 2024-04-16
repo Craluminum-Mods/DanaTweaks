@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using Vintagestory.API.Client;
@@ -82,7 +83,7 @@ public static class Extensions
         if (stack != null)
         {
             float temperature = stack.Collectible.GetTemperature(mold.Api.World, stack);
-            stack.Collectible.SetTemperature(mold.Api.World, stack, temperature - Core.Config.CoolMoldsWithWateringCanSpeed);
+            stack.Collectible.SetTemperature(mold.Api.World, stack, Math.Max(20f, temperature - Core.Config.CoolMoldsWithWateringCanSpeed));
         }
     }
 
@@ -93,12 +94,12 @@ public static class Extensions
         if (rightStack != null)
         {
             float temperature = rightStack.Collectible.GetTemperature(mold.Api.World, rightStack);
-            rightStack.Collectible.SetTemperature(mold.Api.World, rightStack, temperature - Core.Config.CoolMoldsWithWateringCanSpeed);
+            rightStack.Collectible.SetTemperature(mold.Api.World, rightStack, Math.Max(20f, temperature - Core.Config.CoolMoldsWithWateringCanSpeed));
         }
         if (leftStack != null)
         {
             float temperature = leftStack.Collectible.GetTemperature(mold.Api.World, leftStack);
-            leftStack.Collectible.SetTemperature(mold.Api.World, leftStack, temperature - Core.Config.CoolMoldsWithWateringCanSpeed);
+            leftStack.Collectible.SetTemperature(mold.Api.World, leftStack, Math.Max(20f, temperature - Core.Config.CoolMoldsWithWateringCanSpeed));
         }
     }
 }
