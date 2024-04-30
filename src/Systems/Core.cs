@@ -17,13 +17,22 @@ namespace DanaTweaks;
 
 public class Core : ModSystem
 {
-    public static Config Config { get; set; }
+    public static ConfigServer ConfigServer { get; set; }
+    public static ConfigClient ConfigClient { get; set; }
 
     public override void StartPre(ICoreAPI api)
     {
-        Config = ModConfig.ReadConfig<Config>(api, Constants.ConfigName);
+        if (api.Side.IsServer())
+        {
+            ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, Constants.ServerConfigName);
 
-        if (Config.HalloweenEveryDay)
+        }
+        if (api.Side.IsClient())
+        {
+            ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, Constants.ClientConfigName);
+        }
+
+        if (ConfigServer.HalloweenEveryDay)
         {
             ItemChisel.carvingTime = true;
         }
@@ -62,22 +71,22 @@ public class Core : ModSystem
     {
         if (entity is EntityPlayer)
         {
-            if (Config.PlayerWakesUpWhenHungry)
+            if (ConfigServer.PlayerWakesUpWhenHungry)
             {
                 entity.AddBehavior(new EntityBehaviorHungryWakeUp(entity));
             }
 
-            if (Config.PlayerDropsHotSlots)
+            if (ConfigServer.PlayerDropsHotSlots)
             {
                 entity.AddBehavior(new EntityBehaviorDropHotSlots(entity));
             }
 
-            if (Config.ExtinctSubmergedTorchInEverySlot)
+            if (ConfigServer.ExtinctSubmergedTorchInEverySlot)
             {
                 entity.AddBehavior(new EntityBehaviorExtinctSubmergedTorchInEverySlot(entity));
             }
         }
-        CreatureOpenDoors creatureOpenDoors = Config.CreaturesOpenDoors.FirstOrDefault(keyVal => entity.WildCardMatch(keyVal.Key) && keyVal.Value.Enabled).Value;
+        CreatureOpenDoors creatureOpenDoors = ConfigServer.CreaturesOpenDoors.FirstOrDefault(keyVal => entity.WildCardMatch(keyVal.Key) && keyVal.Value.Enabled).Value;
         if (creatureOpenDoors != null)
         {
             JsonObject jsonAttributes = creatureOpenDoors.GetAsAttributes();
@@ -89,7 +98,7 @@ public class Core : ModSystem
 
     public override void StartClientSide(ICoreClientAPI api)
     {
-        if (Config.GlowingProjectiles)
+        if (ConfigServer.GlowingProjectiles)
         {
             api.Event.OnEntitySpawn += SetGlowLevel;
             api.Event.OnEntityLoaded += SetGlowLevel;
@@ -114,19 +123,19 @@ public class Core : ModSystem
             {
                 continue;
             }
-            if (Config.ScytheMore.Enabled && block.BlockMaterial == EnumBlockMaterial.Plant && !Config.ScytheMore.DisallowedParts.Any(x => block.Code.ToString().Contains(x)))
+            if (ConfigServer.ScytheMore.Enabled && block.BlockMaterial == EnumBlockMaterial.Plant && !ConfigServer.ScytheMore.DisallowedParts.Any(x => block.Code.ToString().Contains(x)))
             {
                 if (!scytheMorePrefixes.Contains(block.Code.FirstCodePart()))
                 {
                     scytheMorePrefixes.Add(block.Code.FirstCodePart());
                 }
             }
-            if (Config.SlabToolModes && block.HasBehavior<BlockBehaviorOmniRotatable>())
+            if (ConfigServer.SlabToolModes && block.HasBehavior<BlockBehaviorOmniRotatable>())
             {
                 block.CollectibleBehaviors = block.CollectibleBehaviors.Append(new BlockBehaviorSelectSlabToolMode(block));
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorSelectSlabToolMode(block));
             }
-            if (Config.SealCrockExtraInteractions && block is BlockCrock)
+            if (ConfigServer.SealCrockExtraInteractions && block is BlockCrock)
             {
                 block.CollectibleBehaviors = block.CollectibleBehaviors.Append(new CollectibleBehaviorSealCrockWithToolMode(block));
             }
@@ -134,22 +143,22 @@ public class Core : ModSystem
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorCrateInteractionHelp(block));
             }
-            if (Config.DropWallpapers && block.HasBehavior<BlockBehaviorDecor>() && block.Code.ToString().Contains("wallpaper"))
+            if (ConfigServer.DropWallpapers && block.HasBehavior<BlockBehaviorDecor>() && block.Code.ToString().Contains("wallpaper"))
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGuaranteedDecorDrop(block));
             }
             if (block.Code.ToString().Contains("carcass"))
             {
-                if (Config.PickUpBones)
+                if (ConfigServer.PickUpBones)
                 {
                     block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorRightClickPickup(block));
                 }
-                if (Config.FragileBones)
+                if (ConfigServer.FragileBones)
                 {
                     block.Resistance = 0.15f;
                 }
             }
-            if (Config.ShelvablePie && block is BlockPie)
+            if (ConfigServer.ShelvablePie && block is BlockPie)
             {
                 block.EnsureAttributesNotNull();
                 block.Attributes.Token["shelvable"] = JToken.FromObject(true);
@@ -159,19 +168,19 @@ public class Core : ModSystem
                     Scale = 0.65f
                 });
             }
-            if (Config.BranchCutter && block.BlockMaterial == EnumBlockMaterial.Leaves)
+            if (ConfigServer.BranchCutter && block.BlockMaterial == EnumBlockMaterial.Leaves)
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorBranchCutter(block));
             }
-            if (Config.DropResinAnyway && block.GetBehavior<BlockBehaviorHarvestable>()?.harvestedStack.Code == new AssetLocation(Constants.ResinCode))
+            if (ConfigServer.DropResinAnyway && block.GetBehavior<BlockBehaviorHarvestable>()?.harvestedStack.Code == new AssetLocation(Constants.ResinCode))
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorDropResinAnyway(block));
             }
-            if (Config.DropVinesAnyway && block is BlockVines)
+            if (ConfigServer.DropVinesAnyway && block is BlockVines)
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorDropVinesAnyway(block));
             }
-            if (Config.RainCollector.Enabled && block is BlockLiquidContainerBase or BlockGroundStorage && api.Side.IsServer())
+            if (ConfigServer.RainCollector.Enabled && block is BlockLiquidContainerBase or BlockGroundStorage && api.Side.IsServer())
             {
                 block.BlockEntityBehaviors = block.BlockEntityBehaviors.Append(new BlockEntityBehaviorType()
                 {
@@ -179,7 +188,7 @@ public class Core : ModSystem
                     properties = null
                 });
             }
-            if (Config.ExtinctSubmergedTorchInEverySlot && (block is IBlockEntityContainer || block.HasBehavior<BlockBehaviorContainer>() || block is BlockContainer) && api.Side.IsServer())
+            if (ConfigServer.ExtinctSubmergedTorchInEverySlot && (block is IBlockEntityContainer || block.HasBehavior<BlockBehaviorContainer>() || block is BlockContainer) && api.Side.IsServer())
             {
                 block.BlockEntityBehaviors = block.BlockEntityBehaviors.Append(new BlockEntityBehaviorType()
                 {
@@ -187,11 +196,11 @@ public class Core : ModSystem
                     properties = null
                 });
             }
-            if (Config.GroundStorageParticles && block is BlockGroundStorage)
+            if (ConfigServer.GroundStorageParticles && block is BlockGroundStorage)
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGroundStorageParticles(block));
             }
-            OvenFuel ovenFuel = Config.OvenFuelBlocks.FirstOrDefault(keyVal => block.WildCardMatch(keyVal.Key) && keyVal.Value.Enabled).Value;
+            OvenFuel ovenFuel = ConfigServer.OvenFuelBlocks.FirstOrDefault(keyVal => block.WildCardMatch(keyVal.Key) && keyVal.Value.Enabled).Value;
             if (ovenFuel != null)
             {
                 block.EnsureAttributesNotNull();
@@ -203,7 +212,7 @@ public class Core : ModSystem
                     block.Attributes.Token["ovenFuelShape"] = JToken.FromObject(model);
                 }
             }
-            if (Config.EverySoilUnstable && block.BlockMaterial is EnumBlockMaterial.Soil or EnumBlockMaterial.Gravel or EnumBlockMaterial.Sand && !block.HasBehavior<BlockBehaviorUnstableFalling>())
+            if (ConfigServer.EverySoilUnstable && block.BlockMaterial is EnumBlockMaterial.Soil or EnumBlockMaterial.Gravel or EnumBlockMaterial.Sand && !block.HasBehavior<BlockBehaviorUnstableFalling>())
             {
                 var properties = new { fallSound = "effect/rockslide", fallSideways = true, dustIntensity = 0.25 };
                 BlockBehaviorUnstableFalling behavior = new BlockBehaviorUnstableFalling(block);
@@ -217,16 +226,16 @@ public class Core : ModSystem
 
         foreach (Item item in api.World.Items)
         {
-            if (Config.ScytheMore.Enabled && item is ItemScythe)
+            if (ConfigServer.ScytheMore.Enabled && item is ItemScythe)
             {
-                PatchScytheAttributes(item, scytheMorePrefixes, Config.ScytheMore.DisallowedSuffixes);
+                PatchScytheAttributes(item, scytheMorePrefixes, ConfigServer.ScytheMore.DisallowedSuffixes);
             }
-            if (Config.SealCrockExtraInteractions && item.WildCardMatch("@(beeswax|fat)"))
+            if (ConfigServer.SealCrockExtraInteractions && item.WildCardMatch("@(beeswax|fat)"))
             {
                 item.EnsureAttributesNotNull();
                 item.Attributes.Token["canSealCrock"] = JToken.FromObject(true);
             }
-            if (Config.RackableFirestarter && item is ItemFirestarter)
+            if (ConfigServer.RackableFirestarter && item is ItemFirestarter)
             {
                 item.EnsureAttributesNotNull();
                 item.Attributes.Token["rackable"] = JToken.FromObject(true);
@@ -238,15 +247,15 @@ public class Core : ModSystem
                     Scale = 0.7f
                 });
             }
-            if (Config.BranchCutter && item is ItemShears)
+            if (ConfigServer.BranchCutter && item is ItemShears)
             {
                 item.CollectibleBehaviors = item.CollectibleBehaviors.Append(new CollectibleBehaviorBranchCutter(item));
             }
-            if (Config.RemoveBookSignature && item is ItemBook)
+            if (ConfigServer.RemoveBookSignature && item is ItemBook)
             {
                 item.CollectibleBehaviors = item.CollectibleBehaviors.Append(new CollectibleBehaviorRemoveBookSignature(item));
             }
-            OvenFuel ovenFuel = Config.OvenFuelItems.FirstOrDefault(keyVal => item.WildCardMatch(keyVal.Key) && keyVal.Value.Enabled).Value;
+            OvenFuel ovenFuel = ConfigServer.OvenFuelItems.FirstOrDefault(keyVal => item.WildCardMatch(keyVal.Key) && keyVal.Value.Enabled).Value;
             if (ovenFuel != null)
             {
                 item.EnsureAttributesNotNull();
@@ -262,7 +271,7 @@ public class Core : ModSystem
 
         foreach (EntityProperties entityType in api.World.EntityTypes)
         {
-            if (Config.RichTraders && entityType.Code.ToString().Contains("trader"))
+            if (ConfigServer.RichTraders && entityType.Code.ToString().Contains("trader"))
             {
                 entityType.EnsureAttributesNotNull();
                 entityType.Attributes.Token["tradeProps"]["money"]["avg"] = JToken.FromObject(999999);
@@ -270,7 +279,7 @@ public class Core : ModSystem
             }
         }
 
-        if (Config.PlanksInPitKiln)
+        if (ConfigServer.PlanksInPitKiln)
         {
             Block blockPitKiln = api.World.GetBlock(new AssetLocation(Constants.PitkilnCode));
             blockPitKiln.PatchBuildMats(api);

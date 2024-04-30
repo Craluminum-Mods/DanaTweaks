@@ -21,7 +21,7 @@ public class Recipes : ModSystem
 
         GridRecipeLoader = api.ModLoader.GetModSystem<GridRecipeLoader>();
 
-        if (Core.Config.ScrapRecipes)
+        if (Core.ConfigServer.ScrapRecipes)
         {
             GridRecipeLoader.LoadRecipe(null, CreateTorchholderScrapRecipe(api));
             GridRecipeLoader.LoadRecipe(null, CreateMetalBlockScrapRecipe(api));
@@ -29,7 +29,7 @@ public class Recipes : ModSystem
 
         foreach (GridRecipe recipe in api.World.GridRecipes)
         {
-            if (Core.Config.FourPlanksFromLog)
+            if (Core.ConfigServer.FourPlanksFromLog)
             {
                 if (recipe.Output.ResolvedItemstack != null && recipe.HasLogAsIngredient() && recipe.Output.IsPlank())
                 {

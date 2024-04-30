@@ -128,6 +128,18 @@ public static class HarmonyReflectionExtensions
     ///     Calls a method within an instance of an object, via reflection. This can be an internal or private method within another assembly.
     /// </summary>
     /// <param name="instance">The instance to call the method from.</param>
+    /// <param name="typeArgs">The types of arguments.</param>
+    /// <param name="method">The name of the method to call.</param>
+    /// <param name="args">The arguments to pass to the method.</param>
+    public static void CallMethodWithTypeArgs(this object instance, string method, Type[] typeArgs, params object[] args)
+    {
+        AccessTools.Method(instance.GetType(), method, typeArgs)?.Invoke(instance, args);
+    }
+
+    /// <summary>
+    ///     Calls a method within an instance of an object, via reflection. This can be an internal or private method within another assembly.
+    /// </summary>
+    /// <param name="instance">The instance to call the method from.</param>
     /// <param name="method">The name of the method to call.</param>
     public static void CallMethod(this object instance, string method)
     {

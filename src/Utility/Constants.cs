@@ -4,7 +4,8 @@ namespace DanaTweaks;
 
 public static class Constants
 {
-    public const string ConfigName = "DanaTweaks.json";
+    public const string ServerConfigName = "DanaTweaks-Server.json";
+    public const string ClientConfigName = "DanaTweaks-Client.json";
 
     #region crate tweaks
     public const string DefaultLabel = "paper-empty";

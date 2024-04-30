@@ -2,6 +2,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using Vintagestory.API.Common;
+using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
 namespace DanaTweaks;
@@ -12,8 +13,16 @@ public static class PitkilnPatches
     {
         List<JsonItemStackBuildStage> planks = new();
 
-        foreach (Item item in api.World.Items.Where(x => x.WildCardMatch("plank-*") && !x.IsMissing))
+        Item[] items = api.World.SearchItems(new AssetLocation("plank-*"));
+        items = items.Append(api.World.SearchItems(new AssetLocation("wildcrafttree:plank-*")));
+
+        foreach (Item item in items)
         {
+            if (item.IsMissing)
+            {
+                continue;
+            }
+
             item.EnsureAttributesNotNull();
             item.Attributes.Token["placeSound"] = JToken.FromObject("block/planks");
 

@@ -21,7 +21,7 @@ public static class CollectibleObject_OnHeldUseStart_Patch
             return true;
         }
 
-        if (Core.Config.AlwaysSwitchToBestToolIgnoredTools?.Any(x => x == heldCollectible?.Tool) == true)
+        if (Core.ConfigClient.AlwaysSwitchToBestToolIgnoredTools?.Any(x => x == heldCollectible?.Tool) == true)
         {
             return true;
         }

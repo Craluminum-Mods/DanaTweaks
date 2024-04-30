@@ -12,15 +12,15 @@ public class BEBehaviorRainCollector : BlockEntityBehavior
 
     public override void Initialize(ICoreAPI api, JsonObject properties)
     {
-        Blockentity.RegisterGameTickListener(TryCollectRain, Core.Config.RainCollector.UpdateMilliseconds);
+        Blockentity.RegisterGameTickListener(TryCollectRain, Core.ConfigServer.RainCollector.UpdateMilliseconds);
         wsys = api.ModLoader.GetModSystem<WeatherSystemBase>();
         base.Initialize(api, properties);
     }
 
     public void TryCollectRain(float dt)
     {
-        float desiredLitres = Core.Config.RainCollector.LitresPerUpdate;
-        ItemStack itemStack = new(Api.World.GetItem(new AssetLocation(Core.Config.RainCollector.LiquidCode)));
+        float desiredLitres = Core.ConfigServer.RainCollector.LitresPerUpdate;
+        ItemStack itemStack = new(Api.World.GetItem(new AssetLocation(Core.ConfigServer.RainCollector.LiquidCode)));
 
         if (!IsRaining())
         {
@@ -58,6 +58,6 @@ public class BEBehaviorRainCollector : BlockEntityBehavior
     {
         return Api.Side == EnumAppSide.Server
             && Api.World.BlockAccessor.GetRainMapHeightAt(Pos.X, Pos.Z) <= Pos.Y
-            && wsys.GetPrecipitation(Pos.ToVec3d()) > Core.Config.RainCollector.MinPrecipitation;
+            && wsys.GetPrecipitation(Pos.ToVec3d()) > Core.ConfigServer.RainCollector.MinPrecipitation;
     }
 }

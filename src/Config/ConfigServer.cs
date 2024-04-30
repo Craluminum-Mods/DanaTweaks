@@ -1,11 +1,10 @@
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using Vintagestory.API.Common;
 using Vintagestory.API.Util;
 
 namespace DanaTweaks;
 
-public class Config : IModConfig
+public class ConfigServer : IModConfig
 {
     public Command Command { get; set; } = new();
 
@@ -33,11 +32,6 @@ public class Config : IModConfig
     public bool CoolMoldsWithWateringCan { get; set; } = true;
     public int CoolMoldsWithWateringCanSpeed { get; set; } = 3;
 
-    public bool AlwaysSwitchToBestTool { get; set; } = true;
-
-    [JsonConverter(typeof(StringArrayEnumConverter<EnumTool>))]
-    public EnumTool[] AlwaysSwitchToBestToolIgnoredTools { get; set; }
-
     public bool BranchCutter { get; set; } = true;
     public bool CreativeMiddleClickEntity { get; set; } = true;
     public bool DropResinAnyway { get; set; } = true;
@@ -64,19 +58,15 @@ public class Config : IModConfig
     public bool ShelvablePie { get; set; } = true;
     public bool SlabToolModes { get; set; } = true;
 
-    public Config(ICoreAPI api, Config previousConfig = null)
+    public ConfigServer(ICoreAPI api, ConfigServer previousConfig = null)
     {
         if (previousConfig == null)
         {
-            AlwaysSwitchToBestToolIgnoredTools ??= DefaultIgnoredTools();
-
             ScytheMore ??= new ScytheMore();
             ScytheMore.DisallowedParts ??= ScytheMore.DefaultDisallowedParts();
             ScytheMore.DisallowedSuffixes ??= ScytheMore.DefaultDisallowedSuffixes();
             return;
         }
-
-        AlwaysSwitchToBestToolIgnoredTools = previousConfig?.AlwaysSwitchToBestToolIgnoredTools ?? DefaultIgnoredTools();
 
         ScytheMore ??= previousConfig.ScytheMore ?? new ScytheMore();
         ScytheMore.Enabled = previousConfig.ScytheMore.Enabled;
@@ -96,7 +86,6 @@ public class Config : IModConfig
         CoolMoldsWithWateringCan = previousConfig.CoolMoldsWithWateringCan;
         CoolMoldsWithWateringCanSpeed = previousConfig.CoolMoldsWithWateringCanSpeed;
 
-        AlwaysSwitchToBestTool = previousConfig.AlwaysSwitchToBestTool;
         BranchCutter = previousConfig.BranchCutter;
         CreativeMiddleClickEntity = previousConfig.CreativeMiddleClickEntity;
         DropResinAnyway = previousConfig.DropResinAnyway;

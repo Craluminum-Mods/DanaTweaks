@@ -10,7 +10,7 @@ public class BEBehaviorExtinctSubmergedTorchInEverySlot : BlockEntityBehavior
 
     public override void Initialize(ICoreAPI api, JsonObject properties)
     {
-        Blockentity.RegisterGameTickListener(CheckSlots, Core.Config.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds);
+        Blockentity.RegisterGameTickListener(CheckSlots, Core.ConfigServer.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds);
         base.Initialize(api, properties);
     }
 
