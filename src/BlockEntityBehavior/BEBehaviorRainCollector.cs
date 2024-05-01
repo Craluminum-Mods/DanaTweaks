@@ -12,9 +12,14 @@ public class BEBehaviorRainCollector : BlockEntityBehavior
 
     public override void Initialize(ICoreAPI api, JsonObject properties)
     {
-        Blockentity.RegisterGameTickListener(TryCollectRain, Core.ConfigServer.RainCollector.UpdateMilliseconds);
-        wsys = api.ModLoader.GetModSystem<WeatherSystemBase>();
-        base.Initialize(api, properties);
+        // try catch is for strange behavior on servers, I have absolutely no idea what causes that
+        try
+        {
+            Blockentity.RegisterGameTickListener(TryCollectRain, Core.ConfigServer.RainCollector.UpdateMilliseconds);
+            wsys = api.ModLoader.GetModSystem<WeatherSystemBase>();
+            base.Initialize(api, properties);
+        }
+        catch (System.Exception) { }
     }
 
     public void TryCollectRain(float dt)
