@@ -25,7 +25,6 @@ public class Core : ModSystem
         if (api.Side.IsServer())
         {
             ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, Constants.ServerConfigName);
-
         }
         if (api.Side.IsClient())
         {
@@ -98,7 +97,7 @@ public class Core : ModSystem
 
     public override void StartClientSide(ICoreClientAPI api)
     {
-        if (ConfigServer.GlowingProjectiles)
+        if (ConfigClient.GlowingProjectiles)
         {
             api.Event.OnEntitySpawn += SetGlowLevel;
             api.Event.OnEntityLoaded += SetGlowLevel;
@@ -115,6 +114,11 @@ public class Core : ModSystem
 
     public override void AssetsFinalize(ICoreAPI api)
     {
+        if (!api.Side.IsServer())
+        {
+            return;
+        }
+
         List<string> scytheMorePrefixes = new List<string>();
 
         foreach (Block block in api.World.Blocks)
@@ -180,7 +184,7 @@ public class Core : ModSystem
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorDropVinesAnyway(block));
             }
-            if (ConfigServer.RainCollector.Enabled && block is BlockLiquidContainerBase or BlockGroundStorage && api.Side.IsServer())
+            if (ConfigServer.RainCollector.Enabled && block is BlockLiquidContainerBase or BlockGroundStorage)
             {
                 block.BlockEntityBehaviors = block.BlockEntityBehaviors.Append(new BlockEntityBehaviorType()
                 {
@@ -188,7 +192,7 @@ public class Core : ModSystem
                     properties = null
                 });
             }
-            if (ConfigServer.ExtinctSubmergedTorchInEverySlot && (block is IBlockEntityContainer || block.HasBehavior<BlockBehaviorContainer>() || block is BlockContainer) && api.Side.IsServer())
+            if (ConfigServer.ExtinctSubmergedTorchInEverySlot && (block is IBlockEntityContainer || block.HasBehavior<BlockBehaviorContainer>() || block is BlockContainer))
             {
                 block.BlockEntityBehaviors = block.BlockEntityBehaviors.Append(new BlockEntityBehaviorType()
                 {

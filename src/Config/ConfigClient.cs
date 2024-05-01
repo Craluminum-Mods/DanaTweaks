@@ -10,6 +10,8 @@ public class ConfigClient : IModConfig
     [JsonConverter(typeof(StringArrayEnumConverter<EnumTool>))]
     public EnumTool[] AlwaysSwitchToBestToolIgnoredTools { get; set; }
 
+    public bool GlowingProjectiles { get; set; }
+
     public ConfigClient(ICoreAPI api, ConfigClient previousConfig = null)
     {
         if (previousConfig == null)
@@ -19,8 +21,8 @@ public class ConfigClient : IModConfig
         }
 
         AlwaysSwitchToBestToolIgnoredTools = previousConfig?.AlwaysSwitchToBestToolIgnoredTools ?? DefaultIgnoredTools();
-
         AlwaysSwitchToBestTool = previousConfig.AlwaysSwitchToBestTool;
+        GlowingProjectiles = previousConfig.GlowingProjectiles;
     }
 
     private static EnumTool[] DefaultIgnoredTools() => new[]

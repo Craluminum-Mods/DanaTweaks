@@ -42,7 +42,6 @@ public class ConfigServer : IModConfig
     public bool FixOvenFuelRendering { get; set; } = true;
     public bool FourPlanksFromLog { get; set; }
     public bool FragileBones { get; set; }
-    public bool GlowingProjectiles { get; set; }
     public bool GroundStorageParticles { get; set; } = true;
     public bool HalloweenEveryDay { get; set; } = true;
     public bool PickUpBones { get; set; }
@@ -96,7 +95,6 @@ public class ConfigServer : IModConfig
         FixOvenFuelRendering = previousConfig.FixOvenFuelRendering;
         FourPlanksFromLog = previousConfig.FourPlanksFromLog;
         FragileBones = previousConfig.FragileBones;
-        GlowingProjectiles = previousConfig.GlowingProjectiles;
         GroundStorageParticles = previousConfig.GroundStorageParticles;
         HalloweenEveryDay = previousConfig.HalloweenEveryDay;
         PickUpBones = previousConfig.PickUpBones;
@@ -112,20 +110,4 @@ public class ConfigServer : IModConfig
         ShelvablePie = previousConfig.ShelvablePie;
         SlabToolModes = previousConfig.SlabToolModes;
     }
-
-    private static EnumTool[] DefaultIgnoredTools() => new[]
-    {
-        EnumTool.Bow,
-        EnumTool.Chisel,
-        EnumTool.Hammer,
-        EnumTool.Hoe,
-        EnumTool.Meter,
-        EnumTool.Probe,
-        EnumTool.Saw,
-        EnumTool.Sickle,
-        EnumTool.Sling,
-        EnumTool.Spear,
-        EnumTool.Sword,
-        EnumTool.Wrench
-    };
 }
