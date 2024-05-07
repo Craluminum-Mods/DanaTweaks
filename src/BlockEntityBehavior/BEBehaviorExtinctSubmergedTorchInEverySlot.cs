@@ -10,8 +10,13 @@ public class BEBehaviorExtinctSubmergedTorchInEverySlot : BlockEntityBehavior
 
     public override void Initialize(ICoreAPI api, JsonObject properties)
     {
-        Blockentity.RegisterGameTickListener(CheckSlots, Core.ConfigServer.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds);
-        base.Initialize(api, properties);
+        // try catch is for strange behavior on servers, I have absolutely no idea what causes that
+        try
+        {
+            base.Initialize(api, properties);
+            Blockentity.RegisterGameTickListener(CheckSlots, Core.ConfigServer.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds);
+        }
+        catch (System.Exception) { }
     }
 
     private void CheckSlots(float dt)

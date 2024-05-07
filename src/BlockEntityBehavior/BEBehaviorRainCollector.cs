@@ -15,9 +15,9 @@ public class BEBehaviorRainCollector : BlockEntityBehavior
         // try catch is for strange behavior on servers, I have absolutely no idea what causes that
         try
         {
+            base.Initialize(api, properties);
             Blockentity.RegisterGameTickListener(TryCollectRain, Core.ConfigServer.RainCollector.UpdateMilliseconds);
             wsys = api.ModLoader.GetModSystem<WeatherSystemBase>();
-            base.Initialize(api, properties);
         }
         catch (System.Exception) { }
     }
