@@ -29,7 +29,10 @@ public class EntityBehaviorOpenDoors : EntityBehavior
         if (secondsSinceLastUpdate < cooldown) return;
         secondsSinceLastUpdate = 0;
 
-        TryOpenDoors();
+        if (entity.Alive)
+        {
+            TryOpenDoors();
+        }
     }
 
     private void TryOpenDoors()
