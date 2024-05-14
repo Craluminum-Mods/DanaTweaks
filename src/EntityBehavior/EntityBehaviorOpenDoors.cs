@@ -2,6 +2,9 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Common.Entities;
+using Vintagestory.GameContent;
+using System.Collections.Generic;
+using System;
 
 namespace DanaTweaks;
 
@@ -33,20 +36,43 @@ public class EntityBehaviorOpenDoors : EntityBehavior
     {
         entity.World.BlockAccessor.WalkBlocks(entity.SidedPos.AsBlockPos.AddCopy(-range, -range, -range), entity.SidedPos.AsBlockPos.AddCopy(range, range, range), (block, x, y, z) =>
         {
-            BlockPos blockPos = new BlockPos(x, y, z, entity.SidedPos.Dimension);
-            TryOpen(blockPos);
+            BlockPos pos = new(x, y, z, entity.SidedPos.Dimension);
+            TryOpen(pos);
         });
     }
 
-    private bool TryOpen(BlockPos blockPos)
+    private bool TryOpen(BlockPos pos)
     {
-        Caller caller = new Caller() { Type = EnumCallerType.Entity, Entity = entity, };
-        Block block = entity.World.BlockAccessor.GetBlock(blockPos);
-        BlockSelection blockSelection = new BlockSelection(blockPos, BlockFacing.DOWN, block);
-        TreeAttribute activationArgs = new TreeAttribute();
+        Block block = entity.World.BlockAccessor.GetBlock(pos);
+
+        if (IsLocked(pos))
+        {
+            return false;
+        }
+
+        Caller caller = new() { Type = EnumCallerType.Entity, Entity = entity, };
+        BlockSelection blockSelection = new(pos, BlockFacing.DOWN, block);
+        TreeAttribute activationArgs = new();
         activationArgs.SetBool("opened", true);
         block.Activate(entity.World, caller, blockSelection, activationArgs);
         return true;
+    }
+
+    private bool IsLocked(BlockPos pos)
+    {
+        ModSystemBlockReinforcement blockReinforcementSys = entity.Api.ModLoader.GetModSystem<ModSystemBlockReinforcement>();
+        Dictionary<int, BlockReinforcement> reinforcmentsOfChunk = blockReinforcementSys.CallMethod<Dictionary<int, BlockReinforcement>>("getOrCreateReinforcmentsAt", pos);
+        if (reinforcmentsOfChunk == null)
+        {
+            return false;
+        }
+
+        if (reinforcmentsOfChunk.TryGetValue(blockReinforcementSys.CallMethodWithTypeArgs<int>("toLocalIndex", new Type[] { typeof(BlockPos) }, pos), out BlockReinforcement bre) && bre.Locked)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public override string PropertyName() => "danatweaks:opendoors";

@@ -110,8 +110,22 @@ public static class HarmonyReflectionExtensions
     /// <returns>The return value of the reflected method call.</returns>
     public static T CallMethod<T>(this object instance, string method, params object[] args)
     {
-        return (T)AccessTools.Method(instance.GetType(), method).Invoke(instance, args);
+        return (T)AccessTools.Method(instance.GetType(), method)?.Invoke(instance, args);
     }
+
+    /// <summary>
+    ///     Calls a method within an instance of an object, via reflection. This can be an internal or private method within another assembly.
+    /// </summary>
+    /// <typeparam name="T">The return type, expected back from the method.</typeparam>
+    /// <param name="instance">The instance to call the method from.</param>
+    /// <param name="method">The name of the method to call.</param>
+    /// <param name="args">The arguments to pass to the method.</param>
+    /// <returns>The return value of the reflected method call.</returns>
+    public static T CallMethodWithTypeArgs<T>(this object instance, string method, Type[] typeArgs, params object[] args)
+    {
+        return (T)AccessTools.Method(instance.GetType(), method, typeArgs)?.Invoke(instance, args);
+    }
+
 
     /// <summary>
     ///     Calls a method within an instance of an object, via reflection. This can be an internal or private method within another assembly.
