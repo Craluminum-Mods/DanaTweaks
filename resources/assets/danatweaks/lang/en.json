@@ -47,23 +47,23 @@
 
     "Config.Setting.Model": "Model",
 
-    "Config.Settings.Command": "Commands",
+    "Config.Setting.Command": "Commands",
     "Config.Setting.CrateOpenCloseLid": "Allow to open/close crate lid with command",
     "Config.Setting.CrateRemoveOrAddLabel": "Allow to remove/add crate label with command",
 
-    "Config.Settings.RainCollector": "Rain Collector",
+    "Config.Setting.RainCollector": "Rain Collector",
     "Config.Setting.LitresPerUpdate": "Litres Per Update",
     "Config.Setting.MinPrecipitation": "Min Precipitation",
     "Config.Setting.UpdateMilliseconds": "Milliseconds Interval",
     "Config.Setting.LiquidCode": "Liquid Code",
 
-    "Config.Settings.ScytheMore": "Scythe More",
+    "Config.Setting.ScytheMore": "Scythe More",
     "Config.Setting.DisallowedParts": "Disallowed Parts",
     "Config.Setting.DisallowedSuffixes": "Disallowed Suffixes",
 
-    "Config.Settings.OvenFuel": "Oven Fuel",
+    "Config.Setting.OvenFuel": "Oven Fuel",
 
-    "Config.Settings.CreaturesOpenDoors": "Creatures Open Doors",
+    "Config.Setting.CreaturesOpenDoors": "Creatures Open Doors",
     "Config.Setting.Cooldown": "Cooldown",
     "Config.Setting.Range": "Range",
 
@@ -72,6 +72,6 @@
 
     "Config.Setting.GlowingProjectiles": "Enable 'Glowing Projectiles'",
     
-    "Config.Settings.AlwaysSwitchToBestTool": "Always Switch To Best Tool",
+    "Config.Setting.AlwaysSwitchToBestTool": "Always Switch To Best Tool",
     "Config.Setting.AlwaysSwitchToBestToolIgnoredTools": "Ignored Tools"
 }

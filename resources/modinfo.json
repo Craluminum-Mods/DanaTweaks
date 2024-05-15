@@ -1,11 +1,13 @@
 {
     "type": "code",
     "side": "universal",
+    "requiredOnClient": true,
+    "requiredOnServer": false,
     "modid": "danatweaks",
     "name": "Dana Tweaks",
     "description": "Various tweaks",
     "authors": ["Craluminum2413"],
-    "version": "2.2.3",
+    "version": "2.3.0",
     "dependencies": {
         "game": "1.19.7"
     }
