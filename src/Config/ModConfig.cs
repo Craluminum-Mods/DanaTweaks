@@ -1,7 +1,7 @@
 using System;
 using Vintagestory.API.Common;
 
-namespace DanaTweaks;
+namespace DanaTweaks.Configuration;
 
 public static class ModConfig
 {
@@ -30,6 +30,11 @@ public static class ModConfig
         }
 
         return config;
+    }
+
+    public static void WriteConfig<T>(ICoreAPI api, string jsonConfig, T config) where T : class, IModConfig
+    {
+        GenerateConfig(api, jsonConfig, config);
     }
 
     private static T LoadConfig<T>(ICoreAPI api, string jsonConfig) where T : IModConfig

@@ -1,4 +1,4 @@
-namespace DanaTweaks;
+namespace DanaTweaks.Configuration;
 
 public interface IModConfig
 {

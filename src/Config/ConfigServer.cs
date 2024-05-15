@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Vintagestory.API.Common;
 using Vintagestory.API.Util;
 
-namespace DanaTweaks;
+namespace DanaTweaks.Configuration;
 
 public class ConfigServer : IModConfig
 {

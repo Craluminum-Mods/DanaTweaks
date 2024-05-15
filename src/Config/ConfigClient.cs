@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Vintagestory.API.Common;
 
-namespace DanaTweaks;
+namespace DanaTweaks.Configuration;
 
 public class ConfigClient : IModConfig
 {

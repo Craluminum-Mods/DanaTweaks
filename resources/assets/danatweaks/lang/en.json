@@ -5,5 +5,73 @@
     "Command.Error.HasDiffLabel": "Crate has different parchment",
     "Command.Error.NoLabel": "No parchment in hand or on crate",
     "RemoveBookSignature": "Remove book signature (you must be the author of this book)",
-    "crock-seal": "Drop fat or beeswax here to seal it"
+    "crock-seal": "Drop fat or beeswax here to seal it",
+
+    "danatweaks-server": "Dana Tweaks (Server)",
+    "danatweaks-client": "Dana Tweaks (Client)",
+
+    "Config.SettingsSimple": "Simple Settings",
+    "Config.SettingsAdvanced": "Advanced Settings",
+
+    "Config.Setting.ExtinctSubmergedTorchInEverySlot": "Extinct Submerged Torch In Every Slot",
+    "Config.Setting.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds": "Milliseconds Interval",
+
+    "Config.Setting.CoolMoldsWithWateringCan": "Cool Molds With Watering Can",
+    "Config.Setting.CoolMoldsWithWateringCanSpeed": "Speed",
+
+    "Config.Setting.CreativeMiddleClickEntity": "Enable 'Creative Middle Click Entity'",
+    "Config.Setting.EverySoilUnstable": "Enable 'Every Soil Unstable'",
+    "Config.Setting.GroundStorageParticles": "Enable 'Ground Storage Particles' for pots and crucibles",
+    "Config.Setting.ScrapRecipes": "Enable 'Scrap Recipes'",
+    "Config.Setting.SealCrockExtraInteractions": "Enable 'Seal Crock Extra Interactions'",
+    "Config.Setting.SlabToolModes": "Enable 'Slab Tool Modes'",
+
+    "Config.Setting.BranchCutter": "Add second mode to shears to drop whole leaves blocks",
+    "Config.Setting.DropResinAnyway": "Drop resin when breaking trees",
+    "Config.Setting.DropVinesAnyway": "Drop vines when breaking trees",
+    "Config.Setting.DropWallpapers": "Drop Wallpapers",
+    "Config.Setting.FirepitHeatsOven": "Firepit Heats Oven",
+    "Config.Setting.FixOvenFuelRendering": "Resolve Oven Fuel Rendering",
+    "Config.Setting.FourPlanksFromLog": "Craft logs into four planks",
+    "Config.Setting.FragileBones": "Fragile Bones",
+    "Config.Setting.HalloweenEveryDay": "Allow to carve pumpkins any time of year",
+    "Config.Setting.PickUpBones": "Pick Up Bones",
+    "Config.Setting.PlanksInPitKiln": "Allow to use planks in pit kiln",
+    "Config.Setting.PlayerDropsHotSlots": "Player drops all hot slots",
+    "Config.Setting.PlayerWakesUpWhenHungry": "Wake up players when hungry",
+    "Config.Setting.PreventTorchTimerReset": "Prevent Torch Timer Reset",
+    "Config.Setting.RackableFirestarter": "Allow to store firestarter on tool racks",
+    "Config.Setting.RemoveBookSignature": "Allow to remove book signature",
+    "Config.Setting.RichTraders": "Rich Traders",
+    "Config.Setting.ShelvablePie": "Allow to store pies on shelves",
+
+    "Config.Setting.Model": "Model",
+
+    "Config.Settings.Command": "Commands",
+    "Config.Setting.CrateOpenCloseLid": "Allow to open/close crate lid with command",
+    "Config.Setting.CrateRemoveOrAddLabel": "Allow to remove/add crate label with command",
+
+    "Config.Settings.RainCollector": "Rain Collector",
+    "Config.Setting.LitresPerUpdate": "Litres Per Update",
+    "Config.Setting.MinPrecipitation": "Min Precipitation",
+    "Config.Setting.UpdateMilliseconds": "Milliseconds Interval",
+    "Config.Setting.LiquidCode": "Liquid Code",
+
+    "Config.Settings.ScytheMore": "Scythe More",
+    "Config.Setting.DisallowedParts": "Disallowed Parts",
+    "Config.Setting.DisallowedSuffixes": "Disallowed Suffixes",
+
+    "Config.Settings.OvenFuel": "Oven Fuel",
+
+    "Config.Settings.CreaturesOpenDoors": "Creatures Open Doors",
+    "Config.Setting.Cooldown": "Cooldown",
+    "Config.Setting.Range": "Range",
+
+    "game:Blocks": "Blocks",
+    "Config.Text.SupportsWildcard": "supports wildcards and regexes",
+
+    "Config.Setting.GlowingProjectiles": "Enable 'Glowing Projectiles'",
+    
+    "Config.Settings.AlwaysSwitchToBestTool": "Always Switch To Best Tool",
+    "Config.Setting.AlwaysSwitchToBestToolIgnoredTools": "Ignored Tools"
 }

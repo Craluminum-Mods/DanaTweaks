@@ -10,6 +10,7 @@ using Vintagestory.ServerMods;
 using Vintagestory.API.Server;
 using Vintagestory.API.Datastructures;
 using System.Collections.Generic;
+using DanaTweaks.Configuration;
 
 [assembly: ModInfo(name: "Dana Tweaks", modID: "danatweaks", Side = "Universal")]
 
@@ -24,11 +25,16 @@ public class Core : ModSystem
     {
         if (api.Side.IsServer())
         {
-            ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, Constants.ServerConfigName);
+            ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, Constants.ConfigServerName);
         }
         if (api.Side.IsClient())
         {
-            ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, Constants.ClientConfigName);
+            ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, Constants.ConfigClientName);
+        }
+
+        if (api.ModLoader.IsModEnabled("configlib"))
+        {
+            _ = new ConfigLibCompatibility(api);
         }
 
         if (ConfigServer.HalloweenEveryDay)
