@@ -46,7 +46,7 @@ public class HarmonyPatches : ModSystem
         }
         if (Core.ConfigServer.PitKilnSpreading)
         {
-            HarmonyInstance.Patch(original: BlockEntityPitKilnPatch_TryIgnite_Patch.TargetMethod(), postfix: BlockEntityPitKilnPatch_TryIgnite_Patch.GetPostfix());
+            HarmonyInstance.Patch(original: BlockEntityPitKiln_TryIgnite_Patch.TargetMethod(), postfix: BlockEntityPitKiln_TryIgnite_Patch.GetPostfix());
         }
     }
 
@@ -85,7 +85,7 @@ public class HarmonyPatches : ModSystem
         }
         if (Core.ConfigServer.PitKilnSpreading)
         {
-            HarmonyInstance.Unpatch(original: BlockEntityPitKilnPatch_TryIgnite_Patch.TargetMethod(), HarmonyPatchType.All, HarmonyInstance.Id);
+            HarmonyInstance.Unpatch(original: BlockEntityPitKiln_TryIgnite_Patch.TargetMethod(), HarmonyPatchType.All, HarmonyInstance.Id);
         }
     }
 }

@@ -6,7 +6,7 @@ using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
-public static class BlockEntityPitKilnPatch_TryIgnite_Patch
+public static class BlockEntityPitKiln_TryIgnite_Patch
 {
     static readonly string[] DIAGONALS = new string[] { "nw", "ne", "se", "sw" };
 
@@ -15,7 +15,7 @@ public static class BlockEntityPitKilnPatch_TryIgnite_Patch
         return AccessTools.Method(typeof(BlockEntityPitKiln), nameof(BlockEntityPitKiln.TryIgnite), new[] { typeof(IPlayer) });
     }
 
-    public static MethodInfo GetPostfix() => typeof(BlockEntityPitKilnPatch_TryIgnite_Patch).GetMethod(nameof(Postfix));
+    public static MethodInfo GetPostfix() => typeof(BlockEntityPitKiln_TryIgnite_Patch).GetMethod(nameof(Postfix));
 
     public static void Postfix(BlockEntityPitKiln __instance, IPlayer byPlayer)
     {
