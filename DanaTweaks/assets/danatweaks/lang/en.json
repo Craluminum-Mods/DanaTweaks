@@ -90,4 +90,6 @@
     "ButcheringFix.Toggle": "(Dana Tweaks) Toggle Butchering Fix",
     "ButcheringFix.Enabled": "(Dana Tweaks) Butchering Fix <font weight=\"bold\" color=\"#84ff84\">Enabled</font>",
     "ButcheringFix.Disabled": "(Dana Tweaks) Butchering Fix <font weight=\"bold\" color=\"#ff8484\">Disabled</font>",
+
+    "AutoWalk.Toggle": "(Dana Tweaks) Toggle Auto Walk"
 }

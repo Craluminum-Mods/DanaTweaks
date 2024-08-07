@@ -16,9 +16,7 @@ public class ButcheringFix : ModSystem
         _capi = capi;
         capi.Input.RegisterHotKey("danatweaks:butcheringfix", Lang.Get("danatweaks:ButcheringFix.Toggle"), GlKeys.B, HotkeyType.CharacterControls, shiftPressed: true);
         capi.Input.SetHotKeyHandler("danatweaks:butcheringfix", x => Toggle(x, capi));
-        capi.World.Logger.Event("started 'Butchering Fix' mod");
     }
-
 
     private bool Toggle(KeyCombination t1, ICoreClientAPI capi)
     {
