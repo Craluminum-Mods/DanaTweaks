@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Vintagestory.API.Common;
 using Vintagestory.API.Util;
 
@@ -40,6 +39,7 @@ public class ConfigServer : IModConfig
 
     public bool BranchCutter { get; set; } = true;
     public bool CreativeMiddleClickEntity { get; set; } = true;
+    public bool CreativeTapestries { get; set; } = true;
     public bool DropResinAnyway { get; set; } = true;
     public bool DropVinesAnyway { get; set; } = true;
     public bool DropWallpapers { get; set; } = true;
@@ -100,6 +100,7 @@ public class ConfigServer : IModConfig
 
         BranchCutter = previousConfig.BranchCutter;
         CreativeMiddleClickEntity = previousConfig.CreativeMiddleClickEntity;
+        CreativeTapestries = previousConfig.CreativeTapestries;
         DropResinAnyway = previousConfig.DropResinAnyway;
         DropVinesAnyway = previousConfig.DropVinesAnyway;
         DropWallpapers = previousConfig.DropWallpapers;

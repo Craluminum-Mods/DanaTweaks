@@ -1,0 +1,34 @@
+[
+     {
+      "op": "add",
+      "path": "/creativeinventoryStacksByType",
+      "value":  { "*-north": [] },
+      "file": "game:blocktypes/cloth/tapestry.json",
+      "condition": { "when": "DanaTweaks.CreativeTapestries", "isValue": "true" },
+      "side": "Server"
+     },
+     {
+      "op": "move",
+      "frompath": "/notCreativeinventoryStacksByType/*-north",
+      "path": "/hax",
+      "file": "game:blocktypes/cloth/tapestry.json",
+      "condition": { "when": "DanaTweaks.CreativeTapestries", "isValue": "true" },
+      "side": "Server"
+    },
+    {
+      "op": "move",
+      "frompath": "/hax",
+      "path": "/creativeinventoryStacksByType/*-north",
+      "file": "game:blocktypes/cloth/tapestry.json",
+      "condition": { "when": "DanaTweaks.CreativeTapestries", "isValue": "true" },
+      "side": "Server"
+    },
+    {
+      "op": "replace",
+      "path": "/attributes/handbook/exclude",
+      "value": false,
+      "file": "game:blocktypes/cloth/tapestry.json",
+      "condition": { "when": "DanaTweaks.CreativeTapestries", "isValue": "true" },
+      "side": "Server"
+    }
+]

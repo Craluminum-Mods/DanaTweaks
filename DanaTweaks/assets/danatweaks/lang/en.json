@@ -27,6 +27,7 @@
     "Config.Setting.SlabToolModes": "Enable 'Slab Tool Modes'",
 
     "Config.Setting.BranchCutter": "Add second mode to shears to drop whole leaves blocks",
+    "Config.Setting.CreativeTapestries": "Add tapestries to creative inventory",
     "Config.Setting.DropResinAnyway": "Drop resin when breaking trees",
     "Config.Setting.DropVinesAnyway": "Drop vines when breaking trees",
     "Config.Setting.DropWallpapers": "Drop Wallpapers",

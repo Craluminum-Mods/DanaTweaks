@@ -27,6 +27,7 @@ public class Core : ModSystem
         {
             ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, Constants.ConfigServerName);
             api.World.Config.SetBool("DanaTweaks.ExtraClayforming", ConfigServer.ExtraClayforming);
+            api.World.Config.SetBool("DanaTweaks.CreativeTapestries", ConfigServer.CreativeTapestries);
         }
         if (api.Side.IsClient())
         {

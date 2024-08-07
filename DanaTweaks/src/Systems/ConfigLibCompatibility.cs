@@ -51,6 +51,7 @@ public class ConfigLibCompatibility
         if (ImGui.CollapsingHeader(Lang.Get(settingsSimple) + $"##settingSimple-{id}"))
         {
             config.CreativeMiddleClickEntity = OnCheckBox(id, config.CreativeMiddleClickEntity, nameof(config.CreativeMiddleClickEntity));
+            config.CreativeTapestries = OnCheckBox(id, config.CreativeTapestries, nameof(config.CreativeTapestries));
             config.EverySoilUnstable = OnCheckBox(id, config.EverySoilUnstable, nameof(config.EverySoilUnstable));
             config.ExtraClayforming = OnCheckBox(id, config.ExtraClayforming, nameof(config.ExtraClayforming));
             config.GroundStorageParticles = OnCheckBox(id, config.GroundStorageParticles, nameof(config.GroundStorageParticles));
