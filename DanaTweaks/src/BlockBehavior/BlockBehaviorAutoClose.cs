@@ -21,8 +21,14 @@ public class BlockBehaviorAutoClose : BlockBehavior
         {
             return base.OnBlockInteractStart(world, byPlayer, blockSel, ref handling);
         }
+
         handling = EnumHandling.PassThrough;
-        world.RegisterCallbackUnique((world, pos, time) => TryAutoClose(world, blockSel, time), blockSel?.Position, GetDelay(block));
+
+        int delay = GetDelay(block);
+        if (delay > 0)
+        {
+            world.RegisterCallbackUnique((world, pos, time) => TryAutoClose(world, blockSel, time), blockSel?.Position, delay);
+        }
         return base.OnBlockInteractStart(world, byPlayer, blockSel, ref handling);
     }
 
