@@ -51,6 +51,7 @@ public class ConfigLibCompatibility
         {
             config.CreativeMiddleClickEntity = OnCheckBox(id, config.CreativeMiddleClickEntity, nameof(config.CreativeMiddleClickEntity));
             config.EverySoilUnstable = OnCheckBox(id, config.EverySoilUnstable, nameof(config.EverySoilUnstable));
+            config.ExtraClayforming = OnCheckBox(id, config.ExtraClayforming, nameof(config.ExtraClayforming));
             config.GroundStorageParticles = OnCheckBox(id, config.GroundStorageParticles, nameof(config.GroundStorageParticles));
             config.ScrapRecipes = OnCheckBox(id, config.ScrapRecipes, nameof(config.ScrapRecipes));
             config.SealCrockExtraInteractions = OnCheckBox(id, config.SealCrockExtraInteractions, nameof(config.SealCrockExtraInteractions));

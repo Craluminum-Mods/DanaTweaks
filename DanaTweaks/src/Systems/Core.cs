@@ -26,6 +26,7 @@ public class Core : ModSystem
         if (api.Side.IsServer())
         {
             ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, Constants.ConfigServerName);
+            api.World.Config.SetBool("DanaTweaks.ExtraClayforming", ConfigServer.ExtraClayforming);
         }
         if (api.Side.IsClient())
         {
