@@ -56,6 +56,8 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: GuiElementMap_OnKeyDown_Patch.TargetMethod(), postfix: GuiElementMap_OnKeyDown_Patch.GetPostfix());
         }
+
+        HarmonyInstance.Patch(original: Block_GetSelectionBoxes_Patch.TargetMethod(), prefix: Block_GetSelectionBoxes_Patch.GetPrefix());
     }
 
     public override void Dispose()
@@ -103,5 +105,7 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Unpatch(original: GuiElementMap_OnKeyDown_Patch.TargetMethod(), HarmonyPatchType.All, HarmonyInstance.Id);
         }
+
+        HarmonyInstance.Unpatch(original: Block_GetSelectionBoxes_Patch.TargetMethod(), HarmonyPatchType.All, HarmonyInstance.Id);
     }
 }
