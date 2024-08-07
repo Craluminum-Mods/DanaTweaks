@@ -11,7 +11,8 @@ public class ConfigClient : IModConfig
     public EnumTool[] AlwaysSwitchToBestToolIgnoredTools { get; set; }
 
     public bool GlowingProjectiles { get; set; }
-
+    public bool ZoomMapWithKey { get; set; } = true;
+    
     public ConfigClient(ICoreAPI api, ConfigClient previousConfig = null)
     {
         if (previousConfig == null)
@@ -23,6 +24,7 @@ public class ConfigClient : IModConfig
         AlwaysSwitchToBestToolIgnoredTools = previousConfig?.AlwaysSwitchToBestToolIgnoredTools ?? DefaultIgnoredTools();
         AlwaysSwitchToBestTool = previousConfig.AlwaysSwitchToBestTool;
         GlowingProjectiles = previousConfig.GlowingProjectiles;
+        ZoomMapWithKey = previousConfig.ZoomMapWithKey;
     }
 
     private static EnumTool[] DefaultIgnoredTools() => new[]

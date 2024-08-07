@@ -74,6 +74,7 @@
     "Config.Text.SupportsWildcard": "supports wildcards and regexes",
 
     "Config.Setting.GlowingProjectiles": "Enable 'Glowing Projectiles'",
+    "Config.Setting.ZoomMapWithKey": "Zoom map with hotkeys",
     
     "Config.Setting.AlwaysSwitchToBestTool": "Always Switch To Best Tool",
     "Config.Setting.AlwaysSwitchToBestToolIgnoredTools": "Ignored Tools"

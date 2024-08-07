@@ -144,6 +144,7 @@ public class ConfigLibCompatibility
     private void BuildSettingsClient(ConfigClient config, string id)
     {
         config.GlowingProjectiles = OnCheckBox(id, config.GlowingProjectiles, nameof(config.GlowingProjectiles));
+        config.ZoomMapWithKey = OnCheckBox(id, config.ZoomMapWithKey, nameof(config.ZoomMapWithKey));
         if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.AlwaysSwitchToBestTool)) + $"##settingAlwaysSwitchToBestTool-{id}"))
         {
             config.AlwaysSwitchToBestTool = OnCheckBoxWithoutTranslation($"##boolean-AlwaysSwitchToBestTool-{id}", config.AlwaysSwitchToBestTool, Lang.Get(textEnabled));

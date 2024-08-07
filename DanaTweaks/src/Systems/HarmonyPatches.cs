@@ -52,6 +52,10 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: BlockEntitySapling_CheckGrow_Patch.TargetMethod(), transpiler: BlockEntitySapling_CheckGrow_Patch.GetTranspiler());
         }
+        if (api.Side.IsClient() && Core.ConfigClient.ZoomMapWithKey)
+        {
+            HarmonyInstance.Patch(original: GuiElementMap_OnKeyDown_Patch.TargetMethod(), postfix: GuiElementMap_OnKeyDown_Patch.GetPostfix());
+        }
     }
 
     public override void Dispose()
@@ -94,6 +98,10 @@ public class HarmonyPatches : ModSystem
         if (Core.ConfigServer.RegrowResin)
         {
             HarmonyInstance.Unpatch(original: BlockEntitySapling_CheckGrow_Patch.TargetMethod(), HarmonyPatchType.All, HarmonyInstance.Id);
+        }
+        if (api != null && api.Side.IsClient() && Core.ConfigClient.ZoomMapWithKey)
+        {
+            HarmonyInstance.Unpatch(original: GuiElementMap_OnKeyDown_Patch.TargetMethod(), HarmonyPatchType.All, HarmonyInstance.Id);
         }
     }
 }
