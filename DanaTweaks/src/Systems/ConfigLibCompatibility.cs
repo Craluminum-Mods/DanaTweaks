@@ -61,6 +61,7 @@ public class ConfigLibCompatibility
             config.DropResinAnyway = OnCheckBox(id, config.DropResinAnyway, nameof(config.DropResinAnyway));
             config.DropVinesAnyway = OnCheckBox(id, config.DropVinesAnyway, nameof(config.DropVinesAnyway));
             config.DropWallpapers = OnCheckBox(id, config.DropWallpapers, nameof(config.DropWallpapers));
+            config.FarmlandDropsSoil = OnCheckBox(id, config.FarmlandDropsSoil, nameof(config.FarmlandDropsSoil));
             config.FirepitHeatsOven = OnCheckBox(id, config.FirepitHeatsOven, nameof(config.FirepitHeatsOven));
             config.FixOvenFuelRendering = OnCheckBox(id, config.FixOvenFuelRendering, nameof(config.FixOvenFuelRendering));
             config.FourPlanksFromLog = OnCheckBox(id, config.FourPlanksFromLog, nameof(config.FourPlanksFromLog));

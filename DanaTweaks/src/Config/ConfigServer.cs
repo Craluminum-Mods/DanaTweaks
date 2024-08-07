@@ -39,6 +39,7 @@ public class ConfigServer : IModConfig
     public bool DropWallpapers { get; set; } = true;
     public bool EverySoilUnstable { get; set; }
     public bool ExtraClayforming { get; set; } = true;
+    public bool FarmlandDropsSoil { get; set; } = true;
     public bool FirepitHeatsOven { get; set; } = true;
     public bool FixOvenFuelRendering { get; set; } = true;
     public bool FourPlanksFromLog { get; set; }
@@ -95,6 +96,7 @@ public class ConfigServer : IModConfig
         DropWallpapers = previousConfig.DropWallpapers;
         EverySoilUnstable = previousConfig.EverySoilUnstable;
         ExtraClayforming = previousConfig.ExtraClayforming;
+        FarmlandDropsSoil = previousConfig.FarmlandDropsSoil;
         FirepitHeatsOven = previousConfig.FirepitHeatsOven;
         FixOvenFuelRendering = previousConfig.FixOvenFuelRendering;
         FourPlanksFromLog = previousConfig.FourPlanksFromLog;

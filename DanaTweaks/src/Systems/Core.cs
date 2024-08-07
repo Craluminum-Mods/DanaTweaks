@@ -53,6 +53,7 @@ public class Core : ModSystem
         api.RegisterBlockBehaviorClass("DanaTweaks:DropVinesAnyway", typeof(BlockBehaviorDropVinesAnyway));
         api.RegisterBlockBehaviorClass("DanaTweaks:GuaranteedDecorDrop", typeof(BlockBehaviorGuaranteedDecorDrop));
         api.RegisterBlockBehaviorClass("DanaTweaks:GroundStorageParticles", typeof(BlockBehaviorGroundStorageParticles));
+        api.RegisterBlockBehaviorClass("DanaTweaks:FarmlandDropsSoil", typeof(BlockBehaviorFarmlandDropsSoil));
 
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:RainCollector", typeof(BEBehaviorRainCollector));
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:ExtinctSubmergedTorchInEverySlot", typeof(BEBehaviorExtinctSubmergedTorchInEverySlot));
@@ -232,6 +233,10 @@ public class Core : ModSystem
 
                 block.EnsureAttributesNotNull();
                 block.Attributes.Token["allowUnstablePlacement"] = JToken.FromObject(true);
+            }
+            if (ConfigServer.FarmlandDropsSoil && block is BlockFarmland)
+            {
+                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorFarmlandDropsSoil(block));
             }
         }
 
