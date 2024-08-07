@@ -78,5 +78,9 @@
     "Config.Setting.ZoomMapWithKey": "Zoom map with hotkeys",
     
     "Config.Setting.AlwaysSwitchToBestTool": "Always Switch To Best Tool",
-    "Config.Setting.AlwaysSwitchToBestToolIgnoredTools": "Ignored Tools"
+    "Config.Setting.AlwaysSwitchToBestToolIgnoredTools": "Ignored Tools",
+
+    "AutoPanning.Toggle": "Toggle Auto Panning",
+    "AutoPanning.Enabled": "Auto Panning <font weight=\"bold\" color=\"#84ff84\">Enabled</font>",
+    "AutoPanning.Disabled": "Auto Panning <font weight=\"bold\" color=\"#ff8484\">Disabled</font>"
 }
