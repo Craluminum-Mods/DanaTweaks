@@ -1,16 +1,16 @@
+using DanaTweaks.Configuration;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Common.Entities;
+using Vintagestory.API.Datastructures;
+using Vintagestory.API.Server;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
-using Vintagestory.API.Common.Entities;
-using Newtonsoft.Json.Linq;
-using System;
 using Vintagestory.ServerMods;
-using Vintagestory.API.Server;
-using Vintagestory.API.Datastructures;
-using System.Collections.Generic;
-using DanaTweaks.Configuration;
 
 [assembly: ModInfo(name: "Dana Tweaks", modID: "danatweaks", Side = "Universal")]
 
@@ -54,6 +54,7 @@ public class Core : ModSystem
         api.RegisterBlockBehaviorClass("DanaTweaks:GuaranteedDecorDrop", typeof(BlockBehaviorGuaranteedDecorDrop));
         api.RegisterBlockBehaviorClass("DanaTweaks:GroundStorageParticles", typeof(BlockBehaviorGroundStorageParticles));
         api.RegisterBlockBehaviorClass("DanaTweaks:FarmlandDropsSoil", typeof(BlockBehaviorFarmlandDropsSoil));
+        api.RegisterBlockBehaviorClass("DanaTweaks:AutoClose", typeof(BlockBehaviorAutoClose));
 
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:RainCollector", typeof(BEBehaviorRainCollector));
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:ExtinctSubmergedTorchInEverySlot", typeof(BEBehaviorExtinctSubmergedTorchInEverySlot));
@@ -125,6 +126,28 @@ public class Core : ModSystem
         if (!api.Side.IsServer())
         {
             return;
+        }
+
+        bool any = false;
+        foreach (Block autoClosingBlock in api.World.Blocks.Where(block => block.IsAutoCloseCompatible()))
+        {
+            if (autoClosingBlock?.Code == null)
+            {
+                continue;
+            }
+            if (ConfigServer.AutoCloseDelays.ContainsKey(autoClosingBlock.Code.ToString()))
+            {
+                continue;
+            }
+            any = true;
+            bool enabled = !autoClosingBlock.Code.ToString().Contains("heavy") && !autoClosingBlock.Code.ToString().Contains("ruined");
+            ConfigServer.AutoCloseDelays.Add(autoClosingBlock.Code.ToString(), enabled ? ConfigServer.AutoCloseDefaultDelay : -1);
+        }
+
+        if (any)
+        {
+            ModConfig.WriteConfig(api, Constants.ConfigServerName, ConfigServer);
+            ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, Constants.ConfigServerName);
         }
 
         List<string> scytheMorePrefixes = new List<string>();
@@ -237,6 +260,11 @@ public class Core : ModSystem
             if (ConfigServer.FarmlandDropsSoil && block is BlockFarmland)
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorFarmlandDropsSoil(block));
+            }
+            if (ConfigServer.AutoClose && block.IsAutoCloseCompatible())
+            {
+                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorAutoClose(block));
+                //if (block.CreativeInventoryTabs.Length != 0) block.CreativeInventoryTabs = block.CreativeInventoryTabs.Append("autoclose");
             }
         }
 

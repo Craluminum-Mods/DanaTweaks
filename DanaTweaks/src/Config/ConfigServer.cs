@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Vintagestory.API.Common;
 using Vintagestory.API.Util;
 
@@ -6,6 +7,11 @@ namespace DanaTweaks.Configuration;
 
 public class ConfigServer : IModConfig
 {
+    public readonly int AutoCloseDefaultDelay = 3000;
+
+    public bool AutoClose { get; set; } = true;
+    public Dictionary<string, int> AutoCloseDelays { get; set; } = new();
+
     public Command Command { get; set; } = new();
 
     public Dictionary<string, CreatureOpenDoors> CreaturesOpenDoors { get; set; } = new()
@@ -75,6 +81,9 @@ public class ConfigServer : IModConfig
         ScytheMore.Enabled = previousConfig.ScytheMore.Enabled;
         ScytheMore.DisallowedParts ??= previousConfig.ScytheMore.DisallowedParts ?? ScytheMore.DefaultDisallowedParts();
         ScytheMore.DisallowedSuffixes ??= previousConfig.ScytheMore.DisallowedSuffixes ?? ScytheMore.DefaultDisallowedSuffixes();
+
+        AutoClose = previousConfig.AutoClose;
+        AutoCloseDelays.AddRange(previousConfig.AutoCloseDelays);
 
         Command = previousConfig.Command;
         RainCollector = previousConfig.RainCollector;

@@ -102,4 +102,12 @@ public static class Extensions
             leftStack.Collectible.SetTemperature(mold.Api.World, leftStack, Math.Max(20f, temperature - Core.ConfigServer.CoolMoldsWithWateringCanSpeed));
         }
     }
+
+    public static bool IsAutoCloseCompatible(this Block block)
+    {
+        return block.HasBehavior<BlockBehaviorDoor>();
+        // || block is BlockFenceGate
+        // || block is BlockFenceGateRoughHewn
+        // || block is BlockTrapdoor
+    }
 }

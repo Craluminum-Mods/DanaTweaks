@@ -20,6 +20,7 @@ public class ConfigLibCompatibility
     private const string textBlocks = "Blocks";
     private const string textModel = "Model";
     private const string textSupportsWildcard = "danatweaks:Config.Text.SupportsWildcard";
+    private const string textAutoClose = "danatweaks:Config.Setting.AutoClose.Description";
 
     public ConfigLibCompatibility(ICoreAPI api)
     {
@@ -115,6 +116,14 @@ public class ConfigLibCompatibility
         if (ImGui.CollapsingHeader(Lang.Get(settingsAdvanced) + $"##settingAdvanced-{id}"))
         {
             ImGui.Indent();
+            if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + "AutoClose") + $"##settingAutoClose-{id}"))
+            {
+                ImGui.Indent();
+                config.AutoClose = OnCheckBoxWithoutTranslation($"##boolean-AutoClose-{id}", config.AutoClose, Lang.Get(textEnabled));
+                ImGui.TextWrapped(Lang.Get(textAutoClose));
+                DictionaryEditor(config.AutoCloseDelays, new());
+                ImGui.Unindent();
+            }
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(ScytheMore)) + $"##settingScytheMore-{id}"))
             {
                 ImGui.Indent();
