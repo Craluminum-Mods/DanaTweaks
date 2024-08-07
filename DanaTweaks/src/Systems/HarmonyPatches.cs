@@ -48,6 +48,10 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: BlockEntityPitKiln_TryIgnite_Patch.TargetMethod(), postfix: BlockEntityPitKiln_TryIgnite_Patch.GetPostfix());
         }
+        if (Core.ConfigServer.RegrowResin)
+        {
+            HarmonyInstance.Patch(original: BlockEntitySapling_CheckGrow_Patch.TargetMethod(), transpiler: BlockEntitySapling_CheckGrow_Patch.GetTranspiler());
+        }
     }
 
     public override void Dispose()
@@ -86,6 +90,10 @@ public class HarmonyPatches : ModSystem
         if (Core.ConfigServer.PitKilnSpreading)
         {
             HarmonyInstance.Unpatch(original: BlockEntityPitKiln_TryIgnite_Patch.TargetMethod(), HarmonyPatchType.All, HarmonyInstance.Id);
+        }
+        if (Core.ConfigServer.RegrowResin)
+        {
+            HarmonyInstance.Unpatch(original: BlockEntitySapling_CheckGrow_Patch.TargetMethod(), HarmonyPatchType.All, HarmonyInstance.Id);
         }
     }
 }

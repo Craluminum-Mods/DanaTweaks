@@ -43,6 +43,7 @@
     "Config.Setting.PlayerWakesUpWhenHungry": "Wake up players when hungry",
     "Config.Setting.PreventTorchTimerReset": "Prevent Torch Timer Reset",
     "Config.Setting.RackableFirestarter": "Allow to store firestarter on tool racks",
+    "Config.Setting.RegrowResin": "Generate resin on trees grown from saplings",
     "Config.Setting.RemoveBookSignature": "Allow to remove book signature",
     "Config.Setting.RichTraders": "Rich Traders",
     "Config.Setting.ShelvablePie": "Allow to store pies on shelves",
