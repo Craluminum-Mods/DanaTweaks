@@ -76,6 +76,7 @@ public class ConfigLibCompatibility
             config.PlayerWakesUpWhenHungry = OnCheckBox(id, config.PlayerWakesUpWhenHungry, nameof(config.PlayerWakesUpWhenHungry));
             config.PreventTorchTimerReset = OnCheckBox(id, config.PreventTorchTimerReset, nameof(config.PreventTorchTimerReset));
             config.RackableFirestarter = OnCheckBox(id, config.RackableFirestarter, nameof(config.RackableFirestarter));
+            config.RecycleBags = OnCheckBox(id, config.RecycleBags, nameof(config.RecycleBags));
             config.RegrowResin = OnCheckBox(id, config.RegrowResin, nameof(config.RegrowResin));
             config.RemoveBookSignature = OnCheckBox(id, config.RemoveBookSignature, nameof(config.RemoveBookSignature));
             config.RichTraders = OnCheckBox(id, config.RichTraders, nameof(config.RichTraders));

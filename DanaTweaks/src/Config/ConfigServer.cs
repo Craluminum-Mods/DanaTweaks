@@ -45,6 +45,7 @@ public class ConfigServer : IModConfig
     public bool PlayerWakesUpWhenHungry { get; set; }
     public bool PreventTorchTimerReset { get; set; } = true;
     public bool RackableFirestarter { get; set; } = true;
+    public bool RecycleBags { get; set; } = false;
     public bool RegrowResin { get; set; } = true;
     public bool RemoveBookSignature { get; set; } = true;
     public bool RichTraders { get; set; }
@@ -106,6 +107,7 @@ public class ConfigServer : IModConfig
         PlayerWakesUpWhenHungry = previousConfig.PlayerWakesUpWhenHungry;
         PreventTorchTimerReset = previousConfig.PreventTorchTimerReset;
         RackableFirestarter = previousConfig.RackableFirestarter;
+        RecycleBags = previousConfig.RecycleBags;
         RegrowResin = previousConfig.RegrowResin;
         RemoveBookSignature = previousConfig.RemoveBookSignature;
         RichTraders = previousConfig.RichTraders;

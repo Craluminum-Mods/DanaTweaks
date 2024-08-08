@@ -1,0 +1,28 @@
+[
+    {
+        "name": "deconstruct linensack with knife",
+        "ingredientPattern": "KB",
+        "ingredients": {
+            "K": { "type": "item", "code": "game:knife-*", "isTool": true },
+            "B": { "type": "item", "code": "game:linensack" }
+        },
+        "width": 2,
+        "height": 1,
+        "shapeless": true,
+        "recipeGroup": 2,
+        "output": { "type": "item", "code": "game:flaxfibers", "quantity": 10 }
+    },
+    {
+        "name": "deconstruct linensack with shears",
+        "ingredientPattern": "KB",
+        "ingredients": {
+            "K": { "type": "item", "code": "game:shears-*", "isTool": true },
+            "B": { "type": "item", "code": "game:linensack" }
+        },
+        "width": 2,
+        "height": 1,
+        "shapeless": true,
+        "recipeGroup": 2,
+        "output": { "type": "item", "code": "game:flaxfibers", "quantity": 10 }
+    }
+]
