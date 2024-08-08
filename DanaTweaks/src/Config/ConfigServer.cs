@@ -10,32 +10,18 @@ public class ConfigServer : IModConfig
 
     public bool AutoClose { get; set; } = true;
     public Dictionary<string, int> AutoCloseDelays { get; set; } = new();
-
     public Command Command { get; set; } = new();
-
-    public Dictionary<string, CreatureOpenDoors> CreaturesOpenDoors { get; set; } = new()
-    {
-        ["drifter-*"] = new CreatureOpenDoors() { Enabled = true, Cooldown = 5, Range = 1 }
-    };
-
-    public Dictionary<string, OvenFuel> OvenFuelItems { get; set; } = new()
-    {
-        ["plank-*"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/plankpile" }
-    };
-
-    public Dictionary<string, OvenFuel> OvenFuelBlocks { get; set; } = new()
-    {
-        ["peatbrick"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/peatpile" }
-    };
-
+    public Dictionary<string, CreatureOpenDoors> CreaturesOpenDoors { get; set; } = new() { ["drifter-*"] = new CreatureOpenDoors() { Enabled = true, Cooldown = 5, Range = 1 } };
+    public Dictionary<string, OvenFuel> OvenFuelItems { get; set; } = new() { ["plank-*"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/plankpile" } };
+    public Dictionary<string, OvenFuel> OvenFuelBlocks { get; set; } = new() { ["peatbrick"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/peatpile" } };
     public RainCollector RainCollector { get; set; } = new();
     public ScytheMore ScytheMore { get; set; } = new();
 
-    public bool ExtinctSubmergedTorchInEverySlot { get; set; }
-    public int ExtinctSubmergedTorchInEverySlotUpdateMilliseconds { get; set; } = 5000;
-
     public bool CoolMoldsWithWateringCan { get; set; } = true;
     public int CoolMoldsWithWateringCanSpeed { get; set; } = 3;
+
+    public bool ExtinctSubmergedTorchInEverySlot { get; set; }
+    public int ExtinctSubmergedTorchInEverySlotUpdateMilliseconds { get; set; } = 5000;
 
     public bool BranchCutter { get; set; } = true;
     public bool CreativeMiddleClickEntity { get; set; } = true;
