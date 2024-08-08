@@ -1,0 +1,28 @@
+[
+    {
+        "name": "deconstruct with knife: homespun pants",
+        "ingredientPattern": "KC",
+        "ingredients": {
+            "K": { "type": "item", "code": "game:knife-*", "isTool": true },
+            "C": { "type": "item", "code": "game:clothes-lowerbody-homespun-pants" }
+        },
+        "width": 2,
+        "height": 1,
+        "shapeless": true,
+        "recipeGroup": 2,
+        "output": { "type": "item", "code": "game:flaxfibers", "quantity": 32 }
+    },
+    {
+        "name": "deconstruct with shears: homespun pants",
+        "ingredientPattern": "KC",
+        "ingredients": {
+            "K": { "type": "item", "code": "game:shears-*", "isTool": true },
+            "C": { "type": "item", "code": "game:clothes-lowerbody-homespun-pants" }
+        },
+        "width": 2,
+        "height": 1,
+        "shapeless": true,
+        "recipeGroup": 2,
+        "output": { "type": "item", "code": "game:flaxfibers", "quantity": 32 }
+    }
+]

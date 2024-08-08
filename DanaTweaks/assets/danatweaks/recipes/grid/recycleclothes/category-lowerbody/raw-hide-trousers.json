@@ -1,0 +1,28 @@
+[
+    {
+        "name": "deconstruct with knife: raw hide trousers",
+        "ingredientPattern": "KC",
+        "ingredients": {
+            "K": { "type": "item", "code": "game:knife-*", "isTool": true },
+            "C": { "type": "item", "code": "game:clothes-lowerbody-raw-hide-trousers" }
+        },
+        "width": 2,
+        "height": 1,
+        "shapeless": true,
+        "recipeGroup": 2,
+        "output": { "type": "item", "code": "game:hide-raw-small", "quantity": 2 }
+    },
+    {
+        "name": "deconstruct with shears: raw hide trousers",
+        "ingredientPattern": "KC",
+        "ingredients": {
+            "K": { "type": "item", "code": "game:shears-*", "isTool": true },
+            "C": { "type": "item", "code": "game:clothes-lowerbody-raw-hide-trousers" }
+        },
+        "width": 2,
+        "height": 1,
+        "shapeless": true,
+        "recipeGroup": 2,
+        "output": { "type": "item", "code": "game:hide-raw-small", "quantity": 2 }
+    }
+]

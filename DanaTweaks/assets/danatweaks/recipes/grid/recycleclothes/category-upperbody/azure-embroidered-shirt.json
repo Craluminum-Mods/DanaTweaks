@@ -1,0 +1,28 @@
+[
+    {
+        "name": "deconstruct with knife: azure embroidered shirt",
+        "ingredientPattern": "KC",
+        "ingredients": {
+            "K": { "type": "item", "code": "game:knife-*", "isTool": true },
+            "C": { "type": "item", "code": "game:clothes-upperbody-azure-embroidered-shirt" }
+        },
+        "width": 2,
+        "height": 1,
+        "shapeless": true,
+        "recipeGroup": 2,
+        "output": { "type": "item", "code": "game:flaxfibers", "quantity": 40 }
+    },
+    {
+        "name": "deconstruct with shears: azure embroidered shirt",
+        "ingredientPattern": "KC",
+        "ingredients": {
+            "K": { "type": "item", "code": "game:shears-*", "isTool": true },
+            "C": { "type": "item", "code": "game:clothes-upperbody-azure-embroidered-shirt" }
+        },
+        "width": 2,
+        "height": 1,
+        "shapeless": true,
+        "recipeGroup": 2,
+        "output": { "type": "item", "code": "game:flaxfibers", "quantity": 40 }
+    },
+]

@@ -8,7 +8,7 @@
     "description": "Various tweaks",
     "authors": ["Craluminum2413"],
     "contributors":  ["Noelle Lavenza"],
-    "version": "2.3.0",
+    "version": "3.0.0",
     "dependencies": {
         "game": "1.19.7"
     }

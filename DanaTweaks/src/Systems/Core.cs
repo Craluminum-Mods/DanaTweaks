@@ -29,6 +29,7 @@ public class Core : ModSystem
             api.World.Config.SetBool("DanaTweaks.ExtraClayforming", ConfigServer.ExtraClayforming);
             api.World.Config.SetBool("DanaTweaks.CreativeTapestries", ConfigServer.CreativeTapestries);
             api.World.Config.SetBool("DanaTweaks.RecycleBags", ConfigServer.RecycleBags);
+            api.World.Config.SetBool("DanaTweaks.RecycleClothes", ConfigServer.RecycleClothes);
         }
         if (api.Side.IsClient())
         {

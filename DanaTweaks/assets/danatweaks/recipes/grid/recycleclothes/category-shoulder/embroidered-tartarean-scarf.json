@@ -1,0 +1,28 @@
+[
+    {
+        "name": "deconstruct with knife: embroidered tartarean scarf",
+        "ingredientPattern": "KC",
+        "ingredients": {
+            "K": { "type": "item", "code": "game:knife-*", "isTool": true },
+            "C": { "type": "item", "code": "game:clothes-shoulder-embroidered-tartarean-scarf" }
+        },
+        "width": 2,
+        "height": 1,
+        "shapeless": true,
+        "recipeGroup": 2,
+        "output": { "type": "item", "code": "game:flaxfibers", "quantity": 48 }
+    },
+    {
+        "name": "deconstruct with shears: embroidered tartarean scarf",
+        "ingredientPattern": "KC",
+        "ingredients": {
+            "K": { "type": "item", "code": "game:shears-*", "isTool": true },
+            "C": { "type": "item", "code": "game:clothes-shoulder-embroidered-tartarean-scarf" }
+        },
+        "width": 2,
+        "height": 1,
+        "shapeless": true,
+        "recipeGroup": 2,
+        "output": { "type": "item", "code": "game:flaxfibers", "quantity": 48 }
+    },
+]
