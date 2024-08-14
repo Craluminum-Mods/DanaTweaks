@@ -69,6 +69,7 @@ public class ConfigLibCompatibility
             config.FourPlanksFromLog = OnCheckBox(id, config.FourPlanksFromLog, nameof(config.FourPlanksFromLog));
             config.FragileBones = OnCheckBox(id, config.FragileBones, nameof(config.FragileBones));
             config.HalloweenEveryDay = OnCheckBox(id, config.HalloweenEveryDay, nameof(config.HalloweenEveryDay));
+            config.OpenConnectedTrapdoors = OnCheckBox(id, config.OpenConnectedTrapdoors, nameof(config.OpenConnectedTrapdoors));
             config.PickUpBones = OnCheckBox(id, config.PickUpBones, nameof(config.PickUpBones));
             config.PitKilnSpreading = OnCheckBox(id, config.PitKilnSpreading, nameof(config.PitKilnSpreading));
             config.PlanksInPitKiln = OnCheckBox(id, config.PlanksInPitKiln, nameof(config.PlanksInPitKiln));

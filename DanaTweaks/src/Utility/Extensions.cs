@@ -34,6 +34,11 @@ public static class Extensions
         return null;
     }
 
+    public static T GetBlockBehavior<T>(this Block block) where T : BlockBehavior
+    {
+        return block?.BlockBehaviors?.FirstOrDefault(x => x is T behaviorOpen) as T;
+    }
+
     public static bool IsCrate(this ICoreClientAPI api)
     {
         BlockPos pos = api.World.Player?.CurrentBlockSelection?.Position;

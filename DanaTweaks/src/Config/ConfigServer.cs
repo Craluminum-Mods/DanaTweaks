@@ -38,6 +38,7 @@ public class ConfigServer : IModConfig
     public bool FragileBones { get; set; }
     public bool GroundStorageParticles { get; set; } = true;
     public bool HalloweenEveryDay { get; set; } = true;
+    public bool OpenConnectedTrapdoors { get; set; } = true;
     public bool PickUpBones { get; set; }
     public bool PitKilnSpreading { get; set; } = true;
     public bool PlanksInPitKiln { get; set; } = true;
@@ -101,6 +102,7 @@ public class ConfigServer : IModConfig
         FragileBones = previousConfig.FragileBones;
         GroundStorageParticles = previousConfig.GroundStorageParticles;
         HalloweenEveryDay = previousConfig.HalloweenEveryDay;
+        OpenConnectedTrapdoors = previousConfig.OpenConnectedTrapdoors;
         PickUpBones = previousConfig.PickUpBones;
         PitKilnSpreading = previousConfig.PitKilnSpreading;
         PlanksInPitKiln = previousConfig.PlanksInPitKiln;

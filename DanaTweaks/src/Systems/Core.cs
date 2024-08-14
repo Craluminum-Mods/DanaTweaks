@@ -58,6 +58,7 @@ public class Core : ModSystem
         api.RegisterBlockBehaviorClass("DanaTweaks:GroundStorageParticles", typeof(BlockBehaviorGroundStorageParticles));
         api.RegisterBlockBehaviorClass("DanaTweaks:FarmlandDropsSoil", typeof(BlockBehaviorFarmlandDropsSoil));
         api.RegisterBlockBehaviorClass("DanaTweaks:AutoClose", typeof(BlockBehaviorAutoClose));
+        api.RegisterBlockBehaviorClass("DanaTweaks:OpenConnectedTrapdoors", typeof(BlockBehaviorOpenConnectedTrapdoors));
 
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:RainCollector", typeof(BEBehaviorRainCollector));
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:ExtinctSubmergedTorchInEverySlot", typeof(BEBehaviorExtinctSubmergedTorchInEverySlot));
@@ -268,6 +269,10 @@ public class Core : ModSystem
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorAutoClose(block));
                 //if (block.CreativeInventoryTabs.Length != 0) block.CreativeInventoryTabs = block.CreativeInventoryTabs.Append("autoclose");
+            }
+            if (ConfigServer.OpenConnectedTrapdoors && block is BlockTrapdoor)
+            {
+                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorOpenConnectedTrapdoors(block));
             }
         }
 
