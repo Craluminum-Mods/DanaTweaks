@@ -44,22 +44,14 @@ public class AutoPanning : ModSystem
         double nearestDist = double.MaxValue;
         BlockPos nearestBlockPos = null;
 
-        for (int dx = -SearchRange; dx <= SearchRange; dx++)
+        capi.World.BlockAccessor.WalkBlocks(playerPos.AddCopy(-SearchRange, -SearchRange, -SearchRange), playerPos.AddCopy(SearchRange, SearchRange, SearchRange), (block, x, y, z) =>
         {
-            for (int dy = -SearchRange; dy <= SearchRange; dy++)
+            BlockPos blockPos = new BlockPos(x, y, z, playerPos.dimension);
+            if (blockPan.IsPannableMaterial(block) && IsInRangeOfBlock(capi, blockPos, ref nearestDist))
             {
-                for (int dz = -SearchRange; dz <= SearchRange; dz++)
-                {
-                    BlockPos blockPos = playerPos.AddCopy(dx, dy, dz);
-                    Block block = capi.World.BlockAccessor.GetBlock(blockPos);
-
-                    if (blockPan.IsPannableMaterial(block) && IsInRangeOfBlock(capi, blockPos, ref nearestDist))
-                    {
-                        nearestBlockPos = blockPos;
-                    }
-                }
+                nearestBlockPos = blockPos;
             }
-        }
+        });
 
         if (nearestBlockPos != null)
         {
