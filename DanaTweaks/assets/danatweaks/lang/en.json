@@ -19,6 +19,9 @@
     "Config.Setting.CoolMoldsWithWateringCan": "Cool Molds With Watering Can",
     "Config.Setting.CoolMoldsWithWateringCanSpeed": "Speed",
 
+    "Config.Setting.OpenConnectedTrapdoors": "Open all connected trapdoors",
+    "Config.Setting.OpenConnectedTrapdoorsMaxBlocksDistance": "Max blocks distance",
+
     "Config.Setting.CreativeMiddleClickEntity": "Enable 'Creative Middle Click Entity'",
     "Config.Setting.EverySoilUnstable": "Enable 'Every Soil Unstable'",
     "Config.Setting.GroundStorageParticles": "Enable 'Ground Storage Particles' for pots and crucibles",
@@ -38,7 +41,6 @@
     "Config.Setting.FourPlanksFromLog": "Craft logs into four planks",
     "Config.Setting.FragileBones": "Fragile Bones",
     "Config.Setting.HalloweenEveryDay": "Allow to carve pumpkins any time of year",
-    "Config.Setting.OpenConnectedTrapdoors": "Open all connected trapdoors",
     "Config.Setting.PickUpBones": "Pick Up Bones",
     "Config.Setting.PitKilnSpreading": "Lit connected pit kilns",
     "Config.Setting.PlanksInPitKiln": "Allow to use planks in pit kiln",

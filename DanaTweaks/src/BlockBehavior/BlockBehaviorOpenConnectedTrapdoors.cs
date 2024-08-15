@@ -1,4 +1,5 @@
-﻿using Vintagestory.API.Common;
+﻿using System;
+using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 
@@ -30,10 +31,12 @@ public class BlockBehaviorOpenConnectedTrapdoors : BlockBehavior
 
         if (!originalPos.Equals(sidePos)) HandleSideBlock(world, byPlayer, blockSel, ref handling, sidePos);
 
+        if (byPlayer.Entity.ServerControls.Sneak) return true;
+
         HandleVerticals(world, byPlayer, blockSel, ref handling, originalPos, V, Rot, EnumAxis.Y);
         HandleVerticals(world, byPlayer, blockSel, ref handling, sidePos, V, Rot, EnumAxis.Y);
 
-        if (V == "up" || V == "down")
+        if (V is "up" or "down")
         {
             HandleHorizontalz(world, byPlayer, blockSel, ref handling, originalPos, Rot);
             HandleHorizontalz(world, byPlayer, blockSel, ref handling, sidePos, Rot);
@@ -74,8 +77,9 @@ public class BlockBehaviorOpenConnectedTrapdoors : BlockBehavior
             EnumAxis.Z => pos.Z
         };
 
+        int original = coordinate;
         Block block;
-        while ((block = GetNewBlock(world, pos, coordinate += direction, axis))?.GetBlockBehavior<BlockBehaviorOpenConnectedTrapdoors>() != null)
+        while (Math.Abs(original - coordinate) < Core.ConfigServer.OpenConnectedTrapdoorsMaxBlocksDistance && (block = GetNewBlock(world, pos, coordinate += direction, axis))?.GetBlockBehavior<BlockBehaviorOpenConnectedTrapdoors>() != null)
         {
             if ((block?.Variant["state"]) != State)
             {

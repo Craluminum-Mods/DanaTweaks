@@ -23,6 +23,9 @@ public class ConfigServer : IModConfig
     public bool ExtinctSubmergedTorchInEverySlot { get; set; }
     public int ExtinctSubmergedTorchInEverySlotUpdateMilliseconds { get; set; } = 5000;
 
+    public bool OpenConnectedTrapdoors { get; set; } = true;
+    public int OpenConnectedTrapdoorsMaxBlocksDistance { get; set; } = 10;
+
     public bool BranchCutter { get; set; } = true;
     public bool CreativeMiddleClickEntity { get; set; } = true;
     public bool CreativeTapestries { get; set; } = true;
@@ -38,7 +41,6 @@ public class ConfigServer : IModConfig
     public bool FragileBones { get; set; }
     public bool GroundStorageParticles { get; set; } = true;
     public bool HalloweenEveryDay { get; set; } = true;
-    public bool OpenConnectedTrapdoors { get; set; } = true;
     public bool PickUpBones { get; set; }
     public bool PitKilnSpreading { get; set; } = true;
     public bool PlanksInPitKiln { get; set; } = true;
@@ -81,11 +83,14 @@ public class ConfigServer : IModConfig
         OvenFuelItems.AddRange(previousConfig.OvenFuelItems);
         OvenFuelBlocks.AddRange(previousConfig.OvenFuelBlocks);
 
+        CoolMoldsWithWateringCan = previousConfig.CoolMoldsWithWateringCan;
+        CoolMoldsWithWateringCanSpeed = previousConfig.CoolMoldsWithWateringCanSpeed;
+
         ExtinctSubmergedTorchInEverySlot = previousConfig.ExtinctSubmergedTorchInEverySlot;
         ExtinctSubmergedTorchInEverySlotUpdateMilliseconds = previousConfig.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds;
 
-        CoolMoldsWithWateringCan = previousConfig.CoolMoldsWithWateringCan;
-        CoolMoldsWithWateringCanSpeed = previousConfig.CoolMoldsWithWateringCanSpeed;
+        OpenConnectedTrapdoors = previousConfig.OpenConnectedTrapdoors;
+        OpenConnectedTrapdoorsMaxBlocksDistance = previousConfig.OpenConnectedTrapdoorsMaxBlocksDistance;
 
         BranchCutter = previousConfig.BranchCutter;
         CreativeMiddleClickEntity = previousConfig.CreativeMiddleClickEntity;
@@ -102,7 +107,6 @@ public class ConfigServer : IModConfig
         FragileBones = previousConfig.FragileBones;
         GroundStorageParticles = previousConfig.GroundStorageParticles;
         HalloweenEveryDay = previousConfig.HalloweenEveryDay;
-        OpenConnectedTrapdoors = previousConfig.OpenConnectedTrapdoors;
         PickUpBones = previousConfig.PickUpBones;
         PitKilnSpreading = previousConfig.PitKilnSpreading;
         PlanksInPitKiln = previousConfig.PlanksInPitKiln;

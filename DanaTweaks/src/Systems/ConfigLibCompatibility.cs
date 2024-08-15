@@ -69,7 +69,6 @@ public class ConfigLibCompatibility
             config.FourPlanksFromLog = OnCheckBox(id, config.FourPlanksFromLog, nameof(config.FourPlanksFromLog));
             config.FragileBones = OnCheckBox(id, config.FragileBones, nameof(config.FragileBones));
             config.HalloweenEveryDay = OnCheckBox(id, config.HalloweenEveryDay, nameof(config.HalloweenEveryDay));
-            config.OpenConnectedTrapdoors = OnCheckBox(id, config.OpenConnectedTrapdoors, nameof(config.OpenConnectedTrapdoors));
             config.PickUpBones = OnCheckBox(id, config.PickUpBones, nameof(config.PickUpBones));
             config.PitKilnSpreading = OnCheckBox(id, config.PitKilnSpreading, nameof(config.PitKilnSpreading));
             config.PlanksInPitKiln = OnCheckBox(id, config.PlanksInPitKiln, nameof(config.PlanksInPitKiln));
@@ -101,6 +100,13 @@ public class ConfigLibCompatibility
                 config.RainCollector.LiquidCode = OnInputText(id, config.RainCollector.LiquidCode, nameof(config.RainCollector.LiquidCode));
                 ImGui.Unindent();
             }
+            if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.CoolMoldsWithWateringCan)) + $"##settingCoolMolds-{id}"))
+            {
+                ImGui.Indent();
+                config.CoolMoldsWithWateringCan = OnCheckBoxWithoutTranslation($"##boolean-CoolMoldsWithWateringCan-{id}", config.CoolMoldsWithWateringCan, Lang.Get(textEnabled));
+                config.CoolMoldsWithWateringCanSpeed = OnInputInt(id, config.CoolMoldsWithWateringCanSpeed, nameof(config.CoolMoldsWithWateringCanSpeed), 1);
+                ImGui.Unindent();
+            }
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.ExtinctSubmergedTorchInEverySlot)) + $"##settingExtinct-{id}"))
             {
                 ImGui.Indent();
@@ -108,11 +114,11 @@ public class ConfigLibCompatibility
                 config.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds = OnInputInt(id, config.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds, nameof(config.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds), 1);
                 ImGui.Unindent();
             }
-            if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.CoolMoldsWithWateringCan)) + $"##settingCoolMolds-{id}"))
+            if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.OpenConnectedTrapdoors)) + $"##settingOpenConnectedTrapdoors-{id}"))
             {
                 ImGui.Indent();
-                config.CoolMoldsWithWateringCan = OnCheckBoxWithoutTranslation($"##boolean-CoolMoldsWithWateringCan-{id}", config.CoolMoldsWithWateringCan, Lang.Get(textEnabled));
-                config.CoolMoldsWithWateringCanSpeed = OnInputInt(id, config.CoolMoldsWithWateringCanSpeed, nameof(config.CoolMoldsWithWateringCanSpeed), 1);
+                config.OpenConnectedTrapdoors = OnCheckBoxWithoutTranslation($"##boolean-OpenConnectedTrapdoors-{id}", config.OpenConnectedTrapdoors, Lang.Get(textEnabled));
+                config.OpenConnectedTrapdoorsMaxBlocksDistance = OnInputInt(id, config.OpenConnectedTrapdoorsMaxBlocksDistance, nameof(config.OpenConnectedTrapdoorsMaxBlocksDistance));
                 ImGui.Unindent();
             }
             ImGui.Unindent();
