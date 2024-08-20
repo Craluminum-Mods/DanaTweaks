@@ -44,10 +44,6 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), prefix: typeof(BlockEntityOven_getOrCreateMesh_Patch).GetMethod(nameof(BlockEntityOven_getOrCreateMesh_Patch.Prefix)));
         }
-        if (Core.ConfigServer.PitKilnSpreading)
-        {
-            HarmonyInstance.Patch(original: BlockEntityPitKiln_TryIgnite_Patch.TargetMethod(), postfix: BlockEntityPitKiln_TryIgnite_Patch.GetPostfix());
-        }
         if (Core.ConfigServer.RegrowResin)
         {
             HarmonyInstance.Patch(original: BlockEntitySapling_CheckGrow_Patch.TargetMethod(), transpiler: BlockEntitySapling_CheckGrow_Patch.GetTranspiler());
@@ -92,10 +88,6 @@ public class HarmonyPatches : ModSystem
         if (Core.ConfigServer.FixOvenFuelRendering)
         {
             HarmonyInstance.Unpatch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), HarmonyPatchType.All, HarmonyInstance.Id);
-        }
-        if (Core.ConfigServer.PitKilnSpreading)
-        {
-            HarmonyInstance.Unpatch(original: BlockEntityPitKiln_TryIgnite_Patch.TargetMethod(), HarmonyPatchType.All, HarmonyInstance.Id);
         }
         if (Core.ConfigServer.RegrowResin)
         {
