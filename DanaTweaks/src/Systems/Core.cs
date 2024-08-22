@@ -41,7 +41,7 @@ public class Core : ModSystem
             _ = new ConfigLibCompatibility(api);
         }
 
-        if (ConfigServer.HalloweenEveryDay)
+        if (ConfigServer?.HalloweenEveryDay == true)
         {
             ItemChisel.carvingTime = true;
         }
