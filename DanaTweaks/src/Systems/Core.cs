@@ -7,6 +7,7 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Datastructures;
+using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
@@ -133,6 +134,7 @@ public class Core : ModSystem
         }
 
         bool any = false;
+
         foreach (Block autoClosingBlock in api.World.Blocks.Where(block => block.IsAutoCloseCompatible()))
         {
             if (autoClosingBlock?.Code == null)
@@ -146,6 +148,16 @@ public class Core : ModSystem
             any = true;
             bool enabled = !autoClosingBlock.Code.ToString().Contains("heavy") && !autoClosingBlock.Code.ToString().Contains("ruined");
             ConfigServer.AutoCloseDelays.Add(autoClosingBlock.Code.ToString(), enabled ? ConfigServer.AutoCloseDefaultDelay : -1);
+        }
+
+        foreach (EntityProperties entityType in api.World.EntityTypes.Where(entityType => entityType.Code.ToString().Contains("trader") || entityType.Class.Contains("trader")))
+        {
+            if (ConfigServer.RichTradersList.ContainsKey(entityType.Code.ToString()))
+            {
+                continue;
+            }
+            any = true;
+            ConfigServer.RichTradersList.Add(entityType.Code.ToString(), new NatFloat(averagevalue: 9999f, variance: 0, EnumDistribution.UNIFORM));
         }
 
         if (any)
@@ -323,11 +335,11 @@ public class Core : ModSystem
 
         foreach (EntityProperties entityType in api.World.EntityTypes)
         {
-            if (ConfigServer.RichTraders && entityType.Code.ToString().Contains("trader"))
+            if (ConfigServer.RichTraders && ConfigServer.RichTradersList.TryGetValue(entityType.Code.ToString(), out NatFloat richTraderValue))
             {
                 entityType.EnsureAttributesNotNull();
-                entityType.Attributes.Token["tradeProps"]["money"]["avg"] = JToken.FromObject(999999);
-                entityType.Attributes.Token["tradeProps"]["money"]["var"] = JToken.FromObject(0);
+                entityType.Attributes.Token["tradeProps"]["money"]["avg"] = JToken.FromObject(richTraderValue.avg);
+                entityType.Attributes.Token["tradeProps"]["money"]["var"] = JToken.FromObject(richTraderValue.var);
             }
         }
 

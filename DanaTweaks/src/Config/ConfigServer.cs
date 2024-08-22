@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Vintagestory.API.Common;
+using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 
 namespace DanaTweaks.Configuration;
@@ -10,6 +11,7 @@ public class ConfigServer : IModConfig
 
     public bool AutoClose { get; set; } = true;
     public Dictionary<string, int> AutoCloseDelays { get; set; } = new();
+
     public Command Command { get; set; } = new();
     public Dictionary<string, CreatureOpenDoors> CreaturesOpenDoors { get; set; } = new() { ["drifter-*"] = new CreatureOpenDoors() { Enabled = true, Cooldown = 5, Range = 1 } };
     public Dictionary<string, OvenFuel> OvenFuelItems { get; set; } = new() { ["plank-*"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/plankpile" } };
@@ -25,6 +27,9 @@ public class ConfigServer : IModConfig
 
     public bool OpenConnectedTrapdoors { get; set; } = true;
     public int OpenConnectedTrapdoorsMaxBlocksDistance { get; set; } = 10;
+
+    public bool RichTraders { get; set; }
+    public Dictionary<string, NatFloat> RichTradersList { get; set; } = new();
 
     public bool BranchCutter { get; set; } = true;
     public bool CreativeMiddleClickEntity { get; set; } = true;
@@ -51,7 +56,6 @@ public class ConfigServer : IModConfig
     public bool RecycleClothes { get; set; } = false;
     public bool RegrowResin { get; set; } = true;
     public bool RemoveBookSignature { get; set; } = true;
-    public bool RichTraders { get; set; }
     public bool ScrapRecipes { get; set; } = true;
     public bool SealCrockExtraInteractions { get; set; } = true;
     public bool ShelvablePie { get; set; } = true;
@@ -91,6 +95,9 @@ public class ConfigServer : IModConfig
         OpenConnectedTrapdoors = previousConfig.OpenConnectedTrapdoors;
         OpenConnectedTrapdoorsMaxBlocksDistance = previousConfig.OpenConnectedTrapdoorsMaxBlocksDistance;
 
+        RichTraders = previousConfig.RichTraders;
+        RichTradersList.AddRange(previousConfig.RichTradersList);
+
         BranchCutter = previousConfig.BranchCutter;
         CreativeMiddleClickEntity = previousConfig.CreativeMiddleClickEntity;
         CreativeTapestries = previousConfig.CreativeTapestries;
@@ -116,7 +123,6 @@ public class ConfigServer : IModConfig
         RecycleClothes = previousConfig.RecycleClothes;
         RegrowResin = previousConfig.RegrowResin;
         RemoveBookSignature = previousConfig.RemoveBookSignature;
-        RichTraders = previousConfig.RichTraders;
         ScrapRecipes = previousConfig.ScrapRecipes;
         SealCrockExtraInteractions = previousConfig.SealCrockExtraInteractions;
         ShelvablePie = previousConfig.ShelvablePie;

@@ -79,6 +79,9 @@
     "game:Blocks": "Blocks",
     "Config.Text.SupportsWildcard": "supports wildcards and regexes",
 
+    "Config.Setting.avg": "avg",
+    "Config.Setting.var": "var",
+
     "Config.Setting.GlowingProjectiles": "Enable 'Glowing Projectiles'",
     "Config.Setting.ZoomMapWithKey": "Zoom map with hotkeys",
     

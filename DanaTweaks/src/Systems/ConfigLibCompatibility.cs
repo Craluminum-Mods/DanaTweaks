@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
+using Vintagestory.API.MathTools;
 
 namespace DanaTweaks.Configuration;
 
@@ -79,7 +80,6 @@ public class ConfigLibCompatibility
             config.RecycleClothes = OnCheckBox(id, config.RecycleClothes, nameof(config.RecycleClothes));
             config.RegrowResin = OnCheckBox(id, config.RegrowResin, nameof(config.RegrowResin));
             config.RemoveBookSignature = OnCheckBox(id, config.RemoveBookSignature, nameof(config.RemoveBookSignature));
-            config.RichTraders = OnCheckBox(id, config.RichTraders, nameof(config.RichTraders));
             config.ShelvablePie = OnCheckBox(id, config.ShelvablePie, nameof(config.ShelvablePie));
             ImGui.Indent();
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.Command)) + $"##settingCommand-{id}"))
@@ -156,6 +156,13 @@ public class ConfigLibCompatibility
                 DictionaryEditor(config.CreaturesOpenDoors, new CreatureOpenDoors(), Lang.Get(textSupportsWildcard));
                 ImGui.Unindent();
             }
+            if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.RichTraders)) + $"##settingRichTraders-{id}"))
+            {
+                ImGui.Indent();
+                config.RichTraders = OnCheckBoxWithoutTranslation($"##boolean-RichTraders-{id}", config.RichTraders, Lang.Get(textEnabled));
+                DictionaryEditor(config.RichTradersList);
+                ImGui.Unindent();
+            }
             ImGui.Unindent();
         }
     }
@@ -168,7 +175,7 @@ public class ConfigLibCompatibility
         {
             config.AlwaysSwitchToBestTool = OnCheckBoxWithoutTranslation($"##boolean-AlwaysSwitchToBestTool-{id}", config.AlwaysSwitchToBestTool, Lang.Get(textEnabled));
             ImGui.BeginListBox(Lang.Get(settingPrefix + nameof(config.AlwaysSwitchToBestToolIgnoredTools)) + $"##settingAlwaysSwitchToBestToolIgnoredTools-{id}");
-            var ignoredTools = Enum.GetValues<EnumTool>().ToDictionary(x => x, x => config.AlwaysSwitchToBestToolIgnoredTools.Contains(x)).OrderBy(x => Enum.GetName(x.Key));
+            IOrderedEnumerable<KeyValuePair<EnumTool, bool>> ignoredTools = Enum.GetValues<EnumTool>().ToDictionary(x => x, x => config.AlwaysSwitchToBestToolIgnoredTools.Contains(x)).OrderBy(x => Enum.GetName(x.Key));
             Dictionary<EnumTool, bool> ignoredToolsNew = ignoredTools.ToDictionary(x => x.Key, x => x.Value);
 
             foreach ((EnumTool key, bool val) in ignoredTools)
@@ -274,6 +281,13 @@ public class ConfigLibCompatibility
                     customValue.Cooldown = OnInputFloat($"##cooldown-{row}" + key, customValue.Cooldown, nameof(CreatureOpenDoors.Cooldown));
                     customValue.Range = OnInputFloat($"##range-{row}" + key, customValue.Range, nameof(CreatureOpenDoors.Range));
                     value = (T)Convert.ChangeType(customValue, typeof(CreatureOpenDoors));
+                }
+                else if (typeof(T) == typeof(NatFloat))
+                {
+                    NatFloat customValue = value as NatFloat;
+                    customValue.avg = OnInputFloat($"##avg-{row}" + key, customValue.avg, "avg");
+                    customValue.var = OnInputFloat($"##var-{row}" + key, customValue.var, "var");
+                    value = (T)Convert.ChangeType(customValue, typeof(NatFloat));
                 }
                 dict[key] = value;
                 ImGui.TableNextColumn();
