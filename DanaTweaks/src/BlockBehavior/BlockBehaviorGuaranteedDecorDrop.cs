@@ -13,9 +13,7 @@ public class BlockBehaviorGuaranteedDecorDrop : BlockBehavior
     {
         handling = EnumHandling.PreventDefault;
 
-        BlockDropItemStack drop = new() { Code = block.Code, Type = EnumItemClass.Block, Quantity = NatFloat.One };
-        drop.Resolve(world, "", null);
-        ItemStack resolvedStack = drop.ResolvedItemstack;
-        return new ItemStack[] { resolvedStack };
+        ItemStack drop = new ItemStack(block);
+        return new ItemStack[] { drop };
     }
 }
