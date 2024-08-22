@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -43,9 +44,17 @@ public class BlockBehaviorSelectSlabToolMode : BlockBehavior
 
             TextBackground textBackground = new() { HorPadding = 5 };
 
-            modes[0].WithIcon(capi, capi.Gui.TextTexture.GenTextTexture("A", fontConfig, 48, textBackground));
-            modes[1].WithIcon(capi, capi.Gui.TextTexture.GenTextTexture("H", fontConfig, 48, textBackground));
-            modes[2].WithIcon(capi, capi.Gui.TextTexture.GenTextTexture("V", fontConfig, 48, textBackground));
+            try
+            {
+                modes[0].WithIcon(capi, capi.Gui.TextTexture.GenTextTexture("A", fontConfig, 48, textBackground));
+                modes[1].WithIcon(capi, capi.Gui.TextTexture.GenTextTexture("H", fontConfig, 48, textBackground));
+                modes[2].WithIcon(capi, capi.Gui.TextTexture.GenTextTexture("V", fontConfig, 48, textBackground));
+            }
+            catch (Exception e)
+            {
+                capi.Logger.Error($"[Dana Tweaks] Can't draw icons for {this}:");
+                capi.Logger.Error(e);
+            }
         }
     }
 
