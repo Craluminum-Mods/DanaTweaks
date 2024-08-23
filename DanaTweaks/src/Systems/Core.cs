@@ -7,10 +7,13 @@ using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
+using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.API.Util;
+using Vintagestory.Client.NoObf;
+using Vintagestory.Common;
 using Vintagestory.GameContent;
 using Vintagestory.ServerMods;
 
@@ -117,6 +120,8 @@ public class Core : ModSystem
             api.Event.OnEntitySpawn += SetGlowLevel;
             api.Event.OnEntityLoaded += SetGlowLevel;
         }
+
+        api.Event.RegisterGameTickListener((deltaTime) => ShakeSlots(deltaTime, api), 1000);
     }
 
     public static void SetGlowLevel(Entity entity)
@@ -124,6 +129,77 @@ public class Core : ModSystem
         if (entity is EntityProjectile || entity.Class.Contains("projectile", StringComparison.OrdinalIgnoreCase))
         {
             entity.Properties.Client.GlowLevel = 255;
+        }
+    }
+
+    public static void ShakeSlots(float deltaTime, ICoreClientAPI api)
+    {
+        IPlayer player = api?.World?.Player;
+        if (player == null) return;
+
+        IPlayerInventoryManager inventoryManager = player.InventoryManager;
+        ItemSlot curSlot = inventoryManager.CurrentHoveredSlot;
+        if (curSlot == null) return;
+
+        switch (curSlot)
+        {
+            case ItemSlotBackpackContent slotInBackpack:
+                {
+                    if (!ConfigClient.ShakeSlotsWithBags) return;
+
+                    InventoryPlayerBackPacks backpackInventory = inventoryManager.GetOwnInventory(GlobalConstants.backpackInvClassName) as InventoryPlayerBackPacks;
+                    if (backpackInventory?.HasOpened(player) == true)
+                    {
+                        backpackInventory.PerformNotifySlot(slotInBackpack.BackpackIndex);
+                    }
+                    break;
+                }
+            case ItemSlotBackpack slotBackpack when !curSlot.Empty:
+                {
+                    if (!ConfigClient.ShakeSlotsInsideBags) return;
+
+                    InventoryPlayerBackPacks backpackInventory = inventoryManager.GetOwnInventory(GlobalConstants.backpackInvClassName) as InventoryPlayerBackPacks;
+                    if (backpackInventory?.HasOpened(player) == true)
+                    {
+                        foreach (ItemSlotBackpackContent slot in backpackInventory.Where(x => x is ItemSlotBackpackContent).Select(x => x as ItemSlotBackpackContent))
+                        {
+                            if (slot.BackpackIndex == backpackInventory.GetSlotId(slotBackpack))
+                            {
+                                backpackInventory.PerformNotifySlot(backpackInventory.GetSlotId(slot));
+                            }
+                        }
+                    }
+                    break;
+                }
+            case ItemSlotCharacter slotCharacter when player.InventoryManager.MouseItemSlot.Empty:
+                {
+                    if (!ConfigClient.ShakeSlotsWithSuitableClothes) return;
+
+                    InventoryPlayerBackPacks backpackInventory = inventoryManager.GetOwnInventory(GlobalConstants.backpackInvClassName) as InventoryPlayerBackPacks;
+                    if (backpackInventory?.HasOpened(player) == true)
+                    {
+                        foreach (ItemSlotBackpackContent slot in backpackInventory.Where(x => x is ItemSlotBackpackContent).Select(x => x as ItemSlotBackpackContent))
+                        {
+                            if (slotCharacter.CanHold(slot))
+                            {
+                                backpackInventory.PerformNotifySlot(backpackInventory.GetSlotId(slot));
+                            }
+                        }
+                    }
+
+                    InventoryBasePlayer hotbarInventory = inventoryManager.GetOwnInventory(GlobalConstants.hotBarInvClassName) as InventoryBasePlayer;
+                    if (hotbarInventory?.HasOpened(player) == true)
+                    {
+                        foreach (ItemSlot slot in hotbarInventory.Where(x => x is ItemSlot).Select(x => x as ItemSlot))
+                        {
+                            if (slotCharacter.CanHold(slot))
+                            {
+                                hotbarInventory.PerformNotifySlot(hotbarInventory.GetSlotId(slot));
+                            }
+                        }
+                    }
+                    break;
+                }
         }
     }
 

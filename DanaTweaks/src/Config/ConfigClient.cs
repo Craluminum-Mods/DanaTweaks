@@ -11,6 +11,9 @@ public class ConfigClient : IModConfig
     public EnumTool[] AlwaysSwitchToBestToolIgnoredTools { get; set; }
 
     public bool GlowingProjectiles { get; set; }
+    public bool ShakeSlotsInsideBags { get; set; } = true;
+    public bool ShakeSlotsWithBags { get; set; } = true;
+    public bool ShakeSlotsWithSuitableClothes { get; set; } = true;
     public bool ZoomMapWithKey { get; set; } = true;
     
     public ConfigClient(ICoreAPI api, ConfigClient previousConfig = null)
@@ -24,6 +27,9 @@ public class ConfigClient : IModConfig
         AlwaysSwitchToBestToolIgnoredTools = previousConfig?.AlwaysSwitchToBestToolIgnoredTools ?? DefaultIgnoredTools();
         AlwaysSwitchToBestTool = previousConfig.AlwaysSwitchToBestTool;
         GlowingProjectiles = previousConfig.GlowingProjectiles;
+        ShakeSlotsInsideBags = previousConfig.ShakeSlotsInsideBags;
+        ShakeSlotsWithBags = previousConfig.ShakeSlotsWithBags;
+        ShakeSlotsWithSuitableClothes = previousConfig.ShakeSlotsWithSuitableClothes;
         ZoomMapWithKey = previousConfig.ZoomMapWithKey;
     }
 

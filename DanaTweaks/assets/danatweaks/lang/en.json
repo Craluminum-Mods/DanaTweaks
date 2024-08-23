@@ -83,6 +83,11 @@
     "Config.Setting.var": "var",
 
     "Config.Setting.GlowingProjectiles": "Enable 'Glowing Projectiles'",
+
+    "Config.Setting.ShakeSlotsInsideBags": "Shake inventory slots for selected bag",
+    "Config.Setting.ShakeSlotsWithBags": "Shake slots with bags for selected inventory slot",
+    "Config.Setting.ShakeSlotsWithSuitableClothes": "Shake slots with suitable clothes for selected clothing slot",
+
     "Config.Setting.ZoomMapWithKey": "Zoom map with hotkeys",
     
     "Config.Setting.AlwaysSwitchToBestTool": "Always Switch To Best Tool",

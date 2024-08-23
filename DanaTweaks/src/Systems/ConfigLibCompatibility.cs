@@ -177,6 +177,9 @@ public class ConfigLibCompatibility
     private void BuildSettingsClient(ConfigClient config, string id)
     {
         config.GlowingProjectiles = OnCheckBox(id, config.GlowingProjectiles, nameof(config.GlowingProjectiles));
+        config.ShakeSlotsInsideBags = OnCheckBox(id, config.ShakeSlotsInsideBags, nameof(config.ShakeSlotsInsideBags));
+        config.ShakeSlotsWithBags = OnCheckBox(id, config.ShakeSlotsWithBags, nameof(config.ShakeSlotsWithBags));
+        config.ShakeSlotsWithSuitableClothes = OnCheckBox(id, config.ShakeSlotsWithSuitableClothes, nameof(config.ShakeSlotsWithSuitableClothes));
         config.ZoomMapWithKey = OnCheckBox(id, config.ZoomMapWithKey, nameof(config.ZoomMapWithKey));
         if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.AlwaysSwitchToBestTool)) + $"##settingAlwaysSwitchToBestTool-{id}"))
         {
