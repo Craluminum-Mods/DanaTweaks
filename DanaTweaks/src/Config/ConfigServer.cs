@@ -22,6 +22,9 @@ public class ConfigServer : IModConfig
     public bool CoolMoldsWithWateringCan { get; set; } = true;
     public int CoolMoldsWithWateringCanSpeed { get; set; } = 3;
 
+    public bool DropDecor { get; set; } = true;
+    public Dictionary<string, bool> DropDecorBlocks { get; set; } = new();
+
     public bool ExtinctSubmergedTorchInEverySlot { get; set; }
     public int ExtinctSubmergedTorchInEverySlotUpdateMilliseconds { get; set; } = 5000;
 
@@ -36,7 +39,6 @@ public class ConfigServer : IModConfig
     public bool CreativeTapestries { get; set; } = true;
     public bool DropResinAnyway { get; set; } = true;
     public bool DropVinesAnyway { get; set; } = true;
-    public bool DropWallpapers { get; set; } = true;
     public bool EverySoilUnstable { get; set; }
     public bool ExtraClayforming { get; set; } = true;
     public bool FarmlandDropsSoil { get; set; } = true;
@@ -89,6 +91,9 @@ public class ConfigServer : IModConfig
         CoolMoldsWithWateringCan = previousConfig.CoolMoldsWithWateringCan;
         CoolMoldsWithWateringCanSpeed = previousConfig.CoolMoldsWithWateringCanSpeed;
 
+        DropDecor = previousConfig.DropDecor;
+        DropDecorBlocks.AddRange(previousConfig.DropDecorBlocks);
+
         ExtinctSubmergedTorchInEverySlot = previousConfig.ExtinctSubmergedTorchInEverySlot;
         ExtinctSubmergedTorchInEverySlotUpdateMilliseconds = previousConfig.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds;
 
@@ -103,7 +108,6 @@ public class ConfigServer : IModConfig
         CreativeTapestries = previousConfig.CreativeTapestries;
         DropResinAnyway = previousConfig.DropResinAnyway;
         DropVinesAnyway = previousConfig.DropVinesAnyway;
-        DropWallpapers = previousConfig.DropWallpapers;
         EverySoilUnstable = previousConfig.EverySoilUnstable;
         ExtraClayforming = previousConfig.ExtraClayforming;
         FarmlandDropsSoil = previousConfig.FarmlandDropsSoil;

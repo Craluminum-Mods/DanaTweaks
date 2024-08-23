@@ -1,4 +1,5 @@
 using DanaTweaks.Configuration;
+using HarmonyLib;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -135,29 +136,31 @@ public class Core : ModSystem
 
         bool any = false;
 
-        foreach (Block autoClosingBlock in api.World.Blocks.Where(block => block.IsAutoCloseCompatible()))
+        foreach (Block block in api.World.Blocks)
         {
-            if (autoClosingBlock?.Code == null)
+            if (block?.Code == null) continue;
+
+            if (block.IsAutoCloseCompatible() && !ConfigServer.AutoCloseDelays.ContainsKey(block.Code.ToString()))
             {
-                continue;
+                any = true;
+                bool enabled = !block.Code.ToString().Contains("heavy") && !block.Code.ToString().Contains("ruined");
+                ConfigServer.AutoCloseDelays.Add(block.Code.ToString(), enabled ? ConfigServer.AutoCloseDefaultDelay : -1);
             }
-            if (ConfigServer.AutoCloseDelays.ContainsKey(autoClosingBlock.Code.ToString()))
+            if (block.HasBehavior<BlockBehaviorDecor>() && !block.Code.ToString().Contains("caveart") && !block.Code.ToString().Contains("hotspring") && !ConfigServer.DropDecorBlocks.ContainsKey(block.Code.ToString()))
             {
-                continue;
+                any = true;
+                bool enabled = block.Code.ToString().Contains("wallpaper") ? true : (block.decorBehaviorFlags & 16) != 0;
+                ConfigServer.DropDecorBlocks.Add(block.Code.ToString(), enabled);
             }
-            any = true;
-            bool enabled = !autoClosingBlock.Code.ToString().Contains("heavy") && !autoClosingBlock.Code.ToString().Contains("ruined");
-            ConfigServer.AutoCloseDelays.Add(autoClosingBlock.Code.ToString(), enabled ? ConfigServer.AutoCloseDefaultDelay : -1);
         }
 
         foreach (EntityProperties entityType in api.World.EntityTypes.Where(entityType => entityType.Code.ToString().Contains("trader") || entityType.Class.Contains("trader")))
         {
-            if (ConfigServer.RichTradersList.ContainsKey(entityType.Code.ToString()))
+            if (!ConfigServer.RichTradersList.ContainsKey(entityType.Code.ToString()))
             {
-                continue;
+                any = true;
+                ConfigServer.RichTradersList.Add(entityType.Code.ToString(), new NatFloat(averagevalue: 9999f, variance: 0, EnumDistribution.UNIFORM));
             }
-            any = true;
-            ConfigServer.RichTradersList.Add(entityType.Code.ToString(), new NatFloat(averagevalue: 9999f, variance: 0, EnumDistribution.UNIFORM));
         }
 
         if (any)
@@ -194,7 +197,7 @@ public class Core : ModSystem
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorCrateInteractionHelp(block));
             }
-            if (ConfigServer.DropWallpapers && block.HasBehavior<BlockBehaviorDecor>() && block.Code.ToString().Contains("wallpaper"))
+            if (ConfigServer.DropDecor && block.HasBehavior<BlockBehaviorDecor>() && ConfigServer.DropDecorBlocks.GetValueSafe(block.Code.ToString()))
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGuaranteedDecorDrop(block));
             }

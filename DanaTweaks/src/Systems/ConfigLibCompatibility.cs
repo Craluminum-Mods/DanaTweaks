@@ -63,7 +63,6 @@ public class ConfigLibCompatibility
             config.BranchCutter = OnCheckBox(id, config.BranchCutter, nameof(config.BranchCutter));
             config.DropResinAnyway = OnCheckBox(id, config.DropResinAnyway, nameof(config.DropResinAnyway));
             config.DropVinesAnyway = OnCheckBox(id, config.DropVinesAnyway, nameof(config.DropVinesAnyway));
-            config.DropWallpapers = OnCheckBox(id, config.DropWallpapers, nameof(config.DropWallpapers));
             config.FarmlandDropsSoil = OnCheckBox(id, config.FarmlandDropsSoil, nameof(config.FarmlandDropsSoil));
             config.FirepitHeatsOven = OnCheckBox(id, config.FirepitHeatsOven, nameof(config.FirepitHeatsOven));
             config.FixOvenFuelRendering = OnCheckBox(id, config.FixOvenFuelRendering, nameof(config.FixOvenFuelRendering));
@@ -131,6 +130,14 @@ public class ConfigLibCompatibility
                 config.AutoClose = OnCheckBoxWithoutTranslation($"##boolean-AutoClose-{id}", config.AutoClose, Lang.Get(textEnabled));
                 ImGui.TextWrapped(Lang.Get(textAutoClose));
                 DictionaryEditor(config.AutoCloseDelays, new());
+                ImGui.Unindent();
+            }
+            if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + "DropDecor") + $"##settingDropDecor-{id}"))
+            {
+                ImGui.Indent();
+                config.DropDecor = OnCheckBoxWithoutTranslation($"##boolean-DropDecor-{id}", config.DropDecor, Lang.Get(textEnabled));
+                ImGui.TextWrapped(Lang.Get(textBlocks));
+                DictionaryEditor(config.DropDecorBlocks, new());
                 ImGui.Unindent();
             }
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(ScytheMore)) + $"##settingScytheMore-{id}"))
