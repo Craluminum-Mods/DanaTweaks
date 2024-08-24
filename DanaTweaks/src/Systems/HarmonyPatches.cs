@@ -52,52 +52,27 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: GuiElementMap_OnKeyDown_Patch.TargetMethod(), postfix: GuiElementMap_OnKeyDown_Patch.GetPostfix());
         }
-
+        if (api.Side.IsClient() && Core.ConfigClient.ModesPerRowForVoxelRecipesEnabled)
+        {
+            HarmonyInstance.Patch(original: GuiDialogBlockEntityRecipeSelector_SetupDialog_Patch.TargetMethod(), transpiler: GuiDialogBlockEntityRecipeSelector_SetupDialog_Patch.GetTranspiler());
+        }
+        if (api.Side.IsClient() && Core.ConfigClient.ColorsPerRowForWaypointWindowEnabled)
+        {
+            HarmonyInstance.Patch(original: GuiComposerHelpers_AddColorListPicker_Patch.TargetMethod(), prefix: GuiComposerHelpers_AddColorListPicker_Patch.GetPrefix());
+        }
+        if (api.Side.IsClient() && Core.ConfigClient.IconsPerRowForWaypointWindowEnabled)
+        {
+            HarmonyInstance.Patch(original: GuiComposerHelpers_AddIconListPicker_Patch.TargetMethod(), prefix: GuiComposerHelpers_AddIconListPicker_Patch.GetPrefix());
+        }
+        if (api.Side.IsClient() && Core.ConfigClient.OverrideWaypointColors)
+        {
+            HarmonyInstance.Patch(original: WaypointMapLayer_WaypointColors_Patch.TargetMethod(), postfix: WaypointMapLayer_WaypointColors_Patch.GetPostfix());
+        }
         HarmonyInstance.Patch(original: Block_GetSelectionBoxes_Patch.TargetMethod(), prefix: Block_GetSelectionBoxes_Patch.GetPrefix());
     }
 
     public override void Dispose()
     {
-        if (Core.ConfigServer.SealCrockExtraInteractions)
-        {
-            HarmonyInstance.Unpatch(original: typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.GetMergableQuantity)), HarmonyPatchType.All, HarmonyInstance.Id);
-            HarmonyInstance.Unpatch(original: typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.TryMergeStacks)), HarmonyPatchType.All, HarmonyInstance.Id);
-            HarmonyInstance.Unpatch(original: typeof(BlockCookedContainerBase).GetMethod(nameof(BlockCookedContainerBase.OnContainedInteractStart)), HarmonyPatchType.All, HarmonyInstance.Id);
-        }
-        if (Core.ConfigServer.FirepitHeatsOven)
-        {
-            HarmonyInstance.Unpatch(original: typeof(BlockEntityFirepit).GetMethod("OnBurnTick", AccessTools.all), HarmonyPatchType.All, HarmonyInstance.Id);
-        }
-        if (api != null && api.Side.IsClient() && Core.ConfigClient.AlwaysSwitchToBestTool)
-        {
-            HarmonyInstance.Unpatch(original: typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.OnHeldUseStart)), HarmonyPatchType.All, HarmonyInstance.Id);
-        }
-        if (Core.ConfigServer.CreativeMiddleClickEntity)
-        {
-            HarmonyInstance.Unpatch(original: typeof(SystemMouseInWorldInteractions).GetMethod("HandleMouseInteractionsNoBlockSelected", AccessTools.all), HarmonyPatchType.All, HarmonyInstance.Id);
-        }
-        if (Core.ConfigServer.CoolMoldsWithWateringCan)
-        {
-            HarmonyInstance.Unpatch(original: typeof(BlockWateringCan).GetMethod(nameof(BlockWateringCan.OnHeldInteractStep)), HarmonyPatchType.All, HarmonyInstance.Id);
-        }
-        if (Core.ConfigServer.PreventTorchTimerReset)
-        {
-            HarmonyInstance.Unpatch(original: typeof(BlockTorch).GetMethod(nameof(BlockTorch.GetDrops)), HarmonyPatchType.All, HarmonyInstance.Id);
-            HarmonyInstance.Unpatch(original: typeof(BlockTorch).GetMethod(nameof(BlockTorch.OnBlockPlaced)), HarmonyPatchType.All, HarmonyInstance.Id);
-        }
-        if (Core.ConfigServer.FixOvenFuelRendering)
-        {
-            HarmonyInstance.Unpatch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), HarmonyPatchType.All, HarmonyInstance.Id);
-        }
-        if (Core.ConfigServer.RegrowResin)
-        {
-            HarmonyInstance.Unpatch(original: BlockEntitySapling_CheckGrow_Patch.TargetMethod(), HarmonyPatchType.All, HarmonyInstance.Id);
-        }
-        if (api != null && api.Side.IsClient() && Core.ConfigClient.ZoomMapWithKey)
-        {
-            HarmonyInstance.Unpatch(original: GuiElementMap_OnKeyDown_Patch.TargetMethod(), HarmonyPatchType.All, HarmonyInstance.Id);
-        }
-
-        HarmonyInstance.Unpatch(original: Block_GetSelectionBoxes_Patch.TargetMethod(), HarmonyPatchType.All, HarmonyInstance.Id);
+        HarmonyInstance.UnpatchAll(HarmonyInstance.Id);
     }
 }

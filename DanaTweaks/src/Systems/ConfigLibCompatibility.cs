@@ -180,9 +180,28 @@ public class ConfigLibCompatibility
         config.ShakeSlotsInsideBags = OnCheckBox(id, config.ShakeSlotsInsideBags, nameof(config.ShakeSlotsInsideBags));
         config.ShakeSlotsWithBags = OnCheckBox(id, config.ShakeSlotsWithBags, nameof(config.ShakeSlotsWithBags));
         config.ShakeSlotsWithSuitableClothes = OnCheckBox(id, config.ShakeSlotsWithSuitableClothes, nameof(config.ShakeSlotsWithSuitableClothes));
-        config.ZoomMapWithKey = OnCheckBox(id, config.ZoomMapWithKey, nameof(config.ZoomMapWithKey));
+        ImGui.Indent();
+        if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + "UI") + $"##settingUI-{id}"))
+        {
+            ImGui.Indent();
+            config.OverrideWaypointColors = OnCheckBox(id, config.OverrideWaypointColors, nameof(config.OverrideWaypointColors));
+            config.ExtraWaypointColors = OnInputTextMultiline(id, config.ExtraWaypointColors, nameof(config.ExtraWaypointColors)).ToList();
+            ImGui.NewLine();
+            config.ModesPerRowForVoxelRecipesEnabled = OnCheckBox(id, config.ModesPerRowForVoxelRecipesEnabled, nameof(config.ModesPerRowForVoxelRecipesEnabled));
+            config.ModesPerRowForVoxelRecipes = OnInputInt(id, config.ModesPerRowForVoxelRecipes, nameof(config.ModesPerRowForVoxelRecipes), 1);
+            ImGui.NewLine();
+            config.ColorsPerRowForWaypointWindowEnabled = OnCheckBox(id, config.ColorsPerRowForWaypointWindowEnabled, nameof(config.ColorsPerRowForWaypointWindowEnabled));
+            config.ColorsPerRowForWaypointWindowRatio = OnInputFloat(id, config.ColorsPerRowForWaypointWindowRatio, nameof(config.ColorsPerRowForWaypointWindowRatio), 0.1f);
+            ImGui.NewLine();
+            config.IconsPerRowForWaypointWindowEnabled = OnCheckBox(id, config.IconsPerRowForWaypointWindowEnabled, nameof(config.IconsPerRowForWaypointWindowEnabled));
+            config.IconsPerRowForWaypointWindowRatio = OnInputFloat(id, config.IconsPerRowForWaypointWindowRatio, nameof(config.IconsPerRowForWaypointWindowRatio), 0.1f);
+            ImGui.NewLine();
+            config.ZoomMapWithKey = OnCheckBox(id, config.ZoomMapWithKey, nameof(config.ZoomMapWithKey));
+            ImGui.Unindent();
+        }
         if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.AlwaysSwitchToBestTool)) + $"##settingAlwaysSwitchToBestTool-{id}"))
         {
+            ImGui.Indent();
             config.AlwaysSwitchToBestTool = OnCheckBoxWithoutTranslation($"##boolean-AlwaysSwitchToBestTool-{id}", config.AlwaysSwitchToBestTool, Lang.Get(textEnabled));
             ImGui.BeginListBox(Lang.Get(settingPrefix + nameof(config.AlwaysSwitchToBestToolIgnoredTools)) + $"##settingAlwaysSwitchToBestToolIgnoredTools-{id}");
             IOrderedEnumerable<KeyValuePair<EnumTool, bool>> ignoredTools = Enum.GetValues<EnumTool>().ToDictionary(x => x, x => config.AlwaysSwitchToBestToolIgnoredTools.Contains(x)).OrderBy(x => Enum.GetName(x.Key));
@@ -195,7 +214,9 @@ public class ConfigLibCompatibility
 
             config.AlwaysSwitchToBestToolIgnoredTools = ignoredToolsNew.Where(x => x.Value).Select(x => x.Key).ToArray();
             ImGui.EndListBox();
+            ImGui.Unindent();
         }
+        ImGui.Unindent();
     }
 
     private bool OnCheckBox(string id, bool value, string name)

@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using Vintagestory.API.Common;
 
 namespace DanaTweaks.Configuration;
@@ -10,12 +11,24 @@ public class ConfigClient : IModConfig
     [JsonConverter(typeof(StringArrayEnumConverter<EnumTool>))]
     public EnumTool[] AlwaysSwitchToBestToolIgnoredTools { get; set; }
 
+    public bool OverrideWaypointColors { get; set; } = false;
+    public List<string> ExtraWaypointColors { get; set; } = new();
+
+    public bool ModesPerRowForVoxelRecipesEnabled { get; set; } = true;
+    public int ModesPerRowForVoxelRecipes { get; set; } = 10;
+
+    public bool ColorsPerRowForWaypointWindowEnabled { get; set; } = true;
+    public float ColorsPerRowForWaypointWindowRatio { get; set; } = 1;
+
+    public bool IconsPerRowForWaypointWindowEnabled { get; set; } = true;
+    public float IconsPerRowForWaypointWindowRatio { get; set; } = 1;
+
     public bool GlowingProjectiles { get; set; }
     public bool ShakeSlotsInsideBags { get; set; } = true;
     public bool ShakeSlotsWithBags { get; set; } = true;
     public bool ShakeSlotsWithSuitableClothes { get; set; } = true;
     public bool ZoomMapWithKey { get; set; } = true;
-    
+
     public ConfigClient(ICoreAPI api, ConfigClient previousConfig = null)
     {
         if (previousConfig == null)
@@ -26,6 +39,19 @@ public class ConfigClient : IModConfig
 
         AlwaysSwitchToBestToolIgnoredTools = previousConfig?.AlwaysSwitchToBestToolIgnoredTools ?? DefaultIgnoredTools();
         AlwaysSwitchToBestTool = previousConfig.AlwaysSwitchToBestTool;
+
+        OverrideWaypointColors = previousConfig.OverrideWaypointColors;
+        ExtraWaypointColors.AddRange(previousConfig.ExtraWaypointColors);
+
+        ModesPerRowForVoxelRecipesEnabled = previousConfig.ModesPerRowForVoxelRecipesEnabled;
+        ModesPerRowForVoxelRecipes = previousConfig.ModesPerRowForVoxelRecipes;
+
+        ColorsPerRowForWaypointWindowEnabled = previousConfig.ColorsPerRowForWaypointWindowEnabled;
+        ColorsPerRowForWaypointWindowRatio = previousConfig.ColorsPerRowForWaypointWindowRatio;
+
+        IconsPerRowForWaypointWindowEnabled = previousConfig.IconsPerRowForWaypointWindowEnabled;
+        IconsPerRowForWaypointWindowRatio = previousConfig.IconsPerRowForWaypointWindowRatio;
+
         GlowingProjectiles = previousConfig.GlowingProjectiles;
         ShakeSlotsInsideBags = previousConfig.ShakeSlotsInsideBags;
         ShakeSlotsWithBags = previousConfig.ShakeSlotsWithBags;

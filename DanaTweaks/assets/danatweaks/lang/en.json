@@ -88,13 +88,22 @@
     "Config.Setting.ShakeSlotsWithBags": "Shake slots with bags for selected inventory slot",
     "Config.Setting.ShakeSlotsWithSuitableClothes": "Shake slots with suitable clothes for selected clothing slot",
 
-    "Config.Setting.ZoomMapWithKey": "Zoom map with hotkeys",
-    
     "Config.Setting.AlwaysSwitchToBestTool": "Always Switch To Best Tool",
     "Config.Setting.AlwaysSwitchToBestToolIgnoredTools": "Ignored Tools",
 
     "Config.Setting.AutoClose": "Auto Close",
     "Config.Setting.AutoClose.Description": "Auto close doors, trapdoors, gates, fences etc.",
+
+    "Config.Setting.UI": "User Interface",
+    "Config.Setting.OverrideWaypointColors": "Override",
+    "Config.Setting.ExtraWaypointColors": "Extra waypoint colors",
+    "Config.Setting.ModesPerRowForVoxelRecipesEnabled": "Enable 'modes per row for voxel recipes' tweak",
+    "Config.Setting.ModesPerRowForVoxelRecipes": "Modes per row",
+    "Config.Setting.ColorsPerRowForWaypointWindowEnabled": "Enable 'colors per row for waypoint window' tweak",
+    "Config.Setting.ColorsPerRowForWaypointWindowRatio": "Colors per row (ratio)",
+    "Config.Setting.IconsPerRowForWaypointWindowEnabled": "Enable 'icons per row for waypoint window' tweak",
+    "Config.Setting.IconsPerRowForWaypointWindowRatio": "Icons per row (ratio)",
+    "Config.Setting.ZoomMapWithKey": "Zoom map with hotkeys",
 
     "AutoPanning.Toggle": "(Dana Tweaks) Toggle Auto Panning",
     "AutoPanning.Enabled": "(Dana Tweaks) Auto Panning <font weight=\"bold\" color=\"#84ff84\">Enabled</font>",
