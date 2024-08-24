@@ -49,8 +49,9 @@ public class ConfigLibCompatibility
 
     private void BuildSettingsServer(ConfigServer config, string id)
     {
-        if (ImGui.CollapsingHeader(Lang.Get(settingsSimple) + $"##settingSimple-{id}"))
+        if (ImGui.CollapsingHeader(Lang.Get(settingsSimple) + $"##server-settingSimple-{id}"))
         {
+            ImGui.Indent();
             config.CreativeMiddleClickEntity = OnCheckBox(id, config.CreativeMiddleClickEntity, nameof(config.CreativeMiddleClickEntity));
             config.CreativeTapestries = OnCheckBox(id, config.CreativeTapestries, nameof(config.CreativeTapestries));
             config.EverySoilUnstable = OnCheckBox(id, config.EverySoilUnstable, nameof(config.EverySoilUnstable));
@@ -80,6 +81,7 @@ public class ConfigLibCompatibility
             config.RegrowResin = OnCheckBox(id, config.RegrowResin, nameof(config.RegrowResin));
             config.RemoveBookSignature = OnCheckBox(id, config.RemoveBookSignature, nameof(config.RemoveBookSignature));
             config.ShelvablePie = OnCheckBox(id, config.ShelvablePie, nameof(config.ShelvablePie));
+            ImGui.Unindent();
             ImGui.Indent();
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.Command)) + $"##settingCommand-{id}"))
             {
@@ -121,7 +123,7 @@ public class ConfigLibCompatibility
             }
             ImGui.Unindent();
         }
-        if (ImGui.CollapsingHeader(Lang.Get(settingsAdvanced) + $"##settingAdvanced-{id}"))
+        if (ImGui.CollapsingHeader(Lang.Get(settingsAdvanced) + $"##server-settingAdvanced-{id}"))
         {
             ImGui.Indent();
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + "AutoClose") + $"##settingAutoClose-{id}"))
@@ -176,47 +178,55 @@ public class ConfigLibCompatibility
 
     private void BuildSettingsClient(ConfigClient config, string id)
     {
-        config.GlowingProjectiles = OnCheckBox(id, config.GlowingProjectiles, nameof(config.GlowingProjectiles));
-        config.ShakeSlotsInsideBags = OnCheckBox(id, config.ShakeSlotsInsideBags, nameof(config.ShakeSlotsInsideBags));
-        config.ShakeSlotsWithBags = OnCheckBox(id, config.ShakeSlotsWithBags, nameof(config.ShakeSlotsWithBags));
-        config.ShakeSlotsWithSuitableClothes = OnCheckBox(id, config.ShakeSlotsWithSuitableClothes, nameof(config.ShakeSlotsWithSuitableClothes));
-        ImGui.Indent();
-        if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + "UI") + $"##settingUI-{id}"))
+        if (ImGui.CollapsingHeader(Lang.Get(settingsSimple) + $"##client-settingSimple-{id}"))
         {
             ImGui.Indent();
-            config.OverrideWaypointColors = OnCheckBox(id, config.OverrideWaypointColors, nameof(config.OverrideWaypointColors));
-            config.ExtraWaypointColors = OnInputTextMultiline(id, config.ExtraWaypointColors, nameof(config.ExtraWaypointColors)).ToList();
-            ImGui.NewLine();
-            config.ModesPerRowForVoxelRecipesEnabled = OnCheckBox(id, config.ModesPerRowForVoxelRecipesEnabled, nameof(config.ModesPerRowForVoxelRecipesEnabled));
-            config.ModesPerRowForVoxelRecipes = OnInputInt(id, config.ModesPerRowForVoxelRecipes, nameof(config.ModesPerRowForVoxelRecipes), 1);
-            ImGui.NewLine();
-            config.ColorsPerRowForWaypointWindowEnabled = OnCheckBox(id, config.ColorsPerRowForWaypointWindowEnabled, nameof(config.ColorsPerRowForWaypointWindowEnabled));
-            config.ColorsPerRowForWaypointWindowRatio = OnInputFloat(id, config.ColorsPerRowForWaypointWindowRatio, nameof(config.ColorsPerRowForWaypointWindowRatio), 0.1f);
-            ImGui.NewLine();
-            config.IconsPerRowForWaypointWindowEnabled = OnCheckBox(id, config.IconsPerRowForWaypointWindowEnabled, nameof(config.IconsPerRowForWaypointWindowEnabled));
-            config.IconsPerRowForWaypointWindowRatio = OnInputFloat(id, config.IconsPerRowForWaypointWindowRatio, nameof(config.IconsPerRowForWaypointWindowRatio), 0.1f);
-            ImGui.NewLine();
-            config.ZoomMapWithKey = OnCheckBox(id, config.ZoomMapWithKey, nameof(config.ZoomMapWithKey));
+            config.GlowingProjectiles = OnCheckBox(id, config.GlowingProjectiles, nameof(config.GlowingProjectiles));
+            config.ShakeSlotsInsideBags = OnCheckBox(id, config.ShakeSlotsInsideBags, nameof(config.ShakeSlotsInsideBags));
+            config.ShakeSlotsWithBags = OnCheckBox(id, config.ShakeSlotsWithBags, nameof(config.ShakeSlotsWithBags));
+            config.ShakeSlotsWithSuitableClothes = OnCheckBox(id, config.ShakeSlotsWithSuitableClothes, nameof(config.ShakeSlotsWithSuitableClothes));
             ImGui.Unindent();
         }
-        if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.AlwaysSwitchToBestTool)) + $"##settingAlwaysSwitchToBestTool-{id}"))
+        if (ImGui.CollapsingHeader(Lang.Get(settingsAdvanced) + $"##client-settingAdvanced-{id}"))
         {
             ImGui.Indent();
-            config.AlwaysSwitchToBestTool = OnCheckBoxWithoutTranslation($"##boolean-AlwaysSwitchToBestTool-{id}", config.AlwaysSwitchToBestTool, Lang.Get(textEnabled));
-            ImGui.BeginListBox(Lang.Get(settingPrefix + nameof(config.AlwaysSwitchToBestToolIgnoredTools)) + $"##settingAlwaysSwitchToBestToolIgnoredTools-{id}");
-            IOrderedEnumerable<KeyValuePair<EnumTool, bool>> ignoredTools = Enum.GetValues<EnumTool>().ToDictionary(x => x, x => config.AlwaysSwitchToBestToolIgnoredTools.Contains(x)).OrderBy(x => Enum.GetName(x.Key));
-            Dictionary<EnumTool, bool> ignoredToolsNew = ignoredTools.ToDictionary(x => x.Key, x => x.Value);
-
-            foreach ((EnumTool key, bool val) in ignoredTools)
+            if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + "UI") + $"##settingUI-{id}"))
             {
-                ignoredToolsNew[key] = OnCheckBoxWithoutTranslation(id, val, Enum.GetName(key));
+                ImGui.Indent();
+                config.OverrideWaypointColors = OnCheckBox(id, config.OverrideWaypointColors, nameof(config.OverrideWaypointColors));
+                config.ExtraWaypointColors = OnInputTextMultiline(id, config.ExtraWaypointColors, nameof(config.ExtraWaypointColors)).ToList();
+                ImGui.NewLine();
+                config.ModesPerRowForVoxelRecipesEnabled = OnCheckBox(id, config.ModesPerRowForVoxelRecipesEnabled, nameof(config.ModesPerRowForVoxelRecipesEnabled));
+                config.ModesPerRowForVoxelRecipes = OnInputInt(id, config.ModesPerRowForVoxelRecipes, nameof(config.ModesPerRowForVoxelRecipes), 1);
+                ImGui.NewLine();
+                config.ColorsPerRowForWaypointWindowEnabled = OnCheckBox(id, config.ColorsPerRowForWaypointWindowEnabled, nameof(config.ColorsPerRowForWaypointWindowEnabled));
+                config.ColorsPerRowForWaypointWindowRatio = OnInputFloat(id, config.ColorsPerRowForWaypointWindowRatio, nameof(config.ColorsPerRowForWaypointWindowRatio), 0.1f);
+                ImGui.NewLine();
+                config.IconsPerRowForWaypointWindowEnabled = OnCheckBox(id, config.IconsPerRowForWaypointWindowEnabled, nameof(config.IconsPerRowForWaypointWindowEnabled));
+                config.IconsPerRowForWaypointWindowRatio = OnInputFloat(id, config.IconsPerRowForWaypointWindowRatio, nameof(config.IconsPerRowForWaypointWindowRatio), 0.1f);
+                ImGui.NewLine();
+                config.ZoomMapWithKey = OnCheckBox(id, config.ZoomMapWithKey, nameof(config.ZoomMapWithKey));
+                ImGui.Unindent();
             }
+            if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.AlwaysSwitchToBestTool)) + $"##settingAlwaysSwitchToBestTool-{id}"))
+            {
+                ImGui.Indent();
+                config.AlwaysSwitchToBestTool = OnCheckBoxWithoutTranslation($"##boolean-AlwaysSwitchToBestTool-{id}", config.AlwaysSwitchToBestTool, Lang.Get(textEnabled));
+                ImGui.BeginListBox(Lang.Get(settingPrefix + nameof(config.AlwaysSwitchToBestToolIgnoredTools)) + $"##settingAlwaysSwitchToBestToolIgnoredTools-{id}");
+                IOrderedEnumerable<KeyValuePair<EnumTool, bool>> ignoredTools = Enum.GetValues<EnumTool>().ToDictionary(x => x, x => config.AlwaysSwitchToBestToolIgnoredTools.Contains(x)).OrderBy(x => Enum.GetName(x.Key));
+                Dictionary<EnumTool, bool> ignoredToolsNew = ignoredTools.ToDictionary(x => x.Key, x => x.Value);
 
-            config.AlwaysSwitchToBestToolIgnoredTools = ignoredToolsNew.Where(x => x.Value).Select(x => x.Key).ToArray();
-            ImGui.EndListBox();
+                foreach ((EnumTool key, bool val) in ignoredTools)
+                {
+                    ignoredToolsNew[key] = OnCheckBoxWithoutTranslation(id, val, Enum.GetName(key));
+                }
+
+                config.AlwaysSwitchToBestToolIgnoredTools = ignoredToolsNew.Where(x => x.Value).Select(x => x.Key).ToArray();
+                ImGui.EndListBox();
+                ImGui.Unindent();
+            }
             ImGui.Unindent();
         }
-        ImGui.Unindent();
     }
 
     private bool OnCheckBox(string id, bool value, string name)
