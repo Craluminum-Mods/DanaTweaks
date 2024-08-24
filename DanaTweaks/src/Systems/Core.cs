@@ -1,12 +1,12 @@
 using DanaTweaks.Configuration;
-using HarmonyLib;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using System.Text.RegularExpressions;
 using Vintagestory.API.Client;
-using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Common;
+using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
@@ -146,11 +146,21 @@ public class Core : ModSystem
                 bool enabled = !block.Code.ToString().Contains("heavy") && !block.Code.ToString().Contains("ruined");
                 ConfigServer.AutoCloseDelays.Add(block.Code.ToString(), enabled ? ConfigServer.AutoCloseDefaultDelay : -1);
             }
-            if (block.HasBehavior<BlockBehaviorDecor>() && !block.Code.ToString().Contains("caveart") && !block.Code.ToString().Contains("hotspring") && !ConfigServer.DropDecorBlocks.ContainsKey(block.Code.ToString()))
+            if (block.HasBehavior<BlockBehaviorDecor>())
             {
-                any = true;
-                bool enabled = block.Code.ToString().Contains("wallpaper") ? true : (block.decorBehaviorFlags & 16) != 0;
-                ConfigServer.DropDecorBlocks.Add(block.Code.ToString(), enabled);
+                string code = block.Code.Domain == "game" ? block.Code.ToShortString() : block.Code.ToString();
+
+                foreach (string pattern in new List<string> { "-ns", "-we", "-north", "-east", "-south", "-west", "-down", "-up" })
+                {
+                    code = Regex.Replace(code, pattern + "$", "-*");
+                }
+
+                if (!code.Contains("caveart") && !code.Contains("hotspring") && !ConfigServer.DropDecorBlocks.ContainsKey(code))
+                {
+                    any = true;
+                    bool enabled = code.Contains("wallpaper") ? true : (block.decorBehaviorFlags & 16) != 0;
+                    ConfigServer.DropDecorBlocks.Add(code, enabled);
+                }
             }
         }
 
@@ -197,7 +207,7 @@ public class Core : ModSystem
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorCrateInteractionHelp(block));
             }
-            if (ConfigServer.DropDecor && block.HasBehavior<BlockBehaviorDecor>() && ConfigServer.DropDecorBlocks.GetValueSafe(block.Code.ToString()))
+            if (ConfigServer.DropDecor && block.HasBehavior<BlockBehaviorDecor>() && block.WildCardMatch(ConfigServer.DropDecorBlocks.Where(x => x.Value).Select(x => x.Key).ToArray()))
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGuaranteedDecorDrop(block));
             }
