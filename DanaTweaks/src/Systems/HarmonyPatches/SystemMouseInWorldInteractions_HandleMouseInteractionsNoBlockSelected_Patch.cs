@@ -2,11 +2,20 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Client;
 using Vintagestory.Client.NoObf;
 using Vintagestory.Common;
+using System.Reflection;
+using HarmonyLib;
 
 namespace DanaTweaks;
 
-public static class MiddleClickEntityPatch
+public static class SystemMouseInWorldInteractions_HandleMouseInteractionsNoBlockSelected_Patch
 {
+    public static MethodBase TargetMethod()
+    {
+        return typeof(SystemMouseInWorldInteractions).GetMethod("HandleMouseInteractionsNoBlockSelected", AccessTools.all);
+    }
+
+    public static MethodInfo GetPostfix() => typeof(SystemMouseInWorldInteractions_HandleMouseInteractionsNoBlockSelected_Patch).GetMethod(nameof(Postfix));
+
     public static void Postfix(SystemMouseInWorldInteractions __instance)
     {
         ClientMain game = __instance.GetField<ClientMain>("game");
@@ -14,13 +23,10 @@ public static class MiddleClickEntityPatch
         ClientPlayer player = game.GetField<ClientPlayer>("player");
         EntitySelection entitySelection = game.GetProperty<EntitySelection>("EntitySelection");
 
-        if (mouseState.Middle)
+        if (mouseState.Middle && player.WorldData.CurrentGameMode == EnumGameMode.Creative && entitySelection != null)
         {
-            if (player.WorldData.CurrentGameMode == EnumGameMode.Creative && entitySelection != null)
-            {
-                OnEntityPick(entitySelection, game, player);
-                return;
-            }
+            OnEntityPick(entitySelection, game, player);
+            return;
         }
     }
 

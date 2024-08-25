@@ -1,4 +1,6 @@
+using HarmonyLib;
 using System.Collections.Generic;
+using System.Reflection;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.GameContent;
@@ -7,6 +9,13 @@ namespace DanaTweaks;
 
 public static class BlockEntityOven_getOrCreateMesh_Patch
 {
+    public static MethodBase TargetMethod()
+    {
+        return typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all);
+    }
+
+    public static MethodInfo GetPrefix() => typeof(BlockEntityOven_getOrCreateMesh_Patch).GetMethod(nameof(Prefix));
+
     public static bool Prefix(BlockEntityOven __instance, ref MeshData __result, ItemStack stack, int index)
     {
         ICoreClientAPI capi = __instance.GetField<ICoreClientAPI>("capi");

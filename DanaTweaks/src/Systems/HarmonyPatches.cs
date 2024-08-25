@@ -1,7 +1,5 @@
 using HarmonyLib;
 using Vintagestory.API.Common;
-using Vintagestory.Client.NoObf;
-using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
@@ -15,38 +13,38 @@ public class HarmonyPatches : ModSystem
         this.api = api;
         if (Core.ConfigServer.SealCrockExtraInteractions)
         {
-            HarmonyInstance.Patch(original: typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.GetMergableQuantity)), prefix: typeof(CollectibleObject_GetMergableQuantity_Patch).GetMethod(nameof(CollectibleObject_GetMergableQuantity_Patch.Prefix)));
-            HarmonyInstance.Patch(original: typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.TryMergeStacks)), prefix: typeof(CollectibleObject_TryMergeStacks_Patch).GetMethod(nameof(CollectibleObject_TryMergeStacks_Patch.Prefix)));
-            HarmonyInstance.Patch(original: typeof(BlockCookedContainerBase).GetMethod(nameof(BlockCookedContainerBase.OnContainedInteractStart)), postfix: typeof(BlockCookedContainerBase_OnContainedInteractStart_Patch).GetMethod(nameof(BlockCookedContainerBase_OnContainedInteractStart_Patch.Postfix)));
+            HarmonyInstance.Patch(original: CollectibleObject_GetMergableQuantity_Patch.TargetMethod(), prefix: CollectibleObject_GetMergableQuantity_Patch.GetPrefix());
+            HarmonyInstance.Patch(original: CollectibleObject_TryMergeStacks_Patch.TargetMethod(), prefix: CollectibleObject_TryMergeStacks_Patch.GetPrefix());
+            HarmonyInstance.Patch(original: BlockCookedContainerBase_OnContainedInteractStart_Patch.TargetMethod(), postfix: BlockCookedContainerBase_OnContainedInteractStart_Patch.GetPostfix());
         }
         if (Core.ConfigServer.FirepitHeatsOven)
         {
-            HarmonyInstance.Patch(original: typeof(BlockEntityFirepit).GetMethod("OnBurnTick", AccessTools.all), postfix: typeof(BlockEntityFirepit_OnBurnTick_Patch).GetMethod(nameof(BlockEntityFirepit_OnBurnTick_Patch.Postfix)));
-        }
-        if (api.Side.IsClient() && Core.ConfigClient.AlwaysSwitchToBestTool)
-        {
-            HarmonyInstance.Patch(original: typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.OnHeldUseStart)), prefix: typeof(CollectibleObject_OnHeldUseStart_Patch).GetMethod(nameof(CollectibleObject_OnHeldUseStart_Patch.Prefix)));
+            HarmonyInstance.Patch(original: BlockEntityFirepit_OnBurnTick_Patch.TargetMethod(), postfix: BlockEntityFirepit_OnBurnTick_Patch.GetPostfix());
         }
         if (Core.ConfigServer.CreativeMiddleClickEntity)
         {
-            HarmonyInstance.Patch(original: typeof(SystemMouseInWorldInteractions).GetMethod("HandleMouseInteractionsNoBlockSelected", AccessTools.all), postfix: typeof(MiddleClickEntityPatch).GetMethod(nameof(MiddleClickEntityPatch.Postfix)));
+            HarmonyInstance.Patch(original: SystemMouseInWorldInteractions_HandleMouseInteractionsNoBlockSelected_Patch.TargetMethod(), postfix: SystemMouseInWorldInteractions_HandleMouseInteractionsNoBlockSelected_Patch.GetPostfix());
         }
         if (Core.ConfigServer.CoolMoldsWithWateringCan)
         {
-            HarmonyInstance.Patch(original: typeof(BlockWateringCan).GetMethod(nameof(BlockWateringCan.OnHeldInteractStep)), postfix: typeof(BlockWateringCan_OnHeldInteractStep_Patch).GetMethod(nameof(BlockWateringCan_OnHeldInteractStep_Patch.Postfix)));
+            HarmonyInstance.Patch(original: BlockWateringCan_OnHeldInteractStep_Patch.TargetMethod(), postfix: BlockWateringCan_OnHeldInteractStep_Patch.GetPostfix());
         }
         if (Core.ConfigServer.PreventTorchTimerReset)
         {
-            HarmonyInstance.Patch(original: typeof(BlockTorch).GetMethod(nameof(BlockTorch.GetDrops)), postfix: typeof(BlockTorch_GetDrops_Patch).GetMethod(nameof(BlockTorch_GetDrops_Patch.Postfix)));
-            HarmonyInstance.Patch(original: typeof(BlockTorch).GetMethod(nameof(BlockTorch.OnBlockPlaced)), postfix: typeof(BlockTorch_OnBlockPlaced_Patch).GetMethod(nameof(BlockTorch_OnBlockPlaced_Patch.Postfix)));
+            HarmonyInstance.Patch(original: BlockTorch_GetDrops_Patch.TargetMethod(), postfix: BlockTorch_GetDrops_Patch.GetPostfix());
+            HarmonyInstance.Patch(original: BlockTorch_OnBlockPlaced_Patch.TargetMethod(), postfix: BlockTorch_OnBlockPlaced_Patch.GetPostfix());
         }
         if (Core.ConfigServer.FixOvenFuelRendering)
         {
-            HarmonyInstance.Patch(original: typeof(BlockEntityOven).GetMethod("getOrCreateMesh", AccessTools.all), prefix: typeof(BlockEntityOven_getOrCreateMesh_Patch).GetMethod(nameof(BlockEntityOven_getOrCreateMesh_Patch.Prefix)));
+            HarmonyInstance.Patch(original: BlockEntityOven_getOrCreateMesh_Patch.TargetMethod(), prefix: BlockEntityOven_getOrCreateMesh_Patch.GetPrefix());
         }
         if (Core.ConfigServer.RegrowResin)
         {
             HarmonyInstance.Patch(original: BlockEntitySapling_CheckGrow_Patch.TargetMethod(), transpiler: BlockEntitySapling_CheckGrow_Patch.GetTranspiler());
+        }
+        if (api.Side.IsClient() && Core.ConfigClient.AlwaysSwitchToBestTool)
+        {
+            HarmonyInstance.Patch(original: CollectibleObject_OnHeldUseStart_Patch.TargetMethod(), prefix: CollectibleObject_OnHeldUseStart_Patch.GetPrefix());
         }
         if (api.Side.IsClient() && Core.ConfigClient.ZoomMapWithKey)
         {

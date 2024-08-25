@@ -1,3 +1,4 @@
+using System.Reflection;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -7,14 +8,16 @@ namespace DanaTweaks;
 
 public static class CollectibleObject_TryMergeStacks_Patch
 {
+    public static MethodBase TargetMethod()
+    {
+        return typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.TryMergeStacks));
+    }
+
+    public static MethodInfo GetPrefix() => typeof(CollectibleObject_TryMergeStacks_Patch).GetMethod(nameof(Prefix));
+
     public static bool Prefix(CollectibleObject __instance, ItemStackMergeOperation op)
     {
-        if (__instance is not BlockCrock)
-        {
-            return true;
-        }
-
-        if (op.CurrentPriority == EnumMergePriority.DirectMerge)
+        if (__instance is BlockCrock && op.CurrentPriority == EnumMergePriority.DirectMerge)
         {
             if (!op.SinkSlot.Itemstack.IsCrockEmpty()
                 && !op.SinkSlot.Itemstack.Attributes.GetAsBool("sealed")

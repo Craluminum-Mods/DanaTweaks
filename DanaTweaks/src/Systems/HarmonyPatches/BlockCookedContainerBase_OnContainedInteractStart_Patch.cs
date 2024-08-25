@@ -1,3 +1,4 @@
+using System.Reflection;
 using Vintagestory.API.Common;
 using Vintagestory.GameContent;
 
@@ -5,13 +6,15 @@ namespace DanaTweaks;
 
 public static class BlockCookedContainerBase_OnContainedInteractStart_Patch
 {
+    public static MethodBase TargetMethod()
+    {
+        return typeof(BlockCookedContainerBase).GetMethod(nameof(BlockCookedContainerBase.OnContainedInteractStart));
+    }
+
+    public static MethodInfo GetPostfix() => typeof(BlockCookedContainerBase_OnContainedInteractStart_Patch).GetMethod(nameof(Postfix));
+
     public static void Postfix(ref bool __result, ItemSlot slot, IPlayer byPlayer)
     {
-        // if (__result == true)
-        // {
-        //     return;
-        // }
-
         ItemSlot targetSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
         if (slot.Itemstack.Collectible is BlockCrock
