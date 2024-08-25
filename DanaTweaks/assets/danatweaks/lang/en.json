@@ -22,6 +22,9 @@
     "Config.Setting.OpenConnectedTrapdoors": "Open all connected trapdoors",
     "Config.Setting.OpenConnectedTrapdoorsMaxBlocksDistance": "Max blocks distance",
 
+    "Config.Setting.AutoPlantDroppedTreeSeeds": "Auto plant dropped tree seeds",
+    "Config.Setting.AutoPlantDroppedTreeSeedsDelay": "Delay (after being dropped)",
+
     "Config.Setting.CreativeMiddleClickEntity": "Enable 'Creative Middle Click Entity'",
     "Config.Setting.EverySoilUnstable": "Enable 'Every Soil Unstable'",
     "Config.Setting.GroundStorageParticles": "Enable 'Ground Storage Particles' for pots and crucibles",

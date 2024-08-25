@@ -12,6 +12,9 @@ public class ConfigServer : IModConfig
     public bool AutoClose { get; set; } = true;
     public Dictionary<string, int> AutoCloseDelays { get; set; } = new();
 
+    public bool AutoPlantDroppedTreeSeeds { get; set; } = true;
+    public int AutoPlantDroppedTreeSeedsDelay { get; set; } = 5000;
+
     public Command Command { get; set; } = new();
     public Dictionary<string, CreatureOpenDoors> CreaturesOpenDoors { get; set; } = new() { ["drifter-*"] = new CreatureOpenDoors() { Enabled = true, Cooldown = 5, Range = 1 } };
     public Dictionary<string, OvenFuel> OvenFuelItems { get; set; } = new() { ["plank-*"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/plankpile" } };
@@ -80,6 +83,9 @@ public class ConfigServer : IModConfig
 
         AutoClose = previousConfig.AutoClose;
         AutoCloseDelays.AddRange(previousConfig.AutoCloseDelays);
+
+        AutoPlantDroppedTreeSeeds = previousConfig.AutoPlantDroppedTreeSeeds;
+        AutoPlantDroppedTreeSeedsDelay = previousConfig.AutoPlantDroppedTreeSeedsDelay;
 
         Command = previousConfig.Command;
         RainCollector = previousConfig.RainCollector;

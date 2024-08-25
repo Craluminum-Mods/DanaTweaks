@@ -26,4 +26,10 @@ public static class Constants
     public const string ResinCode = "resin";
     public const string PitkilnCode = "pitkiln";
     #endregion Codes
+    
+    public class ModdedSounds
+    {
+        public const string PlaceDirt = "sounds/block/dirt1";
+
+    }
 }

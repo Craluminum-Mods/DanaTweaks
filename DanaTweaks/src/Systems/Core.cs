@@ -69,6 +69,7 @@ public class Core : ModSystem
         api.RegisterCollectibleBehaviorClass("DanaTweaks:RemoveBookSignature", typeof(CollectibleBehaviorRemoveBookSignature));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:SealCrockWithToolMode", typeof(CollectibleBehaviorSealCrockWithToolMode));
 
+        api.RegisterEntityBehaviorClass("danatweaks:autoPlantDroppedTreeSeeds", typeof(EntityBehaviorAutoPlantDroppedTreeSeeds));
         api.RegisterEntityBehaviorClass("danatweaks:dropallhotslots", typeof(EntityBehaviorDropHotSlots));
         api.RegisterEntityBehaviorClass("danatweaks:extinctSubmergedTorchInEverySlot", typeof(EntityBehaviorExtinctSubmergedTorchInEverySlot));
         api.RegisterEntityBehaviorClass("danatweaks:hungrywakeup", typeof(EntityBehaviorHungryWakeUp));
@@ -98,6 +99,13 @@ public class Core : ModSystem
             if (ConfigServer.ExtinctSubmergedTorchInEverySlot)
             {
                 entity.AddBehavior(new EntityBehaviorExtinctSubmergedTorchInEverySlot(entity));
+            }
+        }
+        if (entity is EntityItem)
+        {
+            if (ConfigServer.AutoPlantDroppedTreeSeeds)
+            {
+                entity.AddBehavior(new EntityBehaviorAutoPlantDroppedTreeSeeds(entity));
             }
         }
         CreatureOpenDoors creatureOpenDoors = ConfigServer.CreaturesOpenDoors.FirstOrDefault(keyVal => entity.WildCardMatch(keyVal.Key) && keyVal.Value.Enabled).Value;

@@ -83,6 +83,13 @@ public class ConfigLibCompatibility
             config.ShelvablePie = OnCheckBox(id, config.ShelvablePie, nameof(config.ShelvablePie));
             ImGui.Unindent();
             ImGui.Indent();
+            if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.AutoPlantDroppedTreeSeeds)) + $"##settingAutoPlantDroppedTreeSeeds-{id}"))
+            {
+                ImGui.Indent();
+                config.AutoPlantDroppedTreeSeeds = OnCheckBoxWithoutTranslation($"##boolean-AutoPlantDroppedTreeSeeds-{id}", config.AutoPlantDroppedTreeSeeds, Lang.Get(textEnabled));
+                config.AutoPlantDroppedTreeSeedsDelay = OnInputInt(id, config.AutoPlantDroppedTreeSeedsDelay, nameof(config.AutoPlantDroppedTreeSeedsDelay), minValue: 1);
+                ImGui.Unindent();
+            }
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.Command)) + $"##settingCommand-{id}"))
             {
                 ImGui.Indent();
