@@ -52,7 +52,7 @@ public class ConfigServer : IModConfig
     public bool PlanksInPitKiln { get; set; } = true;
     public bool PlayerDropsHotSlots { get; set; }
     public bool PlayerWakesUpWhenHungry { get; set; }
-    public bool PreventTorchTimerReset { get; set; } = true;
+    public bool PreventTorchTimerReset { get; set; }
     public bool RackableFirestarter { get; set; } = true;
     public bool RecycleBags { get; set; } = false;
     public bool RecycleClothes { get; set; } = false;
