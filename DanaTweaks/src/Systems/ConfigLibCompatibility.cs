@@ -70,6 +70,7 @@ public class ConfigLibCompatibility
             config.FourPlanksFromLog = OnCheckBox(id, config.FourPlanksFromLog, nameof(config.FourPlanksFromLog));
             config.FragileBones = OnCheckBox(id, config.FragileBones, nameof(config.FragileBones));
             config.HalloweenEveryDay = OnCheckBox(id, config.HalloweenEveryDay, nameof(config.HalloweenEveryDay));
+            config.LiquidInteractionGroundStorage = OnCheckBox(id, config.LiquidInteractionGroundStorage, nameof(config.LiquidInteractionGroundStorage));
             config.PickUpBones = OnCheckBox(id, config.PickUpBones, nameof(config.PickUpBones));
             config.PlanksInPitKiln = OnCheckBox(id, config.PlanksInPitKiln, nameof(config.PlanksInPitKiln));
             config.PlayerDropsHotSlots = OnCheckBox(id, config.PlayerDropsHotSlots, nameof(config.PlayerDropsHotSlots));

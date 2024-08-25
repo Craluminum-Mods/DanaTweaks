@@ -44,6 +44,7 @@
     "Config.Setting.FourPlanksFromLog": "Craft logs into four planks",
     "Config.Setting.FragileBones": "Fragile Bones",
     "Config.Setting.HalloweenEveryDay": "Allow to carve pumpkins any time of year",
+    "Config.Setting.LiquidInteractionGroundStorage": "Allow liquid interaction with liquid containers in ground storage",
     "Config.Setting.PickUpBones": "Pick Up Bones",
     "Config.Setting.PlanksInPitKiln": "Allow to use planks in pit kiln",
     "Config.Setting.PlayerDropsHotSlots": "Player drops all hot slots",
