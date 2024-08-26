@@ -1,7 +1,4 @@
 [
-    { "op": "add", "path": "/0/enabled", "value": false, "file": "danatweaks:recipes/grid/recyclebags/linensack.json", "condition": { "when": "DanaTweaks.RecycleBags", "isValue": "false" }, "side": "Server" },
-    { "op": "add", "path": "/1/enabled", "value": false, "file": "danatweaks:recipes/grid/recyclebags/linensack.json", "condition": { "when": "DanaTweaks.RecycleBags", "isValue": "false" }, "side": "Server" },
-
-    { "op": "add", "path": "/0/enabled", "value": false, "file": "danatweaks:recipes/grid/recyclebags/backpack.json", "condition": { "when": "DanaTweaks.RecycleBags", "isValue": "false" }, "side": "Server" },
-    { "op": "add", "path": "/1/enabled", "value": false, "file": "danatweaks:recipes/grid/recyclebags/backpack.json", "condition": { "when": "DanaTweaks.RecycleBags", "isValue": "false" }, "side": "Server" }
+    { "op": "add", "path": "/0/enabled", "value": false, "file": "danatweaks:recipes/grid/recyclebags/*", "condition": { "when": "DanaTweaks.RecycleBags", "isValue": "false" }, "side": "Server" },
+    { "op": "add", "path": "/1/enabled", "value": false, "file": "danatweaks:recipes/grid/recyclebags/*", "condition": { "when": "DanaTweaks.RecycleBags", "isValue": "false" }, "side": "Server" }
 ]
