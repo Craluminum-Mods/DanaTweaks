@@ -13,6 +13,10 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch
 
     public static MethodInfo GetPrefix() => typeof(BlockGroundStorage_OnBlockInteractStart_Patch).GetMethod(nameof(Prefix));
 
+    /// <summary>
+    /// Handle ground storage liquid interactions
+    /// </summary>
+    /// <returns>Return false to skip original method</returns>
     public static bool Prefix(ref bool __result, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
     {
         if (blockSel == null || world.BlockAccessor.GetBlockEntity(blockSel.Position) is not BlockEntityGroundStorage begs)
@@ -30,14 +34,27 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch
         ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
         ItemSlot targetSlot = begs.GetSlotAt(blockSel);
 
-        if (targetSlot.Empty
-            || targetSlot.Itemstack.Collectible is not ILiquidInterface
-            || hotbarSlot.Empty
-            || hotbarSlot.Itemstack.Collectible is not ILiquidInterface)
+        if (targetSlot?.Itemstack?.Collectible is ILiquidInterface cnt1
+            && hotbarSlot?.Itemstack?.Collectible is ILiquidInterface cnt2
+            && !BothContainersFullOrEmpty(cnt1, targetSlot.Itemstack, cnt2, hotbarSlot.Itemstack))
         {
-            return true;
+            return HandleGroundStorageLiquidInteraction(out __result, byPlayer, begs, hotbarSlot, targetSlot);
         }
 
+        return true;
+    }
+
+    private static bool BothContainersFullOrEmpty(ILiquidInterface cnt1, ItemStack cnt1stack, ILiquidInterface cnt2, ItemStack cnt2stack)
+    {
+        return (cnt1.IsFull(cnt1stack) && cnt2.IsFull(cnt2stack)) || (cnt1.GetCurrentLitres(cnt1stack) == 0 && cnt2.GetCurrentLitres(cnt2stack) == 0);
+    }
+
+    /// <summary>
+    /// Handle ground storage liquid interactions
+    /// </summary>
+    /// <returns>Return false to skip original method</returns>
+    private static bool HandleGroundStorageLiquidInteraction(out bool __result, IPlayer byPlayer, BlockEntityGroundStorage begs, ItemSlot hotbarSlot, ItemSlot targetSlot)
+    {
         BlockLiquidContainerBase _toLiquidContainer = hotbarSlot.Itemstack.Collectible as BlockLiquidContainerBase;
 
         CollectibleObject obj = hotbarSlot.Itemstack.Collectible;
