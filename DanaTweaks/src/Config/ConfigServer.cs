@@ -66,6 +66,7 @@ public class ConfigServer : IModConfig
     public bool SealCrockExtraInteractions { get; set; } = true;
     public bool ShelvablePie { get; set; } = true;
     public bool SlabToolModes { get; set; } = true;
+    public bool WaxCheeseOnGround { get; set; } = true;
 
     public ConfigServer(ICoreAPI api, ConfigServer previousConfig = null)
     {
@@ -139,5 +140,6 @@ public class ConfigServer : IModConfig
         SealCrockExtraInteractions = previousConfig.SealCrockExtraInteractions;
         ShelvablePie = previousConfig.ShelvablePie;
         SlabToolModes = previousConfig.SlabToolModes;
+        WaxCheeseOnGround = previousConfig.WaxCheeseOnGround;
     }
 }

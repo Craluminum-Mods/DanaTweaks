@@ -1,0 +1,10 @@
+[
+     {
+      "op": "addmerge",
+      "path": "/attributes/waxCheeseOnGround",
+      "value": true,
+      "file": "game:itemtypes/resource/beeswax.json",
+      "condition": { "when": "DanaTweaks.WaxCheeseOnGround", "isValue": "true" },
+      "side": "Server"
+     }
+]

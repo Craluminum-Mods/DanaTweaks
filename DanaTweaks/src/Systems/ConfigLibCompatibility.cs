@@ -82,6 +82,7 @@ public class ConfigLibCompatibility
             config.RegrowResin = OnCheckBox(id, config.RegrowResin, nameof(config.RegrowResin));
             config.RemoveBookSignature = OnCheckBox(id, config.RemoveBookSignature, nameof(config.RemoveBookSignature));
             config.ShelvablePie = OnCheckBox(id, config.ShelvablePie, nameof(config.ShelvablePie));
+            config.WaxCheeseOnGround = OnCheckBox(id, config.WaxCheeseOnGround, nameof(config.WaxCheeseOnGround));
             ImGui.Unindent();
             ImGui.Indent();
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.AutoPlantDroppedTreeSeeds)) + $"##settingAutoPlantDroppedTreeSeeds-{id}"))

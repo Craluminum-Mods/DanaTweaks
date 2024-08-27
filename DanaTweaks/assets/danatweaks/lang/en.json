@@ -6,6 +6,7 @@
     "Command.Error.NoLabel": "No parchment in hand or on crate",
     "RemoveBookSignature": "Remove book signature (you must be the author of this book)",
     "crock-seal": "Drop fat or beeswax here to seal it",
+    "waxcheese": "Wax the cheese",
 
     "danatweaks-server": "Dana Tweaks (Server)",
     "danatweaks-client": "Dana Tweaks (Client)",
@@ -57,6 +58,7 @@
     "Config.Setting.RemoveBookSignature": "Allow to remove book signature",
     "Config.Setting.RichTraders": "Rich Traders",
     "Config.Setting.ShelvablePie": "Allow to store pies on shelves",
+    "Config.Setting.WaxCheeseOnGround": "Wax cheese placed on the ground",
 
     "Config.Setting.Model": "Model",
 

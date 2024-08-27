@@ -32,6 +32,7 @@ public class Core : ModSystem
             api.World.Config.SetBool("DanaTweaks.CreativeTapestries", ConfigServer.CreativeTapestries);
             api.World.Config.SetBool("DanaTweaks.RecycleBags", ConfigServer.RecycleBags);
             api.World.Config.SetBool("DanaTweaks.RecycleClothes", ConfigServer.RecycleClothes);
+            api.World.Config.SetBool("DanaTweaks.WaxCheeseOnGround", ConfigServer.WaxCheeseOnGround);
         }
         if (api.Side.IsClient())
         {
@@ -61,6 +62,7 @@ public class Core : ModSystem
         api.RegisterBlockBehaviorClass("DanaTweaks:FarmlandDropsSoil", typeof(BlockBehaviorFarmlandDropsSoil));
         api.RegisterBlockBehaviorClass("DanaTweaks:AutoClose", typeof(BlockBehaviorAutoClose));
         api.RegisterBlockBehaviorClass("DanaTweaks:OpenConnectedTrapdoors", typeof(BlockBehaviorOpenConnectedTrapdoors));
+        api.RegisterBlockBehaviorClass("DanaTweaks:WaxCheeseOnGroundInteractions", typeof(BlockBehaviorWaxCheeseOnGroundInteractions));
 
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:RainCollector", typeof(BEBehaviorRainCollector));
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:ExtinctSubmergedTorchInEverySlot", typeof(BEBehaviorExtinctSubmergedTorchInEverySlot));
@@ -68,6 +70,7 @@ public class Core : ModSystem
         api.RegisterCollectibleBehaviorClass("DanaTweaks:BranchCutter", typeof(CollectibleBehaviorBranchCutter));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:RemoveBookSignature", typeof(CollectibleBehaviorRemoveBookSignature));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:SealCrockWithToolMode", typeof(CollectibleBehaviorSealCrockWithToolMode));
+        api.RegisterCollectibleBehaviorClass("DanaTweaks:WaxCheeseOnGround", typeof(CollectibleBehaviorWaxCheeseOnGround));
 
         api.RegisterEntityBehaviorClass("danatweaks:autoPlantDroppedTreeSeeds", typeof(EntityBehaviorAutoPlantDroppedTreeSeeds));
         api.RegisterEntityBehaviorClass("danatweaks:dropallhotslots", typeof(EntityBehaviorDropHotSlots));
@@ -307,6 +310,11 @@ public class Core : ModSystem
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorOpenConnectedTrapdoors(block));
             }
+            if (ConfigServer.WaxCheeseOnGround && block is BlockCheese)
+            {
+                block.CollectibleBehaviors = block.CollectibleBehaviors.Append(new BlockBehaviorWaxCheeseOnGroundInteractions(block));
+                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorWaxCheeseOnGroundInteractions(block));
+            }
         }
 
         foreach (Item item in api.World.Items)
@@ -351,6 +359,10 @@ public class Core : ModSystem
                 {
                     item.Attributes.Token["ovenFuelShape"] = JToken.FromObject(model);
                 }
+            }
+            if (ConfigServer.WaxCheeseOnGround && item?.Attributes?["waxCheeseOnGround"]?.AsBool() == true)
+            {
+                item.CollectibleBehaviors = item.CollectibleBehaviors.Append(new CollectibleBehaviorWaxCheeseOnGround(item));
             }
         }
 
