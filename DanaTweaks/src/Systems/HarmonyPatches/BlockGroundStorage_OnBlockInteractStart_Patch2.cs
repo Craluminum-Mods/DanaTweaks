@@ -47,29 +47,14 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
             return false;
         }
 
-        GridRecipe matchingRecipe = GetMatchingRecipe(firstSlot, secondSlot);
-        if (matchingRecipe == null)
-        {
-            return true;
-        }
-
-        GridRecipeIngredient firstIngredientStack = matchingRecipe.resolvedIngredients[0];
-        GridRecipeIngredient secondIngredientStack = matchingRecipe.resolvedIngredients[1];
-
-        if ((!firstIngredientStack.SatisfiesAsIngredient(firstSlot.Itemstack) || matchingRecipe.resolvedIngredients[1].SatisfiesAsIngredient(secondSlot.Itemstack))
-            && (!matchingRecipe.resolvedIngredients[1].SatisfiesAsIngredient(firstSlot.Itemstack) || !firstIngredientStack.SatisfiesAsIngredient(secondSlot.Itemstack)))
-        {
-            return true;
-        }
-
-        if (IsSealedOrEmptyCrock(firstSlot, secondSlot))
+        if (!GetMatchingRecipe(firstSlot, secondSlot, out var matchingRecipe) || !AnySatisfies(firstSlot, secondSlot, matchingRecipe) || IsSealedOrEmptyCrock(firstSlot, secondSlot))
         {
             return true;
         }
 
         DummySlot dummySlot = new DummySlot();
         matchingRecipe.GenerateOutputStack(new ItemSlot[] { firstSlot, secondSlot }, dummySlot);
-        if (!matchingRecipe.ConsumeInput(byPlayer, new ItemSlot[] { firstSlot, secondSlot }, 2))
+        if (!TryConsumeInput(byPlayer, firstSlot, secondSlot, matchingRecipe))
         {
             return true;
         }
@@ -93,6 +78,21 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
         return false;
     }
 
+    private static bool AnySatisfies(ItemSlot firstSlot, ItemSlot secondSlot, GridRecipe recipe)
+    {
+        GridRecipeIngredient firstIngredient = recipe.resolvedIngredients[0];
+        GridRecipeIngredient secondIngredient = recipe.resolvedIngredients[1];
+        return (firstIngredient.SatisfiesAsIngredient(firstSlot.Itemstack) && secondIngredient.SatisfiesAsIngredient(secondSlot.Itemstack))
+                    || (secondIngredient.SatisfiesAsIngredient(firstSlot.Itemstack) && firstIngredient.SatisfiesAsIngredient(secondSlot.Itemstack));
+    }
+
+    private static bool TryConsumeInput(IPlayer byPlayer, ItemSlot firstSlot, ItemSlot secondSlot, GridRecipe recipe) =>
+            recipe.ConsumeInput(byPlayer, new ItemSlot[] { firstSlot, secondSlot }, 1)
+            || recipe.ConsumeInput(byPlayer, new ItemSlot[] { firstSlot, secondSlot }, 2)
+            || recipe.ConsumeInput(byPlayer, new ItemSlot[] { secondSlot, firstSlot }, 1)
+            || recipe.ConsumeInput(byPlayer, new ItemSlot[] { secondSlot, firstSlot }, 2)
+        ;
+
     private static bool IsSealedOrEmptyCrock(ItemSlot firstSlot, ItemSlot secondSlot) => (firstSlot.Itemstack.Collectible) switch
     {
         BlockCrock crock when secondSlot.Itemstack.Collectible is not BlockCrock => crock.IsEmpty(firstSlot.Itemstack) || firstSlot.Itemstack.Attributes.TryGetBool("sealed") == true,
@@ -100,7 +100,7 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
         _ => false,
     };
 
-    private static GridRecipe GetMatchingRecipe(ItemSlot firstSlot, ItemSlot secondSlot)
+    private static bool GetMatchingRecipe(ItemSlot firstSlot, ItemSlot secondSlot, out GridRecipe matchingRecipe)
     {
         List<GridRecipe> recipes = Recipes.GroundStorableRecipes;
         for (int i = 0; i < recipes.Count; i++)
@@ -118,9 +118,12 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
 
             if ((firstMatchingFirst && secondMatchingSecond) || (firstMatchingSecond && secondMatchingFirst))
             {
-                return _recipe.Clone();
+                matchingRecipe = _recipe.Clone();
+                return true;
             }
         }
-        return null;
+
+        matchingRecipe = null;
+        return false;
     }
 }
