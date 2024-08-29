@@ -53,8 +53,16 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
             return true;
         }
 
-        if ((!matchingRecipe.resolvedIngredients[0].SatisfiesAsIngredient(firstSlot.Itemstack) || !matchingRecipe.resolvedIngredients[1].SatisfiesAsIngredient(secondSlot.Itemstack))
-            && (!matchingRecipe.resolvedIngredients[1].SatisfiesAsIngredient(firstSlot.Itemstack) || !matchingRecipe.resolvedIngredients[0].SatisfiesAsIngredient(secondSlot.Itemstack)))
+        GridRecipeIngredient firstIngredientStack = matchingRecipe.resolvedIngredients[0];
+        GridRecipeIngredient secondIngredientStack = matchingRecipe.resolvedIngredients[1];
+
+        if ((!firstIngredientStack.SatisfiesAsIngredient(firstSlot.Itemstack) || matchingRecipe.resolvedIngredients[1].SatisfiesAsIngredient(secondSlot.Itemstack))
+            && (!matchingRecipe.resolvedIngredients[1].SatisfiesAsIngredient(firstSlot.Itemstack) || !firstIngredientStack.SatisfiesAsIngredient(secondSlot.Itemstack)))
+        {
+            return true;
+        }
+
+        if (IsSealedOrEmptyCrock(firstSlot, secondSlot))
         {
             return true;
         }
@@ -84,6 +92,13 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
         __result = true;
         return false;
     }
+
+    private static bool IsSealedOrEmptyCrock(ItemSlot firstSlot, ItemSlot secondSlot) => (firstSlot.Itemstack.Collectible) switch
+    {
+        BlockCrock crock when secondSlot.Itemstack.Collectible is not BlockCrock => crock.IsEmpty(firstSlot.Itemstack) || firstSlot.Itemstack.Attributes.TryGetBool("sealed") == true,
+        not BlockCrock when secondSlot.Itemstack.Collectible is BlockCrock crock => crock.IsEmpty(secondSlot.Itemstack) || secondSlot.Itemstack.Attributes.TryGetBool("sealed") == true,
+        _ => false,
+    };
 
     private static GridRecipe GetMatchingRecipe(ItemSlot firstSlot, ItemSlot secondSlot)
     {

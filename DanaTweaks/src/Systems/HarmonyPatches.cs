@@ -15,7 +15,6 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: CollectibleObject_GetMergableQuantity_Patch.TargetMethod(), prefix: CollectibleObject_GetMergableQuantity_Patch.GetPrefix());
             HarmonyInstance.Patch(original: CollectibleObject_TryMergeStacks_Patch.TargetMethod(), prefix: CollectibleObject_TryMergeStacks_Patch.GetPrefix());
-            HarmonyInstance.Patch(original: BlockCookedContainerBase_OnContainedInteractStart_Patch.TargetMethod(), postfix: BlockCookedContainerBase_OnContainedInteractStart_Patch.GetPostfix());
         }
         if (api.Side.IsServer() && Core.ConfigServer.FirepitHeatsOven)
         {
