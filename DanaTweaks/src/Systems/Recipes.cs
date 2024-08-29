@@ -13,7 +13,7 @@ public class Recipes : ModSystem
  
     public override bool ShouldLoad(EnumAppSide forSide) => forSide == EnumAppSide.Server;
 
-    public override double ExecuteOrder() => 1.01;
+    public override double ExecuteOrder() => 1.1;
 
     public override void AssetsLoaded(ICoreAPI api)
     {
