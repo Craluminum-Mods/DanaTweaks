@@ -47,7 +47,10 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
             return false;
         }
 
-        if (!GetMatchingRecipe(firstSlot, secondSlot, out var matchingRecipe) || !AnySatisfies(firstSlot, secondSlot, matchingRecipe) || IsSealedOrEmptyCrock(firstSlot, secondSlot))
+        if (!GetMatchingRecipe(firstSlot, secondSlot, out GridRecipe matchingRecipe)
+            || !AnySatisfies(firstSlot, secondSlot, matchingRecipe)
+            || HasSealedOrEmptyCrock(firstSlot, secondSlot)
+            || HasFullBackpack(firstSlot, secondSlot))
         {
             return true;
         }
@@ -61,9 +64,17 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
                 return true;
             }
 
-            if (!byPlayer.InventoryManager.TryGiveItemstack(dummySlot.Itemstack))
+            switch (dummySlot.Itemstack.StackSize)
             {
-                world.SpawnItemEntity(dummySlot.Itemstack, begs.Pos.ToVec3d().AddCopy(0.5f, 0.5f, 0.5f));
+                case 1 when secondSlot.Empty && dummySlot.Itemstack.Collectible.HasBehavior<CollectibleBehaviorGroundStorable>():
+                    dummySlot.TryPutInto(world, secondSlot);
+                    break;
+                default:
+                    if (!byPlayer.InventoryManager.TryGiveItemstack(dummySlot.Itemstack))
+                    {
+                        world.SpawnItemEntity(dummySlot.Itemstack, begs.Pos.ToVec3d().AddCopy(0.5f, 0.5f, 0.5f));
+                    }
+                    break;
             }
 
             firstSlot.MarkDirty();
@@ -105,12 +116,19 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
             || recipe.ConsumeInput(byPlayer, slotsReversed, 2);
     }
 
-    private static bool IsSealedOrEmptyCrock(ItemSlot firstSlot, ItemSlot secondSlot) => (firstSlot.Itemstack.Collectible) switch
+    private static bool HasSealedOrEmptyCrock(ItemSlot firstSlot, ItemSlot secondSlot) => (firstSlot.Itemstack.Collectible) switch
     {
         BlockCrock crock when secondSlot.Itemstack.Collectible is not BlockCrock => crock.IsEmpty(firstSlot.Itemstack) || firstSlot.Itemstack.Attributes.TryGetBool("sealed") == true,
         not BlockCrock when secondSlot.Itemstack.Collectible is BlockCrock crock => crock.IsEmpty(secondSlot.Itemstack) || secondSlot.Itemstack.Attributes.TryGetBool("sealed") == true,
         _ => false,
     };
+
+    private static bool HasFullBackpack(ItemSlot firstSlot, ItemSlot secondSlot)
+    {
+        bool isBackpackAndFull1 = CollectibleObject.IsBackPack(firstSlot.Itemstack) && !CollectibleObject.IsEmptyBackPack(firstSlot.Itemstack);
+        bool isBackpackAndFull2 = CollectibleObject.IsBackPack(secondSlot.Itemstack) && !CollectibleObject.IsEmptyBackPack(secondSlot.Itemstack);
+        return isBackpackAndFull1 || isBackpackAndFull2;
+    }
 
     private static bool GetMatchingRecipe(ItemSlot firstSlot, ItemSlot secondSlot, out GridRecipe matchingRecipe)
     {
