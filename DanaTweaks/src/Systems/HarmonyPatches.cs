@@ -46,6 +46,7 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: BlockGroundStorage_OnBlockInteractStart_Patch.TargetMethod(), prefix: BlockGroundStorage_OnBlockInteractStart_Patch.GetPrefix());
             HarmonyInstance.Patch(original: BlockLiquidContainerBase_OnHeldInteractStart_Patch.TargetMethod(), prefix: BlockLiquidContainerBase_OnHeldInteractStart_Patch.GetPrefix());
+            HarmonyInstance.Patch(original: BlockGroundStorage_GetPlacedBlockInteractionHelp_Patch.TargetMethod(), postfix: BlockGroundStorage_GetPlacedBlockInteractionHelp_Patch.GetPostifx());
         }
         if (api.Side.IsClient() && Core.ConfigClient.AlwaysSwitchToBestTool)
         {
