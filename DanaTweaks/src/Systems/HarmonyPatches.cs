@@ -42,7 +42,7 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: BlockEntitySapling_CheckGrow_Patch.TargetMethod(), transpiler: BlockEntitySapling_CheckGrow_Patch.GetTranspiler());
         }
-        if (api.Side.IsServer() && Core.ConfigServer.LiquidInteractionGroundStorage)
+        if (api.Side.IsServer() && Core.ConfigServer.GroundStorageLiquidInteraction)
         {
             HarmonyInstance.Patch(original: BlockGroundStorage_OnBlockInteractStart_Patch.TargetMethod(), prefix: BlockGroundStorage_OnBlockInteractStart_Patch.GetPrefix());
             HarmonyInstance.Patch(original: BlockLiquidContainerBase_OnHeldInteractStart_Patch.TargetMethod(), prefix: BlockLiquidContainerBase_OnHeldInteractStart_Patch.GetPrefix());

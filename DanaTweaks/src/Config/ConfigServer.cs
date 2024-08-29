@@ -50,9 +50,9 @@ public class ConfigServer : IModConfig
     public bool FourPlanksFromLog { get; set; }
     public bool FragileBones { get; set; }
     public bool GroundStorageImmersiveCrafting { get; set; } = true;
+    public bool GroundStorageLiquidInteraction { get; set; } = true;
     public bool GroundStorageParticles { get; set; } = true;
     public bool HalloweenEveryDay { get; set; } = true;
-    public bool LiquidInteractionGroundStorage { get; set; } = true;
     public bool PickUpBones { get; set; }
     public bool PlanksInPitKiln { get; set; } = true;
     public bool PlayerDropsHotSlots { get; set; }
@@ -125,9 +125,9 @@ public class ConfigServer : IModConfig
         FourPlanksFromLog = previousConfig.FourPlanksFromLog;
         FragileBones = previousConfig.FragileBones;
         GroundStorageImmersiveCrafting = previousConfig.GroundStorageImmersiveCrafting;
+        GroundStorageLiquidInteraction = previousConfig.GroundStorageLiquidInteraction;
         GroundStorageParticles = previousConfig.GroundStorageParticles;
         HalloweenEveryDay = previousConfig.HalloweenEveryDay;
-        LiquidInteractionGroundStorage = previousConfig.LiquidInteractionGroundStorage;
         PickUpBones = previousConfig.PickUpBones;
         PlanksInPitKiln = previousConfig.PlanksInPitKiln;
         PlayerDropsHotSlots = previousConfig.PlayerDropsHotSlots;

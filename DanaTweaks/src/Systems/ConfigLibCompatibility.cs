@@ -56,7 +56,6 @@ public class ConfigLibCompatibility
             config.CreativeTapestries = OnCheckBox(id, config.CreativeTapestries, nameof(config.CreativeTapestries));
             config.EverySoilUnstable = OnCheckBox(id, config.EverySoilUnstable, nameof(config.EverySoilUnstable));
             config.ExtraClayforming = OnCheckBox(id, config.ExtraClayforming, nameof(config.ExtraClayforming));
-            config.GroundStorageParticles = OnCheckBox(id, config.GroundStorageParticles, nameof(config.GroundStorageParticles));
             config.ScrapRecipes = OnCheckBox(id, config.ScrapRecipes, nameof(config.ScrapRecipes));
             config.SealCrockExtraInteractions = OnCheckBox(id, config.SealCrockExtraInteractions, nameof(config.SealCrockExtraInteractions));
             config.SlabToolModes = OnCheckBox(id, config.SlabToolModes, nameof(config.SlabToolModes));
@@ -70,8 +69,9 @@ public class ConfigLibCompatibility
             config.FourPlanksFromLog = OnCheckBox(id, config.FourPlanksFromLog, nameof(config.FourPlanksFromLog));
             config.FragileBones = OnCheckBox(id, config.FragileBones, nameof(config.FragileBones));
             config.GroundStorageImmersiveCrafting = OnCheckBox(id, config.GroundStorageImmersiveCrafting, nameof(config.GroundStorageImmersiveCrafting));
+            config.GroundStorageLiquidInteraction = OnCheckBox(id, config.GroundStorageLiquidInteraction, nameof(config.GroundStorageLiquidInteraction));
+            config.GroundStorageParticles = OnCheckBox(id, config.GroundStorageParticles, nameof(config.GroundStorageParticles));
             config.HalloweenEveryDay = OnCheckBox(id, config.HalloweenEveryDay, nameof(config.HalloweenEveryDay));
-            config.LiquidInteractionGroundStorage = OnCheckBox(id, config.LiquidInteractionGroundStorage, nameof(config.LiquidInteractionGroundStorage));
             config.PickUpBones = OnCheckBox(id, config.PickUpBones, nameof(config.PickUpBones));
             config.PlanksInPitKiln = OnCheckBox(id, config.PlanksInPitKiln, nameof(config.PlanksInPitKiln));
             config.PlayerDropsHotSlots = OnCheckBox(id, config.PlayerDropsHotSlots, nameof(config.PlayerDropsHotSlots));
