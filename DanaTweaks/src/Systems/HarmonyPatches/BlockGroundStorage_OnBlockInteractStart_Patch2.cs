@@ -86,12 +86,16 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
                     || (secondIngredient.SatisfiesAsIngredient(firstSlot.Itemstack) && firstIngredient.SatisfiesAsIngredient(secondSlot.Itemstack));
     }
 
-    private static bool TryConsumeInput(IPlayer byPlayer, ItemSlot firstSlot, ItemSlot secondSlot, GridRecipe recipe) =>
-            recipe.ConsumeInput(byPlayer, new ItemSlot[] { firstSlot, secondSlot }, 1)
-            || recipe.ConsumeInput(byPlayer, new ItemSlot[] { firstSlot, secondSlot }, 2)
-            || recipe.ConsumeInput(byPlayer, new ItemSlot[] { secondSlot, firstSlot }, 1)
-            || recipe.ConsumeInput(byPlayer, new ItemSlot[] { secondSlot, firstSlot }, 2)
-        ;
+    private static bool TryConsumeInput(IPlayer byPlayer, ItemSlot firstSlot, ItemSlot secondSlot, GridRecipe recipe)
+    {
+        ItemSlot[] slots = { firstSlot, secondSlot };
+        ItemSlot[] slotsReversed = { secondSlot, firstSlot };
+
+        return recipe.ConsumeInput(byPlayer, slots, 1)
+            || recipe.ConsumeInput(byPlayer, slots, 2)
+            || recipe.ConsumeInput(byPlayer, slotsReversed, 1)
+            || recipe.ConsumeInput(byPlayer, slotsReversed, 2);
+    }
 
     private static bool IsSealedOrEmptyCrock(ItemSlot firstSlot, ItemSlot secondSlot) => (firstSlot.Itemstack.Collectible) switch
     {
