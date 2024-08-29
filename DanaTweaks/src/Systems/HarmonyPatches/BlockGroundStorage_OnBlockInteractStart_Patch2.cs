@@ -52,28 +52,36 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
             return true;
         }
 
-        DummySlot dummySlot = new DummySlot();
-        matchingRecipe.GenerateOutputStack(new ItemSlot[] { firstSlot, secondSlot }, dummySlot);
-        if (!TryConsumeInput(byPlayer, firstSlot, secondSlot, matchingRecipe))
+        try
+        {
+            DummySlot dummySlot = new DummySlot();
+            matchingRecipe.GenerateOutputStack(new ItemSlot[] { firstSlot, secondSlot }, dummySlot);
+            if (!TryConsumeInput(byPlayer, firstSlot, secondSlot, matchingRecipe))
+            {
+                return true;
+            }
+
+            if (!byPlayer.InventoryManager.TryGiveItemstack(dummySlot.Itemstack))
+            {
+                world.SpawnItemEntity(dummySlot.Itemstack, begs.Pos.ToVec3d().AddCopy(0.5f, 0.5f, 0.5f));
+            }
+
+            firstSlot.MarkDirty();
+            secondSlot.MarkDirty();
+            begs.MarkDirty(true);
+
+            if (begs.Inventory.Empty)
+            {
+                BlockPos pos = begs.Pos.Copy();
+                world.BlockAccessor.SetBlock(0, pos);
+                world.BlockAccessor.TriggerNeighbourBlockUpdate(pos);
+            }
+        }
+        catch (System.ObjectDisposedException)
         {
             return true;
         }
 
-        if (!byPlayer.InventoryManager.TryGiveItemstack(dummySlot.Itemstack))
-        {
-            world.SpawnItemEntity(dummySlot.Itemstack, begs.Pos.ToVec3d().AddCopy(0.5f, 0.5f, 0.5f));
-        }
-
-        firstSlot.MarkDirty();
-        secondSlot.MarkDirty();
-        begs.MarkDirty(true);
-
-        if (begs.Inventory.Empty)
-        {
-            BlockPos pos = begs.Pos.Copy();
-            world.BlockAccessor.SetBlock(0, pos);
-            world.BlockAccessor.TriggerNeighbourBlockUpdate(pos);
-        }
         __result = true;
         return false;
     }

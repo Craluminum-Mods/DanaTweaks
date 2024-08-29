@@ -52,8 +52,29 @@ public class Recipes : ModSystem
             {
                 continue;
             }
+
             GroundStorableRecipes.Add(_recipe);
+
+            // for debugging
+            //Vintagestory.API.Util.EnumerableExtensions.Foreach(_recipe.resolvedIngredients,x =>
+            //{
+            //    CollectibleObject obj = x?.ResolvedItemstack?.Collectible;
+            //    if (obj == null
+            //        || obj?.CreativeInventoryTabs == null
+            //        || obj?.CreativeInventoryTabs?.Contains("danatweaks:immersivecrafting-2") == true
+            //        || !obj.HasBehavior<Vintagestory.GameContent.CollectibleBehaviorGroundStorable>())
+            //    {
+            //        return;
+            //    }
+
+            //    obj.CreativeInventoryTabs = Vintagestory.API.Util.ArrayExtensions.Append(obj.CreativeInventoryTabs, "danatweaks:immersivecrafting-2");
+            //});
         }
+    }
+
+    public override void Dispose()
+    {
+        GroundStorableRecipes.Clear();
     }
 
     private static GridRecipe CreateTorchholderScrapRecipe(ICoreAPI api)
