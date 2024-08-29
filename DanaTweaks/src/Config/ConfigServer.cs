@@ -49,6 +49,7 @@ public class ConfigServer : IModConfig
     public bool FixOvenFuelRendering { get; set; } = true;
     public bool FourPlanksFromLog { get; set; }
     public bool FragileBones { get; set; }
+    public bool GroundStorageImmersiveCrafting { get; set; } = true;
     public bool GroundStorageParticles { get; set; } = true;
     public bool HalloweenEveryDay { get; set; } = true;
     public bool LiquidInteractionGroundStorage { get; set; } = true;
@@ -123,6 +124,7 @@ public class ConfigServer : IModConfig
         FixOvenFuelRendering = previousConfig.FixOvenFuelRendering;
         FourPlanksFromLog = previousConfig.FourPlanksFromLog;
         FragileBones = previousConfig.FragileBones;
+        GroundStorageImmersiveCrafting = previousConfig.GroundStorageImmersiveCrafting;
         GroundStorageParticles = previousConfig.GroundStorageParticles;
         HalloweenEveryDay = previousConfig.HalloweenEveryDay;
         LiquidInteractionGroundStorage = previousConfig.LiquidInteractionGroundStorage;

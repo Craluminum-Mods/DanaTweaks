@@ -69,6 +69,7 @@ public class ConfigLibCompatibility
             config.FixOvenFuelRendering = OnCheckBox(id, config.FixOvenFuelRendering, nameof(config.FixOvenFuelRendering));
             config.FourPlanksFromLog = OnCheckBox(id, config.FourPlanksFromLog, nameof(config.FourPlanksFromLog));
             config.FragileBones = OnCheckBox(id, config.FragileBones, nameof(config.FragileBones));
+            config.GroundStorageImmersiveCrafting = OnCheckBox(id, config.GroundStorageImmersiveCrafting, nameof(config.GroundStorageImmersiveCrafting));
             config.HalloweenEveryDay = OnCheckBox(id, config.HalloweenEveryDay, nameof(config.HalloweenEveryDay));
             config.LiquidInteractionGroundStorage = OnCheckBox(id, config.LiquidInteractionGroundStorage, nameof(config.LiquidInteractionGroundStorage));
             config.PickUpBones = OnCheckBox(id, config.PickUpBones, nameof(config.PickUpBones));
