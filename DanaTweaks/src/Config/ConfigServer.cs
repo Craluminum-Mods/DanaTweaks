@@ -14,13 +14,15 @@ public class ConfigServer : IModConfig
 
     public bool AutoPlantDroppedTreeSeeds { get; set; } = true;
     public int AutoPlantDroppedTreeSeedsDelay { get; set; } = 5000;
-
     public Command Command { get; set; } = new();
     public Dictionary<string, CreatureOpenDoors> CreaturesOpenDoors { get; set; } = new() { ["drifter-*"] = new CreatureOpenDoors() { Enabled = true, Cooldown = 5, Range = 1 } };
     public Dictionary<string, OvenFuel> OvenFuelItems { get; set; } = new() { ["plank-*"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/plankpile" } };
     public Dictionary<string, OvenFuel> OvenFuelBlocks { get; set; } = new() { ["peatbrick"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/peatpile" } };
     public RainCollector RainCollector { get; set; } = new();
     public ScytheMore ScytheMore { get; set; } = new();
+    
+    public bool ChuteAutoHarvesting { get; set; }
+    public int ChuteAutoHarvestingUpdateMilliseconds { get; set; } = 5000;
 
     public bool CoolMoldsWithWateringCan { get; set; } = true;
     public int CoolMoldsWithWateringCanSpeed { get; set; } = 3;
@@ -59,8 +61,8 @@ public class ConfigServer : IModConfig
     public bool PlayerWakesUpWhenHungry { get; set; }
     public bool PreventTorchTimerReset { get; set; }
     public bool RackableFirestarter { get; set; } = true;
-    public bool RecycleBags { get; set; } = false;
-    public bool RecycleClothes { get; set; } = false;
+    public bool RecycleBags { get; set; }
+    public bool RecycleClothes { get; set; }
     public bool RegrowResin { get; set; } = true;
     public bool RemoveBookSignature { get; set; } = true;
     public bool ScrapRecipes { get; set; } = true;
@@ -99,6 +101,9 @@ public class ConfigServer : IModConfig
 
         CoolMoldsWithWateringCan = previousConfig.CoolMoldsWithWateringCan;
         CoolMoldsWithWateringCanSpeed = previousConfig.CoolMoldsWithWateringCanSpeed;
+        
+        ChuteAutoHarvesting = previousConfig.ChuteAutoHarvesting;
+        ChuteAutoHarvestingUpdateMilliseconds = previousConfig.ChuteAutoHarvestingUpdateMilliseconds;
 
         DropDecor = previousConfig.DropDecor;
         DropDecorBlocks.AddRange(previousConfig.DropDecorBlocks);

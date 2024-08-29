@@ -66,6 +66,7 @@ public class Core : ModSystem
 
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:RainCollector", typeof(BEBehaviorRainCollector));
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:ExtinctSubmergedTorchInEverySlot", typeof(BEBehaviorExtinctSubmergedTorchInEverySlot));
+        api.RegisterBlockEntityBehaviorClass("DanaTweaks:ChuteAutoHarvesting", typeof(BEBehaviorChuteAutoHarvesting));
 
         api.RegisterCollectibleBehaviorClass("DanaTweaks:BranchCutter", typeof(CollectibleBehaviorBranchCutter));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:RemoveBookSignature", typeof(CollectibleBehaviorRemoveBookSignature));
@@ -314,6 +315,14 @@ public class Core : ModSystem
             {
                 block.CollectibleBehaviors = block.CollectibleBehaviors.Append(new BlockBehaviorWaxCheeseOnGroundInteractions(block));
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorWaxCheeseOnGroundInteractions(block));
+            }
+            if (ConfigServer.ChuteAutoHarvesting && block is BlockChute)
+            {
+                block.BlockEntityBehaviors = block.BlockEntityBehaviors.Append(new BlockEntityBehaviorType()
+                {
+                    Name = "DanaTweaks:ChuteAutoHarvesting",
+                    properties = null
+                });
             }
         }
 

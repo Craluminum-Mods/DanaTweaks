@@ -19,6 +19,9 @@
 
     "Config.Setting.CoolMoldsWithWateringCan": "Cool Molds With Watering Can",
     "Config.Setting.CoolMoldsWithWateringCanSpeed": "Speed",
+    
+    "Config.Setting.ChuteAutoHarvesting": "Auto harvesting with chutes",
+    "Config.Setting.ChuteAutoHarvestingUpdateMilliseconds": "Milliseconds Interval",
 
     "Config.Setting.OpenConnectedTrapdoors": "Open all connected trapdoors",
     "Config.Setting.OpenConnectedTrapdoorsMaxBlocksDistance": "Max blocks distance",
