@@ -2,6 +2,7 @@
 using System.Reflection;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
 namespace DanaTweaks;
@@ -49,6 +50,7 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
 
         if (!GetMatchingRecipe(firstSlot, secondSlot, out GridRecipe matchingRecipe)
             || !AnySatisfies(firstSlot, secondSlot, matchingRecipe)
+            || HasSameIngredients(firstSlot, secondSlot, matchingRecipe)
             || HasSealedOrEmptyCrock(firstSlot, secondSlot)
             || HasFullBackpack(firstSlot, secondSlot))
         {
@@ -103,6 +105,14 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
         GridRecipeIngredient secondIngredient = recipe.resolvedIngredients[1];
         return (firstIngredient.SatisfiesAsIngredient(firstSlot.Itemstack) && secondIngredient.SatisfiesAsIngredient(secondSlot.Itemstack))
                     || (secondIngredient.SatisfiesAsIngredient(firstSlot.Itemstack) && firstIngredient.SatisfiesAsIngredient(secondSlot.Itemstack));
+    }
+
+    /// <summary>
+    /// Temporary solution until "ignoreImmersiveCrafting" recipe attribute is added
+    /// </summary>
+    private static bool HasSameIngredients(ItemSlot firstSlot, ItemSlot secondSlot, GridRecipe recipe)
+    {
+        return WildcardUtil.Match(recipe.resolvedIngredients[0].Code, recipe.resolvedIngredients[1].Code);
     }
 
     private static bool TryConsumeInput(IPlayer byPlayer, ItemSlot firstSlot, ItemSlot secondSlot, GridRecipe recipe)
