@@ -28,7 +28,7 @@ public class Core : ModSystem
     {
         if (api.Side.IsServer())
         {
-            ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, Constants.ConfigServerName);
+            ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, ConfigServerName);
             api.World.Config.SetBool("DanaTweaks.ExtraClayforming", ConfigServer.ExtraClayforming);
             api.World.Config.SetBool("DanaTweaks.CreativeTapestries", ConfigServer.CreativeTapestries);
             api.World.Config.SetBool("DanaTweaks.RecycleBags", ConfigServer.RecycleBags);
@@ -37,7 +37,7 @@ public class Core : ModSystem
         }
         if (api.Side.IsClient())
         {
-            ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, Constants.ConfigClientName);
+            ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, ConfigClientName);
         }
 
         if (api.ModLoader.IsModEnabled("configlib"))
@@ -188,8 +188,8 @@ public class Core : ModSystem
 
         if (any)
         {
-            ModConfig.WriteConfig(api, Constants.ConfigServerName, ConfigServer);
-            ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, Constants.ConfigServerName);
+            ModConfig.WriteConfig(api, ConfigServerName, ConfigServer);
+            ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, ConfigServerName);
         }
 
         List<string> scytheMorePrefixes = new List<string>();
@@ -249,7 +249,7 @@ public class Core : ModSystem
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorBranchCutter(block));
             }
-            if (ConfigServer.DropResinAnyway && block.GetBehavior<BlockBehaviorHarvestable>()?.harvestedStack.Code == new AssetLocation(Constants.ResinCode))
+            if (ConfigServer.DropResinAnyway && block.GetBehavior<BlockBehaviorHarvestable>()?.harvestedStack.Code == new AssetLocation(ResinCode))
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorDropResinAnyway(block));
             }
@@ -388,7 +388,7 @@ public class Core : ModSystem
 
         if (ConfigServer.PlanksInPitKiln)
         {
-            Block blockPitKiln = api.World.GetBlock(new AssetLocation(Constants.PitkilnCode));
+            Block blockPitKiln = api.World.GetBlock(new AssetLocation(PitkilnCode));
             blockPitKiln.PatchBuildMats(api);
             blockPitKiln.PatchModelConfigs();
         }

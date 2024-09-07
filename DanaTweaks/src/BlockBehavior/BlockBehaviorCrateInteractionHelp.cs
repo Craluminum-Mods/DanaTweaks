@@ -13,19 +13,19 @@ public class BlockBehaviorCrateInteractionHelp : BlockBehavior
 
     public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer, ref EnumHandling handling)
     {
-        ItemStack LabelStack = new(world.GetItem(new AssetLocation(Constants.ParchmentCode)));
+        ItemStack LabelStack = new(world.GetItem(new AssetLocation(ParchmentCode)));
 
         ICoreClientAPI capi = world.Api as ICoreClientAPI;
 
         WorldInteraction[] interactions = new WorldInteraction[2];
         interactions[0] = new()
         {
-            ActionLangCode = capi.GetHotkeyCodes(Constants.OpenCloseLidHotkey) + " " + Constants.OpenCloseLidName,
+            ActionLangCode = capi.GetHotkeyCodes(OpenCloseLidHotkey) + " " + OpenCloseLidName,
             MouseButton = EnumMouseButton.None
         };
         interactions[1] = new()
         {
-            ActionLangCode = capi.GetHotkeyCodes(Constants.RemoveOrAddLabelHotkey) + " " + Constants.RemoveOrAddLabelName,
+            ActionLangCode = capi.GetHotkeyCodes(RemoveOrAddLabelHotkey) + " " + RemoveOrAddLabelName,
             MouseButton = EnumMouseButton.None,
             Itemstacks = new ItemStack[] { LabelStack }
         };

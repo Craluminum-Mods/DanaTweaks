@@ -31,8 +31,8 @@ public class ConfigLibCompatibility
 
     private void EditConfigServer(string id, ControlButtons buttons, ICoreAPI api)
     {
-        if (buttons.Save) ModConfig.WriteConfig(api, Constants.ConfigServerName, Core.ConfigServer);
-        if (buttons.Restore) Core.ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, Constants.ConfigServerName);
+        if (buttons.Save) ModConfig.WriteConfig(api, ConfigServerName, Core.ConfigServer);
+        if (buttons.Restore) Core.ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, ConfigServerName);
         if (buttons.Defaults) Core.ConfigServer = new(api);
 
         BuildSettingsServer(Core.ConfigServer, id);
@@ -40,8 +40,8 @@ public class ConfigLibCompatibility
 
     private void EditConfigClient(string id, ControlButtons buttons, ICoreAPI api)
     {
-        if (buttons.Save) ModConfig.WriteConfig(api, Constants.ConfigClientName, Core.ConfigClient);
-        if (buttons.Restore) Core.ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, Constants.ConfigClientName);
+        if (buttons.Save) ModConfig.WriteConfig(api, ConfigClientName, Core.ConfigClient);
+        if (buttons.Restore) Core.ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, ConfigClientName);
         if (buttons.Defaults) Core.ConfigClient = new(api);
 
         BuildSettingsClient(Core.ConfigClient, id);

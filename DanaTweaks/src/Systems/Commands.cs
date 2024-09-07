@@ -14,7 +14,7 @@ public class Commands : ModSystem
 
     public override void StartServerSide(ICoreServerAPI api)
     {
-        LabelStack = new(api.World.GetItem(new AssetLocation(Constants.ParchmentCode)));
+        LabelStack = new(api.World.GetItem(new AssetLocation(ParchmentCode)));
 
         IChatCommand command = api.ChatCommands.GetOrCreate("danatweaks").RequiresPlayer().RequiresPrivilege("useblock");
 
@@ -22,7 +22,7 @@ public class Commands : ModSystem
         {
             command.BeginSub("removeoraddlabel")
                 .WithAlias("ral")
-                .WithDesc(Constants.RemoveOrAddLabelName)
+                .WithDesc(RemoveOrAddLabelName)
                 .HandleWith(RemoveOrAddLabel)
             .EndSub();
         }
@@ -30,7 +30,7 @@ public class Commands : ModSystem
         {
             command.BeginSub("openclose")
                 .WithAlias("oc")
-                .WithDesc(Constants.OpenCloseLidName)
+                .WithDesc(OpenCloseLidName)
                 .HandleWith(OpenCloseLid)
             .EndSub();
         }
@@ -43,7 +43,7 @@ public class Commands : ModSystem
 
         if (pos == null || player.Entity.World.BlockAccessor.GetBlockEntityExt<BlockEntityCrate>(pos) is not BlockEntityCrate becrate)
         {
-            return TextCommandResult.Error(Constants.NoCrate);
+            return TextCommandResult.Error(NoCrate);
         }
 
         if (!player.Entity.Api.World.Claims.TryAccess(player, pos, EnumBlockAccessFlags.Use))
@@ -69,7 +69,7 @@ public class Commands : ModSystem
 
         if (pos == null)
         {
-            return TextCommandResult.Error(Constants.NoCrate);
+            return TextCommandResult.Error(NoCrate);
         }
 
         ItemSlot activeSlot = player.InventoryManager.ActiveHotbarSlot;
@@ -78,7 +78,7 @@ public class Commands : ModSystem
 
         if (becrate == null)
         {
-            return TextCommandResult.Error(Constants.NoCrate);
+            return TextCommandResult.Error(NoCrate);
         }
 
         if (!player.Entity.Api.World.Claims.TryAccess(player, pos, EnumBlockAccessFlags.Use))
@@ -88,11 +88,11 @@ public class Commands : ModSystem
 
         return becrate.label switch
         {
-            Constants.DefaultLabel => RemoveLabel(player, becrate),
-            not null and not "" => TextCommandResult.Error(Constants.HasDiffLabel),
+            DefaultLabel => RemoveLabel(player, becrate),
+            not null and not "" => TextCommandResult.Error(HasDiffLabel),
             _ => activeSlot.IsCorrectLabel(LabelStack)
                                 ? AddLabel(player, becrate)
-                                : TextCommandResult.Error(Constants.NoLabel),
+                                : TextCommandResult.Error(NoLabel),
         };
     }
 
@@ -113,7 +113,7 @@ public class Commands : ModSystem
         player.Entity.ActiveHandItemSlot.TakeOut(1);
         player.Entity.ActiveHandItemSlot.MarkDirty();
 
-        bect.label = Constants.DefaultLabel;
+        bect.label = DefaultLabel;
         bect.MarkDirty(redrawOnClient: true);
         return TextCommandResult.Deferred;
     }
