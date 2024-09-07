@@ -5,12 +5,15 @@ namespace DanaTweaks;
 
 public class HarmonyPatches : ModSystem
 {
-    private ICoreAPI api;
     private Harmony HarmonyInstance => new Harmony(Mod.Info.ModID);
 
     public override void Start(ICoreAPI api)
     {
-        this.api = api;
+        if (api.Side.IsServer() && Core.ConfigServer.SlabToolModes)
+        {
+            HarmonyInstance.CreateReversePatcher(original: BlockBehaviorOmniRotatable_TryPlaceBlock_Patch.TargetMethod(), standin: BlockBehaviorOmniRotatable_TryPlaceBlock_Patch.GetOriginal()).Patch(HarmonyReversePatchType.Original);
+            HarmonyInstance.Patch(original: BlockBehaviorOmniRotatable_TryPlaceBlock_Patch.TargetMethod(), prefix: BlockBehaviorOmniRotatable_TryPlaceBlock_Patch.GetPrefix());
+        }
         if (api.Side.IsServer() && Core.ConfigServer.SealCrockExtraInteractions)
         {
             HarmonyInstance.Patch(original: CollectibleObject_GetMergableQuantity_Patch.TargetMethod(), prefix: CollectibleObject_GetMergableQuantity_Patch.GetPrefix());

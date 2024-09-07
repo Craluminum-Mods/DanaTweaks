@@ -1,3 +1,4 @@
+global using static DanaTweaks.Constants;
 using DanaTweaks.Configuration;
 using Newtonsoft.Json.Linq;
 using System;

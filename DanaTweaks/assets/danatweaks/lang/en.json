@@ -8,6 +8,8 @@
     "crock-seal": "Drop fat or beeswax here to seal it",
     "waxcheese": "Wax the cheese",
 
+    "game:placefailure-danatweaks-omnirotatable": "Can't place. Try other mode, e.g. 'Auto'",
+
     "danatweaks-server": "Dana Tweaks (Server)",
     "danatweaks-client": "Dana Tweaks (Client)",
 
