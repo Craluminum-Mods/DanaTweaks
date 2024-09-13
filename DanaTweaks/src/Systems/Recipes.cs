@@ -11,8 +11,6 @@ public class Recipes : ModSystem
 
     public static List<GridRecipe> GroundStorableRecipes { get; protected set; } = new();
  
-    public override bool ShouldLoad(EnumAppSide forSide) => forSide == EnumAppSide.Server;
-
     public override double ExecuteOrder() => 1.1;
 
     public override void AssetsLoaded(ICoreAPI api)

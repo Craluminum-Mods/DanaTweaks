@@ -42,12 +42,6 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
             return true;
         }
 
-        if (world.Side.IsClient())
-        {
-            __result = true;
-            return false;
-        }
-
         if (!GetMatchingRecipe(firstSlot, secondSlot, out GridRecipe matchingRecipe)
             || !AnySatisfies(firstSlot, secondSlot, matchingRecipe)
             || HasSameIngredients(firstSlot, secondSlot, matchingRecipe)
