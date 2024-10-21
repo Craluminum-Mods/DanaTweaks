@@ -3,6 +3,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.Client.NoObf;
+using Vintagestory.Common;
 using Vintagestory.GameContent;
 
 namespace DanaTweaks;
@@ -23,77 +24,29 @@ public class AutoPanning : ModSystem
 
     private void OnGameTick(float dt, ICoreClientAPI capi)
     {
-        if (!Enabled)
-        {
-            return;
-        }
+        if (!Enabled) return;
 
+        ClientMain clientMain = capi.World as ClientMain;
+        EntityPlayer entityPlayer = capi.World.Player.Entity;
         ItemSlot activeSlot = capi.World.Player.InventoryManager.ActiveHotbarSlot;
+        BlockPos playerPos = entityPlayer.Pos.AsBlockPos;
 
-        if (activeSlot.Itemstack?.Collectible is not BlockPan blockPan || TryPan(capi, activeSlot))
-        {
-            return;
-        }
+        if (activeSlot.Itemstack?.Collectible is not BlockPan blockPan) return;
 
-        PanNearestPannableBlock(capi, blockPan);
-    }
-
-    private void PanNearestPannableBlock(ICoreClientAPI capi, BlockPan blockPan)
-    {
-        BlockPos playerPos = capi.World.Player.Entity.Pos.AsBlockPos;
-        double nearestDist = double.MaxValue;
-        BlockPos nearestBlockPos = null;
+        if (TryPan(capi, activeSlot)) return;
 
         capi.World.BlockAccessor.WalkBlocks(playerPos.AddCopy(-SearchRange, -SearchRange, -SearchRange), playerPos.AddCopy(SearchRange, SearchRange, SearchRange), (block, x, y, z) =>
         {
             BlockPos blockPos = new BlockPos(x, y, z, playerPos.dimension);
-            if (blockPan.IsPannableMaterial(block) && IsInRangeOfBlock(capi, blockPos, ref nearestDist))
+            if (blockPan.IsPannableMaterial(block))
             {
-                nearestBlockPos = blockPos;
+                BlockSelection blockSel = new BlockSelection(blockPos, BlockFacing.DOWN, block);
+                clientMain.SendHandInteraction(2, blockSel, null, EnumHandInteract.HeldItemInteract, EnumHandInteractNw.StartHeldItemUse, true);
             }
         });
-
-        if (nearestBlockPos != null)
-        {
-            Execute(capi, nearestBlockPos);
-        }
     }
 
-    public bool IsInRangeOfBlock(ICoreClientAPI capi, BlockPos pos, ref double nearestDist)
-    {
-        Block block = capi.World.BlockAccessor.GetBlock(pos);
-        Cuboidf[] boxes = block.GetSelectionBoxes(capi.World.BlockAccessor, pos);
-
-        if (boxes == null) return false;
-
-        Vec3d playerEye = capi.World.Player.Entity.Pos.XYZ.Add(capi.World.Player.Entity.LocalEyePos);
-        double pickingRange = capi.World.Player.WorldData.PickingRange + 0.5;
-
-        foreach (Cuboidf box in boxes)
-        {
-            double dist = box.ToDouble().Translate(pos.X, pos.Y, pos.Z).ShortestDistanceFrom(playerEye);
-
-            if (dist <= pickingRange && dist < nearestDist)
-            {
-                nearestDist = dist;
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private void Execute(ICoreClientAPI capi, BlockPos blockPos)
-    {
-        Block block = capi.World.BlockAccessor.GetBlock(blockPos);
-        BlockSelection blockSel = new BlockSelection(blockPos, BlockFacing.DOWN, block);
-        (capi.World as ClientMain)?.SendHandInteraction(
-            2, blockSel, null, EnumHandInteract.HeldItemInteract,
-            Vintagestory.Common.EnumHandInteractNw.StartHeldItemUse, true
-        );
-    }
-
-    private static bool TryPan(ICoreClientAPI capi, ItemSlot slot)
+    private bool TryPan(ICoreClientAPI capi, ItemSlot slot)
     {
         if (slot.Itemstack.Attributes.GetAsString("materialBlockCode") != null)
         {
@@ -116,6 +69,7 @@ public class AutoPanning : ModSystem
         else
         {
             capi.Event.UnregisterGameTickListener(autoPanningTickTime);
+            capi.Input.InWorldMouseButton.Right = false;
         }
 
         return true;
