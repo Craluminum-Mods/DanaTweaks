@@ -28,6 +28,7 @@ public class ConfigClient : IModConfig
     public bool ShakeSlotsWithBags { get; set; } = true;
     public bool ShakeSlotsWithSuitableClothes { get; set; } = true;
     public bool ZoomMapWithKey { get; set; } = true;
+    public bool ResinOnAllSides { get; set; } = true;
 
     public ConfigClient(ICoreAPI api, ConfigClient previousConfig = null)
     {
@@ -57,6 +58,7 @@ public class ConfigClient : IModConfig
         ShakeSlotsWithBags = previousConfig.ShakeSlotsWithBags;
         ShakeSlotsWithSuitableClothes = previousConfig.ShakeSlotsWithSuitableClothes;
         ZoomMapWithKey = previousConfig.ZoomMapWithKey;
+        ResinOnAllSides = previousConfig.ResinOnAllSides;
     }
 
     private static EnumTool[] DefaultIgnoredTools() => new[]

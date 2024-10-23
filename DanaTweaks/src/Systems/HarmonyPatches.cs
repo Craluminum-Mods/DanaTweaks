@@ -78,6 +78,10 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: WaypointMapLayer_WaypointColors_Patch.TargetMethod(), postfix: WaypointMapLayer_WaypointColors_Patch.GetPostfix());
         }
+        if (api.Side.IsClient())
+        {
+            HarmonyInstance.Patch(original: Block_OnJsonTesselation_Patch.TargetMethod(), prefix: Block_OnJsonTesselation_Patch.GetPrefix());
+        }
         HarmonyInstance.Patch(original: Block_GetSelectionBoxes_Patch.TargetMethod(), prefix: Block_GetSelectionBoxes_Patch.GetPrefix());
     }
 

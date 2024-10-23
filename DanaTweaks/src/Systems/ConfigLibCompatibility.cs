@@ -199,6 +199,7 @@ public class ConfigLibCompatibility
         {
             ImGui.Indent();
             config.GlowingProjectiles = OnCheckBox(id, config.GlowingProjectiles, nameof(config.GlowingProjectiles));
+            config.ResinOnAllSides = OnCheckBox(id, config.ResinOnAllSides, nameof(config.ResinOnAllSides));
             config.ShakeSlotsInsideBags = OnCheckBox(id, config.ShakeSlotsInsideBags, nameof(config.ShakeSlotsInsideBags));
             config.ShakeSlotsWithBags = OnCheckBox(id, config.ShakeSlotsWithBags, nameof(config.ShakeSlotsWithBags));
             config.ShakeSlotsWithSuitableClothes = OnCheckBox(id, config.ShakeSlotsWithSuitableClothes, nameof(config.ShakeSlotsWithSuitableClothes));

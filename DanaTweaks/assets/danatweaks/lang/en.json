@@ -95,6 +95,7 @@
     "Config.Setting.var": "var",
 
     "Config.Setting.GlowingProjectiles": "Enable 'Glowing Projectiles'",
+    "Config.Setting.ResinOnAllSides": "Show resin on all sides of log with resin",
 
     "Config.Setting.ShakeSlotsInsideBags": "Shake inventory slots for selected bag",
     "Config.Setting.ShakeSlotsWithBags": "Shake slots with bags for selected inventory slot",
