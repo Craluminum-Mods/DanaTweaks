@@ -6,7 +6,6 @@ using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
-using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
 namespace DanaTweaks;
@@ -47,11 +46,6 @@ public static class Extensions
     public static bool IsCorrectLabel(this ItemSlot activeSlot, ItemStack DefaultLabelStack)
     {
         return activeSlot?.Itemstack?.Collectible?.Code == DefaultLabelStack.Collectible.Code;
-    }
-
-    public static string GetHotkeyCodes(this ICoreClientAPI capi, string hotkeyCode)
-    {
-        return "(" + capi.Input.HotKeys.Get(hotkeyCode).CurrentMapping + ")";
     }
 
     public static bool IsPlank(this CraftingRecipeIngredient ingredient)

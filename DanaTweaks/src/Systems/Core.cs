@@ -207,6 +207,7 @@ public class Core : ModSystem
             }
             if (block is BlockCrate)
             {
+                block.CollectibleBehaviors = block.CollectibleBehaviors.Append(new BlockBehaviorCrateInteractionHelp(block));
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorCrateInteractionHelp(block));
             }
             if (ConfigServer.DropDecor && block.HasBehavior<BlockBehaviorDecor>() && block.WildCardMatch(ConfigServer.DropDecorBlocks.Where(x => x.Value).Select(x => x.Key).ToArray()))

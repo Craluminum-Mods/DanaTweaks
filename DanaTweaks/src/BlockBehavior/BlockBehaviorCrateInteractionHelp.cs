@@ -1,7 +1,7 @@
+using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Util;
-using System.Linq;
 
 namespace DanaTweaks;
 
@@ -20,12 +20,14 @@ public class BlockBehaviorCrateInteractionHelp : BlockBehavior
         WorldInteraction[] interactions = new WorldInteraction[2];
         interactions[0] = new()
         {
-            ActionLangCode = capi.GetHotkeyCodes(OpenCloseLidHotkey) + " " + OpenCloseLidName,
+            HotKeyCode = OpenCloseLidHotkey,
+            ActionLangCode = OpenCloseLidName,
             MouseButton = EnumMouseButton.None
         };
         interactions[1] = new()
         {
-            ActionLangCode = capi.GetHotkeyCodes(RemoveOrAddLabelHotkey) + " " + RemoveOrAddLabelName,
+            HotKeyCode = RemoveOrAddLabelHotkey,
+            ActionLangCode = RemoveOrAddLabelName,
             MouseButton = EnumMouseButton.None,
             Itemstacks = new ItemStack[] { LabelStack }
         };

@@ -62,7 +62,7 @@ public class Commands : ModSystem
         return TextCommandResult.Deferred;
     }
 
-    public TextCommandResult RemoveOrAddLabel(TextCommandCallingArgs args)
+    private TextCommandResult RemoveOrAddLabel(TextCommandCallingArgs args)
     {
         IServerPlayer player = args.Caller.Player as IServerPlayer;
         BlockPos pos = player?.CurrentBlockSelection?.Position;
@@ -96,7 +96,7 @@ public class Commands : ModSystem
         };
     }
 
-    public TextCommandResult RemoveLabel(IServerPlayer player, BlockEntityCrate bect)
+    private TextCommandResult RemoveLabel(IServerPlayer player, BlockEntityCrate bect)
     {
         if (!player.InventoryManager.TryGiveItemstack(LabelStack.Clone(), true))
         {
@@ -108,7 +108,7 @@ public class Commands : ModSystem
         return TextCommandResult.Deferred;
     }
 
-    public static TextCommandResult AddLabel(IServerPlayer player, BlockEntityCrate bect)
+    private TextCommandResult AddLabel(IServerPlayer player, BlockEntityCrate bect)
     {
         player.Entity.ActiveHandItemSlot.TakeOut(1);
         player.Entity.ActiveHandItemSlot.MarkDirty();

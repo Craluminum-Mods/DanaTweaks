@@ -9,10 +9,10 @@ public class Hotkeys : ModSystem
 
     public override void StartClientSide(ICoreClientAPI api)
     {
-        api.Input.RegisterHotKey(OpenCloseLidHotkey, OpenCloseLidName, GlKeys.X, HotkeyType.GUIOrOtherControls, ctrlPressed: true);
+        api.Input.RegisterHotKey(OpenCloseLidHotkey, OpenCloseLidName, GlKeys.O, HotkeyType.GUIOrOtherControls, ctrlPressed: true);
         api.Input.SetHotKeyHandler(OpenCloseLidHotkey, _ => OpenCloseLid(api));
 
-        api.Input.RegisterHotKey(RemoveOrAddLabelHotkey, RemoveOrAddLabelName, GlKeys.X, HotkeyType.GUIOrOtherControls, shiftPressed: true);
+        api.Input.RegisterHotKey(RemoveOrAddLabelHotkey, RemoveOrAddLabelName, GlKeys.L, HotkeyType.GUIOrOtherControls, ctrlPressed: true);
         api.Input.SetHotKeyHandler(RemoveOrAddLabelHotkey, _ => RemoveOrAddLabel(api));
     }
 
