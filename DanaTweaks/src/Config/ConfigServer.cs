@@ -24,9 +24,6 @@ public class ConfigServer : IModConfig
     public bool ChuteAutoHarvesting { get; set; }
     public int ChuteAutoHarvestingUpdateMilliseconds { get; set; } = 5000;
 
-    public bool CoolMoldsWithWateringCan { get; set; } = true;
-    public int CoolMoldsWithWateringCanSpeed { get; set; } = 3;
-
     public bool DropDecor { get; set; } = true;
     public Dictionary<string, bool> DropDecorBlocks { get; set; } = new();
 
@@ -99,9 +96,6 @@ public class ConfigServer : IModConfig
         OvenFuelItems.AddRange(previousConfig.OvenFuelItems);
         OvenFuelBlocks.AddRange(previousConfig.OvenFuelBlocks);
 
-        CoolMoldsWithWateringCan = previousConfig.CoolMoldsWithWateringCan;
-        CoolMoldsWithWateringCanSpeed = previousConfig.CoolMoldsWithWateringCanSpeed;
-        
         ChuteAutoHarvesting = previousConfig.ChuteAutoHarvesting;
         ChuteAutoHarvestingUpdateMilliseconds = previousConfig.ChuteAutoHarvestingUpdateMilliseconds;
 

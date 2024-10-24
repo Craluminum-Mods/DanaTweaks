@@ -110,13 +110,6 @@ public class ConfigLibCompatibility
                 config.RainCollector.LiquidCode = OnInputText(id, config.RainCollector.LiquidCode, nameof(config.RainCollector.LiquidCode));
                 ImGui.Unindent();
             }
-            if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.CoolMoldsWithWateringCan)) + $"##settingCoolMolds-{id}"))
-            {
-                ImGui.Indent();
-                config.CoolMoldsWithWateringCan = OnCheckBoxWithoutTranslation($"##boolean-CoolMoldsWithWateringCan-{id}", config.CoolMoldsWithWateringCan, Lang.Get(textEnabled));
-                config.CoolMoldsWithWateringCanSpeed = OnInputInt(id, config.CoolMoldsWithWateringCanSpeed, nameof(config.CoolMoldsWithWateringCanSpeed), 1);
-                ImGui.Unindent();
-            }
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.ChuteAutoHarvesting)) + $"##settingChuteAutoHarvesting-{id}"))
             {
                 ImGui.Indent();
