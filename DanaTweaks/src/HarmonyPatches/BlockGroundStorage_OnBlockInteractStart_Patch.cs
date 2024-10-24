@@ -46,7 +46,7 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch
 
     private static bool BothContainersFullOrEmpty(ILiquidInterface cnt1, ItemStack cnt1stack, ILiquidInterface cnt2, ItemStack cnt2stack)
     {
-        return (cnt1.IsFull(cnt1stack) && cnt2.IsFull(cnt2stack)) || (cnt1.GetCurrentLitres(cnt1stack) == 0 && cnt2.GetCurrentLitres(cnt2stack) == 0);
+        return cnt1.IsFull(cnt1stack) && cnt2.IsFull(cnt2stack) || cnt1.GetCurrentLitres(cnt1stack) == 0 && cnt2.GetCurrentLitres(cnt2stack) == 0;
     }
 
     /// <summary>
@@ -105,7 +105,7 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch
                 return false;
             }
             ItemStack liquidStackForParticles = owncontentStack.Clone();
-            float litres = (singleTake ? liquidSink.TransferSizeLitres : liquidSink.CapacityLitres);
+            float litres = singleTake ? liquidSink.TransferSizeLitres : liquidSink.CapacityLitres;
             int moved = _toLiquidContainer.CallMethod<int>("splitStackAndPerformAction", byPlayer.Entity, hotbarSlot, (ItemStack stack) => liquidSink.TryPutLiquid(stack, owncontentStack, litres));
             if (moved > 0)
             {

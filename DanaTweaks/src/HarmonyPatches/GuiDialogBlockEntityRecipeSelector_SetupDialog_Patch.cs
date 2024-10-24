@@ -20,7 +20,7 @@ public static class GuiDialogBlockEntityRecipeSelector_SetupDialog_Patch
     {
         List<CodeInstruction> codes = new List<CodeInstruction>(instructions);
 
-        for (int i = 0; i<codes.Count; i++)
+        for (int i = 0; i < codes.Count; i++)
         {
             if (codes[i].opcode == OpCodes.Ldc_I4_7)
             {

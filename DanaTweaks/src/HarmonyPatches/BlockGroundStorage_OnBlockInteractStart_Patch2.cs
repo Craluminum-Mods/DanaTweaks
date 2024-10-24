@@ -97,8 +97,8 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
     {
         GridRecipeIngredient firstIngredient = recipe.resolvedIngredients[0];
         GridRecipeIngredient secondIngredient = recipe.resolvedIngredients[1];
-        return (firstIngredient.SatisfiesAsIngredient(firstSlot.Itemstack) && secondIngredient.SatisfiesAsIngredient(secondSlot.Itemstack))
-                    || (secondIngredient.SatisfiesAsIngredient(firstSlot.Itemstack) && firstIngredient.SatisfiesAsIngredient(secondSlot.Itemstack));
+        return firstIngredient.SatisfiesAsIngredient(firstSlot.Itemstack) && secondIngredient.SatisfiesAsIngredient(secondSlot.Itemstack)
+                    || secondIngredient.SatisfiesAsIngredient(firstSlot.Itemstack) && firstIngredient.SatisfiesAsIngredient(secondSlot.Itemstack);
     }
 
     /// <summary>
@@ -120,7 +120,7 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
             || recipe.ConsumeInput(byPlayer, slotsReversed, 2);
     }
 
-    private static bool HasSealedOrEmptyCrock(ItemSlot firstSlot, ItemSlot secondSlot) => (firstSlot.Itemstack.Collectible) switch
+    private static bool HasSealedOrEmptyCrock(ItemSlot firstSlot, ItemSlot secondSlot) => firstSlot.Itemstack.Collectible switch
     {
         BlockCrock crock when secondSlot.Itemstack.Collectible is not BlockCrock => crock.IsEmpty(firstSlot.Itemstack) || firstSlot.Itemstack.Attributes.TryGetBool("sealed") == true,
         not BlockCrock when secondSlot.Itemstack.Collectible is BlockCrock crock => crock.IsEmpty(secondSlot.Itemstack) || secondSlot.Itemstack.Attributes.TryGetBool("sealed") == true,
@@ -150,7 +150,7 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
             bool firstMatchingSecond = firstSlot.Itemstack.Collectible.WildCardMatch(ingredient2.Code) && firstSlot.Itemstack.Collectible.MatchesForCrafting(firstSlot.Itemstack, _recipe, ingredient2);
             bool secondMatchingFirst = secondSlot.Itemstack.Collectible.WildCardMatch(ingredient1.Code) && secondSlot.Itemstack.Collectible.MatchesForCrafting(secondSlot.Itemstack, _recipe, ingredient1);
 
-            if ((firstMatchingFirst && secondMatchingSecond) || (firstMatchingSecond && secondMatchingFirst))
+            if (firstMatchingFirst && secondMatchingSecond || firstMatchingSecond && secondMatchingFirst)
             {
                 matchingRecipe = _recipe.Clone();
                 return true;

@@ -24,10 +24,10 @@ public static class BlockEntityFirepit_OnBurnTick_Patch
             return;
         }
 
-        oven.ovenTemperature = oven.ChangeTemperature(oven.ovenTemperature, oven.maxTemperature, dt * (float)oven.fuelitemCapacity / (float)oven.fuelitemCapacity);
+        oven.ovenTemperature = oven.ChangeTemperature(oven.ovenTemperature, oven.maxTemperature, dt * oven.fuelitemCapacity / oven.fuelitemCapacity);
 
         int syncCount = oven.GetField<int>("syncCount");
-        if (++syncCount % 5 == 0 && (oven.prevOvenTemperature != oven.ovenTemperature))
+        if (++syncCount % 5 == 0 && oven.prevOvenTemperature != oven.ovenTemperature)
         {
             oven.MarkDirty();
             oven.prevOvenTemperature = oven.ovenTemperature;

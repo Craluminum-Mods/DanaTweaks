@@ -23,7 +23,7 @@ public static class Block_OnJsonTesselation_Patch
             return;
         }
 
-        Shape shape = (__instance.Variant["type"]) switch
+        Shape shape = __instance.Variant["type"] switch
         {
             "resin" => capi.Assets.TryGet(AssetLocation.Create("danatweaks:shapes/block/log/withresin1.json"))?.ToObject<Shape>(),
             "resinharvested" => capi.Assets.TryGet(AssetLocation.Create("danatweaks:shapes/block/log/noresin1.json"))?.ToObject<Shape>(),
