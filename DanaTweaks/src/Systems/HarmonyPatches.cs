@@ -54,6 +54,10 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: BlockGroundStorage_OnBlockInteractStart_Patch2.TargetMethod(), prefix: BlockGroundStorage_OnBlockInteractStart_Patch2.GetPrefix());
         }
+        if (api.Side.IsServer())
+        {
+            HarmonyInstance.Patch(original: ItemChisel_carvingTime_Patch.TargetMethod(), postfix: ItemChisel_carvingTime_Patch.GetPostfix());
+        }
         if (api.Side.IsClient() && Core.ConfigClient.AlwaysSwitchToBestTool)
         {
             HarmonyInstance.Patch(original: CollectibleObject_OnHeldUseStart_Patch.TargetMethod(), prefix: CollectibleObject_OnHeldUseStart_Patch.GetPrefix());

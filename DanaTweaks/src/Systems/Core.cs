@@ -44,11 +44,6 @@ public class Core : ModSystem
         {
             _ = new ConfigLibCompatibility(api);
         }
-
-        if (ConfigServer?.HalloweenEveryDay == true)
-        {
-            ItemChisel.carvingTime = true;
-        }
     }
 
     public override void Start(ICoreAPI api)
