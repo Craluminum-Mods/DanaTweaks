@@ -1,0 +1,11 @@
+{
+    "ingredientPattern": "BC",
+    "ingredients": {
+        "B": { "type": "block", "code": "game:metalblock-new-riveted-*", "name": "metal" },
+        "C": { "type": "item", "code": "game:chisel-*", "isTool": true }
+    },
+    "width": 1,
+    "height": 2,
+    "RecipeGroup": 10,
+    "output": { "type": "item", "code": "game:metalbit-{metal}", "quantity": 240 }
+}

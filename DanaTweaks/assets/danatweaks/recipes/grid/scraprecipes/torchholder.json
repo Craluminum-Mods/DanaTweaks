@@ -1,0 +1,11 @@
+{
+    "ingredientPattern": "BC",
+    "ingredients": {
+        "B": { "type": "block", "code": "game:torchholder-brass-*" },
+        "C": { "type": "item", "code": "game:chisel-*", "isTool": true }
+    },
+    "width": 1,
+    "height": 2,
+    "RecipeGroup": 9,
+    "output": { "type": "item", "code": "game:metalbit-brass", "quantity": 40 }
+}
