@@ -6,6 +6,7 @@ using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
 namespace DanaTweaks;
@@ -91,5 +92,29 @@ public static class Extensions
             return input;
         }
         return input.Substring(0, input.LastIndexOf(symbol) + 1);
+    }
+
+    public static AssetLocation GetCompactCode(this AssetLocation location)
+    {
+        if (location.FirstCodePart() == location.SecondCodePart())
+        {
+            return location;
+        }
+        return location.CopyWithPath(location.FirstCodePart() + "-*");
+    }
+
+    public static bool WildCardMatchExt(this CollectibleObject obj, string location)
+    {
+        return WildcardUtil.Match(location, obj.Code.ToString());
+    }
+
+    public static bool WildCardMatchExt(this EntityProperties obj, string location)
+    {
+        return WildcardUtil.Match(location, obj.Code.ToString());
+    }
+
+    public static bool WildCardMatchExt(this Entity obj, string location)
+    {
+        return WildcardUtil.Match(location, obj.Code.ToString());
     }
 }

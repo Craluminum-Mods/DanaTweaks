@@ -107,7 +107,7 @@ public class Core : ModSystem
                 entity.AddBehavior(new EntityBehaviorAutoPlantDroppedTreeSeeds(entity));
             }
         }
-        CreatureOpenDoors creatureOpenDoors = ConfigServer.CreaturesOpenDoors.FirstOrDefault(keyVal => entity.WildCardMatch(keyVal.Key) && keyVal.Value.Enabled).Value;
+        CreatureOpenDoors creatureOpenDoors = ConfigServer.CreaturesOpenDoors.FirstOrDefault(keyVal => entity.WildCardMatchExt(keyVal.Key) && keyVal.Value.Enabled).Value;
         if (creatureOpenDoors != null)
         {
             JsonObject jsonAttributes = creatureOpenDoors.GetAsAttributes();
@@ -201,8 +201,9 @@ public class Core : ModSystem
                 block.CollectibleBehaviors = block.CollectibleBehaviors.Append(new BlockBehaviorCrateInteractionHelp(block));
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorCrateInteractionHelp(block));
             }
-            if (ConfigServer.DropDecor && block.HasBehavior<BlockBehaviorDecor>() && block.WildCardMatch(ConfigServer.DropDecorBlocks.Where(x => x.Value).Select(x => x.Key).ToArray()))
+            if (ConfigServer.DropDecor && block.HasBehavior<BlockBehaviorDecor>() && ConfigServer.DropDecorBlocks.Any(x => block.WildCardMatchExt(x.Key) && x.Value))
             {
+                block.CollectibleBehaviors = block.CollectibleBehaviors.Append(new BlockBehaviorGuaranteedDecorDrop(block));
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGuaranteedDecorDrop(block));
             }
             if (block.Code.ToString().Contains("carcass"))
@@ -258,7 +259,7 @@ public class Core : ModSystem
             {
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorGroundStorageParticles(block));
             }
-            OvenFuel ovenFuel = ConfigServer.OvenFuelBlocks.FirstOrDefault(keyVal => block.WildCardMatch(keyVal.Key) && keyVal.Value.Enabled).Value;
+            OvenFuel ovenFuel = ConfigServer.OvenFuelBlocks.FirstOrDefault(keyVal => block.WildCardMatchExt(keyVal.Key) && keyVal.Value.Enabled).Value;
             if (ovenFuel != null)
             {
                 block.EnsureAttributesNotNull();
@@ -310,11 +311,15 @@ public class Core : ModSystem
 
         foreach (Item item in api.World.Items)
         {
+            if (item?.Code == null)
+            {
+                continue;
+            }
             if (ConfigServer.ScytheMore.Enabled && item is ItemScythe)
             {
                 PatchScytheAttributes(item, scytheMorePrefixes, ConfigServer.ScytheMore.DisallowedSuffixes);
             }
-            if (ConfigServer.SealCrockExtraInteractions && item.WildCardMatch("@(beeswax|fat)"))
+            if (ConfigServer.SealCrockExtraInteractions && item.WildCardMatchExt("@(beeswax|fat)"))
             {
                 item.EnsureAttributesNotNull();
                 item.Attributes.Token["canSealCrock"] = JToken.FromObject(true);
@@ -339,7 +344,7 @@ public class Core : ModSystem
             {
                 item.CollectibleBehaviors = item.CollectibleBehaviors.Append(new CollectibleBehaviorRemoveBookSignature(item));
             }
-            OvenFuel ovenFuel = ConfigServer.OvenFuelItems.FirstOrDefault(keyVal => item.WildCardMatch(keyVal.Key) && keyVal.Value.Enabled).Value;
+            OvenFuel ovenFuel = ConfigServer.OvenFuelItems.FirstOrDefault(keyVal => item.WildCardMatchExt(keyVal.Key) && keyVal.Value.Enabled).Value;
             if (ovenFuel != null)
             {
                 item.EnsureAttributesNotNull();
@@ -415,6 +420,11 @@ public class Core : ModSystem
 
         code = code.RemoveAfterSymbol('*');
 
+        if (code == "game:door-*")
+        {
+            return;
+        }
+
         if (!ConfigServer.AutoCloseDelays.ContainsKey(code))
         {
             any = true;
@@ -425,7 +435,7 @@ public class Core : ModSystem
 
     private static void FillDecorList(ref bool any, Block block)
     {
-        string code = block.Code.ToString();
+        string code = block.Code.GetCompactCode();
 
         if (!code.Contains("caveart") && !code.Contains("hotspring") && !ConfigServer.DropDecorBlocks.ContainsKey(code))
         {
