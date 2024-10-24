@@ -79,7 +79,6 @@ public class ConfigLibCompatibility
             config.PlanksInPitKiln = OnCheckBox(id, config.PlanksInPitKiln, nameof(config.PlanksInPitKiln));
             config.PlayerDropsHotSlots = OnCheckBox(id, config.PlayerDropsHotSlots, nameof(config.PlayerDropsHotSlots));
             config.PlayerWakesUpWhenHungry = OnCheckBox(id, config.PlayerWakesUpWhenHungry, nameof(config.PlayerWakesUpWhenHungry));
-            config.PreventTorchTimerReset = OnCheckBox(id, config.PreventTorchTimerReset, nameof(config.PreventTorchTimerReset));
             config.RackableFirestarter = OnCheckBox(id, config.RackableFirestarter, nameof(config.RackableFirestarter));
             config.RecycleBags = OnCheckBox(id, config.RecycleBags, nameof(config.RecycleBags));
             config.RecycleClothes = OnCheckBox(id, config.RecycleClothes, nameof(config.RecycleClothes));

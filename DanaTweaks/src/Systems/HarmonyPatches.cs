@@ -27,11 +27,6 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: SystemMouseInWorldInteractions_HandleMouseInteractionsNoBlockSelected_Patch.TargetMethod(), postfix: SystemMouseInWorldInteractions_HandleMouseInteractionsNoBlockSelected_Patch.GetPostfix());
         }
-        if (api.Side.IsServer() && Core.ConfigServer.PreventTorchTimerReset)
-        {
-            HarmonyInstance.Patch(original: BlockTorch_GetDrops_Patch.TargetMethod(), postfix: BlockTorch_GetDrops_Patch.GetPostfix());
-            HarmonyInstance.Patch(original: BlockTorch_OnBlockPlaced_Patch.TargetMethod(), postfix: BlockTorch_OnBlockPlaced_Patch.GetPostfix());
-        }
         if (api.Side.IsServer() && Core.ConfigServer.FixOvenFuelRendering)
         {
             HarmonyInstance.Patch(original: BlockEntityOven_getOrCreateMesh_Patch.TargetMethod(), prefix: BlockEntityOven_getOrCreateMesh_Patch.GetPrefix());

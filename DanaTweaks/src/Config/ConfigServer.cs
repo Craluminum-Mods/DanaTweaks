@@ -56,7 +56,6 @@ public class ConfigServer : IModConfig
     public bool PlanksInPitKiln { get; set; } = true;
     public bool PlayerDropsHotSlots { get; set; }
     public bool PlayerWakesUpWhenHungry { get; set; }
-    public bool PreventTorchTimerReset { get; set; }
     public bool RackableFirestarter { get; set; } = true;
     public bool RecycleBags { get; set; }
     public bool RecycleClothes { get; set; }
@@ -131,7 +130,6 @@ public class ConfigServer : IModConfig
         PlanksInPitKiln = previousConfig.PlanksInPitKiln;
         PlayerDropsHotSlots = previousConfig.PlayerDropsHotSlots;
         PlayerWakesUpWhenHungry = previousConfig.PlayerWakesUpWhenHungry;
-        PreventTorchTimerReset = previousConfig.PreventTorchTimerReset;
         RackableFirestarter = previousConfig.RackableFirestarter;
         RecycleBags = previousConfig.RecycleBags;
         RecycleClothes = previousConfig.RecycleClothes;
