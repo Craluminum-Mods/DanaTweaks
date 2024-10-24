@@ -4,7 +4,6 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
@@ -57,7 +56,7 @@ public class Core : ModSystem
         api.RegisterBlockBehaviorClass("DanaTweaks:GroundStorageParticles", typeof(BlockBehaviorGroundStorageParticles));
         api.RegisterBlockBehaviorClass("DanaTweaks:FarmlandDropsSoil", typeof(BlockBehaviorFarmlandDropsSoil));
         api.RegisterBlockBehaviorClass("DanaTweaks:AutoClose", typeof(BlockBehaviorAutoClose));
-        api.RegisterBlockBehaviorClass("DanaTweaks:OpenConnectedTrapdoors", typeof(BlockBehaviorOpenConnectedTrapdoors));
+        //api.RegisterBlockBehaviorClass("DanaTweaks:OpenConnectedTrapdoors", typeof(BlockBehaviorOpenConnectedTrapdoors));
         api.RegisterBlockBehaviorClass("DanaTweaks:WaxCheeseOnGroundInteractions", typeof(BlockBehaviorWaxCheeseOnGroundInteractions));
 
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:RainCollector", typeof(BEBehaviorRainCollector));
@@ -156,12 +155,7 @@ public class Core : ModSystem
             }
             if (block.HasBehavior<BlockBehaviorDecor>())
             {
-                string code = block.Code.Domain == "game" ? block.Code.ToShortString() : block.Code.ToString();
-
-                foreach (string pattern in new List<string> { "-ns", "-we", "-north", "-east", "-south", "-west", "-down", "-up" })
-                {
-                    code = Regex.Replace(code, pattern + "$", "-*");
-                }
+                string code = block.Code.ToString();
 
                 if (!code.Contains("caveart") && !code.Contains("hotspring") && !ConfigServer.DropDecorBlocks.ContainsKey(code))
                 {
@@ -303,10 +297,10 @@ public class Core : ModSystem
                 block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorAutoClose(block));
                 //if (block.CreativeInventoryTabs.Length != 0) block.CreativeInventoryTabs = block.CreativeInventoryTabs.Append("autoclose");
             }
-            if (ConfigServer.OpenConnectedTrapdoors && block is BlockTrapdoor)
-            {
-                block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorOpenConnectedTrapdoors(block));
-            }
+            //if (ConfigServer.OpenConnectedTrapdoors && (block is BlockTrapdoor || block.HasBehavior<BlockBehaviorTrapDoor>()))
+            //{
+            //    block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorOpenConnectedTrapdoors(block));
+            //}
             if (ConfigServer.WaxCheeseOnGround && block is BlockCheese)
             {
                 block.CollectibleBehaviors = block.CollectibleBehaviors.Append(new BlockBehaviorWaxCheeseOnGroundInteractions(block));

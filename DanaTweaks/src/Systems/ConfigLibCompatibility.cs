@@ -3,6 +3,7 @@ using ImGuiNET;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
@@ -22,6 +23,8 @@ public class ConfigLibCompatibility
     private const string textModel = "Model";
     private const string textSupportsWildcard = "danatweaks:Config.Text.SupportsWildcard";
     private const string textAutoClose = "danatweaks:Config.Setting.AutoClose.Description";
+
+    private const string langWarningTemporary = "danatweaks:warning-temporary";
 
     public ConfigLibCompatibility(ICoreAPI api)
     {
@@ -126,7 +129,7 @@ public class ConfigLibCompatibility
             }
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.OpenConnectedTrapdoors)) + $"##settingOpenConnectedTrapdoors-{id}"))
             {
-                ImGui.Indent();
+                ImGui.TextColored(new Vector4(1, 0, 0, 1), Lang.Get(langWarningTemporary));
                 config.OpenConnectedTrapdoors = OnCheckBoxWithoutTranslation($"##boolean-OpenConnectedTrapdoors-{id}", config.OpenConnectedTrapdoors, Lang.Get(textEnabled));
                 config.OpenConnectedTrapdoorsMaxBlocksDistance = OnInputInt(id, config.OpenConnectedTrapdoorsMaxBlocksDistance, nameof(config.OpenConnectedTrapdoorsMaxBlocksDistance));
                 ImGui.Unindent();

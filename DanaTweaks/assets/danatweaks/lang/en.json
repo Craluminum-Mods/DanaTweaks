@@ -1,4 +1,6 @@
 {
+    "warning-temporary":"Temporarily disabled due to significant changes in game API that made this specific feature work",
+
     "Command.OpenCloseLid.Name": "(Dana Tweaks) Open or close the crate lid",
     "Command.RemoveOrAddLabel.Name": "(Dana Tweaks) Remove or add parchment on crate",
     "Command.Error.NoCrate": "No crate in sight",
