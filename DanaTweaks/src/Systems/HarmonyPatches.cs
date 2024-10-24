@@ -27,10 +27,6 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: SystemMouseInWorldInteractions_HandleMouseInteractionsNoBlockSelected_Patch.TargetMethod(), postfix: SystemMouseInWorldInteractions_HandleMouseInteractionsNoBlockSelected_Patch.GetPostfix());
         }
-        if (api.Side.IsServer() && Core.ConfigServer.CoolMoldsWithWateringCan)
-        {
-            HarmonyInstance.Patch(original: BlockWateringCan_OnHeldInteractStep_Patch.TargetMethod(), postfix: BlockWateringCan_OnHeldInteractStep_Patch.GetPostfix());
-        }
         if (api.Side.IsServer() && Core.ConfigServer.PreventTorchTimerReset)
         {
             HarmonyInstance.Patch(original: BlockTorch_GetDrops_Patch.TargetMethod(), postfix: BlockTorch_GetDrops_Patch.GetPostfix());
@@ -86,6 +82,7 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: Block_OnJsonTesselation_Patch.TargetMethod(), prefix: Block_OnJsonTesselation_Patch.GetPrefix());
         }
+
         HarmonyInstance.Patch(original: Block_GetSelectionBoxes_Patch.TargetMethod(), prefix: Block_GetSelectionBoxes_Patch.GetPrefix());
     }
 

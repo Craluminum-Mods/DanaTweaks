@@ -15,8 +15,7 @@ public static class GuiComposerHelpers_AddIconListPicker_Patch
 
     public static void Prefix(GuiComposer composer, ref int maxLineWidth)
     {
-        string dialogName = composer?.GetField<string>("dialogName");
-        if (dialogName == "worldmap-modwp" || dialogName == "worldmap-addwp" || dialogName.Contains("edittpdlg"))
+        if (composer.DialogName == "worldmap-modwp" || composer.DialogName == "worldmap-addwp" || composer.DialogName.Contains("edittpdlg"))
         {
             maxLineWidth = (int)(maxLineWidth * Core.ConfigClient.IconsPerRowForWaypointWindowRatio);
         }

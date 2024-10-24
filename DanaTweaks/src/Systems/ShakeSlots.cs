@@ -26,14 +26,14 @@ public class ShakeSlots : ModSystem
 
         switch (curSlot)
         {
-            case ItemSlotBackpackContent slotInBackpack:
+            case ItemSlotBagContent slotInBackpack:
                 {
                     if (Core.ConfigClient?.ShakeSlotsWithBags == false) return;
 
                     InventoryPlayerBackPacks backpackInventory = inventoryManager.GetOwnInventory(GlobalConstants.backpackInvClassName) as InventoryPlayerBackPacks;
                     if (backpackInventory?.HasOpened(player) == true)
                     {
-                        backpackInventory.PerformNotifySlot(slotInBackpack.BackpackIndex);
+                        backpackInventory.PerformNotifySlot(slotInBackpack.BagIndex);
                     }
                     break;
                 }
@@ -44,9 +44,9 @@ public class ShakeSlots : ModSystem
                     InventoryPlayerBackPacks backpackInventory = inventoryManager.GetOwnInventory(GlobalConstants.backpackInvClassName) as InventoryPlayerBackPacks;
                     if (backpackInventory?.HasOpened(player) == true)
                     {
-                        foreach (ItemSlotBackpackContent slot in backpackInventory.Where(x => x is ItemSlotBackpackContent).Select(x => x as ItemSlotBackpackContent))
+                        foreach (ItemSlotBagContent slot in backpackInventory.Where(x => x is ItemSlotBagContent).Select(x => x as ItemSlotBagContent))
                         {
-                            if (slot.BackpackIndex == backpackInventory.GetSlotId(slotBackpack))
+                            if (slot.BagIndex == backpackInventory.GetSlotId(slotBackpack))
                             {
                                 backpackInventory.PerformNotifySlot(backpackInventory.GetSlotId(slot));
                             }
@@ -61,7 +61,7 @@ public class ShakeSlots : ModSystem
                     InventoryPlayerBackPacks backpackInventory = inventoryManager.GetOwnInventory(GlobalConstants.backpackInvClassName) as InventoryPlayerBackPacks;
                     if (backpackInventory?.HasOpened(player) == true)
                     {
-                        foreach (ItemSlotBackpackContent slot in backpackInventory.Where(x => x is ItemSlotBackpackContent).Select(x => x as ItemSlotBackpackContent))
+                        foreach (ItemSlotBagContent slot in backpackInventory.Where(x => x is ItemSlotBagContent).Select(x => x as ItemSlotBagContent))
                         {
                             if (slotCharacter.CanHold(slot))
                             {
