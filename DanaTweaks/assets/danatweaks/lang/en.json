@@ -113,7 +113,6 @@
     "Config.Setting.ColorsPerRowForWaypointWindowRatio": "Colors per row (ratio)",
     "Config.Setting.IconsPerRowForWaypointWindowEnabled": "Enable 'icons per row for waypoint window' tweak",
     "Config.Setting.IconsPerRowForWaypointWindowRatio": "Icons per row (ratio)",
-    "Config.Setting.ZoomMapWithKey": "Zoom map with hotkeys",
 
     "AutoPanning.Toggle": "(Dana Tweaks) Toggle Auto Panning",
     "AutoPanning.Enabled": "(Dana Tweaks) Auto Panning <font weight=\"bold\" color=\"#84ff84\">Enabled</font>",

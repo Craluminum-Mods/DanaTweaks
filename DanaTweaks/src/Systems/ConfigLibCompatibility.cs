@@ -215,8 +215,6 @@ public class ConfigLibCompatibility
                 ImGui.NewLine();
                 config.IconsPerRowForWaypointWindowEnabled = OnCheckBox(id, config.IconsPerRowForWaypointWindowEnabled, nameof(config.IconsPerRowForWaypointWindowEnabled));
                 config.IconsPerRowForWaypointWindowRatio = OnInputFloat(id, config.IconsPerRowForWaypointWindowRatio, nameof(config.IconsPerRowForWaypointWindowRatio), 0.1f);
-                ImGui.NewLine();
-                config.ZoomMapWithKey = OnCheckBox(id, config.ZoomMapWithKey, nameof(config.ZoomMapWithKey));
                 ImGui.Unindent();
             }
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.AlwaysSwitchToBestTool)) + $"##settingAlwaysSwitchToBestTool-{id}"))

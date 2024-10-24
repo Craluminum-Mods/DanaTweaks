@@ -58,10 +58,6 @@ public class HarmonyPatches : ModSystem
         {
             HarmonyInstance.Patch(original: CollectibleObject_OnHeldUseStart_Patch.TargetMethod(), prefix: CollectibleObject_OnHeldUseStart_Patch.GetPrefix());
         }
-        if (api.Side.IsClient() && Core.ConfigClient.ZoomMapWithKey)
-        {
-            HarmonyInstance.Patch(original: GuiElementMap_OnKeyDown_Patch.TargetMethod(), postfix: GuiElementMap_OnKeyDown_Patch.GetPostfix());
-        }
         if (api.Side.IsClient() && Core.ConfigClient.ModesPerRowForVoxelRecipesEnabled)
         {
             HarmonyInstance.Patch(original: GuiDialogBlockEntityRecipeSelector_SetupDialog_Patch.TargetMethod(), transpiler: GuiDialogBlockEntityRecipeSelector_SetupDialog_Patch.GetTranspiler());

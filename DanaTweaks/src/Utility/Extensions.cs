@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using Newtonsoft.Json.Linq;
 using System.Linq;
 using Vintagestory.API.Client;
@@ -85,9 +83,8 @@ public static class Extensions
 
     public static bool IsAutoCloseCompatible(this Block block)
     {
-        return block.HasBehavior<BlockBehaviorDoor>();
+        return block.HasBehavior<BlockBehaviorDoor>() || block.HasBehavior<BlockBehaviorTrapDoor>();
         // || block is BlockFenceGate
         // || block is BlockFenceGateRoughHewn
-        // || block is BlockTrapdoor
     }
 }
