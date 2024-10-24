@@ -22,12 +22,17 @@ public class BlockBehaviorAutoClose : BlockBehavior
             return base.OnBlockInteractStart(world, byPlayer, blockSel, ref handling);
         }
 
+        Caller caller = new Caller()
+        {
+            Player = byPlayer
+        };
+
         handling = EnumHandling.PassThrough;
 
         int delay = GetDelay(block);
         if (delay > 0)
         {
-            world.RegisterCallbackUnique((world, pos, time) => TryAutoClose(world, blockSel, time), blockSel?.Position, delay);
+            world.RegisterCallbackUnique((world, pos, time) => TryAutoClose(world, caller, blockSel, time), blockSel?.Position, delay);
         }
         return base.OnBlockInteractStart(world, byPlayer, blockSel, ref handling);
     }
@@ -47,25 +52,43 @@ public class BlockBehaviorAutoClose : BlockBehavior
         int delay = GetDelay(block);
         if (delay > 0)
         {
-            world.RegisterCallbackUnique((world, pos, time) => TryAutoClose(world, blockSel, time), blockSel?.Position, delay);
+            world.RegisterCallbackUnique((world, pos, time) => TryAutoClose(world, caller, blockSel, time), blockSel?.Position, delay);
         }
     }
 
-    private void TryAutoClose(IWorldAccessor world, BlockSelection blockSel, float time)
+    private void TryAutoClose(IWorldAccessor world, Caller caller, BlockSelection blockSel, float time)
     {
-        Caller caller = new Caller()
-        {
-            Player = world.NearestPlayer(blockSel.Position.X, blockSel.Position.Y, blockSel.Position.Z)
-        };
-
         TreeAttribute activationArgs = new();
         activationArgs.SetBool("opened", false);
         activationArgs.SetBool("isAutoClose", true);
 
-        BEBehaviorDoor behavior = world.BlockAccessor.GetBlockEntity(blockSel?.Position)?.GetBehavior<BEBehaviorDoor>();
-        if (behavior != null && behavior.Opened == true)
+        Block _block = world.BlockAccessor.GetBlock(blockSel.Position);
+        if (_block is BlockBaseDoor blockBaseDoor && blockBaseDoor.IsOpened())
+        {
+            blockBaseDoor.CallMethod("Open", world, null, blockSel.Position);
+            world.PlaySoundAt(AssetLocation.Create(_block.Attributes["triggerSound"].AsString("sounds/block/door"), _block.Code.Domain), blockSel.Position, 0.0);
+            if (_block.FirstCodePart() != "roughhewnfencegate")
+            {
+                blockBaseDoor.CallMethod("TryOpenConnectedDoor", world, null, blockSel.Position);
+            }
+        }
+        else if (IsOpened(world, blockSel))
         {
             block.Activate(world, caller, blockSel, activationArgs);
         }
+    }
+
+    private bool IsOpened(IWorldAccessor world, BlockSelection blockSel)
+    {
+        BlockEntity blockEntity = world.BlockAccessor.GetBlockEntity(blockSel?.Position);
+        if (blockEntity?.GetBehavior<BEBehaviorDoor>() is BEBehaviorDoor door)
+        {
+            return door.Opened;
+        }
+        if (blockEntity?.GetBehavior<BEBehaviorTrapDoor>() is BEBehaviorTrapDoor trapdoor)
+        {
+            return trapdoor.Opened;
+        }
+        return true;
     }
 }

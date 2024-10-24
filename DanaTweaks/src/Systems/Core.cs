@@ -147,22 +147,13 @@ public class Core : ModSystem
         {
             if (block?.Code == null) continue;
 
-            if (block.IsAutoCloseCompatible() && !ConfigServer.AutoCloseDelays.ContainsKey(block.Code.ToString()))
+            if (block.IsAutoCloseCompatible())
             {
-                any = true;
-                bool enabled = !block.Code.ToString().Contains("heavy") && !block.Code.ToString().Contains("ruined");
-                ConfigServer.AutoCloseDelays.Add(block.Code.ToString(), enabled ? ConfigServer.AutoCloseDefaultDelay : -1);
+                FillAutoCloseList(ref any, block);
             }
             if (block.HasBehavior<BlockBehaviorDecor>())
             {
-                string code = block.Code.ToString();
-
-                if (!code.Contains("caveart") && !code.Contains("hotspring") && !ConfigServer.DropDecorBlocks.ContainsKey(code))
-                {
-                    any = true;
-                    bool enabled = code.Contains("wallpaper") ? true : (block.decorBehaviorFlags & 16) != 0;
-                    ConfigServer.DropDecorBlocks.Add(code, enabled);
-                }
+                FillDecorList(ref any, block);
             }
         }
 
@@ -402,6 +393,45 @@ public class Core : ModSystem
         {
             disallowedSuffixes.AddRange(newSuffixes.Except(disallowedSuffixes));
             item.Attributes.Token["disallowedSuffixes"] = JToken.FromObject(disallowedSuffixes);
+        }
+    }
+
+    private static void FillAutoCloseList(ref bool any, Block block)
+    {
+        string code = block.Code.ToString();
+
+        string wood = block.Variant["wood"];
+        string metal = block.Variant["metal"];
+        string material = block.Variant["material"];
+
+        if (!string.IsNullOrEmpty(wood)) code = code.Replace(wood, "*");
+        if (!string.IsNullOrEmpty(metal)) code = code.Replace(metal, "*");
+        if (!string.IsNullOrEmpty(material)) code = code.Replace(material, "*");
+
+        if (code.Contains("irondoor"))
+        {
+            code = "game:irondoor-*";
+        }
+
+        code = code.RemoveAfterSymbol('*');
+
+        if (!ConfigServer.AutoCloseDelays.ContainsKey(code))
+        {
+            any = true;
+            bool enabled = !block.Code.ToString().Contains("heavy") && !block.Code.ToString().Contains("ruined");
+            ConfigServer.AutoCloseDelays.Add(code, enabled ? ConfigServer.AutoCloseDefaultDelay : -1);
+        }
+    }
+
+    private static void FillDecorList(ref bool any, Block block)
+    {
+        string code = block.Code.ToString();
+
+        if (!code.Contains("caveart") && !code.Contains("hotspring") && !ConfigServer.DropDecorBlocks.ContainsKey(code))
+        {
+            any = true;
+            bool enabled = code.Contains("wallpaper") ? true : (block.decorBehaviorFlags & 16) != 0;
+            ConfigServer.DropDecorBlocks.Add(code, enabled);
         }
     }
 }

@@ -77,8 +77,19 @@ public static class Extensions
 
     public static bool IsAutoCloseCompatible(this Block block)
     {
-        return block.HasBehavior<BlockBehaviorDoor>() || block.HasBehavior<BlockBehaviorTrapDoor>();
-        // || block is BlockFenceGate
-        // || block is BlockFenceGateRoughHewn
+        return block.HasBehavior<BlockBehaviorDoor>()
+            || block.HasBehavior<BlockBehaviorTrapDoor>()
+            || block is BlockFenceGate
+            || block is BlockFenceGateRoughHewn
+            || block is BlockBaseDoor;
+    }
+
+    public static string RemoveAfterSymbol(this string input, char symbol)
+    {
+        if (!input.Contains(symbol))
+        {
+            return input;
+        }
+        return input.Substring(0, input.LastIndexOf(symbol) + 1);
     }
 }
