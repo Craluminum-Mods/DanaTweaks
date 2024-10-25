@@ -10,7 +10,7 @@
         "height": 1,
         "shapeless": true,
         "recipeGroup": 2,
-        "output": { "type": "item", "code": "game:leather-plain", "quantity": 2 }
+        "output": { "type": "item", "code": "game:leather-normal-plain", "quantity": 2 }
     },
     {
         "name": "deconstruct with shears: leather bracers",
@@ -23,6 +23,6 @@
         "height": 1,
         "shapeless": true,
         "recipeGroup": 2,
-        "output": { "type": "item", "code": "game:leather-plain", "quantity": 2 }
+        "output": { "type": "item", "code": "game:leather-normal-plain", "quantity": 2 }
     }
 ]

@@ -10,7 +10,7 @@
         "height": 1,
         "shapeless": true,
         "recipeGroup": 2,
-        "output": { "type": "item", "code": "game:leather-black", "quantity": 1 }
+        "output": { "type": "item", "code": "game:leather-normal-black", "quantity": 1 }
     },
     {
         "name": "deconstruct with shears: leather reinforced mask",
@@ -23,6 +23,6 @@
         "height": 1,
         "shapeless": true,
         "recipeGroup": 2,
-        "output": { "type": "item", "code": "game:leather-black", "quantity": 1 }
+        "output": { "type": "item", "code": "game:leather-normal-black", "quantity": 1 }
     }
 ]

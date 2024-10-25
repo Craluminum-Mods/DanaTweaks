@@ -4,25 +4,25 @@
         "ingredientPattern": "KB",
         "ingredients": {
             "K": { "type": "item", "code": "game:knife-*", "isTool": true },
-            "B": { "type": "item", "code": "game:backpack" }
+            "B": { "type": "item", "code": "game:backpack-normal" }
         },
         "width": 2,
         "height": 1,
         "shapeless": true,
         "recipeGroup": 2,
-        "output": { "type": "item", "code": "game:leather-plain", "quantity": 4 }
+        "output": { "type": "item", "code": "game:leather-normal-plain", "quantity": 4 }
     },
     {
         "name": "deconstruct backpack with shears",
         "ingredientPattern": "KB",
         "ingredients": {
             "K": { "type": "item", "code": "game:shears-*", "isTool": true },
-            "B": { "type": "item", "code": "game:backpack" }
+            "B": { "type": "item", "code": "game:backpack-normal" }
         },
         "width": 2,
         "height": 1,
         "shapeless": true,
         "recipeGroup": 2,
-        "output": { "type": "item", "code": "game:leather-plain", "quantity": 4 }
+        "output": { "type": "item", "code": "game:leather-normal-plain", "quantity": 4 }
     }
 ]

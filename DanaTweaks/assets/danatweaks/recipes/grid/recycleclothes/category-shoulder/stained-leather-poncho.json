@@ -10,7 +10,7 @@
         "height": 1,
         "shapeless": true,
         "recipeGroup": 2,
-        "output": { "type": "item", "code": "game:leather-orange", "quantity": 4 }
+        "output": { "type": "item", "code": "game:leather-normal-orange", "quantity": 4 }
     },
     {
         "name": "deconstruct with shears: stained leather poncho",
@@ -23,6 +23,6 @@
         "height": 1,
         "shapeless": true,
         "recipeGroup": 2,
-        "output": { "type": "item", "code": "game:leather-orange", "quantity": 4 }
+        "output": { "type": "item", "code": "game:leather-normal-orange", "quantity": 4 }
     }
 ]
