@@ -1,0 +1,28 @@
+[
+    {
+        "name": "deconstruct sturdy backpack with knife",
+        "ingredientPattern": "KB",
+        "ingredients": {
+            "K": { "type": "item", "code": "game:knife-*", "isTool": true },
+            "B": { "type": "item", "code": "game:backpack-sturdy" }
+        },
+        "width": 2,
+        "height": 1,
+        "shapeless": true,
+        "recipeGroup": 10,
+        "output": { "type": "item", "code": "game:leather-sturdy-plain", "quantity": 5 }
+    },
+    {
+        "name": "deconstruct sturdy backpack with shears",
+        "ingredientPattern": "KB",
+        "ingredients": {
+            "K": { "type": "item", "code": "game:shears-*", "isTool": true },
+            "B": { "type": "item", "code": "game:backpack-sturdy" }
+        },
+        "width": 2,
+        "height": 1,
+        "shapeless": true,
+        "recipeGroup": 10,
+        "output": { "type": "item", "code": "game:leather-sturdy-plain", "quantity": 5 }
+    }
+]
