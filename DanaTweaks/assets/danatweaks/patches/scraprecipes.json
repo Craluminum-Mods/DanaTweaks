@@ -1,4 +1,3 @@
 [
-    { "op": "add", "path": "/0/enabled", "value": false, "file": "danatweaks:recipes/grid/scraprecipes/*", "condition": { "when": "DanaTweaks.ScrapRecipes", "isValue": "false" }, "side": "Server" },
-    { "op": "add", "path": "/1/enabled", "value": false, "file": "danatweaks:recipes/grid/scraprecipes/*", "condition": { "when": "DanaTweaks.ScrapRecipes", "isValue": "false" }, "side": "Server" }
+    { "op": "add", "path": "/enabled", "value": false, "file": "danatweaks:recipes/grid/scraprecipes/*", "condition": { "when": "DanaTweaks.ScrapRecipes", "isValue": "false" }, "side": "Server" }
 ]
