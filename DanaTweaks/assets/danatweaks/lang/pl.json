@@ -1,8 +1,127 @@
 {
-    "Command.OpenCloseLid.Name": "Otwórz lub zamknij pokrywę skrzyni",
+    "warning-temporary":"Tymczasowo wylaczone ze wzgledu na znaczace zmiany w API gry ktore umozliwiaja dzialanie tej funkcjonalnosci.",
+
+    "Command.OpenCloseLid.Name": "Otworz lub zamknij pokrywe skrzyni",
     "Command.RemoveOrAddLabel.Name": "Usuń lub dodaj pergamin na skrzyni",
-    "Command.Error.NoCrate": "Brak skrzyni w zasięgu wzroku",
+    "Command.Error.NoCrate": "Brak skrzyni w zasiegu wzroku",
     "Command.Error.HasDiffLabel": "Skrzynia ma inny pergamin",
-    "Command.Error.NoLabel": "Brak pergaminu w ręku lub na skrzyni",
-    "RemoveBookSignature": "Usuń podpis książki (musisz być autorem tej książki)"
+    "Command.Error.NoLabel": "Brak pergaminu w reku lub na skrzyni",
+    "RemoveBookSignature": "Usuń podpis ksiazki (musisz być autorem tej ksiazki)",
+    "crock-seal": "Upuść tluszcz lub wosk pszczeli aby uszczelnić.",
+    "waxcheese": "Zawoskuj ser",
+
+    "game:placefailure-danatweaks-omnirotatable": "Nie mozna polozyc. Sprobuj innego trybu, np. 'Auto'",
+
+    "danatweaks-server": "Dana Tweaks (Serwer)",
+    "danatweaks-client": "Dana Tweaks (Klient)",
+
+    "Config.SettingsSimple": "Ustawienia Podstawowe",
+    "Config.SettingsAdvanced": "Ustawienia Zaawansowane",
+
+    "Config.Setting.ExtinctSubmergedTorchInEverySlot": "Zgas pochodnie w kazdym slocie po zanuzeniu",
+    "Config.Setting.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds": "Interwal milisekundowy",
+
+    "Config.Setting.ChuteAutoHarvesting": "Auto zbieranie z rynien/rur",
+    "Config.Setting.ChuteAutoHarvestingUpdateMilliseconds": "Interwal milisekundowy",
+
+    "Config.Setting.OpenConnectedTrapdoors": "Otworz wszystkie polaczone zapadnie",
+    "Config.Setting.OpenConnectedTrapdoorsMaxBlocksDistance": "Maksymalna odleglosc w blokach",
+
+    "Config.Setting.AutoPlantDroppedTreeSeeds": "Auto sadzenie upuszczonych nasion drzew",
+    "Config.Setting.AutoPlantDroppedTreeSeedsDelay": "Opoznienie (po updaku)",
+
+    "Config.Setting.CreativeMiddleClickEntity": "Wlacz 'Creative Middle Click Entity'",
+    "Config.Setting.EverySoilUnstable": "Wlacz 'Kazda gleba niestabilna'",
+    "Config.Setting.ScrapRecipes": "Wlacz 'Scrap Recipes'",
+    "Config.Setting.SealCrockExtraInteractions": "Wlacz 'Dodatkowe interakcje z uszczelnionym garnkiem'",
+    "Config.Setting.SlabToolModes": "Wlacz 'Slab Tool Modes'",
+
+    "Config.Setting.BranchCutter": "Dodaj drugi tryb do nozyc aby zbierac cale bloki lisci",
+    "Config.Setting.CreativeTapestries": "Dodaj gobeliny do ekwipunku w trybie kreatywnym",
+    "Config.Setting.DropDecor": "Upusc dekoracje",
+    "Config.Setting.DropResinAnyway": "Upusc zywice przy scinaniu drzewa",
+    "Config.Setting.DropVinesAnyway": "Upusc winorosl przy scinaniu drzewa",
+    "Config.Setting.ExtraClayforming": "Wiecej receptur przy formowaniu gliny",
+    "Config.Setting.FarmlandDropsSoil": "Ziemia uprawna upuszcza glebe",
+    "Config.Setting.FirepitHeatsOven": "Ognisko ogrzewa piec",
+    "Config.Setting.FixOvenFuelRendering": "Rozwiaz problem z renderowaniem paliwa w piecu",
+    "Config.Setting.FourPlanksFromLog": "Tworz cztery deski z jednej klody drewna",
+    "Config.Setting.FragileBones": "Kruche kosci",
+    "Config.Setting.GroundStorageImmersiveCrafting": "Allow immersive crafting in ground storage using grid recipes with 2 ingredients",
+    "Config.Setting.GroundStorageLiquidInteraction": "Allow liquid interaction with liquid containers in ground storage",
+    "Config.Setting.GroundStorageParticles": "Emituj dym z garnkow i tygli ustawionych na ziemi",
+    "Config.Setting.HalloweenEveryDay": "Mozliwosc rzezbienia dyn o kazdej porze roku",
+    "Config.Setting.PickUpBones": "Podnoszenie kosci",
+    "Config.Setting.PlanksInPitKiln": "Zezwol na uzywanie desek w piecu dolowym",
+    "Config.Setting.PlayerDropsHotSlots": "Gracz upuszcza wszystko ze slotow",
+    "Config.Setting.PlayerWakesUpWhenHungry": "Obudz graczy podczas snu gdy zglodnieja",
+    "Config.Setting.RackableFirestarter": "Zezwol na przechowywanie rozpalki na stojaku na narzedzia",
+    "Config.Setting.RecycleBags": "Dodaj przepisy na recykling torb",
+    "Config.Setting.RecycleClothes": "Dodaj przepisy na recykling ubrań",
+    "Config.Setting.RegrowResin": "Wytwarzaj zywice na drzewach wyhodowanych z sadzonek",
+    "Config.Setting.RemoveBookSignature": "Zezwalaj na usuwanie podpisow ksiazek",
+    "Config.Setting.RichTraders": "Bogaci Handlarze",
+    "Config.Setting.ShelvablePie": "Zezwol na przechowywanie ciast na polkach",
+    "Config.Setting.WaxCheeseOnGround": "Kladzenie zawoskowanego sera na ziemi",
+
+    "Config.Setting.Model": "Model",
+
+    "Config.Setting.Command": "Polecenia",
+    "Config.Setting.CrateOpenCloseLid": "Zezwol na otwieranie/zamykanie pokrywy skrzyni za pomoca polecenia",
+    "Config.Setting.CrateRemoveOrAddLabel": "Zezwol na dodawanie/usuwanie etykiet skrzyni za pomoca polecenia",
+
+    "Config.Setting.RainCollector": "Zbieracz Deszczu",
+    "Config.Setting.LitresPerUpdate": "Litry na aktualizacje",
+    "Config.Setting.MinPrecipitation": "Minimalne opady",
+    "Config.Setting.UpdateMilliseconds": "Interwal milisekundowy",
+    "Config.Setting.LiquidCode": "Kod Plynu",
+
+    "Config.Setting.ScytheMore": "Kos/Wycinaj wiecej",
+    "Config.Setting.DisallowedParts": "Niedozwolone Czesci",
+    "Config.Setting.DisallowedSuffixes": "Niedozwolone Sufiksy",
+
+    "Config.Setting.OvenFuel": "Paliwo Pieca",
+
+    "Config.Setting.CreaturesOpenDoors": "Stworzenia Otwieraja Drzwi",
+    "Config.Setting.Cooldown": "Czas odnowienia",
+    "Config.Setting.Range": "Zasieg",
+
+    "game:Blocks": "Bloki",
+    "Config.Text.SupportsWildcard": "Wspiera 'wildcards' i wyrazenia regularne",
+
+    "Config.Setting.avg": "srednia",
+    "Config.Setting.var": "wariancja",
+
+    "Config.Setting.GlowingProjectiles": "Wlacz 'Swiecace pociski'",
+    "Config.Setting.ResinOnAllSides": "Show resin on all sides of log with resin",
+
+    "Config.Setting.ShakeSlotsInsideBags": "Shake inventory slots for selected bag",
+    "Config.Setting.ShakeSlotsWithBags": "Shake slots with bags for selected inventory slot",
+    "Config.Setting.ShakeSlotsWithSuitableClothes": "Shake slots with suitable clothes for selected clothing slot",
+
+    "Config.Setting.AlwaysSwitchToBestTool": "Zawsze przelaczaj na najlepsze narzedzie",
+    "Config.Setting.AlwaysSwitchToBestToolIgnoredTools": "Narzedzia ignorowane",
+
+    "Config.Setting.AutoClose": "Auto zamykanie",
+    "Config.Setting.AutoClose.Description": "Auto zamykanie drzwi, zapadni, bram, itp.",
+
+    "Config.Setting.UI": "Interfejs Uzytkownika",
+    "Config.Setting.OverrideWaypointColors": "Nadpisz",
+    "Config.Setting.ExtraWaypointColors": "Dodatkowe kolory punktow orientacyjnych",
+    "Config.Setting.ModesPerRowForVoxelRecipesEnabled": "Wlacza 'tryby na wiersz dla receptur wokselowych' poprawke",
+    "Config.Setting.ModesPerRowForVoxelRecipes": "Tryby na wiersz",
+    "Config.Setting.ColorsPerRowForWaypointWindowEnabled": "Wlacza 'kolory na wiersz dla okna z punktami orientacyjnymi' poprawke",
+    "Config.Setting.ColorsPerRowForWaypointWindowRatio": "Kolory na wiersz (stosunek)",
+    "Config.Setting.IconsPerRowForWaypointWindowEnabled": "Wlacza 'ikony na wiersz dla okna z punktami orientacyjnymi' poprawke",
+    "Config.Setting.IconsPerRowForWaypointWindowRatio": "Ikony na wiersz (stosunek)",
+
+    "AutoPanning.Toggle": "(Dana Tweaks) Wlacz Auto Plukanie",
+    "AutoPanning.Enabled": "(Dana Tweaks) Auto Plukanie <font weight=\"bold\" color=\"#84ff84\">Wlaczony</font>",
+    "AutoPanning.Disabled": "(Dana Tweaks) Auto Plukanie <font weight=\"bold\" color=\"#ff8484\">Wylaczone</font>",
+
+    "ButcheringFix.Toggle": "(Dana Tweaks) Wlacz Butchering Fix",
+    "ButcheringFix.Enabled": "(Dana Tweaks) Butchering Fix <font weight=\"bold\" color=\"#84ff84\">Wlaczony</font>",
+    "ButcheringFix.Disabled": "(Dana Tweaks) Butchering Fix <font weight=\"bold\" color=\"#ff8484\">Wylaczone</font>",
+
+    "AutoWalk.Toggle": "(Dana Tweaks) Wlacz auto chodzenie"
 }
