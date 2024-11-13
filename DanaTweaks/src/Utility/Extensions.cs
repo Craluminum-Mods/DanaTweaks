@@ -105,7 +105,7 @@ public static class Extensions
 
     public static bool WildCardMatchExt(this CollectibleObject obj, string location)
     {
-        return WildcardUtil.Match(location, obj.Code.ToString());
+        return obj.WildCardMatch(location);
     }
 
     public static bool WildCardMatchExt(this EntityProperties obj, string location)

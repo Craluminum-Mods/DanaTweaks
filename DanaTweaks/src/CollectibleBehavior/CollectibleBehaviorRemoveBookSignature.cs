@@ -30,9 +30,9 @@ public class CollectibleBehaviorRemoveBookSignature : CollectibleBehavior
 
     public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
     {
-        if (toolMode == 0 && slot.IsSignedBySamePlayer(byPlayer))
+        if (toolMode == 0 && IsSignedBySamePlayer(slot, byPlayer))
         {
-            slot.Unsign();
+            Unsign(slot);
         }
 
         slot.MarkDirty();
@@ -48,7 +48,7 @@ public class CollectibleBehaviorRemoveBookSignature : CollectibleBehavior
 
     public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
     {
-        return slot.IsSigned() ? modes : base.GetToolModes(slot, forPlayer, blockSel);
+        return IsSigned(slot) ? modes : base.GetToolModes(slot, forPlayer, blockSel);
     }
 
     public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
@@ -61,5 +61,29 @@ public class CollectibleBehaviorRemoveBookSignature : CollectibleBehavior
                 HotKeyCode = "toolmodeselect",
                 MouseButton = EnumMouseButton.None
             });
+    }
+
+    public const string SignedBy = "signedby";
+    public const string SignedByUid = "signedbyuid";
+
+    public static bool IsSigned(ItemSlot slot)
+    {
+        return slot.Itemstack.Attributes.GetString(SignedBy) != null;
+    }
+
+    public static bool IsSignedBySamePlayer(ItemSlot slot, IPlayer byPlayer)
+    {
+        return IsSigned(slot) && IsSignedByUid(slot, byPlayer);
+    }
+
+    public static bool IsSignedByUid(ItemSlot slot, IPlayer byPlayer)
+    {
+        return slot.Itemstack.Attributes.GetString(SignedByUid) == byPlayer.PlayerUID;
+    }
+
+    public static void Unsign(ItemSlot slot)
+    {
+        slot.Itemstack.Attributes.RemoveAttribute(SignedBy);
+        slot.Itemstack.Attributes.RemoveAttribute(SignedByUid);
     }
 }
