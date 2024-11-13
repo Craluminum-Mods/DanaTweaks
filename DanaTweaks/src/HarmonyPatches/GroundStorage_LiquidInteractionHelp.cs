@@ -10,7 +10,7 @@ using Vintagestory.GameContent;
 namespace DanaTweaks;
 
 [HarmonyPatchCategory(nameof(ConfigServer.GroundStorageLiquidInteraction))]
-public static class BlockGroundStorage_GetPlacedBlockInteractionHelp_Patch
+public static class GroundStorage_LiquidInteractionHelp
 {
     [HarmonyPostfix]
     [HarmonyPatch(typeof(BlockGroundStorage), nameof(BlockGroundStorage.GetPlacedBlockInteractionHelp))]

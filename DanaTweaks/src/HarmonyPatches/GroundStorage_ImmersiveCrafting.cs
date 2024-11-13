@@ -8,11 +8,8 @@ using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
-/// <summary>
-/// Handle immersive crafting using ground storage
-/// </summary>
 [HarmonyPatchCategory(nameof(ConfigServer.GroundStorageImmersiveCrafting))]
-public static class BlockGroundStorage_OnBlockInteractStart_Patch2
+public static class GroundStorage_ImmersiveCrafting
 {
     [HarmonyPrefix]
     [HarmonyPatch(typeof(BlockGroundStorage), nameof(BlockGroundStorage.OnBlockInteractStart))]

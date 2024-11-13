@@ -5,11 +5,8 @@ using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
-/// <summary>
-/// Handle ground storage liquid interactions
-/// </summary>
 [HarmonyPatchCategory(nameof(ConfigServer.GroundStorageLiquidInteraction))]
-public static class BlockGroundStorage_OnBlockInteractStart_Patch
+public static class GroundStorage_LiquidInteraction
 {
     [HarmonyPrefix]
     [HarmonyPatch(typeof(BlockGroundStorage), nameof(BlockGroundStorage.OnBlockInteractStart))]

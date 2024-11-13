@@ -9,7 +9,7 @@ namespace DanaTweaks;
 /// Skip default "Shift" behavior to be able to move portions between liquid containers
 /// </summary>
 [HarmonyPatchCategory(nameof(ConfigServer.GroundStorageLiquidInteraction))]
-public static class BlockLiquidContainerBase_OnHeldInteractStart_Patch
+public static class LiquidContainer_GroundStorageLiquidInteractionFix
 {
     [HarmonyPrefix]
     [HarmonyPatch(typeof(BlockLiquidContainerBase), nameof(BlockLiquidContainerBase.OnHeldInteractStart))]
