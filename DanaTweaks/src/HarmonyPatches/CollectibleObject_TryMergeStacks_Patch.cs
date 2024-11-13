@@ -1,4 +1,5 @@
-using System.Reflection;
+using DanaTweaks.Configuration;
+using HarmonyLib;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -6,16 +7,12 @@ using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
+[HarmonyPatchCategory(nameof(ConfigServer.SealCrockExtraInteractions))]
 public static class CollectibleObject_TryMergeStacks_Patch
 {
-    public static MethodBase TargetMethod()
-    {
-        return typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.TryMergeStacks));
-    }
-
-    public static MethodInfo GetPrefix() => typeof(CollectibleObject_TryMergeStacks_Patch).GetMethod(nameof(Prefix));
-
-    public static bool Prefix(CollectibleObject __instance, ItemStackMergeOperation op)
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(CollectibleObject), nameof(CollectibleObject.TryMergeStacks))]
+    public static bool Prefix(CollectibleObject __instance, ItemStackMergeOperation op, ICoreAPI ___api)
     {
         if (__instance is BlockCrock && op.CurrentPriority == EnumMergePriority.DirectMerge)
         {
@@ -34,8 +31,7 @@ public static class CollectibleObject_TryMergeStacks_Patch
             {
                 if (op.World.Api.Side == EnumAppSide.Client)
                 {
-                    ICoreAPI api = __instance.GetField<ICoreAPI>("api");
-                    (api as ICoreClientAPI)?.TriggerIngameError(__instance, "crockemptyorsealed", Lang.Get("ingameerror-crock-empty-or-sealed"));
+                    (___api as ICoreClientAPI)?.TriggerIngameError(__instance, "crockemptyorsealed", Lang.Get("ingameerror-crock-empty-or-sealed"));
                 }
             }
         }

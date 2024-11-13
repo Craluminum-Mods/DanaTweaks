@@ -1,20 +1,17 @@
+using DanaTweaks.Configuration;
+using HarmonyLib;
 using System.Linq;
-using System.Reflection;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.Client.NoObf;
 
 namespace DanaTweaks;
 
+[HarmonyPatchCategory(nameof(ConfigClient.AlwaysSwitchToBestTool))]
 public static class CollectibleObject_OnHeldUseStart_Patch
 {
-    public static MethodBase TargetMethod()
-    {
-        return typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.OnHeldUseStart));
-    }
-
-    public static MethodInfo GetPrefix() => typeof(CollectibleObject_OnHeldUseStart_Patch).GetMethod(nameof(Prefix));
-
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(CollectibleObject), nameof(CollectibleObject.OnHeldUseStart))]
     public static bool Prefix(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EnumHandInteract useType)
     {
         CollectibleObject heldCollectible = slot?.Itemstack?.Collectible;

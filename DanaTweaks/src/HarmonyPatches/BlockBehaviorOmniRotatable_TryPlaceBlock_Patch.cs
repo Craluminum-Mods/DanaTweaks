@@ -1,22 +1,24 @@
-﻿using System.Reflection;
+﻿using DanaTweaks.Configuration;
+using HarmonyLib;
 using System.Runtime.CompilerServices;
 using Vintagestory.API.Common;
 using Vintagestory.ServerMods;
 
 namespace DanaTweaks;
 
+[HarmonyPatchCategory(nameof(ConfigServer.SlabToolModes))]
 public static class BlockBehaviorOmniRotatable_TryPlaceBlock_Patch
 {
-    public static MethodBase TargetMethod() => typeof(BlockBehaviorOmniRotatable).GetMethod(nameof(BlockBehaviorOmniRotatable.TryPlaceBlock));
-    public static MethodInfo GetOriginal() => typeof(BlockBehaviorOmniRotatable_TryPlaceBlock_Patch).GetMethod(nameof(Base));
-    public static MethodInfo GetPrefix() => typeof(BlockBehaviorOmniRotatable_TryPlaceBlock_Patch).GetMethod(nameof(Prefix));
-
+    [HarmonyReversePatch(HarmonyReversePatchType.Original)]
+    [HarmonyPatch(typeof(BlockBehaviorOmniRotatable), nameof(BlockBehaviorOmniRotatable.TryPlaceBlock))]
     [MethodImpl(MethodImplOptions.NoInlining)]
     public static bool Base(BlockBehaviorOmniRotatable instance, IWorldAccessor world, IPlayer byPlayer, ItemStack itemstack, BlockSelection blockSel, ref EnumHandling handling, ref string failureCode)
     {
         return default;
     }
 
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(BlockBehaviorOmniRotatable), nameof(BlockBehaviorOmniRotatable.TryPlaceBlock))]
     public static bool Prefix(BlockBehaviorOmniRotatable __instance, ref bool __result, IWorldAccessor world, IPlayer byPlayer, ItemStack itemstack, BlockSelection blockSel, ref EnumHandling handling, ref string failureCode)
     {
         try

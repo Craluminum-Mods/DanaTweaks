@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using DanaTweaks.Configuration;
+using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,15 +8,11 @@ using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
+[HarmonyPatchCategory(nameof(ConfigServer.RegrowResin))]
 public static class BlockEntitySapling_CheckGrow_Patch
 {
-    public static MethodBase TargetMethod()
-    {
-        return AccessTools.Method(typeof(BlockEntitySapling), "CheckGrow", new[] { typeof(float) });
-    }
-
-    public static MethodInfo GetTranspiler() => typeof(BlockEntitySapling_CheckGrow_Patch).GetMethod(nameof(Transpiler));
-
+    [HarmonyTranspiler]
+    [HarmonyPatch(typeof(BlockEntitySapling), "CheckGrow")]
     public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         int prevIndex = -1;

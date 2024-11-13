@@ -9,72 +9,47 @@ public class HarmonyPatches : ModSystem
 
     public override void Start(ICoreAPI api)
     {
-        if (api.Side.IsServer() && Core.ConfigServer.SlabToolModes)
+        switch (api.Side)
         {
-            HarmonyInstance.CreateReversePatcher(original: BlockBehaviorOmniRotatable_TryPlaceBlock_Patch.TargetMethod(), standin: BlockBehaviorOmniRotatable_TryPlaceBlock_Patch.GetOriginal()).Patch(HarmonyReversePatchType.Original);
-            HarmonyInstance.Patch(original: BlockBehaviorOmniRotatable_TryPlaceBlock_Patch.TargetMethod(), prefix: BlockBehaviorOmniRotatable_TryPlaceBlock_Patch.GetPrefix());
+            case EnumAppSide.Server:
+                ApplyServerPatches();
+                break;
+            case EnumAppSide.Client:
+                ApplyClientPatches();
+                break;
         }
-        if (api.Side.IsServer() && Core.ConfigServer.SealCrockExtraInteractions)
-        {
-            HarmonyInstance.Patch(original: CollectibleObject_GetMergableQuantity_Patch.TargetMethod(), prefix: CollectibleObject_GetMergableQuantity_Patch.GetPrefix());
-            HarmonyInstance.Patch(original: CollectibleObject_TryMergeStacks_Patch.TargetMethod(), prefix: CollectibleObject_TryMergeStacks_Patch.GetPrefix());
-        }
-        if (api.Side.IsServer() && Core.ConfigServer.FirepitHeatsOven)
-        {
-            HarmonyInstance.Patch(original: BlockEntityFirepit_OnBurnTick_Patch.TargetMethod(), postfix: BlockEntityFirepit_OnBurnTick_Patch.GetPostfix());
-        }
-        if (api.Side.IsServer() && Core.ConfigServer.CreativeMiddleClickEntity)
-        {
-            HarmonyInstance.Patch(original: SystemMouseInWorldInteractions_HandleMouseInteractionsNoBlockSelected_Patch.TargetMethod(), postfix: SystemMouseInWorldInteractions_HandleMouseInteractionsNoBlockSelected_Patch.GetPostfix());
-        }
-        if (api.Side.IsServer() && Core.ConfigServer.FixOvenFuelRendering)
-        {
-            HarmonyInstance.Patch(original: BlockEntityOven_getOrCreateMesh_Patch.TargetMethod(), prefix: BlockEntityOven_getOrCreateMesh_Patch.GetPrefix());
-        }
-        if (api.Side.IsServer() && Core.ConfigServer.RegrowResin)
-        {
-            HarmonyInstance.Patch(original: BlockEntitySapling_CheckGrow_Patch.TargetMethod(), transpiler: BlockEntitySapling_CheckGrow_Patch.GetTranspiler());
-        }
-        if (api.Side.IsServer() && Core.ConfigServer.GroundStorageLiquidInteraction)
-        {
-            HarmonyInstance.Patch(original: BlockGroundStorage_OnBlockInteractStart_Patch.TargetMethod(), prefix: BlockGroundStorage_OnBlockInteractStart_Patch.GetPrefix());
-            HarmonyInstance.Patch(original: BlockLiquidContainerBase_OnHeldInteractStart_Patch.TargetMethod(), prefix: BlockLiquidContainerBase_OnHeldInteractStart_Patch.GetPrefix());
-            HarmonyInstance.Patch(original: BlockGroundStorage_GetPlacedBlockInteractionHelp_Patch.TargetMethod(), postfix: BlockGroundStorage_GetPlacedBlockInteractionHelp_Patch.GetPostifx());
-        }
-        if (api.Side.IsServer() && Core.ConfigServer.GroundStorageImmersiveCrafting)
-        {
-            HarmonyInstance.Patch(original: BlockGroundStorage_OnBlockInteractStart_Patch2.TargetMethod(), prefix: BlockGroundStorage_OnBlockInteractStart_Patch2.GetPrefix());
-        }
-        if (api.Side.IsServer())
-        {
-            HarmonyInstance.Patch(original: ItemChisel_carvingTime_Patch.TargetMethod(), postfix: ItemChisel_carvingTime_Patch.GetPostfix());
-        }
-        if (api.Side.IsClient() && Core.ConfigClient.AlwaysSwitchToBestTool)
-        {
-            HarmonyInstance.Patch(original: CollectibleObject_OnHeldUseStart_Patch.TargetMethod(), prefix: CollectibleObject_OnHeldUseStart_Patch.GetPrefix());
-        }
-        if (api.Side.IsClient() && Core.ConfigClient.ModesPerRowForVoxelRecipesEnabled)
-        {
-            HarmonyInstance.Patch(original: GuiDialogBlockEntityRecipeSelector_SetupDialog_Patch.TargetMethod(), transpiler: GuiDialogBlockEntityRecipeSelector_SetupDialog_Patch.GetTranspiler());
-        }
-        if (api.Side.IsClient() && Core.ConfigClient.ColorsPerRowForWaypointWindowEnabled)
-        {
-            HarmonyInstance.Patch(original: GuiComposerHelpers_AddColorListPicker_Patch.TargetMethod(), prefix: GuiComposerHelpers_AddColorListPicker_Patch.GetPrefix());
-        }
-        if (api.Side.IsClient() && Core.ConfigClient.IconsPerRowForWaypointWindowEnabled)
-        {
-            HarmonyInstance.Patch(original: GuiComposerHelpers_AddIconListPicker_Patch.TargetMethod(), prefix: GuiComposerHelpers_AddIconListPicker_Patch.GetPrefix());
-        }
-        if (api.Side.IsClient() && Core.ConfigClient.OverrideWaypointColors)
-        {
-            HarmonyInstance.Patch(original: WaypointMapLayer_WaypointColors_Patch.TargetMethod(), postfix: WaypointMapLayer_WaypointColors_Patch.GetPostfix());
-        }
-        if (api.Side.IsClient())
-        {
-            HarmonyInstance.Patch(original: Block_OnJsonTesselation_Patch.TargetMethod(), prefix: Block_OnJsonTesselation_Patch.GetPrefix());
-        }
+        HarmonyInstance.PatchCategory("Unsorted");
+    }
 
-        HarmonyInstance.Patch(original: Block_GetSelectionBoxes_Patch.TargetMethod(), prefix: Block_GetSelectionBoxes_Patch.GetPrefix());
+    private void ApplyServerPatches()
+    {
+        PatchCategoryIfTrue(nameof(Core.ConfigServer.SlabToolModes), value: Core.ConfigServer.SlabToolModes);
+        PatchCategoryIfTrue(nameof(Core.ConfigServer.SealCrockExtraInteractions), value: Core.ConfigServer.SealCrockExtraInteractions);
+        PatchCategoryIfTrue(nameof(Core.ConfigServer.FirepitHeatsOven), value: Core.ConfigServer.FirepitHeatsOven);
+        PatchCategoryIfTrue(nameof(Core.ConfigServer.CreativeMiddleClickEntity), value: Core.ConfigServer.CreativeMiddleClickEntity);
+        PatchCategoryIfTrue(nameof(Core.ConfigServer.FixOvenFuelRendering), value: Core.ConfigServer.FixOvenFuelRendering);
+        PatchCategoryIfTrue(nameof(Core.ConfigServer.RegrowResin), value: Core.ConfigServer.RegrowResin);
+        PatchCategoryIfTrue(nameof(Core.ConfigServer.GroundStorageLiquidInteraction), value: Core.ConfigServer.GroundStorageLiquidInteraction);
+        PatchCategoryIfTrue(nameof(Core.ConfigServer.GroundStorageImmersiveCrafting), value: Core.ConfigServer.GroundStorageImmersiveCrafting);
+        HarmonyInstance.PatchCategory("UnsortedServer");
+    }
+
+    private void ApplyClientPatches()
+    {
+        PatchCategoryIfTrue(nameof(Core.ConfigClient.AlwaysSwitchToBestTool), value: Core.ConfigClient.AlwaysSwitchToBestTool);
+        PatchCategoryIfTrue(nameof(Core.ConfigClient.ModesPerRowForVoxelRecipesEnabled), value: Core.ConfigClient.ModesPerRowForVoxelRecipesEnabled);
+        PatchCategoryIfTrue(nameof(Core.ConfigClient.ColorsPerRowForWaypointWindowEnabled), value: Core.ConfigClient.ColorsPerRowForWaypointWindowEnabled);
+        PatchCategoryIfTrue(nameof(Core.ConfigClient.IconsPerRowForWaypointWindowEnabled), value: Core.ConfigClient.IconsPerRowForWaypointWindowEnabled);
+        PatchCategoryIfTrue(nameof(Core.ConfigClient.OverrideWaypointColors), value: Core.ConfigClient.OverrideWaypointColors);
+        HarmonyInstance.PatchCategory("UnsortedClient");
+    }
+
+    private void PatchCategoryIfTrue(string category, bool value)
+    {
+        if (value)
+        {
+            HarmonyInstance.PatchCategory(category);
+        }
     }
 
     public override void Dispose()

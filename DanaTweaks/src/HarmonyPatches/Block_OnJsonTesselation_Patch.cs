@@ -1,24 +1,18 @@
 ﻿using HarmonyLib;
-using System.Reflection;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 
 namespace DanaTweaks;
 
+[HarmonyPatchCategory("UnsortedClient")]
 public static class Block_OnJsonTesselation_Patch
 {
-    public static MethodBase TargetMethod() => AccessTools.Method(typeof(Block), nameof(Block.OnJsonTesselation));
-    public static MethodInfo GetPrefix() => typeof(Block_OnJsonTesselation_Patch).GetMethod(nameof(Prefix));
-
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Block), nameof(Block.OnJsonTesselation))]
     public static void Prefix(Block __instance, ref MeshData sourceMesh, ref int[] lightRgbsByCorner, BlockPos pos, Block[] chunkExtBlocks, int extIndex3d, ICoreAPI ___api)
     {
-        if (!__instance.Code.ToString().Contains("log-resin") || ___api is not ICoreClientAPI capi)
-        {
-            return;
-        }
-
-        if (Core.ConfigClient?.ResinOnAllSides == false)
+        if (___api is not ICoreClientAPI capi || Core.ConfigClient?.ResinOnAllSides == false || !__instance.Code.ToString().Contains("log-resin"))
         {
             return;
         }

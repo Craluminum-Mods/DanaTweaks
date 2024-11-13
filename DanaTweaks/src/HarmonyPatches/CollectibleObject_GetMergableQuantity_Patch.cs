@@ -1,18 +1,15 @@
-using System.Reflection;
+using DanaTweaks.Configuration;
+using HarmonyLib;
 using Vintagestory.API.Common;
 using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
+[HarmonyPatchCategory(nameof(ConfigServer.SealCrockExtraInteractions))]
 public static class CollectibleObject_GetMergableQuantity_Patch
 {
-    public static MethodBase TargetMethod()
-    {
-        return typeof(CollectibleObject).GetMethod(nameof(CollectibleObject.GetMergableQuantity));
-    }
-
-    public static MethodInfo GetPrefix() => typeof(CollectibleObject_GetMergableQuantity_Patch).GetMethod(nameof(Prefix));
-
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(CollectibleObject), nameof(CollectibleObject.GetMergableQuantity))]
     public static bool Prefix(CollectibleObject __instance, ref int __result, ItemStack sinkStack, ItemStack sourceStack, EnumMergePriority priority)
     {
         if (__instance is BlockCrock

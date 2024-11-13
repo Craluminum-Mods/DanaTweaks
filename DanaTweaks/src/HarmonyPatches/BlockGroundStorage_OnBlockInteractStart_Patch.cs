@@ -1,22 +1,18 @@
-﻿using System.Reflection;
+﻿using DanaTweaks.Configuration;
+using HarmonyLib;
 using Vintagestory.API.Common;
 using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
+/// <summary>
+/// Handle ground storage liquid interactions
+/// </summary>
+[HarmonyPatchCategory(nameof(ConfigServer.GroundStorageLiquidInteraction))]
 public static class BlockGroundStorage_OnBlockInteractStart_Patch
 {
-    public static MethodBase TargetMethod()
-    {
-        return typeof(BlockGroundStorage).GetMethod(nameof(BlockGroundStorage.OnBlockInteractStart));
-    }
-
-    public static MethodInfo GetPrefix() => typeof(BlockGroundStorage_OnBlockInteractStart_Patch).GetMethod(nameof(Prefix));
-
-    /// <summary>
-    /// Handle ground storage liquid interactions
-    /// </summary>
-    /// <returns>Return false to skip original method</returns>
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(BlockGroundStorage), nameof(BlockGroundStorage.OnBlockInteractStart))]
     public static bool Prefix(ref bool __result, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
     {
         if (blockSel == null || world.BlockAccessor.GetBlockEntity(blockSel.Position) is not BlockEntityGroundStorage begs)
@@ -34,8 +30,8 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch
         ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
         ItemSlot targetSlot = begs.GetSlotAt(blockSel);
 
-        if (targetSlot?.Itemstack?.Collectible is ILiquidInterface cnt1
-            && hotbarSlot?.Itemstack?.Collectible is ILiquidInterface cnt2
+        if (targetSlot?.Itemstack?.Collectible?.GetCollectibleInterface<ILiquidInterface>() is ILiquidInterface cnt1
+            && hotbarSlot?.Itemstack?.Collectible?.GetCollectibleInterface<ILiquidInterface>() is ILiquidInterface cnt2
             && !BothContainersFullOrEmpty(cnt1, targetSlot.Itemstack, cnt2, hotbarSlot.Itemstack))
         {
             return HandleGroundStorageLiquidInteraction(out __result, byPlayer, begs, hotbarSlot, targetSlot);
@@ -49,10 +45,6 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch
         return cnt1.IsFull(cnt1stack) && cnt2.IsFull(cnt2stack) || cnt1.GetCurrentLitres(cnt1stack) == 0 && cnt2.GetCurrentLitres(cnt2stack) == 0;
     }
 
-    /// <summary>
-    /// Handle ground storage liquid interactions
-    /// </summary>
-    /// <returns>Return false to skip original method</returns>
     private static bool HandleGroundStorageLiquidInteraction(out bool __result, IPlayer byPlayer, BlockEntityGroundStorage begs, ItemSlot hotbarSlot, ItemSlot targetSlot)
     {
         BlockLiquidContainerBase _toLiquidContainer = hotbarSlot.Itemstack.Collectible as BlockLiquidContainerBase;
@@ -60,7 +52,7 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch
         CollectibleObject obj = hotbarSlot.Itemstack.Collectible;
         bool singleTake = byPlayer.WorldData.EntityControls.ShiftKey;
         bool singlePut = byPlayer.WorldData.EntityControls.CtrlKey;
-        if (obj is ILiquidSource liquidSource && !singleTake)
+        if (obj.GetCollectibleInterface<ILiquidSource>() is ILiquidSource liquidSource && !singleTake)
         {
             if (!liquidSource.AllowHeldLiquidTransfer)
             {
@@ -76,7 +68,7 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch
 
             if (moved > 0)
             {
-                _toLiquidContainer.CallMethod<int>("splitStackAndPerformAction", byPlayer.Entity, hotbarSlot, delegate (ItemStack stack)
+                _toLiquidContainer.SplitStackAndPerformAction(byPlayer.Entity, hotbarSlot, delegate (ItemStack stack)
                 {
                     liquidSource.TryTakeContent(stack, moved);
                     return moved;
@@ -91,7 +83,7 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch
             }
         }
 
-        if (obj is ILiquidSink liquidSink && !singlePut)
+        if (obj.GetCollectibleInterface<ILiquidSink>() is ILiquidSink liquidSink && !singlePut)
         {
             if (!liquidSink.AllowHeldLiquidTransfer)
             {
@@ -106,7 +98,7 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch
             }
             ItemStack liquidStackForParticles = owncontentStack.Clone();
             float litres = singleTake ? liquidSink.TransferSizeLitres : liquidSink.CapacityLitres;
-            int moved = _toLiquidContainer.CallMethod<int>("splitStackAndPerformAction", byPlayer.Entity, hotbarSlot, (ItemStack stack) => liquidSink.TryPutLiquid(stack, owncontentStack, litres));
+            int moved = _toLiquidContainer.SplitStackAndPerformAction(byPlayer.Entity, hotbarSlot, (ItemStack stack) => liquidSink.TryPutLiquid(stack, owncontentStack, litres));
             if (moved > 0)
             {
                 _toLiquidContainer.TryTakeContent(targetSlot.Itemstack, moved);

@@ -1,52 +1,42 @@
+using DanaTweaks.Configuration;
+using HarmonyLib;
 using Vintagestory.API.Common;
-using Vintagestory.API.Client;
 using Vintagestory.Client.NoObf;
 using Vintagestory.Common;
-using System.Reflection;
-using HarmonyLib;
 
 namespace DanaTweaks;
 
+[HarmonyPatchCategory(nameof(ConfigServer.CreativeMiddleClickEntity))]
 public static class SystemMouseInWorldInteractions_HandleMouseInteractionsNoBlockSelected_Patch
 {
-    public static MethodBase TargetMethod()
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(SystemMouseInWorldInteractions), "HandleMouseInteractionsNoBlockSelected")]
+    public static void Postfix(SystemMouseInWorldInteractions __instance, ClientMain ___game)
     {
-        return typeof(SystemMouseInWorldInteractions).GetMethod("HandleMouseInteractionsNoBlockSelected", AccessTools.all);
-    }
-
-    public static MethodInfo GetPostfix() => typeof(SystemMouseInWorldInteractions_HandleMouseInteractionsNoBlockSelected_Patch).GetMethod(nameof(Postfix));
-
-    public static void Postfix(SystemMouseInWorldInteractions __instance)
-    {
-        ClientMain game = __instance.GetField<ClientMain>("game");
-        MouseButtonState mouseState = game.GetField<MouseButtonState>("InWorldMouseState");
-        ClientPlayer player = game.GetField<ClientPlayer>("player");
-        EntitySelection entitySelection = game.GetProperty<EntitySelection>("EntitySelection");
-
-        if (mouseState.Middle && player.WorldData.CurrentGameMode == EnumGameMode.Creative && entitySelection != null)
+        if (___game.InWorldMouseState.Middle && ___game.Player.WorldData.CurrentGameMode == EnumGameMode.Creative && ___game.EntitySelection != null)
         {
-            OnEntityPick(entitySelection, game, player);
+            OnEntityPick(___game);
             return;
         }
     }
 
-    private static void OnEntityPick(EntitySelection entitySel, ClientMain game, ClientPlayer player)
+    private static void OnEntityPick(ClientMain game)
     {
-        if (player.WorldData.CurrentGameMode != EnumGameMode.Creative)
+        if (game.Player.WorldData.CurrentGameMode != EnumGameMode.Creative)
         {
             return;
         }
 
-        string entityCode = entitySel.Entity.Code.Domain + ":creature-" + entitySel.Entity.Code.Path;
-        ItemStack entityStack = new ItemStack(entitySel.Entity.World.GetItem(new AssetLocation(entityCode)));
+        string entityCode = game.EntitySelection.Entity.Code.Domain + ":creature-" + game.EntitySelection.Entity.Code.Path;
+        ItemStack entityStack = new ItemStack(game.EntitySelection.Entity.World.GetItem(new AssetLocation(entityCode)));
 
         if (entityStack == null)
         {
             return;
         }
 
-        IInventory hotbarInv = player.InventoryManager.GetHotbarInventory();
-        ItemSlot selectedHotbarSlot = player.InventoryManager.ActiveHotbarSlot;
+        IInventory hotbarInv = game.Player.InventoryManager.GetHotbarInventory();
+        ItemSlot selectedHotbarSlot = game.Player.InventoryManager.ActiveHotbarSlot;
 
         selectedHotbarSlot.Itemstack = entityStack;
         selectedHotbarSlot.MarkDirty();
@@ -57,7 +47,7 @@ public static class SystemMouseInWorldInteractions_HandleMouseInteractionsNoBloc
             {
                 Itemstack = StackConverter.ToPacket(entityStack),
                 TargetInventoryId = selectedHotbarSlot.Inventory.InventoryID,
-                TargetSlot = player.InventoryManager.ActiveHotbarSlotNumber,
+                TargetSlot = game.Player.InventoryManager.ActiveHotbarSlotNumber,
                 TargetLastChanged = ((InventoryBase)hotbarInv).lastChangedSinceServerStart
             }
         });

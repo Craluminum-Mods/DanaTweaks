@@ -1,21 +1,17 @@
-﻿using HarmonyLib;
+﻿using DanaTweaks.Configuration;
+using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
 using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
+[HarmonyPatchCategory(nameof(ConfigClient.ModesPerRowForVoxelRecipesEnabled))]
 public static class GuiDialogBlockEntityRecipeSelector_SetupDialog_Patch
 {
-    public static MethodBase TargetMethod()
-    {
-        return typeof(GuiDialogBlockEntityRecipeSelector).GetMethod("SetupDialog", AccessTools.all);
-    }
-
-    public static MethodInfo GetTranspiler() => typeof(GuiDialogBlockEntityRecipeSelector_SetupDialog_Patch).GetMethod(nameof(Transpiler));
-
+    [HarmonyTranspiler]
+    [HarmonyPatch(typeof(GuiDialogBlockEntityRecipeSelector), "SetupDialog")]
     public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         List<CodeInstruction> codes = new List<CodeInstruction>(instructions);

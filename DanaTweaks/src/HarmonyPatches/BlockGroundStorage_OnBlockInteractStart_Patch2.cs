@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
+﻿using DanaTweaks.Configuration;
+using HarmonyLib;
+using System.Collections.Generic;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
@@ -7,19 +8,14 @@ using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
+/// <summary>
+/// Handle immersive crafting using ground storage
+/// </summary>
+[HarmonyPatchCategory(nameof(ConfigServer.GroundStorageImmersiveCrafting))]
 public static class BlockGroundStorage_OnBlockInteractStart_Patch2
 {
-    public static MethodBase TargetMethod()
-    {
-        return typeof(BlockGroundStorage).GetMethod(nameof(BlockGroundStorage.OnBlockInteractStart));
-    }
-
-    public static MethodInfo GetPrefix() => typeof(BlockGroundStorage_OnBlockInteractStart_Patch2).GetMethod(nameof(Prefix));
-
-    /// <summary>
-    /// Handle immersive crafting using ground storage
-    /// </summary>
-    /// <returns>Return false to skip original method</returns>
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(BlockGroundStorage), nameof(BlockGroundStorage.OnBlockInteractStart))]
     public static bool Prefix(ref bool __result, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
     {
         if (blockSel == null || world.BlockAccessor.GetBlockEntity(blockSel.Position) is not BlockEntityGroundStorage begs)
@@ -129,8 +125,8 @@ public static class BlockGroundStorage_OnBlockInteractStart_Patch2
 
     private static bool HasFullBackpack(ItemSlot firstSlot, ItemSlot secondSlot)
     {
-        bool isBackpackAndFull1 = CollectibleObject.IsBackPack(firstSlot.Itemstack) && !CollectibleObject.IsEmptyBackPack(firstSlot.Itemstack);
-        bool isBackpackAndFull2 = CollectibleObject.IsBackPack(secondSlot.Itemstack) && !CollectibleObject.IsEmptyBackPack(secondSlot.Itemstack);
+        bool isBackpackAndFull1 = firstSlot.Itemstack.Collectible.HasBehavior<CollectibleBehaviorHeldBag>() && !firstSlot.Itemstack.Collectible.GetBehavior<CollectibleBehaviorHeldBag>().IsEmpty(firstSlot.Itemstack);
+        bool isBackpackAndFull2 = secondSlot.Itemstack.Collectible.HasBehavior<CollectibleBehaviorHeldBag>() && !firstSlot.Itemstack.Collectible.GetBehavior<CollectibleBehaviorHeldBag>().IsEmpty(secondSlot.Itemstack);
         return isBackpackAndFull1 || isBackpackAndFull2;
     }
 

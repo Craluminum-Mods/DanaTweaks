@@ -1,19 +1,15 @@
+using DanaTweaks.Configuration;
 using HarmonyLib;
-using System.Reflection;
 using Vintagestory.API.Common;
 using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
+[HarmonyPatchCategory(nameof(ConfigServer.FirepitHeatsOven))]
 public static class BlockEntityFirepit_OnBurnTick_Patch
 {
-    public static MethodBase TargetMethod()
-    {
-        return typeof(BlockEntityFirepit).GetMethod("OnBurnTick", AccessTools.all);
-    }
-
-    public static MethodInfo GetPostfix() => typeof(BlockEntityFirepit_OnBurnTick_Patch).GetMethod(nameof(Postfix));
-
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(BlockEntityFirepit), "OnBurnTick")]
     public static void Postfix(BlockEntityFirepit __instance, float dt)
     {
         if (!__instance.Api.Side.IsServer()
