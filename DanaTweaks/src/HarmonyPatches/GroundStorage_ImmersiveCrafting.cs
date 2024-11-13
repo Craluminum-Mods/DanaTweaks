@@ -39,7 +39,8 @@ public static class GroundStorage_ImmersiveCrafting
             || !AnySatisfies(firstSlot, secondSlot, matchingRecipe)
             || HasSameIngredients(firstSlot, secondSlot, matchingRecipe)
             || HasSealedOrEmptyCrock(firstSlot, secondSlot)
-            || HasFullBackpack(firstSlot, secondSlot))
+            || HasFullBackpack(firstSlot, secondSlot)
+            || Extensions.AnyCrate(firstSlot, secondSlot) )
         {
             return true;
         }

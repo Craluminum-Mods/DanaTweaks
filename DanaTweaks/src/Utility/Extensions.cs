@@ -43,6 +43,18 @@ public static class Extensions
         BlockPos pos = api.World.Player?.CurrentBlockSelection?.Position;
         return pos != null && api.World.BlockAccessor.GetBlockEntityExt<BlockEntityCrate>(pos) != null;
     }
+    
+    public static bool AnyCrate(params ItemSlot[] slots)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].Itemstack.Collectible is BlockCrate)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static bool IsCorrectLabel(this ItemSlot activeSlot, ItemStack DefaultLabelStack)
     {
