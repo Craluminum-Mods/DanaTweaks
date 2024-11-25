@@ -74,7 +74,7 @@ public class BlockBehaviorAutoClose : BlockBehavior
         }
         else if (IsOpened(world, blockSel))
         {
-            block.Activate(world, caller, blockSel, activationArgs);
+            try { block.Activate(world, caller, blockSel, activationArgs); } catch { }
         }
     }
 
