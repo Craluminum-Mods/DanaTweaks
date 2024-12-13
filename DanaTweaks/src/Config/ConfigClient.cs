@@ -24,9 +24,6 @@ public class ConfigClient : IModConfig
     public float IconsPerRowForWaypointWindowRatio { get; set; } = 1;
 
     public bool GlowingProjectiles { get; set; }
-    public bool ShakeSlotsInsideBags { get; set; } = true;
-    public bool ShakeSlotsWithBags { get; set; } = true;
-    public bool ShakeSlotsWithSuitableClothes { get; set; } = true;
     public bool ResinOnAllSides { get; set; } = true;
 
     public ConfigClient(ICoreAPI api, ConfigClient previousConfig = null)
@@ -53,9 +50,6 @@ public class ConfigClient : IModConfig
         IconsPerRowForWaypointWindowRatio = previousConfig.IconsPerRowForWaypointWindowRatio;
 
         GlowingProjectiles = previousConfig.GlowingProjectiles;
-        ShakeSlotsInsideBags = previousConfig.ShakeSlotsInsideBags;
-        ShakeSlotsWithBags = previousConfig.ShakeSlotsWithBags;
-        ShakeSlotsWithSuitableClothes = previousConfig.ShakeSlotsWithSuitableClothes;
         ResinOnAllSides = previousConfig.ResinOnAllSides;
     }
 
