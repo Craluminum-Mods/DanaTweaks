@@ -73,7 +73,6 @@ public class ConfigLibCompatibility
             config.GroundStorageLiquidInteraction = OnCheckBox(id, config.GroundStorageLiquidInteraction, nameof(config.GroundStorageLiquidInteraction));
             config.GroundStorageParticles = OnCheckBox(id, config.GroundStorageParticles, nameof(config.GroundStorageParticles));
             config.HalloweenEveryDay = OnCheckBox(id, config.HalloweenEveryDay, nameof(config.HalloweenEveryDay));
-            config.PickUpBones = OnCheckBox(id, config.PickUpBones, nameof(config.PickUpBones));
             config.PlanksInPitKiln = OnCheckBox(id, config.PlanksInPitKiln, nameof(config.PlanksInPitKiln));
             config.PlayerDropsHotSlots = OnCheckBox(id, config.PlayerDropsHotSlots, nameof(config.PlayerDropsHotSlots));
             config.PlayerWakesUpWhenHungry = OnCheckBox(id, config.PlayerWakesUpWhenHungry, nameof(config.PlayerWakesUpWhenHungry));

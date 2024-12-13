@@ -49,7 +49,6 @@
     "Config.Setting.GroundStorageLiquidInteraction": "Allow liquid interaction with liquid containers in ground storage",
     "Config.Setting.GroundStorageParticles": "Emituj dym z garnkow i tygli ustawionych na ziemi",
     "Config.Setting.HalloweenEveryDay": "Mozliwosc rzezbienia dyn o kazdej porze roku",
-    "Config.Setting.PickUpBones": "Podnoszenie kosci",
     "Config.Setting.PlanksInPitKiln": "Zezwol na uzywanie desek w piecu dolowym",
     "Config.Setting.PlayerDropsHotSlots": "Gracz upuszcza wszystko ze slotow",
     "Config.Setting.PlayerWakesUpWhenHungry": "Obudz graczy podczas snu gdy zglodnieja",

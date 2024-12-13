@@ -108,7 +108,6 @@ public class Core : ModSystem
         {
             if (block?.Code == null) continue;
             block.PatchAutoClose();
-            block.PatchCarcass();
             block.PatchChute();
             block.PatchCrate();
             block.PatchCrock();

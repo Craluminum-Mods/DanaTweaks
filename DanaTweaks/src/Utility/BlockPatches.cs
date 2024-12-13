@@ -115,18 +115,6 @@ public static class BlockPatches
         }
     }
 
-    public static void PatchCarcass(this Block block)
-    {
-        if (!block.Code.ToString().Contains("carcass"))
-        {
-            return;
-        }
-        if (Core.ConfigServer.PickUpBones)
-        {
-            block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorRightClickPickup(block));
-        }
-    }
-
     public static void PatchPie(this Block block)
     {
         if (Core.ConfigServer.ShelvablePie && block is BlockPie)

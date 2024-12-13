@@ -46,7 +46,6 @@ public class ConfigServer : IModConfig
     public bool GroundStorageLiquidInteraction { get; set; } = true;
     public bool GroundStorageParticles { get; set; } = true;
     public bool HalloweenEveryDay { get; set; } = true;
-    public bool PickUpBones { get; set; }
     public bool PlanksInPitKiln { get; set; } = true;
     public bool PlayerDropsHotSlots { get; set; }
     public bool PlayerWakesUpWhenHungry { get; set; }
@@ -115,7 +114,6 @@ public class ConfigServer : IModConfig
         GroundStorageLiquidInteraction = previousConfig.GroundStorageLiquidInteraction;
         GroundStorageParticles = previousConfig.GroundStorageParticles;
         HalloweenEveryDay = previousConfig.HalloweenEveryDay;
-        PickUpBones = previousConfig.PickUpBones;
         PlanksInPitKiln = previousConfig.PlanksInPitKiln;
         PlayerDropsHotSlots = previousConfig.PlayerDropsHotSlots;
         PlayerWakesUpWhenHungry = previousConfig.PlayerWakesUpWhenHungry;
