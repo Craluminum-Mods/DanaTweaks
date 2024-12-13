@@ -45,7 +45,6 @@
     "Config.Setting.FirepitHeatsOven": "Firepit Heats Oven",
     "Config.Setting.FixOvenFuelRendering": "Resolve Oven Fuel Rendering",
     "Config.Setting.FourPlanksFromLog": "Craft logs into four planks",
-    "Config.Setting.FragileBones": "Fragile Bones",
     "Config.Setting.GroundStorageImmersiveCrafting": "Allow immersive crafting in ground storage using grid recipes with 2 ingredients",
     "Config.Setting.GroundStorageLiquidInteraction": "Allow liquid interaction with liquid containers in ground storage",
     "Config.Setting.GroundStorageParticles": "Emit smoke particles for pots and crucibles placed on the ground",

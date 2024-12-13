@@ -125,10 +125,6 @@ public static class BlockPatches
         {
             block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorRightClickPickup(block));
         }
-        if (Core.ConfigServer.FragileBones)
-        {
-            block.Resistance = 0.15f;
-        }
     }
 
     public static void PatchPie(this Block block)

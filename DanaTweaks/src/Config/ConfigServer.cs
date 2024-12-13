@@ -42,7 +42,6 @@ public class ConfigServer : IModConfig
     public bool FirepitHeatsOven { get; set; } = true;
     public bool FixOvenFuelRendering { get; set; } = true;
     public bool FourPlanksFromLog { get; set; }
-    public bool FragileBones { get; set; }
     public bool GroundStorageImmersiveCrafting { get; set; } = true;
     public bool GroundStorageLiquidInteraction { get; set; } = true;
     public bool GroundStorageParticles { get; set; } = true;
@@ -112,7 +111,6 @@ public class ConfigServer : IModConfig
         FirepitHeatsOven = previousConfig.FirepitHeatsOven;
         FixOvenFuelRendering = previousConfig.FixOvenFuelRendering;
         FourPlanksFromLog = previousConfig.FourPlanksFromLog;
-        FragileBones = previousConfig.FragileBones;
         GroundStorageImmersiveCrafting = previousConfig.GroundStorageImmersiveCrafting;
         GroundStorageLiquidInteraction = previousConfig.GroundStorageLiquidInteraction;
         GroundStorageParticles = previousConfig.GroundStorageParticles;

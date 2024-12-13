@@ -69,7 +69,6 @@ public class ConfigLibCompatibility
             config.FirepitHeatsOven = OnCheckBox(id, config.FirepitHeatsOven, nameof(config.FirepitHeatsOven));
             config.FixOvenFuelRendering = OnCheckBox(id, config.FixOvenFuelRendering, nameof(config.FixOvenFuelRendering));
             config.FourPlanksFromLog = OnCheckBox(id, config.FourPlanksFromLog, nameof(config.FourPlanksFromLog));
-            config.FragileBones = OnCheckBox(id, config.FragileBones, nameof(config.FragileBones));
             config.GroundStorageImmersiveCrafting = OnCheckBox(id, config.GroundStorageImmersiveCrafting, nameof(config.GroundStorageImmersiveCrafting));
             config.GroundStorageLiquidInteraction = OnCheckBox(id, config.GroundStorageLiquidInteraction, nameof(config.GroundStorageLiquidInteraction));
             config.GroundStorageParticles = OnCheckBox(id, config.GroundStorageParticles, nameof(config.GroundStorageParticles));

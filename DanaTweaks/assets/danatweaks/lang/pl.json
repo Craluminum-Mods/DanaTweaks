@@ -45,7 +45,6 @@
     "Config.Setting.FirepitHeatsOven": "Ognisko ogrzewa piec",
     "Config.Setting.FixOvenFuelRendering": "Rozwiaz problem z renderowaniem paliwa w piecu",
     "Config.Setting.FourPlanksFromLog": "Tworz cztery deski z jednej klody drewna",
-    "Config.Setting.FragileBones": "Kruche kosci",
     "Config.Setting.GroundStorageImmersiveCrafting": "Allow immersive crafting in ground storage using grid recipes with 2 ingredients",
     "Config.Setting.GroundStorageLiquidInteraction": "Allow liquid interaction with liquid containers in ground storage",
     "Config.Setting.GroundStorageParticles": "Emituj dym z garnkow i tygli ustawionych na ziemi",
