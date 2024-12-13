@@ -230,14 +230,6 @@ public static class BlockPatches
         }
     }
 
-    public static void PatchFarmlandDropsSoil(this Block block)
-    {
-        if (Core.ConfigServer.FarmlandDropsSoil && block is BlockFarmland)
-        {
-            block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorFarmlandDropsSoil(block));
-        }
-    }
-
     public static void PatchAutoClose(this Block block)
     {
         if (Core.ConfigServer.AutoClose && block.IsAutoCloseCompatible())

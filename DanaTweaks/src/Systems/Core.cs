@@ -48,7 +48,6 @@ public class Core : ModSystem
         api.RegisterBlockBehaviorClass("DanaTweaks:DropVinesAnyway", typeof(BlockBehaviorDropVinesAnyway));
         api.RegisterBlockBehaviorClass("DanaTweaks:GuaranteedDecorDrop", typeof(BlockBehaviorGuaranteedDecorDrop));
         api.RegisterBlockBehaviorClass("DanaTweaks:GroundStorageParticles", typeof(BlockBehaviorGroundStorageParticles));
-        api.RegisterBlockBehaviorClass("DanaTweaks:FarmlandDropsSoil", typeof(BlockBehaviorFarmlandDropsSoil));
         api.RegisterBlockBehaviorClass("DanaTweaks:AutoClose", typeof(BlockBehaviorAutoClose));
         //api.RegisterBlockBehaviorClass("DanaTweaks:OpenConnectedTrapdoors", typeof(BlockBehaviorOpenConnectedTrapdoors));
         api.RegisterBlockBehaviorClass("DanaTweaks:WaxCheeseOnGroundInteractions", typeof(BlockBehaviorWaxCheeseOnGroundInteractions));
@@ -115,7 +114,6 @@ public class Core : ModSystem
             block.PatchCrock();
             block.PatchDecor();
             block.PatchEverySoilUnstable();
-            block.PatchFarmlandDropsSoil();
             block.PatchGroundStorageParticles();
             block.PatchLeaves();
             block.PatchOmniRotatable();
