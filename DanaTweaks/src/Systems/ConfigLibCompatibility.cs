@@ -177,13 +177,6 @@ public class ConfigLibCompatibility
                 DictionaryEditor(config.CreaturesOpenDoors, new CreatureOpenDoors(), Lang.Get(textSupportsWildcard));
                 ImGui.Unindent();
             }
-            if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.RichTraders)) + $"##settingRichTraders-{id}"))
-            {
-                ImGui.Indent();
-                config.RichTraders = OnCheckBoxWithoutTranslation($"##boolean-RichTraders-{id}", config.RichTraders, Lang.Get(textEnabled));
-                DictionaryEditor(config.RichTradersList);
-                ImGui.Unindent();
-            }
             ImGui.Unindent();
         }
     }

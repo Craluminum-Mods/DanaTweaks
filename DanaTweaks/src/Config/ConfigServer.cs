@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Vintagestory.API.Common;
-using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 
 namespace DanaTweaks.Configuration;
@@ -32,9 +31,6 @@ public class ConfigServer : IModConfig
 
     public bool OpenConnectedTrapdoors { get; set; } = true;
     public int OpenConnectedTrapdoorsMaxBlocksDistance { get; set; } = 10;
-
-    public bool RichTraders { get; set; }
-    public Dictionary<string, NatFloat> RichTradersList { get; set; } = new();
 
     public bool BranchCutter { get; set; } = true;
     public bool CreativeMiddleClickEntity { get; set; } = true;
@@ -106,9 +102,6 @@ public class ConfigServer : IModConfig
 
         OpenConnectedTrapdoors = previousConfig.OpenConnectedTrapdoors;
         OpenConnectedTrapdoorsMaxBlocksDistance = previousConfig.OpenConnectedTrapdoorsMaxBlocksDistance;
-
-        RichTraders = previousConfig.RichTraders;
-        RichTradersList.AddRange(previousConfig.RichTradersList);
 
         BranchCutter = previousConfig.BranchCutter;
         CreativeMiddleClickEntity = previousConfig.CreativeMiddleClickEntity;

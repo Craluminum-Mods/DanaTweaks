@@ -99,11 +99,6 @@ public class Core : ModSystem
             block.FillScytheList(ref scytheMorePrefixes);
         }
 
-        foreach (EntityProperties entityType in api.World.EntityTypes)
-        {
-            entityType.FillTradersList(ref any);
-        }
-
         if (any)
         {
             ModConfig.WriteConfig(api, ConfigServerName, ConfigServer);
@@ -145,11 +140,6 @@ public class Core : ModSystem
             item.PatchOvenFuel();
             item.PatchScythe(scytheMorePrefixes);
             item.PatchWaxForCheese();
-        }
-
-        foreach (EntityProperties entityType in api.World.EntityTypes)
-        {
-            entityType.MakeTraderRich();
         }
 
         api.World.Logger.Event("started '{0}' mod", Mod.Info.Name);
