@@ -57,7 +57,6 @@
     "Config.Setting.RecycleClothes": "Add recipes for recycling clothes",
     "Config.Setting.RegrowResin": "Generate resin on trees grown from saplings",
     "Config.Setting.RemoveBookSignature": "Allow to remove book signature",
-    "Config.Setting.RichTraders": "Rich Traders",
     "Config.Setting.ShelvablePie": "Allow to store pies on shelves",
     "Config.Setting.WaxCheeseOnGround": "Wax cheese placed on the ground",
 
@@ -91,10 +90,6 @@
 
     "Config.Setting.GlowingProjectiles": "Enable 'Glowing Projectiles'",
     "Config.Setting.ResinOnAllSides": "Show resin on all sides of log with resin",
-
-    "Config.Setting.ShakeSlotsInsideBags": "Shake inventory slots for selected bag",
-    "Config.Setting.ShakeSlotsWithBags": "Shake slots with bags for selected inventory slot",
-    "Config.Setting.ShakeSlotsWithSuitableClothes": "Shake slots with suitable clothes for selected clothing slot",
 
     "Config.Setting.AlwaysSwitchToBestTool": "Always Switch To Best Tool",
     "Config.Setting.AlwaysSwitchToBestToolIgnoredTools": "Ignored Tools",

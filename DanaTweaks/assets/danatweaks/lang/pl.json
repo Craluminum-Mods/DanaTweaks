@@ -57,7 +57,6 @@
     "Config.Setting.RecycleClothes": "Dodaj przepisy na recykling ubrań",
     "Config.Setting.RegrowResin": "Wytwarzaj zywice na drzewach wyhodowanych z sadzonek",
     "Config.Setting.RemoveBookSignature": "Zezwalaj na usuwanie podpisow ksiazek",
-    "Config.Setting.RichTraders": "Bogaci Handlarze",
     "Config.Setting.ShelvablePie": "Zezwol na przechowywanie ciast na polkach",
     "Config.Setting.WaxCheeseOnGround": "Kladzenie zawoskowanego sera na ziemi",
 
@@ -91,10 +90,6 @@
 
     "Config.Setting.GlowingProjectiles": "Wlacz 'Swiecace pociski'",
     "Config.Setting.ResinOnAllSides": "Show resin on all sides of log with resin",
-
-    "Config.Setting.ShakeSlotsInsideBags": "Shake inventory slots for selected bag",
-    "Config.Setting.ShakeSlotsWithBags": "Shake slots with bags for selected inventory slot",
-    "Config.Setting.ShakeSlotsWithSuitableClothes": "Shake slots with suitable clothes for selected clothing slot",
 
     "Config.Setting.AlwaysSwitchToBestTool": "Zawsze przelaczaj na najlepsze narzedzie",
     "Config.Setting.AlwaysSwitchToBestToolIgnoredTools": "Narzedzia ignorowane",
