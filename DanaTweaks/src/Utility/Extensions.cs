@@ -127,6 +127,6 @@ public static class Extensions
 
     public static bool WildCardMatchExt(this Entity obj, string location)
     {
-        return WildcardUtil.Match(location, obj.Code.ToString());
+        return WildcardUtil.Match(location, obj.Code.ToString()) || obj.WildCardMatch(location);
     }
 }
