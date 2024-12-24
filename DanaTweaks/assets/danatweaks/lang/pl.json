@@ -21,9 +21,6 @@
     "Config.Setting.ExtinctSubmergedTorchInEverySlot": "Zgas pochodnie w kazdym slocie po zanuzeniu",
     "Config.Setting.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds": "Interwal milisekundowy",
 
-    "Config.Setting.ChuteAutoHarvesting": "Auto zbieranie z rynien/rur",
-    "Config.Setting.ChuteAutoHarvestingUpdateMilliseconds": "Interwal milisekundowy",
-
     "Config.Setting.OpenConnectedTrapdoors": "Otworz wszystkie polaczone zapadnie",
     "Config.Setting.OpenConnectedTrapdoorsMaxBlocksDistance": "Maksymalna odleglosc w blokach",
 

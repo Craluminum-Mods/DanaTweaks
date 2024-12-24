@@ -109,13 +109,6 @@ public class ConfigLibCompatibility
                 config.RainCollector.LiquidCode = OnInputText(id, config.RainCollector.LiquidCode, nameof(config.RainCollector.LiquidCode));
                 ImGui.Unindent();
             }
-            if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.ChuteAutoHarvesting)) + $"##settingChuteAutoHarvesting-{id}"))
-            {
-                ImGui.Indent();
-                config.ChuteAutoHarvesting = OnCheckBoxWithoutTranslation($"##boolean-ChuteAutoHarvesting-{id}", config.ChuteAutoHarvesting, Lang.Get(textEnabled));
-                config.ChuteAutoHarvestingUpdateMilliseconds = OnInputInt(id, config.ChuteAutoHarvestingUpdateMilliseconds, nameof(config.ChuteAutoHarvestingUpdateMilliseconds), 1);
-                ImGui.Unindent();
-            }
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.ExtinctSubmergedTorchInEverySlot)) + $"##settingExtinct-{id}"))
             {
                 ImGui.Indent();

@@ -20,9 +20,6 @@ public class ConfigServer : IModConfig
     public RainCollector RainCollector { get; set; } = new();
     public ScytheMore ScytheMore { get; set; } = new();
     
-    public bool ChuteAutoHarvesting { get; set; }
-    public int ChuteAutoHarvestingUpdateMilliseconds { get; set; } = 5000;
-
     public bool DropDecor { get; set; } = true;
     public Dictionary<string, bool> DropDecorBlocks { get; set; } = new();
 
@@ -87,9 +84,6 @@ public class ConfigServer : IModConfig
         CreaturesOpenDoors.AddRange(previousConfig.CreaturesOpenDoors);
         OvenFuelItems.AddRange(previousConfig.OvenFuelItems);
         OvenFuelBlocks.AddRange(previousConfig.OvenFuelBlocks);
-
-        ChuteAutoHarvesting = previousConfig.ChuteAutoHarvesting;
-        ChuteAutoHarvestingUpdateMilliseconds = previousConfig.ChuteAutoHarvestingUpdateMilliseconds;
 
         DropDecor = previousConfig.DropDecor;
         DropDecorBlocks.AddRange(previousConfig.DropDecorBlocks);

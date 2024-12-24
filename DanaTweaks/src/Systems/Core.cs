@@ -54,7 +54,6 @@ public class Core : ModSystem
 
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:RainCollector", typeof(BEBehaviorRainCollector));
         api.RegisterBlockEntityBehaviorClass("DanaTweaks:ExtinctSubmergedTorchInEverySlot", typeof(BEBehaviorExtinctSubmergedTorchInEverySlot));
-        api.RegisterBlockEntityBehaviorClass("DanaTweaks:ChuteAutoHarvesting", typeof(BEBehaviorChuteAutoHarvesting));
 
         api.RegisterCollectibleBehaviorClass("DanaTweaks:BranchCutter", typeof(CollectibleBehaviorBranchCutter));
         api.RegisterCollectibleBehaviorClass("DanaTweaks:RemoveBookSignature", typeof(CollectibleBehaviorRemoveBookSignature));
@@ -108,7 +107,6 @@ public class Core : ModSystem
         {
             if (block?.Code == null) continue;
             block.PatchAutoClose();
-            block.PatchChute();
             block.PatchCrate();
             block.PatchCrock();
             block.PatchDecor();

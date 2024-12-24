@@ -21,9 +21,6 @@
     "Config.Setting.ExtinctSubmergedTorchInEverySlot": "Extinct Submerged Torch In Every Slot",
     "Config.Setting.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds": "Milliseconds Interval",
 
-    "Config.Setting.ChuteAutoHarvesting": "Auto harvesting with chutes",
-    "Config.Setting.ChuteAutoHarvestingUpdateMilliseconds": "Milliseconds Interval",
-
     "Config.Setting.OpenConnectedTrapdoors": "Open all connected trapdoors",
     "Config.Setting.OpenConnectedTrapdoorsMaxBlocksDistance": "Max blocks distance",
 

@@ -240,18 +240,6 @@ public static class BlockPatches
         }
     }
 
-    public static void PatchChute(this Block block)
-    {
-        if (Core.ConfigServer.ChuteAutoHarvesting && block is BlockChute)
-        {
-            block.BlockEntityBehaviors = block.BlockEntityBehaviors.Append(new BlockEntityBehaviorType()
-            {
-                Name = "DanaTweaks:ChuteAutoHarvesting",
-                properties = null
-            });
-        }
-    }
-
     public static void PatchPitKiln(this Block block, ICoreAPI api)
     {
         if (Core.ConfigServer.PlanksInPitKiln && block is BlockPitkiln)
