@@ -139,7 +139,7 @@ public static class BlockPatches
 
     public static void PatchResinLog(this Block block)
     {
-        if (Core.ConfigServer.DropResinAnyway && block.GetBehavior<BlockBehaviorHarvestable>()?.harvestedStack.Code == new AssetLocation(ResinCode))
+        if (Core.ConfigServer.DropResinAnyway && block.GetBehavior<BlockBehaviorHarvestable>()?.harvestedStacks?.Any(x => x.Code == ResinCode) == true)
         {
             block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorDropResinAnyway(block));
         }

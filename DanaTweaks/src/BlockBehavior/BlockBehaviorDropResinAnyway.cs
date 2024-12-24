@@ -13,17 +13,14 @@ public class BlockBehaviorDropResinAnyway : BlockBehavior
 
     public override ItemStack[] GetDrops(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, ref float dropChanceMultiplier, ref EnumHandling handling)
     {
-        BlockDropItemStack[] drops = block.Drops;
+        BlockDropItemStack[] drops = block.Drops.Append(block.GetBehavior<BlockBehaviorHarvestable>().harvestedStacks);
 
         handling = EnumHandling.PreventDefault;
-
         ItemStack[] newDrops = System.Array.Empty<ItemStack>();
         for (int i = 0; i < drops.Length; i++)
         {
             newDrops = newDrops.Append(drops[i].GetNextItemStack());
         }
-
-        ItemStack resinStack = block.GetBehavior<BlockBehaviorHarvestable>().harvestedStack.GetNextItemStack();
-        return new ItemStack[] { resinStack }.Append(newDrops);
+        return newDrops;
     }
 }
