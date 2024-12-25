@@ -7,7 +7,7 @@
     "name": "Dana Tweaks",
     "description": "Various tweaks",
     "authors": ["Craluminum2413"],
-    "version": "3.3.8",
+    "version": "3.3.9",
     "dependencies": {
         "game": "1.20.0-rc.6"
     }
