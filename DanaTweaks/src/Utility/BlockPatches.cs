@@ -225,10 +225,10 @@ public static class BlockPatches
 
     public static void PatchOpenConnectedTrapdoors(this Block block)
     {
-        //if (Core.ConfigServer.OpenConnectedTrapdoors && (block is BlockTrapdoor || block.HasBehavior<BlockBehaviorTrapDoor>()))
-        //{
-        //    block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorOpenConnectedTrapdoors(block));
-        //}
+        if (Core.ConfigServer.OpenConnectedTrapdoors && block.HasBehavior<BlockBehaviorTrapDoor>())
+        {
+            block.BlockBehaviors = block.BlockBehaviors.Append(new BlockBehaviorOpenConnectedTrapdoors(block));
+        }
     }
 
     public static void PatchWaxeableCheese(this Block block)
