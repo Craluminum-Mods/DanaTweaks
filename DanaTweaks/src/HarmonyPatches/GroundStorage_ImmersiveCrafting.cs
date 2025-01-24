@@ -123,8 +123,8 @@ public static class GroundStorage_ImmersiveCrafting
 
     private static bool HasFullBackpack(ItemSlot firstSlot, ItemSlot secondSlot)
     {
-        bool isBackpackAndFull1 = firstSlot.Itemstack.Collectible.HasBehavior<CollectibleBehaviorHeldBag>() && !firstSlot.Itemstack.Collectible.GetBehavior<CollectibleBehaviorHeldBag>().IsEmpty(firstSlot.Itemstack);
-        bool isBackpackAndFull2 = secondSlot.Itemstack.Collectible.HasBehavior<CollectibleBehaviorHeldBag>() && !firstSlot.Itemstack.Collectible.GetBehavior<CollectibleBehaviorHeldBag>().IsEmpty(secondSlot.Itemstack);
+        bool isBackpackAndFull1 = firstSlot?.Itemstack?.Collectible?.GetBehavior<CollectibleBehaviorHeldBag>()?.IsEmpty(firstSlot.Itemstack) == false;
+        bool isBackpackAndFull2 = secondSlot?.Itemstack?.Collectible?.GetBehavior<CollectibleBehaviorHeldBag>()?.IsEmpty(secondSlot.Itemstack) == false;
         return isBackpackAndFull1 || isBackpackAndFull2;
     }
 
