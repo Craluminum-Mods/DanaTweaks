@@ -38,7 +38,10 @@ public class ConfigLibCompatibility
         if (buttons.Restore) Core.ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, ConfigServerName);
         if (buttons.Defaults) Core.ConfigServer = new(api);
 
-        BuildSettingsServer(Core.ConfigServer, id);
+        if (Core.ConfigServer != null)
+        {
+            BuildSettingsServer(Core.ConfigServer, id);
+        }
     }
 
     private void EditConfigClient(string id, ControlButtons buttons, ICoreAPI api)
@@ -47,7 +50,10 @@ public class ConfigLibCompatibility
         if (buttons.Restore) Core.ConfigClient = ModConfig.ReadConfig<ConfigClient>(api, ConfigClientName);
         if (buttons.Defaults) Core.ConfigClient = new(api);
 
-        BuildSettingsClient(Core.ConfigClient, id);
+        if (Core.ConfigClient != null)
+        {
+            BuildSettingsClient(Core.ConfigClient, id);
+        }
     }
 
     private void BuildSettingsServer(ConfigServer config, string id)
