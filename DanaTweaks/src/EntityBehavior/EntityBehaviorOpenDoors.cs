@@ -1,10 +1,8 @@
 using Vintagestory.API.Common;
+using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
-using Vintagestory.API.Common.Entities;
 using Vintagestory.GameContent;
-using System.Collections.Generic;
-using System;
 
 namespace DanaTweaks;
 
@@ -64,18 +62,13 @@ public class EntityBehaviorOpenDoors : EntityBehavior
     private bool IsLocked(BlockPos pos)
     {
         ModSystemBlockReinforcement blockReinforcementSys = entity.Api.ModLoader.GetModSystem<ModSystemBlockReinforcement>();
-        Dictionary<int, BlockReinforcement> reinforcmentsOfChunk = blockReinforcementSys.CallMethod<Dictionary<int, BlockReinforcement>>("getOrCreateReinforcmentsAt", pos);
-        if (reinforcmentsOfChunk == null)
-        {
-            return false;
-        }
 
-        if (reinforcmentsOfChunk.TryGetValue(blockReinforcementSys.CallMethodWithTypeArgs<int>("toLocalIndex", new Type[] { typeof(BlockPos) }, pos), out BlockReinforcement bre) && bre.Locked)
+        if (entity.Api.World.BlockAccessor.GetBlock(pos) is BlockMultiblock multiblock)
         {
-            return true;
+            BlockPos multiblockPos = new BlockPos(pos.X + multiblock.OffsetInv.X, pos.Y + multiblock.OffsetInv.Y, pos.Z + multiblock.OffsetInv.Z, pos.dimension);
+            return blockReinforcementSys.GetReinforcment(multiblockPos)?.Locked == true;
         }
-
-        return false;
+        return blockReinforcementSys.GetReinforcment(pos)?.Locked == true;
     }
 
     public override string PropertyName() => "danatweaks:opendoors";
