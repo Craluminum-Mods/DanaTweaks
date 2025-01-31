@@ -22,18 +22,15 @@ public static class SystemMouseInWorldInteractions_HandleMouseInteractionsNoBloc
 
     private static void OnEntityPick(ClientMain game)
     {
-        if (game.Player.WorldData.CurrentGameMode != EnumGameMode.Creative)
-        {
-            return;
-        }
-
         string entityCode = game.EntitySelection.Entity.Code.Domain + ":creature-" + game.EntitySelection.Entity.Code.Path;
-        ItemStack entityStack = new ItemStack(game.EntitySelection.Entity.World.GetItem(new AssetLocation(entityCode)));
 
-        if (entityStack == null)
+        Item item = game.EntitySelection.Entity.World.GetItem(entityCode);
+        if (item == null)
         {
             return;
         }
+
+        ItemStack entityStack = new ItemStack(item);
 
         IInventory hotbarInv = game.Player.InventoryManager.GetHotbarInventory();
         ItemSlot selectedHotbarSlot = game.Player.InventoryManager.ActiveHotbarSlot;
