@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
+using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
 namespace DanaTweaks;
@@ -10,9 +13,19 @@ public class BlockBehaviorAutoClose : BlockBehavior
 
     public static int GetDelay(Block block)
     {
-        return Core.ConfigServer.AutoCloseDelays.ContainsKey(block.Code.ToString())
-            ? Core.ConfigServer.AutoCloseDelays[block.Code.ToString()]
-            : Core.ConfigServer.AutoCloseDefaultDelay;
+        if (block == null)
+        {
+            return -1;
+        }
+
+        KeyValuePair<string, int> keyAndDelay = Core.ConfigServer.AutoCloseDelays.FirstOrDefault(x => WildcardUtil.Match(AssetLocation.Create(x.Key), block.Code));
+
+        if (string.IsNullOrEmpty(keyAndDelay.Key))
+        {
+            return -1;
+        }
+
+        return keyAndDelay.Value;
     }
 
     public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ref EnumHandling handling)
