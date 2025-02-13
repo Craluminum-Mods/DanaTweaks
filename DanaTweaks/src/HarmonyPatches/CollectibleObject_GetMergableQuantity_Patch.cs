@@ -12,15 +12,17 @@ public static class CollectibleObject_GetMergableQuantity_Patch
     [HarmonyPatch(typeof(CollectibleObject), nameof(CollectibleObject.GetMergableQuantity))]
     public static bool Prefix(CollectibleObject __instance, ref int __result, ItemStack sinkStack, ItemStack sourceStack, EnumMergePriority priority)
     {
-        if (__instance is BlockCrock
-            && priority == EnumMergePriority.DirectMerge
-            && !sinkStack.IsCrockEmpty()
-            && !sinkStack.Attributes.GetAsBool("sealed")
-            && sourceStack.Collectible.Attributes.KeyExists("canSealCrock")
-            && sourceStack.Collectible.Attributes["canSealCrock"].AsBool())
+        if (sinkStack == null || sourceStack?.ItemAttributes == null) return true;
+
+        if (__instance is BlockCrock && priority == EnumMergePriority.DirectMerge)
         {
-            __result = 1;
-            return false;
+            if (!sinkStack.IsCrockEmpty()
+            && !sinkStack.Attributes.GetAsBool("sealed")
+            && sourceStack.ItemAttributes.IsTrue("canSealCrock"))
+            {
+                __result = 1;
+                return false;
+            }
         }
 
         return true;

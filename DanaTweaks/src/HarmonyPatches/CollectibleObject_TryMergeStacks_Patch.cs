@@ -14,12 +14,13 @@ public static class CollectibleObject_TryMergeStacks_Patch
     [HarmonyPatch(typeof(CollectibleObject), nameof(CollectibleObject.TryMergeStacks))]
     public static bool Prefix(CollectibleObject __instance, ItemStackMergeOperation op, ICoreAPI ___api)
     {
+        if (op?.SourceSlot?.Itemstack?.Attributes == null) return true;
+
         if (__instance is BlockCrock && op.CurrentPriority == EnumMergePriority.DirectMerge)
         {
             if (!op.SinkSlot.Itemstack.IsCrockEmpty()
                 && !op.SinkSlot.Itemstack.Attributes.GetAsBool("sealed")
-                && op.SourceSlot.Itemstack.Collectible.Attributes.KeyExists("canSealCrock")
-                && op.SourceSlot.Itemstack.Collectible.Attributes["canSealCrock"].AsBool())
+                && op.SourceSlot.Itemstack.ItemAttributes.IsTrue("canSealCrock"))
             {
                 op.SinkSlot.Itemstack.Attributes.SetBool("sealed", true);
                 op.MovedQuantity = 1;
