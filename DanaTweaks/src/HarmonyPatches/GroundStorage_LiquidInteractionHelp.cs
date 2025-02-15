@@ -1,5 +1,4 @@
-﻿using DanaTweaks.Configuration;
-using HarmonyLib;
+﻿using HarmonyLib;
 using System;
 using System.Linq;
 using Vintagestory.API.Client;
@@ -9,7 +8,7 @@ using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
-[HarmonyPatchCategory(nameof(ConfigServer.GroundStorageLiquidInteraction))]
+[HarmonyPatchCategory("UnsortedClient")]
 public static class GroundStorage_LiquidInteractionHelp
 {
     [HarmonyPostfix]
