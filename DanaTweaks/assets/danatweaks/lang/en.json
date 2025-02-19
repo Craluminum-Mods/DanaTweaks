@@ -27,8 +27,10 @@
     "Config.Setting.AutoPlantDroppedTreeSeeds": "Auto plant dropped tree seeds",
     "Config.Setting.AutoPlantDroppedTreeSeedsDelay": "Delay (after being dropped)",
 
+    "Config.Setting.EverySoilUnstable": "Every Soil Unstable",
+    "Config.Setting.EverySoilUnstableBlacklist": "Blacklist",
+
     "Config.Setting.CreativeMiddleClickEntity": "Enable 'Creative Middle Click Entity'",
-    "Config.Setting.EverySoilUnstable": "Enable 'Every Soil Unstable'",
     "Config.Setting.ScrapRecipes": "Enable 'Scrap Recipes'",
     "Config.Setting.SealCrockExtraInteractions": "Enable 'Seal Crock Extra Interactions'",
     "Config.Setting.SlabToolModes": "Enable 'Slab Tool Modes'",

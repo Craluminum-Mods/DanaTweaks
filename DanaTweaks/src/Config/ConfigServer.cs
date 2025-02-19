@@ -19,6 +19,9 @@ public class ConfigServer : IModConfig
     public Dictionary<string, OvenFuel> OvenFuelBlocks { get; set; } = new() { ["peatbrick"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/peatpile" } };
     public RainCollector RainCollector { get; set; } = new();
     public ScytheMore ScytheMore { get; set; } = new();
+
+    public bool EverySoilUnstable { get; set; }
+    public List<string> EverySoilUnstableBlacklist { get; set; } = new();
     
     public bool DropDecor { get; set; } = true;
     public Dictionary<string, bool> DropDecorBlocks { get; set; } = new();
@@ -34,7 +37,6 @@ public class ConfigServer : IModConfig
     public bool CreativeTapestries { get; set; } = true;
     public bool DropResinAnyway { get; set; } = true;
     public bool DropVinesAnyway { get; set; } = true;
-    public bool EverySoilUnstable { get; set; }
     public bool ExtraClayforming { get; set; } = true;
     public bool FirepitHeatsOven { get; set; } = true;
     public bool FixOvenFuelRendering { get; set; } = true;
@@ -85,6 +87,9 @@ public class ConfigServer : IModConfig
         OvenFuelItems.AddRange(previousConfig.OvenFuelItems);
         OvenFuelBlocks.AddRange(previousConfig.OvenFuelBlocks);
 
+        EverySoilUnstable = previousConfig.EverySoilUnstable;
+        EverySoilUnstableBlacklist.AddRange(previousConfig.EverySoilUnstableBlacklist);
+
         DropDecor = previousConfig.DropDecor;
         DropDecorBlocks.AddRange(previousConfig.DropDecorBlocks);
 
@@ -99,7 +104,6 @@ public class ConfigServer : IModConfig
         CreativeTapestries = previousConfig.CreativeTapestries;
         DropResinAnyway = previousConfig.DropResinAnyway;
         DropVinesAnyway = previousConfig.DropVinesAnyway;
-        EverySoilUnstable = previousConfig.EverySoilUnstable;
         ExtraClayforming = previousConfig.ExtraClayforming;
         FirepitHeatsOven = previousConfig.FirepitHeatsOven;
         FixOvenFuelRendering = previousConfig.FixOvenFuelRendering;

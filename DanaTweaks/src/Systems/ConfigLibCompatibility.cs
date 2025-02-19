@@ -149,6 +149,13 @@ public class ConfigLibCompatibility
                 DictionaryEditor(config.DropDecorBlocks, new());
                 ImGui.Unindent();
             }
+            if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.EverySoilUnstable)) + $"##settingEverySoilUnstable-{id}"))
+            {
+                ImGui.Indent();
+                config.EverySoilUnstable = OnCheckBoxWithoutTranslation($"##boolean-EverySoilUnstable-{id}", config.EverySoilUnstable, Lang.Get(textEnabled));
+                config.EverySoilUnstableBlacklist = OnInputTextMultiline($"##multiline-EverySoilUnstable-{id}", config.EverySoilUnstableBlacklist, nameof(config.EverySoilUnstableBlacklist)).ToList();
+                ImGui.Unindent();
+            }
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(ScytheMore)) + $"##settingScytheMore-{id}"))
             {
                 ImGui.Indent();

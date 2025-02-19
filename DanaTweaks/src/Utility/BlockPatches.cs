@@ -203,7 +203,14 @@ public static class BlockPatches
 
     public static void PatchEverySoilUnstable(this Block block)
     {
-        if (Core.ConfigServer.EverySoilUnstable && block.BlockMaterial is EnumBlockMaterial.Soil or EnumBlockMaterial.Gravel or EnumBlockMaterial.Sand && !block.HasBehavior<BlockBehaviorUnstableFalling>())
+        if (Core.ConfigServer.EverySoilUnstable == false) return;
+
+        if (Core.ConfigServer.EverySoilUnstableBlacklist.Any(code => block.WildCardMatch(AssetLocation.Create(code))))
+        {
+            return;
+        }
+
+        if (block.BlockMaterial is EnumBlockMaterial.Soil or EnumBlockMaterial.Gravel or EnumBlockMaterial.Sand && !block.HasBehavior<BlockBehaviorUnstableFalling>())
         {
             var properties = new { fallSound = "effect/rockslide", fallSideways = true, dustIntensity = 0.25 };
             BlockBehaviorUnstableFalling behavior = new BlockBehaviorUnstableFalling(block);
