@@ -30,7 +30,7 @@ public static class GroundStorage_ImmersiveCrafting
         ItemSlot firstSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
         ItemSlot secondSlot = begs.GetSlotAt(blockSel);
 
-        if (firstSlot.Empty || secondSlot.Empty)
+        if (firstSlot.Empty || secondSlot == null || secondSlot.Empty)
         {
             return true;
         }
