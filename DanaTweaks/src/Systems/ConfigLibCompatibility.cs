@@ -124,7 +124,6 @@ public class ConfigLibCompatibility
             }
             if (ImGui.CollapsingHeader(Lang.Get(settingPrefix + nameof(config.OpenConnectedTrapdoors)) + $"##settingOpenConnectedTrapdoors-{id}"))
             {
-                ImGui.TextColored(new Vector4(1, 0, 0, 1), Lang.Get(langWarningTemporary));
                 config.OpenConnectedTrapdoors = OnCheckBoxWithoutTranslation($"##boolean-OpenConnectedTrapdoors-{id}", config.OpenConnectedTrapdoors, Lang.Get(textEnabled));
                 config.OpenConnectedTrapdoorsMaxBlocksDistance = OnInputInt(id, config.OpenConnectedTrapdoorsMaxBlocksDistance, nameof(config.OpenConnectedTrapdoorsMaxBlocksDistance));
                 ImGui.Unindent();
