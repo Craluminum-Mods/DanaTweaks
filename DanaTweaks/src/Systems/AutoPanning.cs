@@ -43,7 +43,7 @@ public class AutoPanning : ModSystem
                 BlockSelection blockSel = new BlockSelection(blockPos, BlockFacing.DOWN, block);
                 clientMain.SendHandInteraction(2, blockSel, null, EnumHandInteract.HeldItemInteract, EnumHandInteractNw.StartHeldItemUse, true);
             }
-        });
+        }, centerOrder: true);
     }
 
     private bool TryPan(ICoreClientAPI capi, ItemSlot slot)
