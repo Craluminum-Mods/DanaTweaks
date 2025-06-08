@@ -1,7 +1,4 @@
 {
-    "_comentarios-1": "Dana Tweaks v3.4.1 || Enlace de VS ModDB: https://mods.vintagestory.at/danatweaks ",
-    "_comentarios-2": "Traducido por C4BR3R4 || Última Modificación: 30/05/2025 || Registro de Cambios: https://c4br3r4.es/index.php?topic=1326.0 ",
-
     "warning-temporary":"Desactivado temporalmente debido a cambios significativos en la API del juego que hacían que esta función específica funcionase.",
 
     "Command.OpenCloseLid.Name": "Abrir/Cerrar Tapa",
