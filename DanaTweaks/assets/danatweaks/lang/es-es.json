@@ -1,8 +1,118 @@
 {
-    "Command.OpenCloseLid.Name": "Abrir o cerrar la tapa de la caja",
-    "Command.RemoveOrAddLabel.Name": "Quitar o añadir pergamino en la caja",
-    "Command.Error.NoCrate": "Ninguna caja a la vista",
-    "Command.Error.HasDiffLabel": "Cajón tiene pergamino diferente",
-    "Command.Error.NoLabel": "No hay pergamino en la mano ni en la caja",
-    "RemoveBookSignature": "Quitar firma de libro (debes ser el autor de este libro)"
+    "warning-temporary":"Desactivado temporalmente debido a cambios significativos en la API del juego que hacían que esta función específica funcionase.",
+
+    "Command.OpenCloseLid.Name": "Abrir/Cerrar Tapa",
+    "Command.RemoveOrAddLabel.Name": "Quitar/Añadir Pergamino",
+    "Command.Error.NoCrate": "No hay Cajas a la vista.",
+    "Command.Error.HasDiffLabel": "La Caja tiene una Etiqueta especial que no se puede retirar.",
+    "Command.Error.NoLabel": "No hay ningún Pergamino en tu mano ni en la Caja.",
+    "RemoveBookSignature": "Eliminar la Firma del Libro (si eres el Autor).",
+    "crock-seal": "Arroja aquí Grasa o Cera de Abejas para Sellarlo",
+    "waxcheese": "Engrasar el Queso",
+
+    "game:placefailure-danatweaks-omnirotatable": "No se puede colocar. Prueba otra Función, por ejemplo «Auto».",
+
+    "danatweaks-server": "Dana Tweaks (Servidor)",
+    "danatweaks-client": "Dana Tweaks (Cliente)",
+
+    "Config.SettingsSimple": "Configuración Sencilla",
+    "Config.SettingsAdvanced": "Configuración Ampliada",
+
+    "Config.Setting.ExtinctSubmergedTorchInEverySlot": "Extinguir las Antorchas al sumergirse",
+    "Config.Setting.ExtinctSubmergedTorchInEverySlotUpdateMilliseconds": "Intervalo en milisegundos.",
+
+    "Config.Setting.OpenConnectedTrapdoors": "Abrir todas las Trampillas Conectadas",
+    "Config.Setting.OpenConnectedTrapdoorsMaxBlocksDistance": "Distancia máxima en bloques.",
+
+    "Config.Setting.AutoPlantDroppedTreeSeeds": "Plantar Árboles arrojando solo las Semillas",
+    "Config.Setting.AutoPlantDroppedTreeSeedsDelay": "Tiempo de espera (tras la caída).",
+
+    "Config.Setting.EverySoilUnstable": "Inestabilidad de la Tierra (exclusiones)",
+    "Config.Setting.EverySoilUnstableBlacklist": "Lista de Exclusiones",
+
+    "Config.Setting.CreativeMiddleClickEntity": "Interacciones con Entidades en Creativo con Botón Central",
+    "Config.Setting.ScrapRecipes": "Recetas de Reciclado",
+    "Config.Setting.SealCrockExtraInteractions": "Interacciones Adicionales de Sellado de Tarros",
+    "Config.Setting.SlabToolModes": "Función de Colocación de Losas",
+
+    "Config.Setting.BranchCutter": "Función de obtención de Hojas (completas) con Tijeras.",
+    "Config.Setting.CreativeTapestries": "Añadir Tapices al Inventario Creativo.",
+    "Config.Setting.DropDecor": "Arrojar Decoraciones",
+    "Config.Setting.DropResinAnyway": "Soltar la Resina al Romper Árboles",
+    "Config.Setting.DropVinesAnyway": "Soltar las Enredaderas al Romper los Árboles",
+    "Config.Setting.ExtraClayforming": "Añadir más Recetas en la Formación de Arcilla",
+    "Config.Setting.FirepitHeatsOven": "La Hoguera Calienta el Horno",
+    "Config.Setting.FixOvenFuelRendering": "Corregir el Renderizado del Combustible del Horno",
+    "Config.Setting.FourPlanksFromLog": "Formar Cuatro Tablones de cada Tronco",
+    "Config.Setting.GroundStorageImmersiveCrafting": "Alfarería inmersiva de Suelo usando dos elementos",
+    "Config.Setting.GroundStorageLiquidInteraction": "Almacenamiento inmersivo de Líquidos en Contenedores",
+    "Config.Setting.GroundStorageParticles": "Emitir Humo en Ollas y Crisoles del suelo",
+    "Config.Setting.HalloweenEveryDay": "Permitir Tallar Calabazas en cualquier época del año",
+    "Config.Setting.PlanksInPitKiln": "Permitir usar Tablones en el Horno de Pozo",
+    "Config.Setting.PlayerDropsHotSlots": "Soltar los objetos muy calientes del Inventario",
+    "Config.Setting.PlayerWakesUpWhenHungry": "Despertar a los jugadores cuando tienen hambre",
+    "Config.Setting.RackableFirestarter": "Encendedor en el Soporte de Herramientas",
+    "Config.Setting.RecycleBags": "Añadir Recetas para Reciclar Mochilas",
+    "Config.Setting.RecycleClothes": "Añadir Recetas para Reciclar Ropa",
+    "Config.Setting.RegrowResin": "Generar Árboles plantados con Resina",
+    "Config.Setting.RemoveBookSignature": "Permitir Eliminar la Firma del Libro",
+    "Config.Setting.ShelvablePie": "Almacenar Tartas en Estanterías",
+    "Config.Setting.WaxCheeseOnGround": "Permitir colocar Queso Encerado sobre el suelo",
+
+    "Config.Setting.Model": "Modelo",
+
+    "Config.Setting.Command": "Comandos",
+    "Config.Setting.CrateOpenCloseLid": "Permitir Abrir/Cerrar la Tapa de la Caja con un comando.",
+    "Config.Setting.CrateRemoveOrAddLabel": "Permitir Quitar/Añadir la Etiqueta de Caja con comando.",
+
+    "Config.Setting.RainCollector": "Permitir Recolectar el Agua de Lluvia",
+    "Config.Setting.LitresPerUpdate": "Litros por Actualización",
+    "Config.Setting.MinPrecipitation": "Precipitación Mínima",
+    "Config.Setting.UpdateMilliseconds": "Intervalo en milisegundos",
+    "Config.Setting.LiquidCode": "Código de Líquido",
+
+    "Config.Setting.ScytheMore": "Guadaña Mejorada",
+    "Config.Setting.DisallowedParts": "Partes Rechazadas",
+    "Config.Setting.DisallowedSuffixes": "Sufijos Rechazados",
+
+    "Config.Setting.OvenFuel": "Combustible del Horno",
+
+    "Config.Setting.CreaturesOpenDoors": "Las Criaturas abren las Puertas",
+    "Config.Setting.Cooldown": "Tiempo de Espera",
+    "Config.Setting.Range": "Rango",
+
+    "game:Blocks": "Bloques",
+    "Config.Text.SupportsWildcard": "admite comodines y expresiones regulares",
+
+    "Config.Setting.avg": "promedio",
+    "Config.Setting.var": "variable",
+
+    "Config.Setting.GlowingProjectiles": "Proyectiles Brillantes",
+    "Config.Setting.ResinOnAllSides": "Mostrar la Resina en todas las caras del Tronco con Resina",
+
+    "Config.Setting.AlwaysSwitchToBestTool": "Cambiar siempre a la mejor Herramienta",
+    "Config.Setting.AlwaysSwitchToBestToolIgnoredTools": "Herramientas Ignoradas",
+
+    "Config.Setting.AutoClose": "Cierre Automático",
+    "Config.Setting.AutoClose.Description": "Cierre Automático de Puertas, Trampillas, etc.",
+
+    "Config.Setting.UI": "Interfaz de Usuario",
+    "Config.Setting.OverrideWaypointColors": "Anular",
+    "Config.Setting.ExtraWaypointColors": "Colores de Marcas Adicionales",
+    "Config.Setting.ModesPerRowForVoxelRecipesEnabled": "Funciones por Fila en elaboraciones de Vóxel",
+    "Config.Setting.ModesPerRowForVoxelRecipes": "Funciones por Fila",
+    "Config.Setting.ColorsPerRowForWaypointWindowEnabled": "Colores por Fila en ventana de Marcas",
+    "Config.Setting.ColorsPerRowForWaypointWindowRatio": "Colores por Fila (relación)",
+    "Config.Setting.IconsPerRowForWaypointWindowEnabled": "Iconos por Fila en la ventana de Marcas",
+    "Config.Setting.IconsPerRowForWaypointWindowRatio": "Iconos por Fila (relación)",
+
+    "AutoPanning.Toggle": "Dana Tweaks ► Bateo Automático",
+    "AutoPanning.Enabled": "[Dana Tweaks] Se ha <font weight='bold' color='lightgreen'>activado</font> la función de Bateo Automático.",
+    "AutoPanning.Disabled": "[Dana Tweaks] Se ha <font weight='bold' color='lightcoral'>desactivado</font> la función de Bateo Automático.",
+
+    "ButcheringFix.Toggle": "Dana Tweaks ► Corregir problema de Desoyado",
+    "ButcheringFix.Enabled": "[Dana Tweaks] Se ha <font weight='bold' color='lightgreen'>activado</font> la corrección del problema de Desoyado.",
+    "ButcheringFix.Disabled": "[Dana Tweaks] Se ha <font weight='bold' color='lightcoral'>desactivado</font> la corrección del problema de Desoyado.",
+
+    "AutoWalk.Toggle": "Dana Tweaks ► Desplazamiento Automático"
 }
