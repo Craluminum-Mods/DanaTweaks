@@ -14,9 +14,9 @@ public class ConfigServer : IModConfig
     public bool AutoPlantDroppedTreeSeeds { get; set; } = true;
     public int AutoPlantDroppedTreeSeedsDelay { get; set; } = 5000;
     public Command Command { get; set; } = new();
-    public Dictionary<string, CreatureOpenDoors> CreaturesOpenDoors { get; set; } = new() { ["drifter-*"] = new CreatureOpenDoors() { Enabled = true, Cooldown = 5, Range = 1 } };
-    public Dictionary<string, OvenFuel> OvenFuelItems { get; set; } = new() { ["plank-*"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/plankpile" } };
-    public Dictionary<string, OvenFuel> OvenFuelBlocks { get; set; } = new() { ["peatbrick"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/peatpile" } };
+    public Dictionary<string, CreatureOpenDoors> CreaturesOpenDoors { get; set; } = new();
+    public Dictionary<string, OvenFuel> OvenFuelItems { get; set; } = new();
+    public Dictionary<string, OvenFuel> OvenFuelBlocks { get; set; } = new();
     public RainCollector RainCollector { get; set; } = new();
     public ScytheMore ScytheMore { get; set; } = new();
 
@@ -66,6 +66,10 @@ public class ConfigServer : IModConfig
             ScytheMore ??= new ScytheMore();
             ScytheMore.DisallowedParts ??= ScytheMore.DefaultDisallowedParts();
             ScytheMore.DisallowedSuffixes ??= ScytheMore.DefaultDisallowedSuffixes();
+
+            CreaturesOpenDoors = new() { ["drifter-*"] = new CreatureOpenDoors() { Enabled = true, Cooldown = 5, Range = 1 } };
+            OvenFuelItems = new() { ["plank-*"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/plankpile" } };
+            OvenFuelBlocks = new() { ["peatbrick"] = new OvenFuel() { Enabled = true, Model = "danatweaks:block/ovenfuel/peatpile" } };
             return;
         }
 
