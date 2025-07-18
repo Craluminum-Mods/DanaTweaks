@@ -73,6 +73,7 @@ public class BlockBehaviorSelectSlabToolMode : BlockBehavior
         if (toolMode == 0)
         {
             slot.Itemstack.Attributes.RemoveAttribute("slabPlaceMode");
+            return;
         }
         slot.Itemstack.Attributes.SetInt("slabPlaceMode", toolMode);
     }
