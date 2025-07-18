@@ -70,6 +70,10 @@ public class BlockBehaviorSelectSlabToolMode : BlockBehavior
 
     public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection, int toolMode)
     {
+        if (toolMode == 0)
+        {
+            slot.Itemstack.Attributes.RemoveAttribute("slabPlaceMode");
+        }
         slot.Itemstack.Attributes.SetInt("slabPlaceMode", toolMode);
     }
 
