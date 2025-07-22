@@ -31,6 +31,11 @@ public static class LiquidContainer_GroundStorageLiquidInteractionFix
         ItemSlot hotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
         ItemSlot targetSlot = begs.GetSlotAt(blockSel);
 
+        if (targetSlot == null)
+        {
+            return true;
+        }
+
         if (targetSlot.Empty
             || targetSlot.Itemstack.Collectible.GetCollectibleInterface<ILiquidInterface>() is null
             || hotbarSlot.Empty
