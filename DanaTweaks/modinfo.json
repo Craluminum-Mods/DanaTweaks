@@ -7,8 +7,8 @@
     "name": "Dana Tweaks",
     "description": "Various tweaks",
     "authors": ["Craluminum2413"],
-    "version": "3.7.2",
+    "version": "4.0.0",
     "dependencies": {
-        "game": "1.21.0"
+        "game": "1.22.0"
     }
 }
