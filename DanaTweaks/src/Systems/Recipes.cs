@@ -1,14 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
 using Vintagestory.API.Common;
-using Vintagestory.ServerMods;
 
 namespace DanaTweaks;
 
 public class Recipes : ModSystem
 {
-    public GridRecipeLoader GridRecipeLoader { get; set; }
-
     public override double ExecuteOrder() => 1.1;
 
     public override void AssetsLoaded(ICoreAPI api)
@@ -18,15 +13,13 @@ public class Recipes : ModSystem
             return;
         }
 
-        GridRecipeLoader = api.ModLoader.GetModSystem<GridRecipeLoader>();
-
         foreach (GridRecipe recipe in api.World.GridRecipes)
         {
             if (Core.ConfigServer.FourPlanksFromLog)
             {
-                if (recipe.Output.ResolvedItemstack != null && recipe.HasLogAsIngredient() && recipe.Output.IsPlank())
+                if (recipe.Output.ResolvedItemStack != null && recipe.HasLogAsIngredient() && recipe.Output.IsPlank())
                 {
-                    recipe.Output.ResolvedItemstack.StackSize = 4;
+                    recipe.Output.ResolvedItemStack.StackSize = 4;
                 }
             }
         }
