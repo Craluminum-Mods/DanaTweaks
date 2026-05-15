@@ -33,7 +33,7 @@ public class BlockBehaviorWaxCheeseOnGroundInteractions : BlockBehavior
     {
         if (world.BlockAccessor.GetBlockEntity(selection.Position) is not BECheese bec || bec.Inventory[0].Itemstack?.Collectible.Variant["type"] != "salted")
         {
-            return null;
+            return [];
         }
 
         handling = EnumHandling.PassThrough;
