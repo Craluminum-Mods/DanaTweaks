@@ -17,7 +17,6 @@ public class ConfigClient : IModConfig
     public bool IconsPerRowForWaypointWindowEnabled { get; set; } = true;
     public float IconsPerRowForWaypointWindowRatio { get; set; } = 1;
 
-    public bool GlowingProjectiles { get; set; }
     public bool ResinOnAllSides { get; set; } = true;
 
     public ConfigClient(ICoreAPI api, ConfigClient previousConfig = null)
@@ -39,7 +38,6 @@ public class ConfigClient : IModConfig
         IconsPerRowForWaypointWindowEnabled = previousConfig.IconsPerRowForWaypointWindowEnabled;
         IconsPerRowForWaypointWindowRatio = previousConfig.IconsPerRowForWaypointWindowRatio;
 
-        GlowingProjectiles = previousConfig.GlowingProjectiles;
         ResinOnAllSides = previousConfig.ResinOnAllSides;
     }
 }

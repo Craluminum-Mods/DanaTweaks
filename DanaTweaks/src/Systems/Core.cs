@@ -66,12 +66,6 @@ public class Core : ModSystem
         api.Event.OnEntityLoaded += (entity) => entity.AddEntityBehaviors();
     }
 
-    public override void StartClientSide(ICoreClientAPI api)
-    {
-        api.Event.OnEntitySpawn += (entity) => entity.SetGlowLevel();
-        api.Event.OnEntityLoaded += (entity) => entity.SetGlowLevel();
-    }
-
     public override void AssetsFinalize(ICoreAPI api)
     {
         if (!api.Side.IsServer())

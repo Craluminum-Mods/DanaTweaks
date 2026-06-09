@@ -178,7 +178,6 @@ public class ConfigLibCompatibility
         if (ImGui.CollapsingHeader(Lang.Get(settingsSimple) + $"##client-settingSimple-{id}"))
         {
             ImGui.Indent();
-            config.GlowingProjectiles = OnCheckBox(id, config.GlowingProjectiles, nameof(config.GlowingProjectiles));
             config.ResinOnAllSides = OnCheckBox(id, config.ResinOnAllSides, nameof(config.ResinOnAllSides));
             ImGui.Unindent();
         }

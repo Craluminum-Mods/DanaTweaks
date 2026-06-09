@@ -1,10 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.Util;
-using Vintagestory.GameContent;
 
 namespace DanaTweaks;
 
@@ -43,14 +41,6 @@ public static class EntityPatches
             EntityBehaviorOpenDoors behavior = new EntityBehaviorOpenDoors(entity);
             behavior.Initialize(entity.Properties, jsonAttributes);
             entity.AddBehavior(behavior);
-        }
-    }
-
-    public static void SetGlowLevel(this Entity entity)
-    {
-        if (Core.ConfigClient.GlowingProjectiles && (entity is EntityProjectile || entity.Class.Contains("projectile", StringComparison.OrdinalIgnoreCase)))
-        {
-            entity.Properties.Client.GlowLevel = 255;
         }
     }
 }
