@@ -96,7 +96,5 @@
 
     "AutoPanning.Toggle": "(Dana Tweaks) Wlacz Auto Plukanie",
     "AutoPanning.Enabled": "(Dana Tweaks) Auto Plukanie <font weight=\"bold\" color=\"#84ff84\">Wlaczony</font>",
-    "AutoPanning.Disabled": "(Dana Tweaks) Auto Plukanie <font weight=\"bold\" color=\"#ff8484\">Wylaczone</font>",
-
-    "AutoWalk.Toggle": "(Dana Tweaks) Wlacz auto chodzenie"
+    "AutoPanning.Disabled": "(Dana Tweaks) Auto Plukanie <font weight=\"bold\" color=\"#ff8484\">Wylaczone</font>"
 }
