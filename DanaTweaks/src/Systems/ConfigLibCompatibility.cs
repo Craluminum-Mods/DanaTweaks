@@ -64,7 +64,6 @@ public class ConfigLibCompatibility
             config.CreativeMiddleClickEntity = OnCheckBox(id, config.CreativeMiddleClickEntity, nameof(config.CreativeMiddleClickEntity));
             config.EverySoilUnstable = OnCheckBox(id, config.EverySoilUnstable, nameof(config.EverySoilUnstable));
             config.ExtraClayforming = OnCheckBox(id, config.ExtraClayforming, nameof(config.ExtraClayforming));
-            config.ScrapRecipes = OnCheckBox(id, config.ScrapRecipes, nameof(config.ScrapRecipes));
             config.SlabToolModes = OnCheckBox(id, config.SlabToolModes, nameof(config.SlabToolModes));
 
             config.BranchCutter = OnCheckBox(id, config.BranchCutter, nameof(config.BranchCutter));
@@ -77,8 +76,6 @@ public class ConfigLibCompatibility
             config.PlayerDropsHotSlots = OnCheckBox(id, config.PlayerDropsHotSlots, nameof(config.PlayerDropsHotSlots));
             config.PlayerWakesUpWhenHungry = OnCheckBox(id, config.PlayerWakesUpWhenHungry, nameof(config.PlayerWakesUpWhenHungry));
             config.RackableFirestarter = OnCheckBox(id, config.RackableFirestarter, nameof(config.RackableFirestarter));
-            config.RecycleBags = OnCheckBox(id, config.RecycleBags, nameof(config.RecycleBags));
-            config.RecycleClothes = OnCheckBox(id, config.RecycleClothes, nameof(config.RecycleClothes));
             config.RegrowResin = OnCheckBox(id, config.RegrowResin, nameof(config.RegrowResin));
             config.RemoveBookSignature = OnCheckBox(id, config.RemoveBookSignature, nameof(config.RemoveBookSignature));
             config.WaxCheeseOnGround = OnCheckBox(id, config.WaxCheeseOnGround, nameof(config.WaxCheeseOnGround));

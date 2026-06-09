@@ -30,7 +30,6 @@
     "Config.Setting.EverySoilUnstableBlacklist": "Blacklist",
 
     "Config.Setting.CreativeMiddleClickEntity": "Enable 'Creative Middle Click Entity'",
-    "Config.Setting.ScrapRecipes": "Enable 'Scrap Recipes'",
     "Config.Setting.SlabToolModes": "Enable 'Slab Tool Modes'",
 
     "Config.Setting.BranchCutter": "Add second mode to shears to drop whole leaves blocks",
@@ -45,8 +44,6 @@
     "Config.Setting.PlayerDropsHotSlots": "Player drops all hot slots",
     "Config.Setting.PlayerWakesUpWhenHungry": "Wake up players when hungry",
     "Config.Setting.RackableFirestarter": "Allow to store firestarter on tool racks",
-    "Config.Setting.RecycleBags": "Add recipes for recycling bags",
-    "Config.Setting.RecycleClothes": "Add recipes for recycling clothes",
     "Config.Setting.RegrowResin": "Generate resin on trees grown from saplings",
     "Config.Setting.RemoveBookSignature": "Allow to remove book signature",
     "Config.Setting.ShelvablePie": "Allow to store pies on shelves",

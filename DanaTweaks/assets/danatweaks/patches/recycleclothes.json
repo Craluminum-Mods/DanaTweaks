@@ -1,4 +1,0 @@
-[
-    { "op": "add", "path": "/0/enabled", "value": false, "file": "danatweaks:recipes/grid/recycleclothes/*", "condition": { "when": "DanaTweaks.RecycleClothes", "isValue": "false" }, "side": "Server" },
-    { "op": "add", "path": "/1/enabled", "value": false, "file": "danatweaks:recipes/grid/recycleclothes/*", "condition": { "when": "DanaTweaks.RecycleClothes", "isValue": "false" }, "side": "Server" }
-]

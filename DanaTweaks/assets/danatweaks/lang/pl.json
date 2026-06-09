@@ -28,7 +28,6 @@
 
     "Config.Setting.CreativeMiddleClickEntity": "Wlacz 'Creative Middle Click Entity'",
     "Config.Setting.EverySoilUnstable": "Wlacz 'Kazda gleba niestabilna'",
-    "Config.Setting.ScrapRecipes": "Wlacz 'Scrap Recipes'",
     "Config.Setting.SlabToolModes": "Wlacz 'Slab Tool Modes'",
 
     "Config.Setting.BranchCutter": "Dodaj drugi tryb do nozyc aby zbierac cale bloki lisci",
@@ -43,8 +42,6 @@
     "Config.Setting.PlayerDropsHotSlots": "Gracz upuszcza wszystko ze slotow",
     "Config.Setting.PlayerWakesUpWhenHungry": "Obudz graczy podczas snu gdy zglodnieja",
     "Config.Setting.RackableFirestarter": "Zezwol na przechowywanie rozpalki na stojaku na narzedzia",
-    "Config.Setting.RecycleBags": "Dodaj przepisy na recykling torb",
-    "Config.Setting.RecycleClothes": "Dodaj przepisy na recykling ubrań",
     "Config.Setting.RegrowResin": "Wytwarzaj zywice na drzewach wyhodowanych z sadzonek",
     "Config.Setting.RemoveBookSignature": "Zezwalaj na usuwanie podpisow ksiazek",
     "Config.Setting.ShelvablePie": "Zezwol na przechowywanie ciast na polkach",

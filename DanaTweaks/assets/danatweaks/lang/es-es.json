@@ -30,7 +30,6 @@
     "Config.Setting.EverySoilUnstableBlacklist": "Lista de Exclusiones",
 
     "Config.Setting.CreativeMiddleClickEntity": "Interacciones con Entidades en Creativo con Botón Central",
-    "Config.Setting.ScrapRecipes": "Recetas de Reciclado",
     "Config.Setting.SlabToolModes": "Función de Colocación de Losas",
 
     "Config.Setting.BranchCutter": "Función de obtención de Hojas (completas) con Tijeras.",
@@ -45,8 +44,6 @@
     "Config.Setting.PlayerDropsHotSlots": "Soltar los objetos muy calientes del Inventario",
     "Config.Setting.PlayerWakesUpWhenHungry": "Despertar a los jugadores cuando tienen hambre",
     "Config.Setting.RackableFirestarter": "Encendedor en el Soporte de Herramientas",
-    "Config.Setting.RecycleBags": "Añadir Recetas para Reciclar Mochilas",
-    "Config.Setting.RecycleClothes": "Añadir Recetas para Reciclar Ropa",
     "Config.Setting.RegrowResin": "Generar Árboles plantados con Resina",
     "Config.Setting.RemoveBookSignature": "Permitir Eliminar la Firma del Libro",
     "Config.Setting.ShelvablePie": "Almacenar Tartas en Estanterías",

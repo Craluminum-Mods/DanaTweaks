@@ -21,9 +21,6 @@ public class Core : ModSystem
             case EnumAppSide.Server:
                 ConfigServer = ModConfig.ReadConfig<ConfigServer>(api, ConfigServerName);
                 api.World.Config.SetBool("DanaTweaks.ExtraClayforming", ConfigServer.ExtraClayforming);
-                api.World.Config.SetBool("DanaTweaks.RecycleBags", ConfigServer.RecycleBags);
-                api.World.Config.SetBool("DanaTweaks.RecycleClothes", ConfigServer.RecycleClothes);
-                api.World.Config.SetBool("DanaTweaks.ScrapRecipes", ConfigServer.ScrapRecipes);
                 api.World.Config.SetBool("DanaTweaks.WaxCheeseOnGround", ConfigServer.WaxCheeseOnGround);
                 break;
             case EnumAppSide.Client:

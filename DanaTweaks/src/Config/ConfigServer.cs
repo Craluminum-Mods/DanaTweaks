@@ -44,11 +44,8 @@ public class ConfigServer : IModConfig
     public bool PlayerDropsHotSlots { get; set; }
     public bool PlayerWakesUpWhenHungry { get; set; }
     public bool RackableFirestarter { get; set; } = true;
-    public bool RecycleBags { get; set; }
-    public bool RecycleClothes { get; set; }
     public bool RegrowResin { get; set; } = true;
     public bool RemoveBookSignature { get; set; } = true;
-    public bool ScrapRecipes { get; set; } = true;
     public bool SlabToolModes { get; set; } = true;
     public bool WaxCheeseOnGround { get; set; } = true;
 
@@ -108,11 +105,8 @@ public class ConfigServer : IModConfig
         PlayerDropsHotSlots = previousConfig.PlayerDropsHotSlots;
         PlayerWakesUpWhenHungry = previousConfig.PlayerWakesUpWhenHungry;
         RackableFirestarter = previousConfig.RackableFirestarter;
-        RecycleBags = previousConfig.RecycleBags;
-        RecycleClothes = previousConfig.RecycleClothes;
         RegrowResin = previousConfig.RegrowResin;
         RemoveBookSignature = previousConfig.RemoveBookSignature;
-        ScrapRecipes = previousConfig.ScrapRecipes;
         SlabToolModes = previousConfig.SlabToolModes;
         WaxCheeseOnGround = previousConfig.WaxCheeseOnGround;
     }
