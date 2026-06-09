@@ -175,12 +175,6 @@ public class ConfigLibCompatibility
 
     private void BuildSettingsClient(ConfigClient config, string id)
     {
-        if (ImGui.CollapsingHeader(Lang.Get(settingsSimple) + $"##client-settingSimple-{id}"))
-        {
-            ImGui.Indent();
-            config.ResinOnAllSides = OnCheckBox(id, config.ResinOnAllSides, nameof(config.ResinOnAllSides));
-            ImGui.Unindent();
-        }
         if (ImGui.CollapsingHeader(Lang.Get(settingsAdvanced) + $"##client-settingAdvanced-{id}"))
         {
             ImGui.Indent();

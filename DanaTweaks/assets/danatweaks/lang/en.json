@@ -77,8 +77,6 @@
     "Config.Setting.avg": "avg",
     "Config.Setting.var": "var",
 
-    "Config.Setting.ResinOnAllSides": "Show resin on all sides of log with resin",
-
     "Config.Setting.AutoClose": "Auto Close",
     "Config.Setting.AutoClose.Description": "Auto close doors, trapdoors, gates, fences etc.",
 

@@ -75,8 +75,6 @@
     "Config.Setting.avg": "srednia",
     "Config.Setting.var": "wariancja",
 
-    "Config.Setting.ResinOnAllSides": "Show resin on all sides of log with resin",
-
     "Config.Setting.AutoClose": "Auto zamykanie",
     "Config.Setting.AutoClose.Description": "Auto zamykanie drzwi, zapadni, bram, itp.",
 
